@@ -30,11 +30,14 @@ $_SESSION['page'] = 'public';
             <button class="w3-button">
                 Files <i class="fa fa-caret-down"></i>
             </button>
-            <div class="w3-dropdown-content w3-bar-block nz-black nz-round-bottom w3-card-2">
-                <a class="w3-bar-item w3-button" href="files-public.php">Public</a><?php
+            <div class="w3-dropdown-content w3-bar-block nz-black nz-round-bottom w3-card-2"><?php
                 if(isset($_SESSION['user_id'])) {
                     echo '
+                <a class="w3-bar-item w3-button" href="files-public.php">Public</a>
                 <a class="w3-bar-item w3-button nz-round-bottom" href="files-private.php">Private</a>';
+                } else {
+                    echo '
+                <a class="w3-bar-item w3-button nz-round-bottom" href="files-public.php">Public</a>';
                 } ?>
 
             </div>
@@ -56,10 +59,10 @@ $_SESSION['page'] = 'public';
             <button class="w3-button">
                 ' . $_SESSION['username'] . ' <i class="fa fa-caret-down"></i>
             </button>
-            <div class="w3-dropdown-content w3-bar-block nz-black nz-round-bottom w3-card-2" style="translate: -85px;">
+            <div class="w3-dropdown-content w3-bar-block nz-black nz-round-bottom-left w3-card-2" style="translate: -85px;">
                 <a class="w3-bar-item w3-button" href="account.php">Account</a>
                 <form action="logout.php" method="POST">
-                    <button class="w3-bar-item w3-button w3-red nz-round-bottom" type="submit" name="logout_btn">Logout</button>
+                    <button class="w3-bar-item w3-button w3-red nz-round-bottom-left" type="submit" name="logout_btn">Logout</button>
                 </form>
             </div>
         </div>';
@@ -69,11 +72,11 @@ $_SESSION['page'] = 'public';
             <button class="w3-button" onclick="dropdownToggle()">
                 Login <i class="fa fa-caret-down"></i>
             </button>
-            <div class="w3-dropdown-content w3-bar-block nz-black nz-round-bottom w3-card-2" id="dropdown" style="translate: -73px;">
+            <div class="w3-dropdown-content w3-bar-block nz-black nz-round-bottom-left w3-card-2" id="dropdown" style="translate: -73px;">
                 <form class="w3-right" action="login.php" method="POST">
                     <input class="w3-bar-item w3-input nz-black" type="text" name="username" placeholder="Username">
                     <input class="w3-bar-item w3-input nz-black" type="password" name="password" placeholder="Password">
-                    <button class="w3-bar-item w3-button w3-green nz-round-bottom" type="submit" name="login_btn">Login</button>
+                    <button class="w3-bar-item w3-button w3-green nz-round-bottom-left" type="submit" name="login_btn">Login</button>
                 </form>
             </div>
         </div>';

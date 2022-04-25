@@ -59,10 +59,10 @@ $_SESSION['page'] = 'account';
             <button class="w3-button">
                 <?php echo $_SESSION['username'] ?> <i class="fa fa-caret-down"></i>
             </button>
-            <div class="w3-dropdown-content w3-bar-block nz-black nz-round-bottom w3-card-2" style="translate: -85px;">
+            <div class="w3-dropdown-content w3-bar-block nz-black nz-round-bottom-left w3-card-2" style="translate: -85px;">
                 <a class="w3-bar-item w3-button" href="account.php">Account</a>
                 <form action="logout.php" method="POST">
-                    <button class="w3-bar-item w3-button w3-red nz-round-bottom" type="submit" name="logout_btn">Logout</button>
+                    <button class="w3-bar-item w3-button w3-red nz-round-bottom-left" type="submit" name="logout_btn">Logout</button>
                 </form>
             </div>
         </div>

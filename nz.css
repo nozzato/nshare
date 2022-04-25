@@ -20,6 +20,9 @@
 .nz-round-bottom {
     border-radius: 0 0 4px 4px;
 }
+.nz-round-bottom-left {
+    border-radius: 0 0 0 4px;
+}
 
 .fox-right-first {
     position: absolute;
