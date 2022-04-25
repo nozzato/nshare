@@ -28,17 +28,30 @@ $_SESSION['page'] = 'account';
 
 <div class="nz-black" id="header">
     <div class="w3-bar">
-        <span class="w3-bar-item w3-text-blue w3-mobile">NozzDesk Server</span>
-        <a class="w3-bar-item w3-button" href="index.php">Home</a>
+        <a class="w3-bar-item w3-button w3-text-blue w3-mobile" href="index.php">NozzDesk Server</a>
         <div class="w3-dropdown-hover">
             <button class="w3-button">
                 Files <i class="fa fa-caret-down"></i>
             </button>
-            <div class="w3-dropdown-content w3-bar-block nz-black nz-round-bottom w3-card-2">
-                <a class="w3-bar-item w3-button" href="files-public.php">Public</a><?php
+            <div class="w3-dropdown-content w3-bar-block nz-black nz-round-bottom w3-card-2 w3-hide-small"><?php
                 if(isset($_SESSION['user_id'])) {
                     echo '
+                <a class="w3-bar-item w3-button" href="files-public.php">Public</a>
                 <a class="w3-bar-item w3-button nz-round-bottom" href="files-private.php">Private</a>';
+                } else {
+                    echo '
+                <a class="w3-bar-item w3-button nz-round-bottom" href="files-public.php">Public</a>';
+                } ?>
+
+            </div>
+            <div class="w3-dropdown-content w3-bar-block nz-black nz-round-bottom-right w3-card-2 w3-hide-large w3-hide-medium"><?php
+                if(isset($_SESSION['user_id'])) {
+                    echo '
+                <a class="w3-bar-item w3-button" href="files-public.php">Public</a>
+                <a class="w3-bar-item w3-button nz-round-bottom-right" href="files-private.php">Private</a>';
+                } else {
+                    echo '
+                <a class="w3-bar-item w3-button nz-round-bottom-right" href="files-public.php">Public</a>';
                 } ?>
 
             </div>

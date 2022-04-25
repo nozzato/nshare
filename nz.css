@@ -23,6 +23,9 @@
 .nz-round-bottom-left {
     border-radius: 0 0 0 4px;
 }
+.nz-round-bottom-right {
+    border-radius: 0 0 4px;
+}
 
 .fox-right-first {
     position: absolute;
