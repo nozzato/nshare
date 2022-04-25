@@ -27,7 +27,7 @@ if (isset($_POST['login_btn'], $_POST['username'], $_POST['password'])) {
             $_SESSION['admin']    = $row['admin'];
 
             //$_SESSION['sess_msg'] = "Access granted";
-            if($_SESSION['page'] == 'index') {
+            if($_SESSION['page'] == 'home') {
                 header('location:index.php');
                 exit;
             } else if($_SESSION['page'] == 'public') {
