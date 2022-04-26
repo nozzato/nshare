@@ -1,1 +1,5 @@
+!files
+files/*
+!files/public
+
 fontawesome-free-6.1.1-web/
