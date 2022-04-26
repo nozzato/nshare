@@ -116,8 +116,15 @@ $_SESSION['page'] = 'account';
 <div class="w3-container w3-center" style="margin-bottom:38.5px" id="content">
     <p>
     <div class="w3-round w3-card-2" id="form">
-        <div class="w3-container nz-black nz-round-top">
-            <h2>Signup or delete account</h2>
+        <div class="w3-container nz-black nz-round-top"><?php
+            if($_SESSION['admin'] == 1) {
+                echo '
+            <h2>Signup or delete account</h2>';
+            } else {
+                echo '
+            <h2>Delete account</h2>';
+            } ?>
+
         </div>
         <form class="w3-container" action="signup.php" method="POST">
             <p>
