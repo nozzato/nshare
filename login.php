@@ -41,8 +41,17 @@ if (isset($_POST['login_btn'])) {
             }
             else {
                 $_SESSION['msg'] = "Error: Invalid username or password";
-                header('location:index.php');
-                exit;
+                if($_SESSION['page'] == 'home') {
+                    header('location:index.php');
+                } else if($_SESSION['page'] == 'account') {
+                    header('location:account.php');
+                } else if($_SESSION['page'] == 'public') {
+                    header('location:files-public.php');
+                } else if($_SESSION['page'] == 'private') {
+                    header('location:files-private.php');
+                } else {
+                    header('location:index.php');
+                }
             }
         } catch (\PDOException $e) {
             throw new \PDOException($e-> getMessage(), (int)$e-> getCode());
