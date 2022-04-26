@@ -99,14 +99,14 @@ $_SESSION['page'] = 'private';
             <div class="w3-bar" style="margin-bottom:5px">'; ?>
                 <button class="w3-button w3-bar-item w3-red w3-round" onclick="openModal(<?php echo $file_modal ?>)" style="margin-right:5px; padding-left:17.76px; padding-right:17.76px">Delete</button><?php
                 echo '
-                <form action="files/public/' . $file . '" method="POST">
+                <form action="files/' . $_SESSION['username'] . '/' . $file . '" method="POST">
                     <input class="w3-button w3-bar-item w3-blue-grey w3-round" type="submit" value="' . $file . '">
                 </form>
             </div>';
             } ?>
 
             <form class="w3-margin-top" action="upload.php" method="POST" enctype="multipart/form-data">
-                <input class="w3-button w3-green w3-round" type="submit" name="file_upload_btn" value="Upload">
+                <input class="w3-button w3-green w3-round" type="submit" name="files_upload_btn" value="Upload">
                 <label class="w3-button w3-blue-grey w3-round" for="upload-file" style="cursor:pointer">Browse...</label>
                 <input class="w3-hide" type="file" name="files_file" id="upload-file" required>
             </form><?php
