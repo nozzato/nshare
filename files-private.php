@@ -19,7 +19,7 @@ $_SESSION['page'] = 'private';
 
 <link rel="stylesheet" href="w3.css">
 <link rel="stylesheet" href="nz.css">
-<script src="https://kit.fontawesome.com/a0bd1a0a5e.js" crossorigin="anonymous"></script>
+<link rel="stylesheet" href="fontawesome-free-6.1.1-web/css/all.css">
 
 <script src="scripts.js" type="text/javascript"></script>
 

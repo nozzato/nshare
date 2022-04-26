@@ -15,7 +15,7 @@ $_SESSION['page'] = 'home';
 
 <link rel="stylesheet" href="w3.css">
 <link rel="stylesheet" href="nz.css">
-<script src="https://kit.fontawesome.com/a0bd1a0a5e.js" crossorigin="anonymous"></script>
+<link rel="stylesheet" href="fontawesome-free-6.1.1-web/css/all.css">
 
 <script src="scripts.js" type="text/javascript"></script>
 
@@ -67,7 +67,7 @@ $_SESSION['page'] = 'home';
             echo '
         <div class="w3-dropdown-hover w3-right">
             <button class="w3-button">
-                Account <i class="fa fa-caret-down"></i>
+                <i class="fas fa-user"></i> <i class="fa fa-caret-down"></i>
             </button>
             <div class="w3-dropdown-content w3-bar-block nz-black nz-round-bottom-left w3-card-2 nz-dropdown-left" style="max-width:100px">
                 <a class="w3-bar-item w3-button" href="account.php">' . $_SESSION['username'] . '</a>
