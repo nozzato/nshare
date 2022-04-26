@@ -72,7 +72,7 @@ $_SESSION['page'] = 'account';
             <button class="w3-button">
                 <?php echo $_SESSION['username'] ?> <i class="fa fa-caret-down"></i>
             </button>
-            <div class="w3-dropdown-content w3-bar-block nz-black nz-round-bottom-left w3-card-2" style="translate: -85px;">
+            <div class="w3-dropdown-content w3-bar-block nz-black nz-round-bottom-left w3-card-2">
                 <a class="w3-bar-item w3-button" href="account.php">Account</a>
                 <form action="logout.php" method="POST">
                     <button class="w3-bar-item w3-button w3-red nz-round-bottom-left" type="submit" name="logout_btn">Logout</button>
@@ -82,7 +82,7 @@ $_SESSION['page'] = 'account';
     </div>
 </div>
 
-<div class="w3-container w3-center" style="margin-bottom: 38.5px;" id="content">
+<div class="w3-container w3-center" style="margin-bottom:38.5px" id="content">
     <p>
     <div class="w3-round w3-card-2" id="form">
         <div class="w3-container nz-black nz-round-top">
@@ -102,10 +102,10 @@ $_SESSION['page'] = 'account';
             <input class="w3-radio" type="radio" name="admin" value="1" id="adminTrue">
             <label for="adminTrue">Yes</label>
             <p>
-            <input class="w3-btn w3-green w3-round" type="submit" name="signup" value="Signup">';
+            <input class="w3-btn w3-green w3-round" type="submit" name="account_signup_btn" value="Signup">';
             } ?>
 
-            <input class="w3-btn w3-red w3-round" type="submit" name="delete" value="Delete"><?php
+            <input class="w3-btn w3-red w3-round" type="submit" name="account_delete_btn" value="Delete"><?php
             if(isset($_SESSION['msg'])) {
                 if(substr($_SESSION['msg'], 0, 6) == 'Error:') {
                     echo '
@@ -128,7 +128,7 @@ $_SESSION['page'] = 'account';
         <a class="w3-bar-item w3-button nz-text-black w3-hover-none" onclick="toggleFoxes()" href="javascript:void(0)">fox.exe</a>
     </div>
     <div class="w3-container">
-        <div id="foxes" style="display: none;">
+        <div id="foxes" style="display:none">
             <div class="fox-right-first">
                 <img src="images/fox-bounce-right.gif">
             </div>

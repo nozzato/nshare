@@ -69,7 +69,7 @@ $_SESSION['page'] = 'public';
             <button class="w3-button">
                 ' . $_SESSION['username'] . ' <i class="fa fa-caret-down"></i>
             </button>
-            <div class="w3-dropdown-content w3-bar-block nz-black nz-round-bottom-left w3-card-2" style="translate: -85px;">
+            <div class="w3-dropdown-content w3-bar-block nz-black nz-round-bottom-left w3-card-2">
                 <a class="w3-bar-item w3-button" href="account.php">Account</a>
                 <form action="logout.php" method="POST">
                     <button class="w3-bar-item w3-button w3-red nz-round-bottom-left" type="submit" name="logout_btn">Logout</button>
@@ -82,7 +82,7 @@ $_SESSION['page'] = 'public';
             <button class="w3-button" onclick="dropdownToggle()">
                 Login <i class="fa fa-caret-down"></i>
             </button>
-            <div class="w3-dropdown-content w3-bar-block nz-black nz-round-bottom-left w3-card-2" id="dropdown" style="translate: -73px;">
+            <div class="w3-dropdown-content w3-bar-block nz-black nz-round-bottom-left w3-card-2" id="dropdown" style="translate:-73px">
                 <form class="w3-right" action="login.php" method="POST">
                     <input class="w3-bar-item w3-input nz-black" type="text" name="username" placeholder="Username">
                     <input class="w3-bar-item w3-input nz-black" type="password" name="password" placeholder="Password">
@@ -95,7 +95,7 @@ $_SESSION['page'] = 'public';
     </div>
 </div>
 
-<div class="w3-container" style="margin-bottom: 38.5px;" id="content">
+<div class="w3-container" style="margin-bottom:38.5px" id="content">
     <p>
     <div class="w3-round w3-card-2" id="files">
         <div class="w3-container nz-black nz-round-top">
@@ -108,10 +108,10 @@ $_SESSION['page'] = 'public';
             foreach($dir as $file) {
                 $file_modal = "'" . $file . "'";
                 echo '
-            <div class="w3-bar" style="margin-bottom: 5px;">';
+            <div class="w3-bar" style="margin-bottom:5px">';
                 if($_SESSION['admin'] == 1) {
                     echo '
-                <button class="w3-button w3-bar-item w3-red w3-round" onclick="openModal(' . $file_modal . ')" style="margin-right: 5px; padding-left: 17.76px; padding-right: 17.76px;">Delete</button>';
+                <button class="w3-button w3-bar-item w3-red w3-round" onclick="openModal(' . $file_modal . ')" style="margin-right:5px; padding-left:17.76px; padding-right:17.76px">Delete</button>';
                 }
                 echo '
                 <form action="files/public/' . $file . '" method="POST">
@@ -121,9 +121,9 @@ $_SESSION['page'] = 'public';
             } ?>
 
             <form class="w3-margin-top" action="upload.php" method="POST" enctype="multipart/form-data">
-                <input class="w3-button w3-green w3-round" type="submit" value="Upload">
-                <label class="w3-button w3-blue-grey w3-round" for="upload-file" style="cursor: pointer;">Browse...</label>
-                <input class="w3-hide" type="file" name="file" id="upload-file" required>
+                <input class="w3-button w3-green w3-round" type="submit" name="file_upload_btn" value="Upload">
+                <label class="w3-button w3-blue-grey w3-round" for="upload-file" style="cursor:pointer">Browse...</label>
+                <input class="w3-hide" type="file" name="files_file" id="upload-file" required>
             </form><?php
             if(isset($_SESSION['msg'])) {
                 if(substr($_SESSION['msg'], 0, 6) == 'Error:') {
@@ -149,7 +149,7 @@ $_SESSION['page'] = 'public';
             </div>
             <footer class="w3-container w3-bar">
                 <form action="delete.php" method="POST">
-                    <button class="w3-button w3-bar-item w3-red w3-round w3-margin-bottom" type="submit" name="file" id="deleteButton" style="margin-right: 5px;">Delete</button>
+                    <button class="w3-button w3-bar-item w3-red w3-round w3-margin-bottom" type="submit" name="file" id="deleteButton" style="margin-right:5px">Delete</button>
                 </form>
                 <button class="w3-button w3-bar-item w3-blue-grey w3-round w3-margin-bottom" onclick="document.getElementById('modal').style.display='none'">Cancel</button>
             </footer>
@@ -162,7 +162,7 @@ $_SESSION['page'] = 'public';
         <a class="w3-bar-item w3-button nz-text-black w3-hover-none" onclick="toggleFoxes()" href="javascript:void(0)">fox.exe</a>
     </div>
     <div class="w3-container">
-        <div id="foxes" style="display: none;">
+        <div id="foxes" style="display:none">
             <div class="fox-right-first">
                 <img src="images/fox-bounce-right.gif">
             </div>
