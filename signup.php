@@ -18,6 +18,16 @@ if(isset($_POST['account_signup_btn']) || isset($_POST['account_delete_btn'])) {
             $password = strip($_POST['password']);
             $admin    = $_POST['admin'];
 
+            if(strlen($username) > 50) {
+                $_SESSION['msg'] = "Error: Username must be 50 characters or less";
+                header('location:account.php');
+                exit;
+            }
+            if(strlen($password) > 1024) {
+                $_SESSION['msg'] = "Error: Do you really need a password that long?";
+                header('location:account.php');
+                exit;
+            }
             $stmt = $pdo-> prepare("SELECT * FROM `users` WHERE `username` = ?;");
             $stmt-> execute([$username]);
 
@@ -89,6 +99,7 @@ if(isset($_POST['account_signup_btn']) || isset($_POST['account_delete_btn'])) {
                     } else {
                         $_SESSION['msg'] = "Error: Invalid username or password";
                         header('location:account.php');
+                        exit;
                     }
                 } else {
                     $_SESSION['msg'] = "Error: Invalid username or password";
