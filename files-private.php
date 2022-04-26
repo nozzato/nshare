@@ -72,7 +72,7 @@ $_SESSION['page'] = 'private';
             <button class="w3-button">
                 Account <i class="fa fa-caret-down"></i>
             </button>
-            <div class="w3-dropdown-content w3-bar-block nz-black nz-round-bottom-left w3-card-2 nz-dropdown-left">
+            <div class="w3-dropdown-content w3-bar-block nz-black nz-round-bottom-left w3-card-2 nz-dropdown-left" style="max-width:100px">
                 <a class="w3-bar-item w3-button" href="account.php"><?php echo $_SESSION['username']; ?></a>
                 <form action="logout.php" method="POST">
                     <button class="w3-bar-item w3-button w3-red nz-round-bottom-left" type="submit" name="logout_btn">Logout</button>
@@ -85,8 +85,9 @@ $_SESSION['page'] = 'private';
 <div class="w3-container" style="margin-bottom:38.5px" id="content">
     <p>
     <div class="w3-round w3-card-2" id="files">
-        <div class="w3-container nz-black nz-round-top">
-            <h2><?php echo $_SESSION['username'] ?>/</h2>
+        <div class="w3-container nz-black nz-round-top" style="display:flex">
+            <h2 style="overflow:hidden; text-overflow:ellipsis"><?php echo $_SESSION['username'] ?></h2>
+            <h2>/</h2>
         </div>
         <div class="w3-container">
             <p>
