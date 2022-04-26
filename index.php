@@ -69,7 +69,7 @@ $_SESSION['page'] = 'home';
             <button class="w3-button">
                 ' . $_SESSION['username'] . ' <i class="fa fa-caret-down"></i>
             </button>
-            <div class="w3-dropdown-content w3-bar-block nz-black nz-round-bottom-left w3-card-2">
+            <div class="w3-dropdown-content w3-bar-block nz-black nz-round-bottom-left w3-card-2 nz-dropdown-left">
                 <a class="w3-bar-item w3-button" href="account.php">Account</a>
                 <form action="logout.php" method="POST">
                     <button class="w3-bar-item w3-button w3-red nz-round-bottom-left" type="submit" name="logout_btn">Logout</button>

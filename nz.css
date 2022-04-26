@@ -26,6 +26,9 @@
 .nz-round-bottom-right {
     border-radius: 0 0 4px;
 }
+.nz-dropdown-left {
+    right: 0;
+}
 
 .fox-right-first {
     position: absolute;
