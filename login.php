@@ -6,7 +6,7 @@ if (isset($_POST['login_btn'])) {
         try {
             require_once 'connect.php';
 
-            $username = $password = '';
+            $username = $password = $admin = '';
 
             function strip($data) {
                 $data = trim($data);
@@ -22,11 +22,12 @@ if (isset($_POST['login_btn'])) {
             $row = $stmt-> fetch(PDO::FETCH_ASSOC);
 
             if(password_verify($password, $row['password'])) {
-                $_SESSION['user_id']  = $row['user_id'];
-                $_SESSION['username'] = $row['username'];
-                $_SESSION['admin']    = $row['admin'];
+                $_SESSION['user_id']        = $row['user_id'];
+                $_SESSION['username']       = $row['username'];
+                $_SESSION['admin']          = $row['admin'];
+                $_SESSION['admin_const']    = $row['admin'];
 
-                $_SESSION['sess_msg'] = "Access granted";
+                $_SESSION['msg'] = "Access granted";
             } else {
                 $_SESSION['msg'] = "Error: Invalid username or password";
             }

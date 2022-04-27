@@ -4,11 +4,13 @@ session_start();
 // If set to 1, ignore session and grant admin privileges
 $override = 0;
 
-if(empty($_SESSION['user_id']) && $override == 0) {
+if($override == 1) {
+    $_SESSION['admin'] = 1;
+} else if(empty($_SESSION['user_id'])) {
     header('location:index.php');
     exit;
 } else {
-    $_SESSION['admin'] = 1;
+    $_SESSION['admin'] = $_SESSION['admin_const'];
 }
 $_SESSION['page'] = 'account';
 ?>
@@ -127,7 +129,14 @@ $_SESSION['page'] = 'account';
         </div>';
         } ?>
 
-    </div>
+    </div><?php
+    if($override == 1) {
+        echo '
+    <div class="w3-bar w3-red" style="display:flex; justify-content:center">
+        <span class="w3-bar-item">WARNING: ADMIN OVERRIDE IN EFFECT</span>
+    </div>';
+    } ?>
+
 </div>
 
 <div class="w3-container w3-center" style="margin-bottom:38.5px" id="content">
