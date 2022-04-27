@@ -36,22 +36,34 @@ $_SESSION['page'] = 'private';
             <div class="w3-dropdown-content w3-bar-block nz-black nz-round-bottom w3-card-2 w3-hide-small"><?php
                 if(isset($_SESSION['user_id'])) {
                     echo '
-                <a class="w3-bar-item w3-button" href="files-public.php">Public</a>
-                <a class="w3-bar-item w3-button nz-round-bottom" href="files-private.php">Private</a>';
+                <a class="w3-bar-item w3-button" href="files-public.php">
+                    <i class="fa fa-globe"></i> Public
+                </a>
+                <a class="w3-bar-item w3-button nz-round-bottom" href="files-private.php">
+                    <i class="fa fa-lock"></i> Private
+                </a>';
                 } else {
                     echo '
-                <a class="w3-bar-item w3-button nz-round-bottom" href="files-public.php">Public</a>';
+                <a class="w3-bar-item w3-button nz-round-bottom" href="files-public.php">
+                    <i class="fa fa-globe"></i> Public
+                </a>';
                 } ?>
 
             </div>
             <div class="w3-dropdown-content w3-bar-block nz-black nz-round-bottom-right w3-card-2 w3-hide-large w3-hide-medium"><?php
                 if(isset($_SESSION['user_id'])) {
                     echo '
-                <a class="w3-bar-item w3-button" href="files-public.php">Public</a>
-                <a class="w3-bar-item w3-button nz-round-bottom-right" href="files-private.php">Private</a>';
+                <a class="w3-bar-item w3-button" href="files-public.php">
+                    <i class="fa fa-globe"></i> Public
+                </a>
+                <a class="w3-bar-item w3-button nz-round-bottom-right" href="files-private.php">
+                    <i class="fa fa-lock"></i> Private
+                </a>';
                 } else {
                     echo '
-                <a class="w3-bar-item w3-button nz-round-bottom-right" href="files-public.php">Public</a>';
+                <a class="w3-bar-item w3-button nz-round-bottom-right" href="files-public.php">
+                    <i class="fa fa-globe"></i> Public
+                </a>';
                 } ?>
 
             </div>
@@ -59,9 +71,9 @@ $_SESSION['page'] = 'private';
         if($_SESSION['admin'] == 1) {
             echo '
         <div class="w3-dropdown-hover">
-            <a class="w3-button" href="">
+            <button class="w3-button">
                 <i class="fa fa-server"></i> Admin <i class="fa fa-caret-down"></i>
-            </a>
+            </button>
             <div class="w3-dropdown-content w3-bar-block nz-black nz-round-bottom w3-card-2">
                 <a class="w3-bar-item w3-button nz-round-bottom" href="adminer.php">
                     <i class="fa fa-database"></i> Database
