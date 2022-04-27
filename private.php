@@ -24,7 +24,7 @@ $_SESSION['page'] = 'private';
 <script src="scripts.js" type="text/javascript"></script>
 
 </head>
-<body class="nz-dark">
+<body class="nz-dark" onload="msgClear()">
 
 <div class="nz-black" id="header">
     <div class="w3-bar">
@@ -191,7 +191,7 @@ $_SESSION['page'] = 'private';
         <?php
         if(isset($_SESSION['msg'])) {
             echo '
-        <div class="w3-display-bottommiddle" style="bottom:9px">';
+            <div class="w3-display-bottommiddle" style="bottom:9px" id="msg">';
             if(substr($_SESSION['msg'], 0, 6) == 'Error:') {
                 echo '
             <span class="w3-text-red">' . $_SESSION['msg'] . '</span>';

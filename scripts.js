@@ -1,3 +1,10 @@
+// Clear up messages
+function msgClear() {
+    setTimeout(() => {
+        var msg = document.getElementById('msg');
+        msg.remove();
+    }, 10000);
+}
 function toggleFoxes() {
     var divFoxes = document.getElementById('foxes');
     if (divFoxes.style.display == "none") {
@@ -15,7 +22,7 @@ function dropdownToggle() {
     }
 }
 function openModal(content) {
-    document.getElementById('modal').style.display='block'
+    document.getElementById('modal').style.display ="block"
     document.getElementById('modalContent').innerHTML = content;
     document.getElementById('deleteButton').value = content;
 }
