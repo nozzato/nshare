@@ -1,9 +1,14 @@
 <?php
 session_start();
 
-if(empty($_SESSION['user_id'])) {
+// If set to 1, ignore session and grant admin privileges
+$override = 0;
+
+if(empty($_SESSION['user_id']) && $override == 0) {
     header('location:index.php');
     exit;
+} else {
+    $_SESSION['admin'] = 1;
 }
 $_SESSION['page'] = 'account';
 ?>
@@ -36,22 +41,34 @@ $_SESSION['page'] = 'account';
             <div class="w3-dropdown-content w3-bar-block nz-black nz-round-bottom w3-card-2 w3-hide-small"><?php
                 if(isset($_SESSION['user_id'])) {
                     echo '
-                <a class="w3-bar-item w3-button" href="files-public.php">Public</a>
-                <a class="w3-bar-item w3-button nz-round-bottom" href="files-private.php">Private</a>';
+                <a class="w3-bar-item w3-button" href="files-public.php">
+                    <i class="fa fa-globe"></i> Public
+                </a>
+                <a class="w3-bar-item w3-button nz-round-bottom" href="files-private.php">
+                    <i class="fa fa-lock"></i> Private
+                </a>';
                 } else {
                     echo '
-                <a class="w3-bar-item w3-button nz-round-bottom" href="files-public.php">Public</a>';
+                <a class="w3-bar-item w3-button nz-round-bottom" href="files-public.php">
+                    <i class="fa fa-globe"></i> Public
+                </a>';
                 } ?>
 
             </div>
             <div class="w3-dropdown-content w3-bar-block nz-black nz-round-bottom-right w3-card-2 w3-hide-large w3-hide-medium"><?php
                 if(isset($_SESSION['user_id'])) {
                     echo '
-                <a class="w3-bar-item w3-button" href="files-public.php">Public</a>
-                <a class="w3-bar-item w3-button nz-round-bottom-right" href="files-private.php">Private</a>';
+                <a class="w3-bar-item w3-button" href="files-public.php">
+                    <i class="fa fa-globe"></i> Public
+                </a>
+                <a class="w3-bar-item w3-button nz-round-bottom-right" href="files-private.php">
+                    <i class="fa fa-lock"></i> Private
+                </a>';
                 } else {
                     echo '
-                <a class="w3-bar-item w3-button nz-round-bottom-right" href="files-public.php">Public</a>';
+                <a class="w3-bar-item w3-button nz-round-bottom-right" href="files-public.php">
+                    <i class="fa fa-globe"></i> Public
+                </a>';
                 } ?>
 
             </div>
@@ -59,9 +76,9 @@ $_SESSION['page'] = 'account';
         if($_SESSION['admin'] == 1) {
             echo '
         <div class="w3-dropdown-hover">
-            <a class="w3-button" href="">
+            <button class="w3-button">
                 <i class="fa fa-server"></i> Admin <i class="fa fa-caret-down"></i>
-            </a>
+            </button>
             <div class="w3-dropdown-content w3-bar-block nz-black nz-round-bottom w3-card-2">
                 <a class="w3-bar-item w3-button nz-round-bottom" href="adminer.php">
                     <i class="fa fa-database"></i> Database
@@ -115,11 +132,37 @@ $_SESSION['page'] = 'account';
 
 <div class="w3-container w3-center" style="margin-bottom:38.5px" id="content">
     <p>
-    <div class="w3-round w3-card-2" id="form">
+    <div class="w3-round w3-card-2" id="password-change-form">
+        <div class="w3-container nz-black nz-round-top">
+            <h2>Change password</h2>
+        </div>
+        <form class="w3-container" action="account-delete.php" method="POST">
+            <p>
+            <input class="w3-input nz-black w3-border-0 w3-round" type="password" name="old_password" placeholder="Old Password">
+            <p>
+            <input class="w3-input nz-black w3-border-0 w3-round" type="password" name="new_password" placeholder="New Password">
+            <p>
+            <input class="w3-btn w3-green w3-round" type="submit" name="account_change_password_btn" value="Change"><?php
+            if(isset($_SESSION['msg'])) {
+                if(substr($_SESSION['msg'], 0, 6) == 'Error:') {
+                    echo '
+            <p class="w3-text-red">' . $_SESSION['msg'] . '</p>';
+                } else {
+                    echo '
+            <p>' . $_SESSION['msg'] . '</p>';
+                }
+                unset($_SESSION['msg']);
+            } ?>
+
+            <p>
+        </form>
+    </div>
+    <p>
+    <div class="w3-round w3-card-2" id="account-form">
         <div class="w3-container nz-black nz-round-top"><?php
             if($_SESSION['admin'] == 1) {
                 echo '
-            <h2>Signup or delete account</h2>';
+            <h2>Delete or create account</h2>';
             } else {
                 echo '
             <h2>Delete account</h2>';
@@ -128,7 +171,7 @@ $_SESSION['page'] = 'account';
         </div>
         <form class="w3-container" action="signup.php" method="POST">
             <p>
-            <input class="w3-input nz-black w3-border-0 w3-round" type="text" name="username" placeholder="Username" autofocus>
+            <input class="w3-input nz-black w3-border-0 w3-round" type="text" name="username" placeholder="Username">
             <p>
             <input class="w3-input nz-black w3-border-0 w3-round" type="password" name="password" placeholder="Password">
             <p><?php
@@ -140,10 +183,12 @@ $_SESSION['page'] = 'account';
             <input class="w3-radio" type="radio" name="admin" value="1" id="adminTrue">
             <label for="adminTrue">Yes</label>
             <p>
+            <input class="w3-btn w3-red w3-round" type="submit" name="account_delete_btn" value="Delete">
             <input class="w3-btn w3-green w3-round" type="submit" name="account_signup_btn" value="Signup">';
-            } ?>
-
-            <input class="w3-btn w3-red w3-round" type="submit" name="account_delete_btn" value="Delete"><?php
+            } else {
+                echo '
+                <input class="w3-btn w3-red w3-round" type="submit" name="account_delete_btn" value="Delete">';
+            }
             if(isset($_SESSION['msg'])) {
                 if(substr($_SESSION['msg'], 0, 6) == 'Error:') {
                     echo '
