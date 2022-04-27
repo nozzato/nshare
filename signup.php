@@ -78,7 +78,7 @@ if(isset($_POST['account_signup_btn']) || isset($_POST['account_delete_btn'])) {
                     deleteDirectory('files/' . $username);
 
                     if($username == $_SESSION['username']) {
-                        //$_SESSION['msg'] = "Account deleted";
+                        $_SESSION['msg'] = "Account deleted";
                         header('location:logout.php');
                         exit;
                     } else {
@@ -93,7 +93,7 @@ if(isset($_POST['account_signup_btn']) || isset($_POST['account_delete_btn'])) {
                         
                         deleteDirectory('files/' . $username);
 
-                        //$_SESSION['msg'] = "Account deleted";
+                        $_SESSION['msg'] = "Account deleted";
                         header('location:logout.php');
                         exit;
                     } else {
