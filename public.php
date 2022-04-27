@@ -1,11 +1,7 @@
 <?php
 session_start();
 
-if(empty($_SESSION['user_id'])) {
-    header('location:files-public.php');
-    exit;
-}
-$_SESSION['page'] = 'private';
+$_SESSION['page'] = 'public';
 ?>
 <!DOCTYPE html>
 <html lang="en">
@@ -36,15 +32,15 @@ $_SESSION['page'] = 'private';
             <div class="w3-dropdown-content w3-bar-block nz-black nz-round-bottom w3-card-2 w3-hide-small"><?php
                 if(isset($_SESSION['user_id'])) {
                     echo '
-                <a class="w3-bar-item w3-button" href="files-public.php">
+                <a class="w3-bar-item w3-button" href="public.php">
                     <i class="fa fa-globe"></i> Public
                 </a>
-                <a class="w3-bar-item w3-button nz-round-bottom" href="files-private.php">
+                <a class="w3-bar-item w3-button nz-round-bottom" href="private.php">
                     <i class="fa fa-lock"></i> Private
                 </a>';
                 } else {
                     echo '
-                <a class="w3-bar-item w3-button nz-round-bottom" href="files-public.php">
+                <a class="w3-bar-item w3-button nz-round-bottom" href="public.php">
                     <i class="fa fa-globe"></i> Public
                 </a>';
                 } ?>
@@ -53,15 +49,15 @@ $_SESSION['page'] = 'private';
             <div class="w3-dropdown-content w3-bar-block nz-black nz-round-bottom-right w3-card-2 w3-hide-large w3-hide-medium"><?php
                 if(isset($_SESSION['user_id'])) {
                     echo '
-                <a class="w3-bar-item w3-button" href="files-public.php">
+                <a class="w3-bar-item w3-button" href="public.php">
                     <i class="fa fa-globe"></i> Public
                 </a>
-                <a class="w3-bar-item w3-button nz-round-bottom-right" href="files-private.php">
+                <a class="w3-bar-item w3-button nz-round-bottom-right" href="private.php">
                     <i class="fa fa-lock"></i> Private
                 </a>';
                 } else {
                     echo '
-                <a class="w3-bar-item w3-button nz-round-bottom-right" href="files-public.php">
+                <a class="w3-bar-item w3-button nz-round-bottom-right" href="public.php">
                     <i class="fa fa-globe"></i> Public
                 </a>';
                 } ?>
@@ -129,20 +125,23 @@ $_SESSION['page'] = 'private';
     <p>
     <div class="w3-round w3-card-2" id="files">
         <div class="w3-container nz-black nz-round-top" style="display:flex">
-            <h2 style="overflow:hidden; text-overflow:ellipsis"><?php echo $_SESSION['username'] ?></h2>
+            <h2 style="overflow:hidden; text-overflow:ellipsis">public</h2>
             <h2>/</h2>
         </div>
         <div class="w3-container">
             <p>
             <?php
-            $dir = array_slice(scandir('files/' . $_SESSION['username'] . '/'), 2);
+            $dir = array_slice(scandir('files/public/'), 2);
             foreach($dir as $file) {
                 $file_modal = "'" . $file . "'";
                 echo '
-            <div class="w3-bar" style="margin-bottom:5px">'; ?>
-                <button class="w3-button w3-bar-item w3-red w3-round" onclick="openModal(<?php echo $file_modal ?>)" style="margin-right:5px; padding-left:17.76px; padding-right:17.76px">Delete</button><?php
+            <div class="w3-bar" style="margin-bottom:5px">';
+                if($_SESSION['admin'] == 1) {
+                    echo '
+                <button class="w3-button w3-bar-item w3-red w3-round" onclick="openModal(' . $file_modal . ')" style="margin-right:5px; padding-left:17.76px; padding-right:17.76px">Delete</button>';
+                }
                 echo '
-                <form action="files/' . $_SESSION['username'] . '/' . $file . '" method="POST">
+                <form action="files/public/' . $file . '" method="POST">
                     <input class="w3-button w3-bar-item w3-blue-grey w3-round" type="submit" value="' . $file . '">
                 </form>
             </div>';

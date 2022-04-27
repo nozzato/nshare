@@ -32,15 +32,15 @@ $_SESSION['page'] = 'home';
             <div class="w3-dropdown-content w3-bar-block nz-black nz-round-bottom w3-card-2 w3-hide-small"><?php
                 if(isset($_SESSION['user_id'])) {
                     echo '
-                <a class="w3-bar-item w3-button" href="files-public.php">
+                <a class="w3-bar-item w3-button" href="public.php">
                     <i class="fa fa-globe"></i> Public
                 </a>
-                <a class="w3-bar-item w3-button nz-round-bottom" href="files-private.php">
+                <a class="w3-bar-item w3-button nz-round-bottom" href="private.php">
                     <i class="fa fa-lock"></i> Private
                 </a>';
                 } else {
                     echo '
-                <a class="w3-bar-item w3-button nz-round-bottom" href="files-public.php">
+                <a class="w3-bar-item w3-button nz-round-bottom" href="public.php">
                     <i class="fa fa-globe"></i> Public
                 </a>';
                 } ?>
@@ -49,15 +49,15 @@ $_SESSION['page'] = 'home';
             <div class="w3-dropdown-content w3-bar-block nz-black nz-round-bottom-right w3-card-2 w3-hide-large w3-hide-medium"><?php
                 if(isset($_SESSION['user_id'])) {
                     echo '
-                <a class="w3-bar-item w3-button" href="files-public.php">
+                <a class="w3-bar-item w3-button" href="public.php">
                     <i class="fa fa-globe"></i> Public
                 </a>
-                <a class="w3-bar-item w3-button nz-round-bottom-right" href="files-private.php">
+                <a class="w3-bar-item w3-button nz-round-bottom-right" href="private.php">
                     <i class="fa fa-lock"></i> Private
                 </a>';
                 } else {
                     echo '
-                <a class="w3-bar-item w3-button nz-round-bottom-right" href="files-public.php">
+                <a class="w3-bar-item w3-button nz-round-bottom-right" href="public.php">
                     <i class="fa fa-globe"></i> Public
                 </a>';
                 } ?>
