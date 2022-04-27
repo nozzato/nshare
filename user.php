@@ -19,12 +19,12 @@ if(isset($_POST['account_signup_btn']) || isset($_POST['account_delete_btn'])) {
             $admin    = $_POST['admin'];
 
             if(strlen($username) > 50) {
-                $_SESSION['msg_user'] = "Error: Username must be 50 characters or less";
+                $_SESSION['msg'] = "Error: Username must be 50 characters or less";
                 header('location:account.php');
                 exit;
             }
             if(strlen($password) > 1024) {
-                $_SESSION['msg_user'] = "Error: Do you really need a password that long?";
+                $_SESSION['msg'] = "Error: Do you really need a password that long?";
                 header('location:account.php');
                 exit;
             }
@@ -42,12 +42,12 @@ if(isset($_POST['account_signup_btn']) || isset($_POST['account_delete_btn'])) {
                     mkdir('files/' . $username, 0777);
                     umask($oldUmask);
 
-                    $_SESSION['msg_user'] = "Account created";
+                    $_SESSION['msg'] = "Account created";
                     header('location:account.php');
                     exit;
                 }
                 else {
-                    $_SESSION['msg_user'] = "Error: Account already exists";
+                    $_SESSION['msg'] = "Error: Account already exists";
                     header('location:account.php');
                     exit;
                 }
@@ -78,11 +78,11 @@ if(isset($_POST['account_signup_btn']) || isset($_POST['account_delete_btn'])) {
                     deleteDirectory('files/' . $username);
 
                     if($username == $_SESSION['username']) {
-                        $_SESSION['msg_user'] = "Account deleted";
+                        $_SESSION['msg'] = "Account deleted";
                         header('location:logout.php');
                         exit;
                     } else {
-                        $_SESSION['msg_user'] = "Account deleted";
+                        $_SESSION['msg'] = "Account deleted";
                         header('location:account.php');
                         exit;
                     }
@@ -93,16 +93,16 @@ if(isset($_POST['account_signup_btn']) || isset($_POST['account_delete_btn'])) {
                         
                         deleteDirectory('files/' . $username);
 
-                        $_SESSION['msg_user'] = "Account deleted";
+                        $_SESSION['msg'] = "Account deleted";
                         header('location:logout.php');
                         exit;
                     } else {
-                        $_SESSION['msg_user'] = "Error: Invalid username or password";
+                        $_SESSION['msg'] = "Error: Invalid username or password";
                         header('location:account.php');
                         exit;
                     }
                 } else {
-                    $_SESSION['msg_user'] = "Error: Invalid username or password";
+                    $_SESSION['msg'] = "Error: Invalid username or password";
                     header('location:account.php');
                     exit;
                 }
@@ -111,7 +111,7 @@ if(isset($_POST['account_signup_btn']) || isset($_POST['account_delete_btn'])) {
             throw new \PDOException($e-> getMessage(), (int)$e-> getCode());
         }
     } else {
-        $_SESSION['msg_user'] = "Error: Both fields are required";
+        $_SESSION['msg'] = "Error: Both fields are required";
         header('location:account.php');
         exit;
     }
