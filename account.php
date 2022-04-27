@@ -145,7 +145,7 @@ $_SESSION['page'] = 'account';
         <div class="w3-container nz-black nz-round-top">
             <h2>Change password</h2>
         </div>
-        <form class="w3-container" action="account-delete.php" method="POST">
+        <form class="w3-container" action="account-change-password.php" method="POST">
             <p>
             <input class="w3-input nz-black w3-border-0 w3-round" type="password" name="old_password" placeholder="Old Password">
             <p>
@@ -178,7 +178,7 @@ $_SESSION['page'] = 'account';
             } ?>
 
         </div>
-        <form class="w3-container" action="signup.php" method="POST">
+        <form class="w3-container" action="account-create-delete.php" method="POST">
             <p>
             <input class="w3-input nz-black w3-border-0 w3-round" type="text" name="username" placeholder="Username">
             <p>

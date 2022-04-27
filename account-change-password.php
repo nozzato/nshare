@@ -22,6 +22,11 @@ if(isset($_POST['account_change_password_btn'])) {
                 header('location:account.php');
                 exit;
             }
+            if($old_password == $new_password) {
+                $_SESSION['msg'] = "Error: Password unchanged";
+                header('location:account.php');
+                exit;
+            }
             $stmt = $pdo-> prepare("SELECT * FROM `users` WHERE `user_id` = ?;");
             $stmt-> execute([$_SESSION['user_id']]);
             $row = $stmt-> fetch(PDO::FETCH_ASSOC);

@@ -175,7 +175,7 @@ $_SESSION['page'] = 'public';
                 <p class ="m-0 text-center" id="modalContent"></p>
             </div>
             <footer class="w3-container w3-bar">
-                <form action="delete.php" method="POST">
+                <form action="file-delete.php" method="POST">
                     <button class="w3-button w3-bar-item w3-red w3-round w3-margin-bottom" type="submit" name="file" id="deleteButton" style="margin-right:5px">Delete</button>
                 </form>
                 <button class="w3-button w3-bar-item w3-blue-grey w3-round w3-margin-bottom" onclick="document.getElementById('modal').style.display='none'">Cancel</button>
