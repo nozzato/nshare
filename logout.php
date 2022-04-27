@@ -3,6 +3,8 @@ session_start();
 
 session_destroy();
 
+$_SESSION['msg'] = "Logged out";
+
 if($_SESSION['page'] == 'home') {
     header('location:index.php');
     exit;
