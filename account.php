@@ -145,22 +145,22 @@ $_SESSION['page'] = 'account';
         <div class="w3-container nz-black nz-round-top">
             <h2>Change password</h2>
         </div>
-        <form class="w3-container" action="account-change-password.php" method="POST">
+        <form class="w3-container" action="change-password.php" method="POST">
             <p>
             <input class="w3-input nz-black w3-border-0 w3-round" type="password" name="old_password" placeholder="Old Password">
             <p>
             <input class="w3-input nz-black w3-border-0 w3-round" type="password" name="new_password" placeholder="New Password">
             <p>
             <input class="w3-btn w3-green w3-round" type="submit" name="account_change_password_btn" value="Change"><?php
-            if(isset($_SESSION['msg'])) {
-                if(substr($_SESSION['msg'], 0, 6) == 'Error:') {
+            if(isset($_SESSION['msg_change_password'])) {
+                if(substr($_SESSION['msg_change_password'], 0, 6) == 'Error:') {
                     echo '
-            <p class="w3-text-red">' . $_SESSION['msg'] . '</p>';
+            <p class="w3-text-red">' . $_SESSION['msg_change_password'] . '</p>';
                 } else {
                     echo '
-            <p>' . $_SESSION['msg'] . '</p>';
+            <p>' . $_SESSION['msg_change_password'] . '</p>';
                 }
-                unset($_SESSION['msg']);
+                unset($_SESSION['msg_change_password']);
             } ?>
 
             <p>
@@ -178,7 +178,7 @@ $_SESSION['page'] = 'account';
             } ?>
 
         </div>
-        <form class="w3-container" action="account-create-delete.php" method="POST">
+        <form class="w3-container" action="user.php" method="POST">
             <p>
             <input class="w3-input nz-black w3-border-0 w3-round" type="text" name="username" placeholder="Username">
             <p>
@@ -198,15 +198,15 @@ $_SESSION['page'] = 'account';
                 echo '
                 <input class="w3-btn w3-red w3-round" type="submit" name="account_delete_btn" value="Delete">';
             }
-            if(isset($_SESSION['msg'])) {
-                if(substr($_SESSION['msg'], 0, 6) == 'Error:') {
+            if(isset($_SESSION['msg_user'])) {
+                if(substr($_SESSION['msg_user'], 0, 6) == 'Error:') {
                     echo '
-            <p class="w3-text-red">' . $_SESSION['msg'] . '</p>';
+            <p class="w3-text-red">' . $_SESSION['msg_user'] . '</p>';
                 } else {
                     echo '
-            <p>' . $_SESSION['msg'] . '</p>';
+            <p>' . $_SESSION['msg_user'] . '</p>';
                 }
-                unset($_SESSION['msg']);
+                unset($_SESSION['msg_user']);
             } ?>
 
             <p>
