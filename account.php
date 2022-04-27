@@ -151,18 +151,7 @@ $_SESSION['page'] = 'account';
             <p>
             <input class="w3-input nz-black w3-border-0 w3-round" type="password" name="new_password" placeholder="New Password">
             <p>
-            <input class="w3-btn w3-green w3-round" type="submit" name="account_change_password_btn" value="Change"><?php
-            if(isset($_SESSION['msg_change_password'])) {
-                if(substr($_SESSION['msg_change_password'], 0, 6) == 'Error:') {
-                    echo '
-            <p class="w3-text-red">' . $_SESSION['msg_change_password'] . '</p>';
-                } else {
-                    echo '
-            <p>' . $_SESSION['msg_change_password'] . '</p>';
-                }
-                unset($_SESSION['msg_change_password']);
-            } ?>
-
+            <input class="w3-btn w3-green w3-round" type="submit" name="account_change_password_btn" value="Change">
             <p>
         </form>
     </div>
@@ -197,16 +186,6 @@ $_SESSION['page'] = 'account';
             } else {
                 echo '
                 <input class="w3-btn w3-red w3-round" type="submit" name="account_delete_btn" value="Delete">';
-            }
-            if(isset($_SESSION['msg_user'])) {
-                if(substr($_SESSION['msg_user'], 0, 6) == 'Error:') {
-                    echo '
-            <p class="w3-text-red">' . $_SESSION['msg_user'] . '</p>';
-                } else {
-                    echo '
-            <p>' . $_SESSION['msg_user'] . '</p>';
-                }
-                unset($_SESSION['msg_user']);
             } ?>
 
             <p>
@@ -218,6 +197,22 @@ $_SESSION['page'] = 'account';
 <div class="nz-black w3-bottom" id="footer">
     <div class="w3-bar">
         <a class="w3-bar-item w3-button nz-text-black w3-hover-none" onclick="toggleFoxes()" href="javascript:void(0)">fox.exe</a>
+        <?php
+        if(isset($_SESSION['msg'])) {
+            echo '
+        <div class="w3-display-bottommiddle" style="bottom:9px">';
+            if(substr($_SESSION['msg'], 0, 6) == 'Error:') {
+                echo '
+            <span class="w3-text-red">' . $_SESSION['msg'] . '</span>';
+            } else {
+                echo '
+            <span>' . $_SESSION['msg'] . '</span>';
+            }
+            echo '
+        </div>';
+            unset($_SESSION['msg']);
+        } ?>
+
     </div>
     <div class="w3-container">
         <div id="foxes" style="display:none">

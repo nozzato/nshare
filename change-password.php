@@ -18,12 +18,12 @@ if(isset($_POST['account_change_password_btn'])) {
             $new_password = strip($_POST['new_password']);
 
             if(strlen($new_password) > 1024) {
-                $_SESSION['msg_change_password'] = "Error: Do you really need a password that long?";
+                $_SESSION['msg'] = "Error: Do you really need a password that long?";
                 header('location:account.php');
                 exit;
             }
             if($old_password == $new_password) {
-                $_SESSION['msg_change_password'] = "Error: Password unchanged";
+                $_SESSION['msg'] = "Error: Password unchanged";
                 header('location:account.php');
                 exit;
             }
@@ -37,11 +37,11 @@ if(isset($_POST['account_change_password_btn'])) {
                 $stmt = $pdo-> prepare("UPDATE `users` SET `password` = ? WHERE `user_id` = ?;");
                 $stmt-> execute([password_hash($new_password, PASSWORD_DEFAULT), $_SESSION['user_id']]);
 
-                $_SESSION['msg_change_password'] = "Password changed";
+                $_SESSION['msg'] = "Password changed";
                 header('location:account.php');
                 exit;
             } else {
-                $_SESSION['msg_change_password'] = "Error: Invalid username or password";
+                $_SESSION['msg'] = "Error: Invalid username or password";
             }
             if($_SESSION['page'] == 'home') {
                 header('location:index.php');
@@ -58,7 +58,7 @@ if(isset($_POST['account_change_password_btn'])) {
             throw new \PDOException($e-> getMessage(), (int)$e-> getCode());
         }
     } else {
-        $_SESSION['msg_change_password'] = "Error: Both fields are required";
+        $_SESSION['msg'] = "Error: Both fields are required";
         header('location:account.php');
         exit;
     }
