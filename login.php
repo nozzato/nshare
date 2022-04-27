@@ -19,7 +19,6 @@ if (isset($_POST['login_btn'])) {
 
             $stmt = $pdo-> prepare("SELECT * FROM `users` WHERE `username` = ?;");
             $stmt-> execute([$username]);
-
             $row = $stmt-> fetch(PDO::FETCH_ASSOC);
 
             if(password_verify($password, $row['password'])) {
@@ -27,31 +26,20 @@ if (isset($_POST['login_btn'])) {
                 $_SESSION['username'] = $row['username'];
                 $_SESSION['admin']    = $row['admin'];
 
-                //$_SESSION['sess_msg'] = "Access granted";
-                if($_SESSION['page'] == 'home') {
-                    header('location:index.php');
-                    exit;
-                } else if($_SESSION['page'] == 'public') {
-                    header('location:files-public.php');
-                    exit;
-                } else {
-                    header('location:index.php');
-                    exit;
-                }
-            }
-            else {
+                $_SESSION['sess_msg'] = "Access granted";
+            } else {
                 $_SESSION['msg'] = "Error: Invalid username or password";
-                if($_SESSION['page'] == 'home') {
-                    header('location:index.php');
-                } else if($_SESSION['page'] == 'account') {
-                    header('location:account.php');
-                } else if($_SESSION['page'] == 'public') {
-                    header('location:files-public.php');
-                } else if($_SESSION['page'] == 'private') {
-                    header('location:files-private.php');
-                } else {
-                    header('location:index.php');
-                }
+            }
+            if($_SESSION['page'] == 'home') {
+                header('location:index.php');
+            } else if($_SESSION['page'] == 'account') {
+                header('location:account.php');
+            } else if($_SESSION['page'] == 'public') {
+                header('location:files-public.php');
+            } else if($_SESSION['page'] == 'private') {
+                header('location:files-private.php');
+            } else {
+                header('location:index.php');
             }
         } catch (\PDOException $e) {
             throw new \PDOException($e-> getMessage(), (int)$e-> getCode());
