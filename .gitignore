@@ -1,7 +1,7 @@
 # Ignore all directories in files/ except public/
 !files/
 files/*
-!files/public/
+files/public/*
 
 # Ignore font awesome icons
 fontawesome-free-6.1.1-web/
