@@ -40,7 +40,7 @@ if(isset($_POST['account_signup_btn']) || isset($_POST['account_delete_btn'])) {
                     $stmt-> execute([$username, password_hash($password, PASSWORD_DEFAULT), $admin]);
 
                     $oldUmask = umask(0);
-                    mkdir('files/' . $username, 0777);
+                    mkdir('files/' . $username, 0775);
                     umask($oldUmask);
 
                     $_SESSION['msg'] = "Account created";
