@@ -1,4 +1,6 @@
 <?php
+include_once('functions.php');
+
 $host    = 'localhost';
 $db      = 'nozzato';
 $user    = 'noah';
@@ -16,4 +18,5 @@ try {
 } catch (\PDOException $e) {
     throw new \PDOException($e-> getMessage(), (int)$e-> getCode());
 }
+page_back();
 ?>

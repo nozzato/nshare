@@ -1,5 +1,6 @@
 <?php
 session_start();
+include_once('functions.php');
 
 if(isset($_POST['files_upload_btn'])) {
     if(isset($_FILES['files_file'])){
@@ -27,21 +28,6 @@ if(isset($_POST['files_upload_btn'])) {
         exit;
     }
 } else {
-    if($_SESSION['page'] == 'home') {
-        header('location:index.php');
-        exit;
-    } else if($_SESSION['page'] == 'account') {
-        header('location:account.php');
-        exit;
-    } else if($_SESSION['page'] == 'public') {
-        header('location:files-public.php');
-        exit;
-    } else if($_SESSION['page'] == 'private') {
-        header('location:files-private.php');
-        exit;
-    } else {
-        header('location:index.php');
-        exit;
-    }
+    page_back();
 }
 ?>

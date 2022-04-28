@@ -1,10 +1,11 @@
 <?php
 session_start();
+include_once('functions.php');
 
 if(isset($_POST['account_change_password_btn'])) {
     if(!empty($_POST['old_password']) && !empty($_POST['new_password'])) {
         try {
-            require_once 'connect.php';
+            include_once('connect.php');
 
             $username = $password = '';
 
@@ -42,17 +43,8 @@ if(isset($_POST['account_change_password_btn'])) {
                 exit;
             } else {
                 $_SESSION['msg'] = "Error: Invalid username or password";
-            }
-            if($_SESSION['page'] == 'home') {
-                header('location:index.php');
-            } else if($_SESSION['page'] == 'account') {
                 header('location:account.php');
-            } else if($_SESSION['page'] == 'public') {
-                header('location:files-public.php');
-            } else if($_SESSION['page'] == 'private') {
-                header('location:files-private.php');
-            } else {
-                header('location:index.php');
+                exit;
             }
         } catch (\PDOException $e) {
             throw new \PDOException($e-> getMessage(), (int)$e-> getCode());
@@ -63,21 +55,6 @@ if(isset($_POST['account_change_password_btn'])) {
         exit;
     }
 } else {
-    if($_SESSION['page'] == 'home') {
-        header('location:index.php');
-        exit;
-    } else if($_SESSION['page'] == 'account') {
-        header('location:account.php');
-        exit;
-    } else if($_SESSION['page'] == 'public') {
-        header('location:files-public.php');
-        exit;
-    } else if($_SESSION['page'] == 'private') {
-        header('location:files-private.php');
-        exit;
-    } else {
-        header('location:index.php');
-        exit;
-    }
+    page_back();
 }
 ?>

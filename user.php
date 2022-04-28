@@ -1,10 +1,11 @@
 <?php
 session_start();
+include_once('functions.php');
 
 if(isset($_POST['account_signup_btn']) || isset($_POST['account_delete_btn'])) {
     if(!empty($_POST['username']) && !empty($_POST['password'])) {
         try {
-            require_once 'connect.php';
+            include_once('connect.php');
 
             $username = $password = $admin = '';
 
@@ -78,7 +79,7 @@ if(isset($_POST['account_signup_btn']) || isset($_POST['account_delete_btn'])) {
                     deleteDirectory('files/' . $username);
 
                     if($username == $_SESSION['username']) {
-                        $_SESSION['msg'] = "Account deleted";
+                        $_SESSION['delete_logout'] = 1;
                         header('location:logout.php');
                         exit;
                     } else {
@@ -93,7 +94,7 @@ if(isset($_POST['account_signup_btn']) || isset($_POST['account_delete_btn'])) {
                         
                         deleteDirectory('files/' . $username);
 
-                        $_SESSION['msg'] = "Account deleted";
+                        $_SESSION['delete_logout'] = 1;
                         header('location:logout.php');
                         exit;
                     } else {
@@ -116,21 +117,6 @@ if(isset($_POST['account_signup_btn']) || isset($_POST['account_delete_btn'])) {
         exit;
     }
 } else {
-    if($_SESSION['page'] == 'home') {
-        header('location:index.php');
-        exit;
-    } else if($_SESSION['page'] == 'account') {
-        header('location:account.php');
-        exit;
-    } else if($_SESSION['page'] == 'public') {
-        header('location:files-public.php');
-        exit;
-    } else if($_SESSION['page'] == 'private') {
-        header('location:files-private.php');
-        exit;
-    } else {
-        header('location:index.php');
-        exit;
-    }
+    page_back();
 }
 ?>

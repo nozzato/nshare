@@ -1,10 +1,11 @@
 <?php
 session_start();
+include_once('functions.php');
 
 if (isset($_POST['login_btn'])) {
     if(!empty($_POST['username']) && !empty($_POST['password'])) {
         try {
-            require_once 'connect.php';
+            include_once('connect.php');
 
             $username = $password = $admin = '';
 
@@ -27,21 +28,11 @@ if (isset($_POST['login_btn'])) {
                 $_SESSION['admin']          = $row['admin'];
                 $_SESSION['admin_const']    = $row['admin'];
 
-                $_SESSION['msg'] = "Access granted";
+                $_SESSION['msg'] = "Logged in";
             } else {
                 $_SESSION['msg'] = "Error: Invalid username or password";
             }
-            if($_SESSION['page'] == 'home') {
-                header('location:index.php');
-            } else if($_SESSION['page'] == 'account') {
-                header('location:account.php');
-            } else if($_SESSION['page'] == 'public') {
-                header('location:files-public.php');
-            } else if($_SESSION['page'] == 'private') {
-                header('location:files-private.php');
-            } else {
-                header('location:index.php');
-            }
+            page_back();
         } catch (\PDOException $e) {
             throw new \PDOException($e-> getMessage(), (int)$e-> getCode());
         }
@@ -51,16 +42,6 @@ if (isset($_POST['login_btn'])) {
         exit;
     }
 } else {
-    if($_SESSION['page'] == 'home') {
-        header('location:index.php');
-    } else if($_SESSION['page'] == 'account') {
-        header('location:account.php');
-    } else if($_SESSION['page'] == 'public') {
-        header('location:files-public.php');
-    } else if($_SESSION['page'] == 'private') {
-        header('location:files-private.php');
-    } else {
-        header('location:index.php');
-    }
+    page_back();
 }
 ?>
