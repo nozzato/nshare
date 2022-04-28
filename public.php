@@ -145,13 +145,16 @@ $_SESSION['page'] = 'public';
                     <input class="w3-button w3-bar-item w3-blue-grey w3-round" type="submit" value="' . $file . '">
                 </form>
             </div>';
-            } ?>
-
+            }
+            if($_SESSION['admin'] == 1) {
+                echo '
             <form class="w3-margin-top" action="upload.php" method="POST" enctype="multipart/form-data">
                 <input class="w3-button w3-green w3-round" type="submit" name="files_upload_btn" value="Upload">
                 <label class="w3-button w3-blue-grey w3-round" for="upload-file" style="cursor:pointer">Browse...</label>
                 <input class="w3-hide" type="file" name="files_file" id="upload-file" required>
-            </form>
+            </form>';
+            } ?>
+
             <p>
         </div>
     </div>
