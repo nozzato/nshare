@@ -151,18 +151,7 @@ $_SESSION['page'] = 'public';
                 <input class="w3-button w3-green w3-round" type="submit" name="files_upload_btn" value="Upload">
                 <label class="w3-button w3-blue-grey w3-round" for="upload-file" style="cursor:pointer">Browse...</label>
                 <input class="w3-hide" type="file" name="files_file" id="upload-file" required>
-            </form><?php
-            if(isset($_SESSION['msg'])) {
-                if(substr($_SESSION['msg'], 0, 6) == 'Error:') {
-                    echo '
-            <p class="w3-text-red">' . $_SESSION['msg'] . '</p>';
-                } else {
-                    echo '
-            <p>' . $_SESSION['msg'] . '</p>';
-                }
-            unset($_SESSION['msg']);
-            } ?>
-
+            </form>
             <p>
         </div>
     </div>
