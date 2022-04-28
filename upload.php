@@ -21,10 +21,10 @@ if(isset($_POST['files_upload_btn'])) {
         $_SESSION['msg'] = "Error: No file selected";
     }
     if($_SESSION['page'] == 'public') {
-        header('location:files-public.php');
+        header('location:public.php');
         exit;
     } else if($_SESSION['page'] == 'private') {
-        header('location:files-private.php');
+        header('location:private.php');
         exit;
     }
 } else {

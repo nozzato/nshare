@@ -15,10 +15,10 @@ if(isset($_POST['file'])) {
     $_SESSION['msg'] = "File deleted";
 
     if($_SESSION['page'] == 'public') {
-        header('location:files-public.php');
+        header('location:public.php');
         exit;
     } else if($_SESSION['page'] == 'private') {
-        header('location:files-private.php');
+        header('location:private.php');
         exit;
     }
 } else {
