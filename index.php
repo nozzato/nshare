@@ -147,8 +147,7 @@ $_SESSION['page'] = 'home';
 
 <div class="nz-black w3-bottom" id="footer">
     <div class="w3-bar">
-        <a class="w3-bar-item w3-button nz-text-black w3-hover-none" onclick="toggleFoxes()" href="javascript:void(0)">fox.exe</a>
-        <?php
+        <a class="w3-bar-item w3-button nz-text-black w3-hover-none" onclick="toggleFoxes()" href="javascript:void(0)">fox.exe</a><?php
         if(isset($_SESSION['msg'])) {
             echo '
         <div class="w3-display-bottommiddle" style="bottom:9px" id="msg">';
