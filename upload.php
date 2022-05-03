@@ -9,7 +9,7 @@ if(isset($_POST['files_upload_btn'])) {
         } else if($_SESSION['page'] == 'private') {
             $filePath = 'files/' . $_SESSION['username'] . '/';
         }
-        $fileName = $filepath . $_FILES['files_file']['name'];
+        $fileName = $_FILES['files_file']['name'];
 
         if(move_uploaded_file($_FILES['files_file']['tmp_name'], $filePath . $fileName)) {
             $_SESSION['msg'] = "File uploaded";
