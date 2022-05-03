@@ -1,0 +1,96 @@
+@font-face {
+    font-family: "DejaVuSansCondensed";
+    src: url(fonts/dejavu-sans-condensed/DejaVuSansCondensed.ttf);
+}
+
+.nz-dark, .nz-hover-dark:hover {
+    color: #ffffff;
+    background-color: #22231c;
+}
+.nz-black, .nz-hover-black:hover {
+    color: #ffffff;
+    background-color: #181916;
+}
+.nz-text-black {
+    color: #181916;
+}
+.nz-round-top {
+    border-radius: 4px 4px 0 0;
+}
+.nz-round-bottom {
+    border-radius: 0 0 4px 4px;
+}
+.nz-round-bottom-left {
+    border-radius: 0 0 0 4px;
+}
+.nz-round-bottom-right {
+    border-radius: 0 0 4px;
+}
+.nz-dropdown-left {
+    right: 0;
+}
+
+$fs: 20s;
+$fsf: .20s;
+.fox-right-first {
+    position: absolute;
+    left: 100%;
+    bottom: 10px;
+    animation: move-right-first $fs linear $fsf;
+    animation-iteration-count: 1;
+}
+.fox-right {
+    position: absolute;
+    left: -30%;
+    bottom: 10px;
+    animation: move-right $fs linear $fs infinite;
+}
+.fox-left-first {
+    position: absolute;
+    right: 100%;
+    bottom: 10px;
+    animation: move-left-first $fs linear $fsf;
+    animation-iteration-count: 1;
+}
+.fox-left {
+    position: absolute;
+    right: -30%;
+    bottom: 10px;
+    animation: move-left $fs linear $fs infinite;
+}
+@keyframes move-right {
+    from {
+        left: -30%;
+    } 50% {
+        left: 100%;
+    } to {
+        left: 100%;
+    }
+}
+@keyframes move-right-first {
+    from {
+        left: -30%;
+    } 50% {
+        left: 100%;
+    } to {
+        left: 100%;
+    }
+}
+@keyframes move-left {
+    from {
+        right: -30%;
+    } 50% {
+        right: -30%;
+    } to {
+        right: 100%;
+    }
+}
+@keyframes move-left-first {
+    from {
+        right: -30%;
+    } 50% {
+        right: -30%;
+    } to {
+        right: 100%;
+    }
+}
