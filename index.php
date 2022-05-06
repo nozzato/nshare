@@ -20,7 +20,7 @@ $_SESSION['page'] = 'home';
 <script src="scripts.js" type="text/javascript"></script>
 
 </head>
-<body class="nz-dark" onload="msgClear()">
+<body class="nz-dark" onload="clearMsg()">
 
 <div class="nz-black" id="header">
     <div class="w3-bar">
@@ -101,14 +101,14 @@ $_SESSION['page'] = 'home';
                 <i class="fas fa-door-open"></i> Login <i class="fa fa-caret-down"></i>
             </button>
             <div class="w3-dropdown-content w3-bar-block nz-black nz-round-bottom-left w3-card-2 nz-dropdown-left" style="max-width:100px" id="dropdown">
-                <form class="w3-right" action="login.php" method="POST">
+                <form class="w3-right" action="login.php" method="POST" onsubmit="return showMsg(this)" id="login-form">
                     <div style="display:flex">
-                        <i class="fas fa-user" style="margin:8px 0 8px 16px; padding-top:4px; vertical-align:center"></i>
-                        <input class="w3-bar-item w3-input nz-black" type="text" name="username" placeholder="Username" style="padding:8px 16px 8px 5px">
+                        <i class="fas fa-user" style="margin:8px 0 8px 16px; padding:4px 0.93px 0 0.93px; vertical-align:center"></i>
+                        <input class="w3-bar-item w3-input nz-black" type="text" name="username" placeholder="Username" id="username" style="padding:8px 16px 8px 5px">
                     </div>
                     <div style="display:flex">
                         <i class="fas fa-key" style="margin:8px 0 8px 16px; padding-top:4px; vertical-align:center"></i>
-                        <input class="w3-bar-item w3-input nz-black" type="password" name="password" placeholder="Password" style="padding:8px 16px 8px 5px">
+                        <input class="w3-bar-item w3-input nz-black" type="password" name="password" placeholder="Password" id="password" style="padding:8px 16px 8px 5px">
                     </div>
                     <button class="w3-bar-item w3-button w3-green nz-round-bottom-left" type="submit" name="login_btn">
                         <i class="fa-solid fa-right-to-bracket"></i> Login
@@ -147,22 +147,10 @@ $_SESSION['page'] = 'home';
 
 <div class="nz-black w3-bottom" id="footer">
     <div class="w3-bar">
-        <a class="w3-bar-item w3-button nz-text-black w3-hover-none" onclick="toggleFoxes()" href="javascript:void(0)">fox.exe</a><?php
-        if(isset($_SESSION['msg'])) {
-            echo '
-        <div class="w3-display-bottommiddle" style="bottom:9px" id="msg">';
-            if(substr($_SESSION['msg'], 0, 6) == 'Error:') {
-                echo '
-            <span class="w3-text-red">' . $_SESSION['msg'] . '</span>';
-            } else {
-                echo '
-            <span>' . $_SESSION['msg'] . '</span>';
-            }
-            echo '
-        </div>';
-            unset($_SESSION['msg']);
-        } ?>
-
+        <a class="w3-bar-item w3-button nz-text-black w3-hover-none" onclick="toggleFoxes()" href="javascript:void(0)">fox.exe</a>
+        <div class="w3-display-bottommiddle" style="bottom:9px" id="msg">
+            <span id="msg"></span>
+        </div>
     </div>
     <div class="w3-container">
         <div id="foxes" style="display:none">

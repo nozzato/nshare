@@ -20,7 +20,7 @@ $_SESSION['page'] = 'public';
 <script src="scripts.js" type="text/javascript"></script>
 
 </head>
-<body class="nz-dark" onload="msgClear()">
+<body class="nz-dark" onload="clearMsg()">
 
 <div class="nz-black" id="header">
     <div class="w3-bar">
@@ -103,7 +103,7 @@ $_SESSION['page'] = 'public';
             <div class="w3-dropdown-content w3-bar-block nz-black nz-round-bottom-left w3-card-2 nz-dropdown-left" style="max-width:100px" id="dropdown">
                 <form class="w3-right" action="login.php" method="POST">
                     <div style="display:flex">
-                        <i class="fas fa-user" style="margin:8px 0 8px 16px; padding-top:4px; vertical-align:center"></i>
+                        <i class="fas fa-user" style="margin:8px 0 8px 16px; padding:4px 0.93px 0 0.93px; vertical-align:center"></i>
                         <input class="w3-bar-item w3-input nz-black" type="text" name="username" placeholder="Username" style="padding:8px 16px 8px 5px">
                     </div>
                     <div style="display:flex">
@@ -129,8 +129,7 @@ $_SESSION['page'] = 'public';
             <h2>/</h2>
         </div>
         <div class="w3-container">
-            <p>
-            <?php
+            <p><?php
             $dir = array_slice(scandir('files/public/'), 2);
             foreach($dir as $file) {
                 $file_modal = "'" . $file . "'";
@@ -164,11 +163,11 @@ $_SESSION['page'] = 'public';
                 <h2>Really delete?</h2>
             </header>
             <div class="w3-container">
-                <p class ="m-0 text-center" id="modalContent"></p>
+                <p class ="m-0 text-center" id="modal-content"></p>
             </div>
             <footer class="w3-container w3-bar">
                 <form action="delete.php" method="POST">
-                    <button class="w3-button w3-bar-item w3-red w3-round w3-margin-bottom" type="submit" name="file" id="deleteButton" style="margin-right:5px">Delete</button>
+                    <button class="w3-button w3-bar-item w3-red w3-round w3-margin-bottom" type="submit" name="file" id="delete-button" style="margin-right:5px">Delete</button>
                 </form>
                 <button class="w3-button w3-bar-item w3-blue-grey w3-round w3-margin-bottom" onclick="document.getElementById('modal').style.display='none'">Cancel</button>
             </footer>
@@ -178,8 +177,7 @@ $_SESSION['page'] = 'public';
 
 <div class="nz-black w3-bottom" id="footer">
     <div class="w3-bar">
-        <a class="w3-bar-item w3-button nz-text-black w3-hover-none" onclick="toggleFoxes()" href="javascript:void(0)">fox.exe</a>
-        <?php
+        <a class="w3-bar-item w3-button nz-text-black w3-hover-none" onclick="toggleFoxes()" href="javascript:void(0)">fox.exe</a><?php
         if(isset($_SESSION['msg'])) {
             echo '
             <div class="w3-display-bottommiddle" style="bottom:9px" id="msg">';

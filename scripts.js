@@ -1,12 +1,15 @@
-// Clear up messages
-function msgClear() {
+function showMsg() {
+    var msg = document.getElementById("msg");
+    return true;
+}
+function clearMsg() {
     setTimeout(() => {
-        var msg = document.getElementById('msg');
+        var msg = document.getElementById("msg");
         msg.remove();
     }, 10000);
 }
 function toggleFoxes() {
-    var divFoxes = document.getElementById('foxes');
+    var divFoxes = document.getElementById("foxes");
     if (divFoxes.style.display == "none") {
         divFoxes.style.display = "block";
     } else {
@@ -23,6 +26,6 @@ function dropdownToggle() {
 }
 function openModal(content) {
     document.getElementById('modal').style.display ="block"
-    document.getElementById('modalContent').innerHTML = content;
-    document.getElementById('deleteButton').value = content;
+    document.getElementById('modal-content').innerHTML = content;
+    document.getElementById('delete-button').value = content;
 }
