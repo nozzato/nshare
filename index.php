@@ -29,43 +29,36 @@ $_SESSION['page'] = 'home';
         <button class="w3-button">
                 <i class="fa fa-folder-open"></i> Files <i class="fa fa-caret-down"></i>
             </button>
-            <div class="w3-dropdown-content w3-bar-block nz-black nz-round-bottom w3-card-2 w3-hide-small"><?php
-                if(isset($_SESSION['user_id'])) {
-                    echo '
+            <div class="w3-dropdown-content w3-bar-block nz-black nz-round-bottom w3-card-2 w3-hide-small">
+            <?php if(isset($_SESSION['user_id'])) { ?>
                 <a class="w3-bar-item w3-button" href="public.php">
                     <i class="fa fa-globe"></i> Public
                 </a>
                 <a class="w3-bar-item w3-button nz-round-bottom" href="private.php">
                     <i class="fa fa-lock"></i> Private
-                </a>';
-                } else {
-                    echo '
+                </a>
+            <?php } else { ?>
                 <a class="w3-bar-item w3-button nz-round-bottom" href="public.php">
                     <i class="fa fa-globe"></i> Public
-                </a>';
-                } ?>
-
+                </a>
+            <?php } ?>
             </div>
-            <div class="w3-dropdown-content w3-bar-block nz-black nz-round-bottom-right w3-card-2 w3-hide-large w3-hide-medium"><?php
-                if(isset($_SESSION['user_id'])) {
-                    echo '
+            <div class="w3-dropdown-content w3-bar-block nz-black nz-round-bottom-right w3-card-2 w3-hide-large w3-hide-medium">
+            <?php if(isset($_SESSION['user_id'])) { ?>
                 <a class="w3-bar-item w3-button" href="public.php">
                     <i class="fa fa-globe"></i> Public
                 </a>
                 <a class="w3-bar-item w3-button nz-round-bottom-right" href="private.php">
                     <i class="fa fa-lock"></i> Private
-                </a>';
-                } else {
-                    echo '
+                </a>
+            <?php } else { ?>
                 <a class="w3-bar-item w3-button nz-round-bottom-right" href="public.php">
                     <i class="fa fa-globe"></i> Public
-                </a>';
-                } ?>
-
+                </a>
+            <?php } ?>
             </div>
-        </div><?php
-        if($_SESSION['admin'] == 1) {
-            echo '
+        </div>
+    <?php if($_SESSION['admin'] == 1) { ?>
         <div class="w3-dropdown-hover">
             <button class="w3-button">
                 <i class="fa fa-server"></i> Admin <i class="fa fa-caret-down"></i>
@@ -75,17 +68,16 @@ $_SESSION['page'] = 'home';
                     <i class="fa fa-database"></i> Database
                 </a>
             </div>
-        </div>';
-        }
-        if(isset($_SESSION['user_id'])) {
-            echo '
+        </div>
+    <?php } ?>
+    <?php if(isset($_SESSION['user_id'])) { ?>
         <div class="w3-dropdown-hover w3-right">
             <button class="w3-button">
                 <i class="fas fa-door-closed"></i> Account <i class="fa fa-caret-down"></i>
             </button>
             <div class="w3-dropdown-content w3-bar-block nz-black nz-round-bottom-left w3-card-2 nz-dropdown-left" style="max-width:100px">
                 <a class="w3-bar-item w3-button" href="account.php">
-                    <i class="fas fa-user"></i> ' . $_SESSION['username'] . '
+                    <i class="fas fa-user"></i> <?php echo $_SESSION['username']; ?>
                 </a>
                 <form action="logout.php" method="POST">
                     <button class="w3-bar-item w3-button w3-red nz-round-bottom-left" type="submit" name="logout_btn">
@@ -93,9 +85,8 @@ $_SESSION['page'] = 'home';
                     </button>
                 </form>
             </div>
-        </div>';
-        } else {
-            echo '
+        </div>
+    <?php } else { ?>
         <div class="w3-dropdown-click w3-right">
             <button class="w3-button" onclick="dropdownToggle()">
                 <i class="fas fa-door-open"></i> Login <i class="fa fa-caret-down"></i>
@@ -115,9 +106,8 @@ $_SESSION['page'] = 'home';
                     </button>
                 </form>
             </div>
-        </div>';
-        } ?>
-
+        </div>
+    <?php } ?>
     </div>
 </div>
 
