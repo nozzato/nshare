@@ -20,7 +20,7 @@ $_SESSION['page'] = 'public';
 <script src="scripts.js" type="text/javascript"></script>
 
 </head>
-<body class="nz-dark" onload="clearMsg()">
+<body class="nz-dark">
 
 <div class="nz-black" id="header">
     <div class="w3-bar">
