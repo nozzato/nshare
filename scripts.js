@@ -1,12 +1,16 @@
-function showMsg() {
-    var msg = document.getElementById("msg");
-    return true;
-}
 function clearMsg() {
     setTimeout(() => {
         var msg = document.getElementById("msg");
-        msg.remove();
+        msg.innerHTML = "";
     }, 10000);
+}
+function showMsg() {
+    var username = document.getElementById("username");
+    alert(username.value);
+    var msg = document.getElementById("msg");
+    msg.innerHTML = username;
+    clearMsg();
+    return false;
 }
 function toggleFoxes() {
     var divFoxes = document.getElementById("foxes");
@@ -25,7 +29,7 @@ function dropdownToggle() {
     }
 }
 function openModal(content) {
-    document.getElementById('modal').style.display ="block"
+    document.getElementById('modal').style.display = "block";
     document.getElementById('modal-content').innerHTML = content;
     document.getElementById('delete-button').value = content;
 }
