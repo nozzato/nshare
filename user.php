@@ -24,8 +24,8 @@ if(isset($_POST['account_signup_btn']) || isset($_POST['account_delete_btn'])) {
                 header('location:account.php');
                 exit;
             }
-            if(strlen($password) > 1024) {
-                $_SESSION['msg'] = "Error: Do you really need a password that long?";
+            if(strlen($password) > 72) {
+                $_SESSION['msg'] = "Error: Password must be 72 characters or less";
                 header('location:account.php');
                 exit;
             }
@@ -53,6 +53,11 @@ if(isset($_POST['account_signup_btn']) || isset($_POST['account_delete_btn'])) {
                     exit;
                 }
             } else if(isset($_POST['account_delete_btn'])) {
+                if(strlen($password) > 72) {
+                    $_SESSION['msg'] = "Error: Password must be 72 characters or less";
+                    header('location:account.php');
+                    exit;
+                }
                 $row = $stmt-> fetch(PDO::FETCH_ASSOC);
 
                 function deleteDirectory($dir) {
