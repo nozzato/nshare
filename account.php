@@ -140,24 +140,20 @@ $_SESSION['page'] = 'account';
     </div>
     <p>
     <div class="w3-round w3-card-2" id="account-form">
-        <div class="w3-container nz-black nz-round-top"><?php
-            if($_SESSION['admin'] == 1) {
-                echo '
-            <h2>Delete or create account</h2>';
-            } else {
-                echo '
-            <h2>Delete account</h2>';
-            } ?>
-
+        <div class="w3-container nz-black nz-round-top">
+        <?php if($_SESSION['admin'] == 1) { ?>
+            <h2>Delete or create account</h2>
+        <?php } else { ?>
+            <h2>Delete account</h2>
+        <?php } ?>
         </div>
         <form class="w3-container" action="user.php" method="POST">
             <p>
             <input class="w3-input nz-black w3-border-0 w3-round" type="text" name="username" placeholder="Username">
             <p>
             <input class="w3-input nz-black w3-border-0 w3-round" type="password" name="password" placeholder="Password">
-            <p><?php
-            if($_SESSION['admin'] == 1) {
-                echo '
+            <p>
+        <?php if($_SESSION['admin'] == 1) { ?>
             <span>Admin?</span>
             <input class="w3-radio" type="radio" name="admin" value="0" id="adminFalse" checked>
             <label for="adminFalse">No</label>
@@ -165,12 +161,10 @@ $_SESSION['page'] = 'account';
             <label for="adminTrue">Yes</label>
             <p>
             <input class="w3-btn w3-red w3-round" type="submit" name="account_delete_btn" value="Delete">
-            <input class="w3-btn w3-green w3-round" type="submit" name="account_signup_btn" value="Signup">';
-            } else {
-                echo '
-                <input class="w3-btn w3-red w3-round" type="submit" name="account_delete_btn" value="Delete">';
-            } ?>
-
+            <input class="w3-btn w3-green w3-round" type="submit" name="account_signup_btn" value="Signup">
+        <?php } else { ?>
+            <input class="w3-btn w3-red w3-round" type="submit" name="account_delete_btn" value="Delete">
+        <?php } ?>
             <p>
         </form>
     </div>
