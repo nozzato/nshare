@@ -19,7 +19,7 @@ if(isset($_POST['account_change_password_btn'])) {
             $new_password = strip($_POST['new_password']);
 
             if(strlen($new_password) > 72) {
-                $_SESSION['msg'] = "Password must be 72 characters or less";
+                $_SESSION['msg'] = "Error: Password must be 72 characters or less";
                 header('location:account.php');
                 exit;
             }

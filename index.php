@@ -143,7 +143,8 @@ $_SESSION['page'] = 'home';
             <span class="w3-text-red" id="msg"><?php echo $_SESSION['msg']; ?></span>
         <?php } else { ?>
             <span id="msg"><?php echo $_SESSION['msg']; ?></span>
-        <?php } ?>
+        <?php }
+        unset($_SESSION['msg']); ?>
         </div>
     </div>
     <div class="w3-container">
