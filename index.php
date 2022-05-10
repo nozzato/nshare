@@ -138,8 +138,12 @@ $_SESSION['page'] = 'home';
 <div class="nz-black w3-bottom" id="footer">
     <div class="w3-bar">
         <a class="w3-bar-item w3-button nz-text-black w3-hover-none" onclick="toggleFoxes()" href="javascript:void(0)">fox.exe</a>
-        <div class="w3-display-bottommiddle" style="bottom:9px" id="msg">
-            <span id="msg"></span>
+        <div class="w3-display-bottommiddle" style="bottom:9px" id="msg_box">
+        <?php if(substr($_SESSION['msg'], 0, 6) == 'Error:') { ?>
+            <span class="w3-text-red" id="msg"><?php echo $_SESSION['msg']; ?></span>
+        <?php } else { ?>
+            <span id="msg"><?php echo $_SESSION['msg']; ?></span>
+        <?php } ?>
         </div>
     </div>
     <div class="w3-container">

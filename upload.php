@@ -12,11 +12,12 @@ if(isset($_POST['files_upload_btn'])) {
         $fileName = $_FILES['files_file']['name'];
 
         if(move_uploaded_file($_FILES['files_file']['tmp_name'], $filePath . $fileName)) {
+            chmod( $filePath . $fileName, 0775);
+
             $_SESSION['msg'] = "File uploaded";
         } else {
             $_SESSION['msg'] = "Error: Upload failed";
         }
-        echo $filePath;
     } else {
         $_SESSION['msg'] = "Error: No file selected";
     }

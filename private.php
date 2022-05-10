@@ -123,20 +123,19 @@ $_SESSION['page'] = 'private';
             <h2>/</h2>
         </div>
         <div class="w3-container">
-            <p><?php
-            $dir = array_slice(scandir('files/' . $_SESSION['username'] . '/'), 2);
-            foreach($dir as $file) {
-                $file_modal = "'" . $file . "'";
-                echo '
-            <div class="w3-bar" style="margin-bottom:5px">'; ?>
-                <button class="w3-button w3-bar-item w3-red w3-round" onclick="openModal(<?php echo $file_modal ?>)" style="margin-right:5px; padding-left:17.76px; padding-right:17.76px">Delete</button><?php
-                echo '
-                <form action="files/' . $_SESSION['username'] . '/' . $file . '" method="POST">
-                    <input class="w3-button w3-bar-item w3-blue-grey w3-round" type="submit" value="' . $file . '">
+            <p>
+        <?php
+        $dir = array_slice(scandir('files/' . $_SESSION['username'] . '/'), 2);
+        foreach($dir as $file) {
+            $file_modal = "'" . $file . "'";
+        ?>
+            <div class="w3-bar" style="margin-bottom:5px">
+                <button class="w3-button w3-bar-item w3-red w3-round" onclick="openModal(<?php echo $file_modal ?>)" style="margin-right:5px; padding-left:17.76px; padding-right:17.76px">Delete</button>
+                <form action="files/<?php echo $_SESSION['username'] ?>/<?php echo $file ?>" method="POST">
+                    <input class="w3-button w3-bar-item w3-blue-grey w3-round" type="submit" value="<?php echo $file ?>">
                 </form>
-            </div>';
-            } ?>
-
+            </div>
+        <?php } ?>
             <form class="w3-margin-top" action="upload.php" method="POST" enctype="multipart/form-data">
                 <input class="w3-button w3-green w3-round" type="submit" name="files_upload_btn" value="Upload">
                 <label class="w3-button w3-blue-grey w3-round" for="upload-file" style="cursor:pointer">Browse...</label>

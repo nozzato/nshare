@@ -1,16 +1,16 @@
+/* Make a better system
 function clearMsg() {
     setTimeout(() => {
         var msg = document.getElementById("msg");
         msg.innerHTML = "";
     }, 10000);
-}
+} */
 function showMsg() {
     var username = document.getElementById("username");
-    alert(username.value);
     var msg = document.getElementById("msg");
-    msg.innerHTML = username;
-    clearMsg();
-    return false;
+    msg.class = "w3-red";
+    msg.innerHTML = username.value;
+    return true;
 }
 function toggleFoxes() {
     var divFoxes = document.getElementById("foxes");
