@@ -2,7 +2,7 @@
 session_start();
 
 // If set to 1, ignore session and grant admin privileges
-$override = 1;
+$override = 0;
 
 if($override == 1) {
     $_SESSION['admin'] = 1;
@@ -129,22 +129,22 @@ $_SESSION['page'] = 'account';
 </div>
 
 <div class="w3-container w3-center" style="margin-bottom:38.5px" id="content">
-    <p>
+    <p></p>
     <div class="w3-round w3-card-2" id="password-change-form">
         <div class="w3-container nz-black nz-round-top">
             <h2>Change password</h2>
         </div>
         <form class="w3-container" action="change-password.php" method="POST">
-            <p>
+            <p></p>
             <input class="w3-input nz-black w3-border-0 w3-round" type="password" name="old_password" placeholder="Old Password" id="old-password">
-            <p>
+            <p></p>
             <input class="w3-input nz-black w3-border-0 w3-round" type="password" name="new_password" placeholder="New Password" id="new-password">
-            <p>
+            <p></p>
             <input class="w3-btn w3-green w3-round" type="submit" name="account_change_password_btn" value="Change">
-            <p>
+            <p></p>
         </form>
     </div>
-    <p>
+    <p></p>
     <div class="w3-round w3-card-2" id="account-form">
         <div class="w3-container nz-black nz-round-top">
         <?php if($_SESSION['admin'] == 1) { ?>
@@ -154,27 +154,27 @@ $_SESSION['page'] = 'account';
         <?php } ?>
         </div>
         <form class="w3-container" action="user.php" method="POST" onsubmit="return verifyAccount(this)">
-            <p>
+            <p></p>
             <input class="w3-input nz-black w3-border-0 w3-round" type="text" name="username" placeholder="Username" id="username">
-            <p>
+            <p></p>
             <input class="w3-input nz-black w3-border-0 w3-round" type="password" name="password" placeholder="Password" id="password">
-            <p>
+            <p></p>
         <?php if($_SESSION['admin'] == 1) { ?>
             <span>Admin?</span>
             <input class="w3-radio" type="radio" name="admin" value="0" id="adminFalse" checked>
             <label for="adminFalse">No</label>
             <input class="w3-radio" type="radio" name="admin" value="1" id="adminTrue">
             <label for="adminTrue">Yes</label>
-            <p>
+            <p></p>
             <input class="w3-btn w3-red w3-round" type="submit" name="account_delete_btn" value="Delete">
             <input class="w3-btn w3-green w3-round" type="submit" name="account_signup_btn" value="Signup">
         <?php } else { ?>
             <input class="w3-btn w3-red w3-round" type="submit" name="account_delete_btn" value="Delete">
         <?php } ?>
-            <p>
+            <p></p>
         </form>
     </div>
-    <p>
+    <p></p>
 </div>
 
 <div class="nz-black w3-bottom" id="footer">
