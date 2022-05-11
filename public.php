@@ -113,7 +113,7 @@ $_SESSION['page'] = 'public';
 
 <div class="w3-container" style="margin-bottom:38.5px" id="content">
     <p></p>
-    <div class="w3-round w3-card-2" id="files">
+    <div class="w3-round w3-card-2 nz-centre-large" id="files">
         <div class="w3-container nz-black nz-round-top" style="display:flex">
             <h2 style="overflow:hidden; text-overflow:ellipsis">public</h2>
             <h2>/</h2>

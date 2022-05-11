@@ -130,7 +130,7 @@ $_SESSION['page'] = 'account';
 
 <div class="w3-container w3-center" style="margin-bottom:38.5px" id="content">
     <p></p>
-    <div class="w3-round w3-card-2" id="password-change-form">
+    <div class="w3-round w3-card-2 nz-centre-large" id="password-change-form">
         <div class="w3-container nz-black nz-round-top">
             <h2>Change password</h2>
         </div>
@@ -145,7 +145,7 @@ $_SESSION['page'] = 'account';
         </form>
     </div>
     <p></p>
-    <div class="w3-round w3-card-2" id="account-form">
+    <div class="w3-round w3-card-2 nz-centre-large" id="account-form">
         <div class="w3-container nz-black nz-round-top">
         <?php if($_SESSION['admin'] == 1) { ?>
             <h2>Delete or create account</h2>
