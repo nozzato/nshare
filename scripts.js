@@ -1,16 +1,40 @@
-/* Make a better system
 function clearMsg() {
     setTimeout(() => {
         var msg = document.getElementById("msg");
         msg.innerHTML = "";
     }, 10000);
-} */
-function showMsg() {
-    var username = document.getElementById("username");
+}
+function verifyAccount() {
+    // If uncommented, bypass login restrictions
+    //return true;
+
     var msg = document.getElementById("msg");
-    msg.class = "w3-red";
-    msg.innerHTML = username.value;
-    return true;
+    var username = document.getElementById("username").value;
+    var password = document.getElementById("password").value;
+
+    if(username === "" || password === "") {
+        msg.innerHTML = "Error: Both fields are required";
+        msg.className = "w3-text-red";
+        clearMsg();
+        return false;
+    } else if(password.length < 8) {
+        msg.innerHTML = "Error: Password must be 8 characters or more";
+        msg.className = "w3-text-red";
+        clearMsg();
+        return false;
+    } else if(username.length > 50) {
+        msg.innerHTML = "Error: Username must be 50 characters or less";
+        msg.className = "w3-text-red";
+        clearMsg();
+        return false;
+    } else if(password.length > 72) {
+        msg.innerHTML = "Error: Password must be 72 characters or less";
+        msg.className = "w3-text-red";
+        clearMsg();
+        return false;
+    } else {
+        return true;
+    }
 }
 function toggleFoxes() {
     var divFoxes = document.getElementById("foxes");
