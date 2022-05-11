@@ -176,16 +176,16 @@ $_SESSION['page'] = 'private';
     </div>
     <div class="w3-container">
         <div id="foxes" style="display:none">
-            <div class="fox-right-first">
+            <div class="nz-fox-animate-right-first">
                 <img src="images/fox-bounce-right.gif">
             </div>
-            <div class="fox-right">
+            <div class="nz-fox-animate-right">
                 <img src="images/fox-bounce-right.gif">
             </div>
-            <div class="fox-left-first">
+            <div class="nz-fox-animate-left-first">
                 <img src="images/fox-bounce-left.gif">
             </div>
-            <div class="fox-left">
+            <div class="nz-fox-animate-left">
                 <img src="images/fox-bounce-left.gif">
             </div>
         </div>
