@@ -96,7 +96,7 @@ $_SESSION['page'] = 'private';
                 <i class="fas fa-door-open"></i> Login <i class="fa fa-caret-down"></i>
             </button>
             <div class="w3-dropdown-content w3-bar-block nz-black nz-round-bottom-left w3-card-2 nz-dropdown-left" style="max-width:100px" id="dropdown">
-                <form class="w3-right" action="login.php" method="POST" onsubmit="return showMsg(this)" id="login-form">
+                <form class="w3-right" action="login.php" method="POST" id="login-form">
                     <div style="display:flex">
                         <i class="fas fa-user" style="margin:8px 0 8px 16px; padding:4px 0.93px 0 0.93px; vertical-align:center"></i>
                         <input class="w3-bar-item w3-input nz-black" type="text" name="username" placeholder="Username" id="username" style="padding:8px 16px 8px 5px">
