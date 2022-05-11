@@ -2,7 +2,7 @@
 session_start();
 
 // If set to 1, ignore session and grant admin privileges
-$override = 0;
+$override = 1;
 
 if($override == 1) {
     $_SESSION['admin'] = 1;
@@ -121,8 +121,9 @@ $_SESSION['page'] = 'account';
     <?php } ?>
     </div>
 <?php if($override == 1) { ?>
-    <div class="w3-bar w3-red" style="display:flex;justify-content:center">
-        <span class="w3-bar-item">WARNING: ADMIN OVERRIDE IN EFFECT</span>
+    <div class="w3-bar w3-red">
+        <span class="w3-bar-item">&nbsp;</span>
+        <span class="w3-bar-item nz-text-animate-left" style="white-space:nowrap">WARNING /// SESSION OVERRIDE IN PROGRESS /// WARNING /// SESSION OVERRIDE IN PROGRESS /// WARNING /// SESSION OVERRIDE IN PROGRESS /// WARNING /// SESSION OVERRIDE IN PROGRESS /// WARNING /// SESSION OVERRIDE IN PROGRESS /// WARNING /// SESSION OVERRIDE IN PROGRESS /// WARNING /// SESSION OVERRIDE IN PROGRESS /// WARNING /// SESSION OVERRIDE IN PROGRESS /// WARNING /// SESSION OVERRIDE IN PROGRESS /// WARNING /// SESSION OVERRIDE IN PROGRESS</span>
     </div>
 <?php } ?>
 </div>
@@ -179,7 +180,7 @@ $_SESSION['page'] = 'account';
 <div class="nz-black w3-bottom" id="footer">
     <div class="w3-bar">
         <a class="w3-bar-item w3-button nz-text-black w3-hover-none" onclick="toggleFoxes()" href="javascript:void(0)">fox.exe</a>
-        <div class="w3-display-bottommiddle" style="bottom:9px" id="msg_box">
+        <div class="w3-display-bottommiddle" id="msg_box" style="bottom:9px">
         <?php if(substr($_SESSION['msg'], 0, 6) == 'Error:') { ?>
             <span class="w3-text-red" id="msg"><?php echo $_SESSION['msg']; ?></span>
         <?php } else { ?>
@@ -190,16 +191,16 @@ $_SESSION['page'] = 'account';
     </div>
     <div class="w3-container">
         <div id="foxes" style="display:none">
-            <div class="fox-right-first">
+            <div class="nz-fox-animate-right-first">
                 <img src="images/fox-bounce-right.gif">
             </div>
-            <div class="fox-right">
+            <div class="nz-fox-animate-right">
                 <img src="images/fox-bounce-right.gif">
             </div>
-            <div class="fox-left-first">
+            <div class="nz-fox-animate-left-first">
                 <img src="images/fox-bounce-left.gif">
             </div>
-            <div class="fox-left">
+            <div class="nz-fox-animate-left">
                 <img src="images/fox-bounce-left.gif">
             </div>
         </div>
