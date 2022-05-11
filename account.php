@@ -120,6 +120,11 @@ $_SESSION['page'] = 'account';
         </div>
     <?php } ?>
     </div>
+<?php if($override == 1) { ?>
+    <div class="w3-bar w3-red" style="display:flex;justify-content:center">
+        <span class="w3-bar-item">WARNING: ADMIN OVERRIDE IN EFFECT</span>
+    </div>
+<?php } ?>
 </div>
 
 <div class="w3-container w3-center" style="margin-bottom:38.5px" id="content">
