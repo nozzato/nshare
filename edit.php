@@ -15,15 +15,18 @@ if(isset($_POST['file'])) {
     $file      = $filePath . $fileName;
     $file_info = new finfo(FILEINFO_MIME);                          //[1]
     $mime_type = $file_info -> buffer(file_get_contents($file));
+    
+    // If uncommented, echo file type
+    //echo $mime_type;
 
-    switch(substr($mime_type, 0, 10)) {
-        case 'text/plain':
-            $file_modal = "'" . $fileName . "'";
-
-            break;
-        default:
-            page_back();
+    if(substr($mime_type, 0, 4) == 'text') {
+        $file_type = 'text';
+    } else if(substr($mime_type, 0, 5) == 'image') {
+        $file_type = 'image';
+    } else {
+        header('location:' . $file);
     }
+    $file_modal = "'" . $fileName . "'";
 } else {
     page_back();
 }
@@ -147,7 +150,7 @@ if(isset($_POST['file'])) {
 <p></p>
     <div class="w3-round w3-card-2 nz-centre-large" id="files">
         <div class="w3-container nz-black nz-round-top" style="display:flex">
-            <h2 style="overflow:hidden; text-overflow:ellipsis">
+            <h2 class="nz-overflow-hide">
             <?php if($_SESSION['page'] == 'public') {
                 echo "public/" . $fileName;
             } else {
@@ -158,11 +161,21 @@ if(isset($_POST['file'])) {
         </div>
         <div class="w3-container">
             <p></p>
+        <?php if($file_type == 'text') { ?>
             <textarea class="w3-input nz-monospace nz-black w3-border-0 w3-round" rows="20" style="resize:none"><?php readfile($file); ?></textarea>
+        <?php } else if($file_type == 'image') { ?>
+            <div class="w3-center">
+                <img class="w3-hide-small" src="<?php echo $file; ?>" style="max-width:882px; max-height:450px">
+                <img class="w3-hide-large w3-hide-medium" src="<?php echo $file; ?>" style="max-width:280px; max-height:450px">
+            </div>
+        <?php } ?>
             <p></p>
             <div class="w3-bar">
+            <?php if($file_type == 'text') { ?>
                 <button class="w3-button w3-bar-item w3-green w3-round" style="margin-right:5px">Save</button>
+            <?php } ?>
                 <button class="w3-button w3-bar-item w3-red w3-round" onclick="openModal(<?php echo $file_modal ?>)" style="margin-right:5px">Delete</button>
+                <button class="w3-button w3-bar-item w3-blue w3-round" style="margin-right:5px">Export</button>
                 <button class="w3-button w3-bar-item w3-blue-grey w3-round" onclick="
                 <?php
                 if($_SESSION['page'] == 'public') {
@@ -178,7 +191,7 @@ if(isset($_POST['file'])) {
     </div>
     <div id="modal" class="w3-modal">
         <div class="w3-modal-content nz-dark w3-round w3-card-2">
-            <header class="w3-container nz-black"> 
+            <header class="w3-container nz-black nz-round-top"> 
                 <h2>Really delete?</h2>
             </header>
             <div class="w3-container">
