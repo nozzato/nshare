@@ -18,7 +18,7 @@ $_SESSION['page'] = 'account';
 <html lang="en">
 <head>
 
-<title>NozzDesk Server - Account settings</title>
+<title>NozzDesk Server - Account</title>
 <link rel="icon" type="image/gif" href="images/favicon.gif">
 
 <meta charset="utf-8">

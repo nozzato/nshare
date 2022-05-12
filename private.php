@@ -11,7 +11,7 @@ $_SESSION['page'] = 'private';
 <html lang="en">
 <head>
 
-<title>NozzDesk Server - Private files</title>
+<title>NozzDesk Server - <?php echo $_SESSION['username'] ?>/</title>
 <link rel="icon" type="image/gif" href="images/favicon.gif">
 
 <meta charset="utf-8">

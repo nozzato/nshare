@@ -32,7 +32,14 @@ if(isset($_POST['file'])) {
 <html lang="en">
 <head>
 
-<title>NozzDesk Server - Account settings</title>
+<title>
+<?php if($_SESSION['page'] == 'public') {
+    echo "NozzDesk Server - public/" . $fileName;
+} else {
+    echo "NozzDesk Server - " . $_SESSION['username'] . "/" . $fileName;
+} 
+?>
+</title>
 <link rel="icon" type="image/gif" href="images/favicon.gif">
 
 <meta charset="utf-8">
@@ -146,7 +153,8 @@ if(isset($_POST['file'])) {
             } else {
                 echo $_SESSION['username'] . "/" . $fileName;
             } 
-            ?></h2>
+            ?>
+            </h2>
         </div>
         <div class="w3-container">
             <p></p>
