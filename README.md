@@ -1,6 +1,6 @@
 # NShare
 
-A file sharing and editing website.
+File sharing and editing website.
 
 ## Sources
 
