@@ -150,7 +150,7 @@ if(isset($_POST['file'])) {
         </div>
         <div class="w3-container">
             <p></p>
-            <textarea class="w3-input nz-monospace nz-black w3-border-0 w3-round" style="resize:none"><?php readfile($file); ?></textarea>
+            <textarea class="w3-input nz-monospace nz-black w3-border-0 w3-round" rows="20" style="resize:none"><?php readfile($file); ?></textarea>
             <p></p>
             <button class="w3-button w3-red w3-round" onclick="openModal(<?php echo $file_modal ?>)">Delete</button>
             <button class="w3-button w3-green w3-round">Save</button>
