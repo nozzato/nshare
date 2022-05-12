@@ -119,8 +119,7 @@ $_SESSION['page'] = 'private';
     <p></p>
     <div class="w3-round w3-card-2 nz-centre-large" id="files">
         <div class="w3-container nz-black nz-round-top" style="display:flex">
-            <h2 style="overflow:hidden; text-overflow:ellipsis"><?php echo $_SESSION['username'] ?></h2>
-            <h2>/</h2>
+            <h2 style="overflow:hidden; text-overflow:ellipsis"><?php echo $_SESSION['username'] ?>/</h2>
         </div>
         <div class="w3-container">
             <p></p>
