@@ -70,6 +70,12 @@
   font-family: monospace;
 }
 
+.nz-overflow-hide {
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
 .nz-text-animate-left {
   position: absolute;
   animation: text-animate-left linear 20s infinite;
