@@ -26,6 +26,7 @@ if (isset($_POST['login_btn'])) {
                 $_SESSION['user_id']        = $row['user_id'];
                 $_SESSION['username']       = $row['username'];
                 $_SESSION['admin']          = $row['admin'];
+                $_SESSION['admin_const']    = $row['admin'];
 
                 $_SESSION['msg'] = "Logged in";
             } else {
