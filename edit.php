@@ -2,9 +2,6 @@
 session_start();
 include_once('functions.php');
 
-if(empty($_SESSION['user_id'])) {
-    page_back();
-}
 if(isset($_POST['file'])) {
     if($_SESSION['page'] == 'public') {
         $filePath = 'files/public/';
@@ -28,7 +25,12 @@ if(isset($_POST['file'])) {
     } else if(substr($mime_type, 0, 5) == 'audio') {
         $file_type = 'audio';
     } else {
-        header('location:' . $file);
+        if(str_contains($mime_type, 'empty')) {
+            $file_type = 'text';
+        } else {
+            header('location:' . $file);
+            exit;
+        }
     }
     $file_modal = "'" . $fileName . "'";
 } else {
@@ -194,10 +196,12 @@ if(isset($_POST['file'])) {
         <?php } ?>
             <p></p>
             <div class="w3-bar">
+            <?php if(isset($_SESSION['user_id']) && $_SESSION['page'] == 'private') { ?>
             <?php if($file_type == 'text') { ?>
                 <button class="w3-button w3-bar-item w3-green w3-round" style="margin-right:5px">Save</button>
             <?php } ?>
                 <button class="w3-button w3-bar-item w3-red w3-round" onclick="openModal(<?php echo $file_modal ?>)" style="margin-right:5px">Delete</button>
+            <?php } ?>
                 <button class="w3-button w3-bar-item w3-blue w3-round" style="margin-right:5px">Export</button>
                 <button class="w3-button w3-bar-item w3-blue-grey w3-round" onclick="
                 <?php
