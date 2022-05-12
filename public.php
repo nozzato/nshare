@@ -128,7 +128,7 @@ $_SESSION['page'] = 'public';
         <?php if($_SESSION['admin'] == 1) { ?>
                 <button class="w3-button w3-bar-item w3-red w3-round" onclick="openModal(<?php echo $file_modal; ?>)" style="margin-right:5px">Delete</button>
                 <form action="edit.php" method="POST">
-                    <button class="w3-button w3-bar-item w3-blue w3-round" name="file" value="<?php echo $file; ?>" style="margin-right:5px; padding-left:17.76px">Edit</button>
+                    <button class="w3-button w3-bar-item w3-blue w3-round" name="file" value="<?php echo $file; ?>" style="margin-right:5px">Edit</button>
                 </form>
         <?php } ?>
                 <form action="files/public/<?php echo $file; ?>" method="POST">
