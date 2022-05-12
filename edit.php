@@ -1,6 +1,5 @@
 <?php
 session_start();
-include_once('functions.php');
 
 if(isset($_POST['file'])) {
     if($_SESSION['page'] == 'public') {
@@ -196,7 +195,7 @@ if(isset($_POST['file'])) {
         <?php } ?>
             <p></p>
             <div class="w3-bar">
-            <?php if(isset($_SESSION['user_id']) && $_SESSION['page'] == 'private') { ?>
+            <?php if(isset($_SESSION['user_id']) && $_SESSION['page'] == 'private' || $_SESSION['admin'] == 1) { ?>
             <?php if($file_type == 'text') { ?>
                 <button class="w3-button w3-bar-item w3-green w3-round" style="margin-right:5px">Save</button>
             <?php } ?>
