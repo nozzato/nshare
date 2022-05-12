@@ -66,6 +66,10 @@
   max-width: 450px;
 }
 
+.nz-monospace {
+  font-family: monospace;
+}
+
 .nz-text-animate-left {
   position: absolute;
   animation: text-animate-left linear 20s infinite;
