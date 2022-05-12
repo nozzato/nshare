@@ -18,6 +18,8 @@ if(isset($_POST['file'])) {
 
     switch(substr($mime_type, 0, 10)) {
         case 'text/plain':
+            $file_modal = "'" . $fileName . "'";
+
             break;
         default:
             page_back();
@@ -138,12 +140,37 @@ if(isset($_POST['file'])) {
 <p></p>
     <div class="w3-round w3-card-2 nz-centre-large" id="files">
         <div class="w3-container nz-black nz-round-top" style="display:flex">
-            <h2 style="overflow:hidden; text-overflow:ellipsis"><?php echo $fileName ?></h2>
+            <h2 style="overflow:hidden; text-overflow:ellipsis">
+            <?php if($_SESSION['page'] == 'public') {
+                echo "public/" . $fileName;
+            } else {
+                echo $_SESSION['username'] . "/" . $fileName;
+            } 
+            ?></h2>
         </div>
-        <p></p>
         <div class="w3-container">
-            <?php readfile($file); ?>
             <p></p>
+            <textarea class="w3-input nz-monospace nz-black w3-border-0 w3-round" style="resize:none"><?php readfile($file); ?></textarea>
+            <p></p>
+            <button class="w3-button w3-red w3-round" onclick="openModal(<?php echo $file_modal ?>)">Delete</button>
+            <button class="w3-button w3-green w3-round">Save</button>
+            <p></p>
+        </div>
+    </div>
+    <div id="modal" class="w3-modal">
+        <div class="w3-modal-content nz-dark w3-round w3-card-2">
+            <header class="w3-container nz-black"> 
+                <h2>Really delete?</h2>
+            </header>
+            <div class="w3-container">
+                <p class ="m-0 text-center" id="modal-content"></p>
+            </div>
+            <footer class="w3-container w3-bar">
+                <form action="delete.php" method="POST">
+                    <button class="w3-button w3-bar-item w3-red w3-round w3-margin-bottom" type="submit" name="file" id="delete-button" style="margin-right:5px">Delete</button>
+                </form>
+                <button class="w3-button w3-bar-item w3-blue-grey w3-round w3-margin-bottom" onclick="document.getElementById('modal').style.display='none'">Cancel</button>
+            </footer>
         </div>
     </div>
 </div>
