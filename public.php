@@ -127,7 +127,10 @@ $_SESSION['page'] = 'public';
         ?>
             <div class="w3-bar" style="margin-bottom:5px">
         <?php if($_SESSION['admin'] == 1) { ?>
-                <button class="w3-button w3-bar-item w3-red w3-round" onclick="openModal(<?php echo $file_modal; ?>)" style="margin-right:5px; padding-left:17.76px; padding-right:17.76px">Delete</button>
+                <button class="w3-button w3-bar-item w3-red w3-round" onclick="openModal(<?php echo $file_modal; ?>)" style="margin-right:5px">Delete</button>
+                <form action="edit.php" method="POST">
+                    <button class="w3-button w3-bar-item w3-blue w3-round" style="margin-right:5px; padding-left:17.76px">Edit</button>
+                </form>
         <?php } ?>
                 <form action="files/public/<?php echo $file; ?>" method="POST">
                     <input class="w3-button w3-bar-item w3-blue-grey w3-round" type="submit" value="<?php echo $file; ?>">
@@ -176,14 +179,8 @@ $_SESSION['page'] = 'public';
     </div>
     <div class="w3-container">
         <div id="foxes" style="display:none">
-            <div class="nz-fox-animate-right-first">
-                <img src="images/fox-bounce-right.gif">
-            </div>
             <div class="nz-fox-animate-right">
                 <img src="images/fox-bounce-right.gif">
-            </div>
-            <div class="nz-fox-animate-left-first">
-                <img src="images/fox-bounce-left.gif">
             </div>
             <div class="nz-fox-animate-left">
                 <img src="images/fox-bounce-left.gif">

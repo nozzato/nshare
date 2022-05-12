@@ -68,7 +68,7 @@
 
 .nz-text-animate-left {
   position: absolute;
-  animation: text-animate-left linear 25s infinite;
+  animation: text-animate-left linear 20s infinite;
 }
 
 @keyframes text-animate-left {
@@ -79,34 +79,18 @@
     transform: translateX(-50%);
   }
 }
-.nz-fox-animate-right-first {
-  position: absolute;
-  left: 100%;
-  bottom: 10px;
-  animation: fox-animate-right-first 20s linear 0.2s;
-  animation-iteration-count: 1;
-}
-
 .nz-fox-animate-right {
   position: absolute;
   left: -30%;
   bottom: 10px;
-  animation: fox-animate-right 20s linear 20s infinite;
-}
-
-.nz-fox-animate-left-first {
-  position: absolute;
-  right: 100%;
-  bottom: 10px;
-  animation: fox-animate-left-first 20s linear 0.2s;
-  animation-iteration-count: 1;
+  animation: fox-animate-right linear 20s infinite;
 }
 
 .nz-fox-animate-left {
   position: absolute;
   right: -30%;
   bottom: 10px;
-  animation: fox-animate-left 20s linear 20s infinite;
+  animation: fox-animate-left linear 20s infinite;
 }
 
 @keyframes fox-animate-right {
@@ -120,29 +104,7 @@
     left: 100%;
   }
 }
-@keyframes fox-animate-right-first {
-  from {
-    left: -30%;
-  }
-  50% {
-    left: 100%;
-  }
-  to {
-    left: 100%;
-  }
-}
 @keyframes fox-animate-left {
-  from {
-    right: -30%;
-  }
-  50% {
-    right: -30%;
-  }
-  to {
-    right: 100%;
-  }
-}
-@keyframes fox-animate-left-first {
   from {
     right: -30%;
   }
