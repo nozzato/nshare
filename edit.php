@@ -18,11 +18,8 @@ if(isset($_POST['file'])) {
 
     switch(substr($mime_type, 0, 10)) {
         case 'text/plain':
-            if($_SESSION['page'] == 'public') {
-                $file_modal = "'public/" . $fileName . "'";
-            } else {
-                $file_modal = "'" . $_SESSION['username'] . "/" . $fileName . "'";
-            }
+            $file_modal = "'" . $fileName . "'";
+
             break;
         default:
             page_back();
@@ -163,8 +160,10 @@ if(isset($_POST['file'])) {
             <p></p>
             <textarea class="w3-input nz-monospace nz-black w3-border-0 w3-round" rows="20" style="resize:none"><?php readfile($file); ?></textarea>
             <p></p>
-            <button class="w3-button w3-red w3-round" onclick="openModal(<?php echo $file_modal ?>)">Delete</button>
-            <button class="w3-button w3-green w3-round">Save</button>
+            <div class="w3-bar">
+                <button class="w3-button w3-bar-item w3-green w3-round" style="margin-right:5px">Save</button>
+                <button class="w3-button w3-bar-item w3-red w3-round" onclick="openModal(<?php echo $file_modal ?>)" style="margin-right:5px">Delete</button>
+                <button class="w3-button w3-bar-item w3-blue-grey w3-round">Back</button>
             <p></p>
         </div>
     </div>
