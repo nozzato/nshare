@@ -163,7 +163,16 @@ if(isset($_POST['file'])) {
             <div class="w3-bar">
                 <button class="w3-button w3-bar-item w3-green w3-round" style="margin-right:5px">Save</button>
                 <button class="w3-button w3-bar-item w3-red w3-round" onclick="openModal(<?php echo $file_modal ?>)" style="margin-right:5px">Delete</button>
-                <button class="w3-button w3-bar-item w3-blue-grey w3-round">Back</button>
+                <button class="w3-button w3-bar-item w3-blue-grey w3-round" onclick="
+                <?php
+                if($_SESSION['page'] == 'public') {
+                    echo "window.location.href = 'public.php';";
+                } else {
+                    echo "window.location.href = 'private.php';";
+                }
+                ?>
+                ">Back</button>
+            </div>
             <p></p>
         </div>
     </div>
