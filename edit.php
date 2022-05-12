@@ -23,6 +23,10 @@ if(isset($_POST['file'])) {
         $file_type = 'text';
     } else if(substr($mime_type, 0, 5) == 'image') {
         $file_type = 'image';
+    } else if(substr($mime_type, 0, 5) == 'video') {
+        $file_type = 'video';
+    } else if(substr($mime_type, 0, 5) == 'audio') {
+        $file_type = 'audio';
     } else {
         header('location:' . $file);
     }
@@ -165,8 +169,27 @@ if(isset($_POST['file'])) {
             <textarea class="w3-input nz-monospace nz-black w3-border-0 w3-round" rows="20" style="resize:none"><?php readfile($file); ?></textarea>
         <?php } else if($file_type == 'image') { ?>
             <div class="w3-center">
-                <img class="w3-hide-small" src="<?php echo $file; ?>" style="max-width:882px; max-height:450px">
+                <img class="w3-hide-medium w3-hide-small" src="<?php echo $file; ?>" style="max-width:882px; max-height:450px">
+                <img class="w3-hide-large w3-hide-small" src="<?php echo $file; ?>" style="max-width:730px; max-height:450px">
                 <img class="w3-hide-large w3-hide-medium" src="<?php echo $file; ?>" style="max-width:280px; max-height:450px">
+            </div>
+        <?php } else if($file_type == 'video') { ?>
+            <div class="w3-center">
+                <video class="w3-hide-medium w3-hide-small" controls style="max-width:882px; max-height:450px">
+                    <source src="<?php echo $file; ?>">
+                </video>
+                <video class="w3-hide-large w3-hide-small" controls style="max-width:730px; max-height:450px">
+                    <source src="<?php echo $file; ?>">
+                </video>
+                <video class="w3-hide-large w3-hide-medium" controls style="max-width:280px; max-height:450px">
+                    <source src="<?php echo $file; ?>">
+                </video>
+            </div>
+        <?php } else if($file_type == 'audio') { ?>
+            <div class="w3-center">
+                <audio class="w3-block" controls>
+                    <source src="<?php echo $file; ?>">
+                </audio>
             </div>
         <?php } ?>
             <p></p>
