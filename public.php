@@ -127,10 +127,10 @@ $_SESSION['page'] = 'public';
             <div class="w3-bar" style="margin-bottom:5px">
         <?php if($_SESSION['admin'] == 1) { ?>
                 <button class="w3-button w3-bar-item w3-red w3-round" onclick="openModal(<?php echo $file_modal; ?>)" style="margin-right:5px; padding-left:17.76px; padding-right:17.76px">Delete</button>
+        <?php } ?>
                 <form action="edit.php" method="POST">
                     <button class="w3-button w3-bar-item w3-blue-grey w3-round" name="file" value="<?php echo $file; ?>"><?php echo $file; ?></button>
                 </form>
-        <?php } ?>
             </div>
         <?php } ?>
         <?php if($_SESSION['admin'] == 1) { ?>
