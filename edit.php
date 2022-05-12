@@ -18,8 +18,11 @@ if(isset($_POST['file'])) {
 
     switch(substr($mime_type, 0, 10)) {
         case 'text/plain':
-            $file_modal = "'" . $fileName . "'";
-
+            if($_SESSION['page'] == 'public') {
+                $file_modal = "'public/" . $fileName . "'";
+            } else {
+                $file_modal = "'" . $_SESSION['username'] . "/" . $fileName . "'";
+            }
             break;
         default:
             page_back();
