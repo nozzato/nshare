@@ -9,8 +9,8 @@ function verifyAccount() {
     //return true;
 
     var msg = document.getElementById('msg');
-    var username = document.getElementById('username').value;
-    var password = document.getElementById('password').value;
+    var username = document.getElementById('signup_username').value;
+    var password = document.getElementById('signup_password').value;
 
     if(username === '' || password === '') {
         msg.innerHTML = 'Error: Both fields are required';
