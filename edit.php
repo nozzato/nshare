@@ -1,5 +1,6 @@
 <?php
 session_start();
+include_once('functions.php');
 
 if(isset($_POST['file'])) {
     if($_SESSION['page'] == 'public') {
@@ -58,6 +59,15 @@ if(isset($_POST['file'])) {
 <link rel="stylesheet" href="fontawesome-free-6.1.1-web/css/all.css">
 
 <script src="scripts.js" type="text/javascript"></script>
+<script type="text/javascript">
+function backBtn() {
+<?php if($_SESSION['page'] == 'public') { ?>
+    window.location.href = 'public.php';
+<?php } else { ?>
+    window.location.href = 'private.php';
+<?php } ?>
+}
+</script>
 
 </head>
 <body class="nz-dark">
@@ -167,7 +177,7 @@ if(isset($_POST['file'])) {
         <div class="w3-container">
             <p></p>
         <?php if($file_type == 'text') { ?>
-            <textarea class="w3-input nz-monospace nz-black w3-border-0 w3-round" rows="20" style="resize:none"><?php readfile($file); ?></textarea>
+            <textarea class="w3-input nz-monospace nz-black w3-border-0 w3-round" rows="20" id="buffer" style="resize:none"><?php readfile($file); ?></textarea>
         <?php } else if($file_type == 'image') { ?>
             <div class="w3-center">
                 <img class="w3-hide-medium w3-hide-small" src="<?php echo $file; ?>" style="max-width:882px; max-height:450px">
@@ -197,22 +207,14 @@ if(isset($_POST['file'])) {
             <div class="w3-bar">
             <?php if(isset($_SESSION['user_id']) && $_SESSION['page'] == 'private' || $_SESSION['admin'] == 1) { ?>
             <?php if($file_type == 'text') { ?>
-                <button class="w3-button w3-bar-item w3-green w3-round" style="margin-right:5px">Save</button>
+                <button class="w3-button w3-bar-item w3-green w3-round" name="file" onclick="saveFile('text')" style="margin-right:5px">Save</button>
             <?php } ?>
                 <button class="w3-button w3-bar-item w3-red w3-round" onclick="openModal(<?php echo $file_modal ?>)" style="margin-right:5px">Delete</button>
             <?php } ?>
                 <form action="download.php" method="POST">
                     <button class="w3-button w3-bar-item w3-blue w3-round" name="file" value="<?php echo $file_name; ?>" style="margin-right:5px">Export</button>
                 </form>
-                <button class="w3-button w3-bar-item w3-blue-grey w3-round" onclick="
-                <?php
-                if($_SESSION['page'] == 'public') {
-                    echo "window.location.href = 'public.php';";
-                } else {
-                    echo "window.location.href = 'private.php';";
-                }
-                ?>
-                ">Back</button>
+                <button class="w3-button w3-bar-item w3-blue-grey w3-round" onclick="backBtn()">Back</button>
             </div>
             <p></p>
         </div>
