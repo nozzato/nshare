@@ -208,7 +208,7 @@ function backBtn() {
         <?php } ?>
             <p></p>
             <div class="w3-bar">
-            <?php if(isset($_SESSION['user_id']) && $_SESSION['page'] == 'private' || $_SESSION['admin'] == 1) { ?>
+            <?php if(isset($_SESSION['user_id']) && $_SESSION['page'] == 'private' || isset($_SESSION['admin']) && $_SESSION['admin'] == 1) { ?>
             <?php if($file_type == 'text') { ?>
                 <label class="w3-button w3-bar-item w3-green w3-round" for="save-btn" style="cursor:pointer; margin-right:5px">Save</label>
             <?php } ?>
