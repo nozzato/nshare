@@ -3,12 +3,12 @@ session_start();
 
 if(isset($_POST['file'])) {
     if($_SESSION['page'] == 'public') {
-        $filePath = 'files/public/';
+        $file_path = 'files/public/';
     } else if($_SESSION['page'] == 'private') {
-        $filePath = 'files/' . $_SESSION['username'] . '/';
+        $file_path = 'files/' . $_SESSION['username'] . '/';
     }
-    $fileName  = $_POST['file'];
-    $file      = $filePath . $fileName;
+    $file_name  = $_POST['file'];
+    $file      = $file_path . $file_name;
     $file_info = new finfo(FILEINFO_MIME);                          //[1]
     $mime_type = $file_info -> buffer(file_get_contents($file));
     
@@ -31,7 +31,7 @@ if(isset($_POST['file'])) {
             exit;
         }
     }
-    $file_modal = "'" . $fileName . "'";
+    $file_modal = "'" . $file_name . "'";
 } else {
     page_back();
 }
@@ -42,9 +42,9 @@ if(isset($_POST['file'])) {
 
 <title>
 <?php if($_SESSION['page'] == 'public') {
-    echo "NozzDesk Server - public/" . $fileName;
+    echo "NozzDesk Server - public/" . $file_name;
 } else {
-    echo "NozzDesk Server - " . $_SESSION['username'] . "/" . $fileName;
+    echo "NozzDesk Server - " . $_SESSION['username'] . "/" . $file_name;
 } 
 ?>
 </title>
@@ -157,9 +157,9 @@ if(isset($_POST['file'])) {
         <div class="w3-container nz-black nz-round-top" style="display:flex">
             <h2 class="nz-overflow-hide">
             <?php if($_SESSION['page'] == 'public') {
-                echo "public/" . $fileName;
+                echo "public/" . $file_name;
             } else {
-                echo $_SESSION['username'] . "/" . $fileName;
+                echo $_SESSION['username'] . "/" . $file_name;
             } 
             ?>
             </h2>
@@ -202,7 +202,7 @@ if(isset($_POST['file'])) {
                 <button class="w3-button w3-bar-item w3-red w3-round" onclick="openModal(<?php echo $file_modal ?>)" style="margin-right:5px">Delete</button>
             <?php } ?>
                 <form action="download.php" method="POST">
-                    <button class="w3-button w3-bar-item w3-blue w3-round" name="file" value="<?php echo $fileName; ?>" style="margin-right:5px">Export</button>
+                    <button class="w3-button w3-bar-item w3-blue w3-round" name="file" value="<?php echo $file_name; ?>" style="margin-right:5px">Export</button>
                 </form>
                 <button class="w3-button w3-bar-item w3-blue-grey w3-round" onclick="
                 <?php

@@ -2,18 +2,18 @@
 session_start();
 include_once('functions.php');
 
-if(isset($_POST['account_signup_btn']) || isset($_POST['account_delete_btn'])) {
+if(isset($_POST['user_signup_btn']) || isset($_POST['user_delete_btn'])) {
     if(!empty($_POST['username']) && !empty($_POST['password'])) {
         try {
             include_once('connect.php');
 
             $username = $password = $admin = '';
 
-            function strip($data) {
-                $data = trim($data);
-                $data = stripslashes($data);
-                $data = htmlspecialchars($data);
-                return $data;
+            function strip($in) {
+                $out = trim($in);
+                $out = stripslashes($in);
+                $out = htmlspecialchars($in);
+                return $out;
             }
             $username = strip($_POST['username']);
             $password = strip($_POST['password']);
@@ -32,16 +32,16 @@ if(isset($_POST['account_signup_btn']) || isset($_POST['account_delete_btn'])) {
             $stmt = $pdo-> prepare("SELECT * FROM `users` WHERE `username` = ?;");
             $stmt-> execute([$username]);
 
-            if(isset($_POST['account_signup_btn'])) {
+            if(isset($_POST['user_signup_btn'])) {
                 $count = $stmt-> rowCount();
 
                 if($count == 0) {
                     $stmt = $pdo-> prepare("INSERT INTO `users` (`username`, `password`, `admin`) VALUES (?, ?, ?);");
                     $stmt-> execute([$username, password_hash($password, PASSWORD_DEFAULT), $admin]);
 
-                    $oldUmask = umask(0);
+                    $old_umask = umask(0);
                     mkdir('files/' . $username, 0775);
-                    umask($oldUmask);
+                    umask($old_umask);
 
                     $_SESSION['msg'] = "Account created";
                     header('location:account.php');
@@ -52,7 +52,7 @@ if(isset($_POST['account_signup_btn']) || isset($_POST['account_delete_btn'])) {
                     header('location:account.php');
                     exit;
                 }
-            } else if(isset($_POST['account_delete_btn'])) {
+            } else if(isset($_POST['user_delete_btn'])) {
                 if(strlen($password) > 72) {
                     $_SESSION['msg'] = "Error: Password must be 72 characters or less";
                     header('location:account.php');
@@ -60,7 +60,7 @@ if(isset($_POST['account_signup_btn']) || isset($_POST['account_delete_btn'])) {
                 }
                 $row = $stmt-> fetch(PDO::FETCH_ASSOC);
 
-                function deleteDirectory($dir) {
+                function remove_dir($dir) {
                     if (!file_exists($dir)) {
                         return true;
                     }
@@ -71,7 +71,7 @@ if(isset($_POST['account_signup_btn']) || isset($_POST['account_delete_btn'])) {
                         if ($item == '.' || $item == '..') {
                             continue;
                         }
-                        if (!deleteDirectory($dir . DIRECTORY_SEPARATOR . $item)) {
+                        if (!remove_dir($dir . DIRECTORY_SEPARATOR . $item)) {
                             return false;
                         }
                     }
@@ -81,7 +81,7 @@ if(isset($_POST['account_signup_btn']) || isset($_POST['account_delete_btn'])) {
                     $stmt = $pdo-> prepare("DELETE FROM `users` WHERE `username` = ?;");
                     $stmt-> execute([$username]);
 
-                    deleteDirectory('files/' . $username);
+                    remove_dir('files/' . $username);
 
                     if($username == $_SESSION['username']) {
                         $_SESSION['delete_logout'] = 1;
@@ -97,7 +97,7 @@ if(isset($_POST['account_signup_btn']) || isset($_POST['account_delete_btn'])) {
                         $stmt = $pdo-> prepare("DELETE FROM `users` WHERE `username` = ?;");
                         $stmt-> execute([$username]);
                         
-                        deleteDirectory('files/' . $username);
+                        remove_dir('files/' . $username);
 
                         $_SESSION['delete_logout'] = 1;
                         header('location:logout.php');

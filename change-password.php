@@ -2,7 +2,7 @@
 session_start();
 include_once('functions.php');
 
-if(isset($_POST['account_change_password_btn'])) {
+if(isset($_POST['user_password_change_btn'])) {
     if(!empty($_POST['old_password']) && !empty($_POST['new_password'])) {
         try {
             include_once('connect.php');

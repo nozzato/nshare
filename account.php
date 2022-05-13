@@ -140,7 +140,7 @@ $_SESSION['page'] = 'account';
             <p></p>
             <input class="w3-input nz-black w3-border-0 w3-round" type="password" name="new_password" placeholder="New Password" id="new-password">
             <p></p>
-            <input class="w3-btn w3-green w3-round" type="submit" name="account_change_password_btn" value="Change">
+            <input class="w3-btn w3-green w3-round" type="submit" name="user_password_change_btn" value="Change">
             <p></p>
         </form>
     </div>
@@ -166,10 +166,10 @@ $_SESSION['page'] = 'account';
             <input class="w3-radio" type="radio" name="admin" value="1" id="adminTrue">
             <label for="adminTrue">Yes</label>
             <p></p>
-            <input class="w3-btn w3-red w3-round" type="submit" name="account_delete_btn" value="Delete">
-            <input class="w3-btn w3-green w3-round" type="submit" name="account_signup_btn" value="Signup">
+            <input class="w3-btn w3-red w3-round" type="submit" name="user_delete_btn" value="Delete">
+            <input class="w3-btn w3-green w3-round" type="submit" name="user_signup_btn" value="Signup">
         <?php } else { ?>
-            <input class="w3-btn w3-red w3-round" type="submit" name="account_delete_btn" value="Delete">
+            <input class="w3-btn w3-red w3-round" type="submit" name="user_delete_btn" value="Delete">
         <?php } ?>
             <p></p>
         </form>

@@ -135,9 +135,9 @@ $_SESSION['page'] = 'public';
         <?php } ?>
         <?php if($_SESSION['admin'] == 1) { ?>
             <form class="w3-margin-top" action="upload.php" method="POST" enctype="multipart/form-data">
-                <input class="w3-button w3-green w3-round" type="submit" name="files_upload_btn" value="Upload">
+                <input class="w3-button w3-green w3-round" type="submit" name="upload_btn" value="Upload">
                 <label class="w3-button w3-blue-grey w3-round" for="upload-file" style="cursor:pointer">Browse...</label>
-                <input class="w3-hide" type="file" name="files_file" id="upload-file" required>
+                <input class="w3-hide" type="file" name="file" id="upload-file" required>
             </form>
         <?php } ?>
             <p></p>

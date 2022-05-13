@@ -2,17 +2,17 @@
 session_start();
 include_once('functions.php');
 
-if(isset($_POST['files_upload_btn'])) {
-    if(isset($_FILES['files_file'])){
+if(isset($_POST['upload_btn'])) {
+    if(isset($_FILES['file'])){
         if($_SESSION['page'] == 'public') {
-            $filePath = 'files/public/';
+            $file_path = 'files/public/';
         } else if($_SESSION['page'] == 'private') {
-            $filePath = 'files/' . $_SESSION['username'] . '/';
+            $file_path = 'files/' . $_SESSION['username'] . '/';
         }
-        $fileName = $_FILES['files_file']['name'];
+        $file_name = $_FILES['file']['name'];
 
-        if(move_uploaded_file($_FILES['files_file']['tmp_name'], $filePath . $fileName)) {
-            chmod( $filePath . $fileName, 0775);
+        if(move_uploaded_file($_FILES['file']['tmp_name'], $file_path . $file_name)) {
+            chmod( $file_path . $file_name, 0775);
 
             $_SESSION['msg'] = "File uploaded";
         } else {

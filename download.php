@@ -4,12 +4,12 @@ include_once('functions.php');
 
 if(isset($_POST['file'])) {
     if($_SESSION['page'] == 'public') {
-        $filePath = 'files/public/';
+        $file_path = 'files/public/';
     } else if($_SESSION['page'] == 'private') {
-        $filePath = 'files/' . $_SESSION['username'] . '/';
+        $file_path = 'files/' . $_SESSION['username'] . '/';
     }
-    $fileName  = $_POST['file'];
-    $file      = $filePath . $fileName;
+    $file_name  = $_POST['file'];
+    $file       = $file_path . $file_name;
 
     header('Content-Description: File Transfer');
     header('Content-Type: application/octet-stream');
