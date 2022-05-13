@@ -3,6 +3,10 @@
     src: url(fonts/dejavu-sans-condensed/DejaVuSansCondensed.ttf);
 }
 
+input:focus, textarea:focus {
+    outline: none;
+}
+
 .nz-dark, .nz-hover-dark:hover {
     color: #ffffff;
     background-color: #22231c;
