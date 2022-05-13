@@ -201,7 +201,9 @@ if(isset($_POST['file'])) {
             <?php } ?>
                 <button class="w3-button w3-bar-item w3-red w3-round" onclick="openModal(<?php echo $file_modal ?>)" style="margin-right:5px">Delete</button>
             <?php } ?>
-                <button class="w3-button w3-bar-item w3-blue w3-round" style="margin-right:5px">Export</button>
+                <form action="download.php" method="POST">
+                    <button class="w3-button w3-bar-item w3-blue w3-round" name="file" value="<?php echo $fileName; ?>" style="margin-right:5px">Export</button>
+                </form>
                 <button class="w3-button w3-bar-item w3-blue-grey w3-round" onclick="
                 <?php
                 if($_SESSION['page'] == 'public') {
