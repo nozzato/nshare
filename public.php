@@ -58,7 +58,7 @@ $_SESSION['page'] = 'public';
             <?php } ?>
             </div>
         </div>
-    <?php if($_SESSION['admin'] == 1) { ?>
+    <?php if(isset($_SESSION['admin']) && $_SESSION['admin'] == 1) { ?>
         <div class="w3-dropdown-hover">
             <button class="w3-button">
                 <i class="fa fa-server"></i> Admin <i class="fa fa-caret-down"></i>
@@ -125,7 +125,7 @@ $_SESSION['page'] = 'public';
             $file_modal = "'" . $file . "'";
         ?>
             <div class="w3-bar" style="margin-bottom:5px">
-        <?php if($_SESSION['admin'] == 1) { ?>
+        <?php if(isset($_SESSION['admin']) && $_SESSION['admin'] == 1) { ?>
                 <button class="w3-button w3-bar-item w3-red w3-round" onclick="openModal(<?php echo $file_modal; ?>)" style="margin-right:5px; padding-left:17.76px; padding-right:17.76px">Delete</button>
         <?php } ?>
                 <form action="edit.php" method="POST">
@@ -133,7 +133,7 @@ $_SESSION['page'] = 'public';
                 </form>
             </div>
         <?php } ?>
-        <?php if($_SESSION['admin'] == 1) { ?>
+        <?php if(isset($_SESSION['admin']) && $_SESSION['admin'] == 1) { ?>
             <form class="w3-margin-top" action="upload.php" method="POST" enctype="multipart/form-data">
                 <input class="w3-button w3-green w3-round" type="submit" name="upload_btn" value="Upload">
                 <label class="w3-button w3-blue-grey w3-round" for="upload-file" style="cursor:pointer">Browse...</label>
@@ -165,10 +165,14 @@ $_SESSION['page'] = 'public';
     <div class="w3-bar">
         <a class="w3-bar-item w3-button nz-text-black w3-hover-none" onclick="toggleFoxes()" href="javascript:void(0)">fox.exe</a>
         <div class="w3-display-bottommiddle" style="bottom:9px" id="msg_box">
-        <?php if(substr($_SESSION['msg'], 0, 6) == 'Error:') { ?>
-            <span class="w3-text-red" id="msg"><?php echo $_SESSION['msg']; ?></span>
-        <?php } else { ?>
-            <span id="msg"><?php echo $_SESSION['msg']; ?></span>
+        <?php if(isset($_SESSION['msg'])) {
+            if(substr($_SESSION['msg'], 0, 6) == 'Error:') { ?>
+                <span class="w3-text-red" id="msg"><?php echo $_SESSION['msg']; ?></span>
+            <?php } else { ?>
+                <span id="msg"><?php echo $_SESSION['msg']; ?></span>
+            <?php }
+        } else { ?>
+            <span id="msg"></span>
         <?php }
         unset($_SESSION['msg']); ?>
         </div>

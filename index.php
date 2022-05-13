@@ -58,7 +58,7 @@ $_SESSION['page'] = 'home';
             <?php } ?>
             </div>
         </div>
-    <?php if($_SESSION['admin'] == 1) { ?>
+    <?php if(isset($_SESSION['admin']) && $_SESSION['admin'] == 1) { ?>
         <div class="w3-dropdown-hover">
             <button class="w3-button">
                 <i class="fa fa-server"></i> Admin <i class="fa fa-caret-down"></i>
@@ -139,10 +139,14 @@ $_SESSION['page'] = 'home';
     <div class="w3-bar">
         <a class="w3-bar-item w3-button nz-text-black w3-hover-none" onclick="toggleFoxes()" href="javascript:void(0)">fox.exe</a>
         <div class="w3-display-bottommiddle" style="bottom:9px" id="msg_box">
-        <?php if(substr($_SESSION['msg'], 0, 6) == 'Error:') { ?>
-            <span class="w3-text-red" id="msg"><?php echo $_SESSION['msg']; ?></span>
-        <?php } else { ?>
-            <span id="msg"><?php echo $_SESSION['msg']; ?></span>
+        <?php if(isset($_SESSION['msg'])) {
+            if(substr($_SESSION['msg'], 0, 6) == 'Error:') { ?>
+                <span class="w3-text-red" id="msg"><?php echo $_SESSION['msg']; ?></span>
+            <?php } else { ?>
+                <span id="msg"><?php echo $_SESSION['msg']; ?></span>
+            <?php }
+        } else { ?>
+            <span id="msg"></span>
         <?php }
         unset($_SESSION['msg']); ?>
         </div>
