@@ -177,7 +177,10 @@ function backBtn() {
         <div class="w3-container">
             <p></p>
         <?php if($file_type == 'text') { ?>
-            <textarea class="w3-input nz-monospace nz-black w3-border-0 w3-round" rows="20" id="buffer" style="resize:none"><?php readfile($file); ?></textarea>
+            <form action="upload.php" method="POST">
+                <textarea class="w3-input nz-monospace nz-black w3-border-0 w3-round" rows="20" name="buffer" style="resize:none"><?php readfile($file); ?></textarea>
+                <button class="w3-hide" type="submit" name="file" value="<?php echo $file_name; ?>" id="save-btn" style="margin-right:5px">Save</button>
+            </form>
         <?php } else if($file_type == 'image') { ?>
             <div class="w3-center">
                 <img class="w3-hide-medium w3-hide-small" src="<?php echo $file; ?>" style="max-width:882px; max-height:450px">
@@ -207,7 +210,7 @@ function backBtn() {
             <div class="w3-bar">
             <?php if(isset($_SESSION['user_id']) && $_SESSION['page'] == 'private' || $_SESSION['admin'] == 1) { ?>
             <?php if($file_type == 'text') { ?>
-                <button class="w3-button w3-bar-item w3-green w3-round" name="file" onclick="saveFile('text')" style="margin-right:5px">Save</button>
+                <label class="w3-button w3-bar-item w3-green w3-round" for="save-btn" style="cursor:pointer; margin-right:5px">Save</label>
             <?php } ?>
                 <button class="w3-button w3-bar-item w3-red w3-round" onclick="openModal(<?php echo $file_modal ?>)" style="margin-right:5px">Delete</button>
             <?php } ?>

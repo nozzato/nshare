@@ -11,8 +11,9 @@ if(isset($_FILES['file']) || isset($_POST['file'])) {
     if(isset($_FILES['file'])) {
         $file_name = $_FILES['file']['name'];
         $file = $file_path . $file_name;
+        $file_temp = $_FILES['file']['tmp_name'];
 
-        if(move_uploaded_file($file_name, $file)) {
+        if(move_uploaded_file($file_temp, $file)) {
             chmod($file, 0775);
 
             $_SESSION['msg'] = "File uploaded";
@@ -25,8 +26,6 @@ if(isset($_FILES['file']) || isset($_POST['file'])) {
         $buffer = $_POST['buffer'];
 
         if(file_put_contents($file, $buffer) != false) {
-            //chmod($file, 0775);
-
             $_SESSION['msg'] = "File saved";
         } else {
             $_SESSION['msg'] = "Error: Save failed";
