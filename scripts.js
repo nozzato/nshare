@@ -13,22 +13,22 @@ function verifyAccount() {
     var password = document.getElementById('password').value;
 
     if(username === '' || password === '') {
-        msg.innerHTML = "Error: Both fields are required";
+        msg.innerHTML = 'Error: Both fields are required';
         msg.className = 'w3-text-red';
         clearMsg();
         return false;
     } else if(password.length < 8) {
-        msg.innerHTML = "Error: Password must be 8 characters or more";
+        msg.innerHTML = 'Error: Password must be 8 characters or more';
         msg.className = 'w3-text-red';
         clearMsg();
         return false;
     } else if(username.length > 50) {
-        msg.innerHTML = "Error: Username must be 50 characters or less";
+        msg.innerHTML = 'Error: Username must be 50 characters or less';
         msg.className = 'w3-text-red';
         clearMsg();
         return false;
     } else if(password.length > 72) {
-        msg.innerHTML = "Error: Password must be 72 characters or less";
+        msg.innerHTML = 'Error: Password must be 72 characters or less';
         msg.className = 'w3-text-red';
         clearMsg();
         return false;
