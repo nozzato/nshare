@@ -178,8 +178,12 @@ function backBtn() {
             <p></p>
         <?php if($file_type == 'text') { ?>
             <form action="upload.php" method="POST">
-                <textarea class="w3-input nz-monospace nz-black w3-border-0 w3-round" rows="20" name="buffer" style="resize:none"><?php readfile($file); ?></textarea>
+            <?php if(isset($_SESSION['user_id']) && $_SESSION['page'] == 'private' || isset($_SESSION['admin']) && $_SESSION['admin'] == 1) { ?>
+                <textarea class="w3-input nz-monospace nz-black w3-border-0 w3-round" rows="20" name="buffer" style="resize:none" autofocus><?php readfile($file); ?></textarea>
                 <button class="w3-hide" type="submit" name="file" value="<?php echo $file_name; ?>" id="save-btn" style="margin-right:5px">Save</button>
+            <?php } else { ?>
+                <textarea class="w3-input nz-monospace nz-black w3-border-0 w3-round" rows="20" style="resize:none" readonly><?php readfile($file); ?></textarea>
+            <?php } ?>
             </form>
         <?php } else if($file_type == 'image') { ?>
             <div class="w3-center">
