@@ -214,14 +214,22 @@ function backBtn() {
             <div class="w3-bar">
             <?php if(isset($_SESSION['user_id']) && $_SESSION['page'] == 'private' || isset($_SESSION['admin']) && $_SESSION['admin'] == 1) { ?>
             <?php if($file_type == 'text') { ?>
-                <label class="w3-button w3-bar-item w3-green w3-round" for="save-btn" style="cursor:pointer; margin-right:5px">Save</label>
+                <label class="w3-button w3-bar-item w3-green w3-round" for="save-btn" style="cursor:pointer; margin-right:5px">
+                    <i class="fa fa-floppy-disk"></i> Save
+                </label>
             <?php } ?>
-                <button class="w3-button w3-bar-item w3-red w3-round" onclick="openModal(<?php echo $file_modal ?>)" style="margin-right:5px">Delete</button>
+                <button class="w3-button w3-bar-item w3-red w3-round" onclick="openModal(<?php echo $file_modal ?>)" style="margin-right:5px">
+                    <i class="fa fa-trash-can"></i> Delete
+                </button>
             <?php } ?>
                 <form action="download.php" method="POST">
-                    <button class="w3-button w3-bar-item w3-blue w3-round" name="file" value="<?php echo $file_name; ?>" style="margin-right:5px">Export</button>
+                    <button class="w3-button w3-bar-item w3-blue w3-round" name="file" value="<?php echo $file_name; ?>" style="margin-right:5px">
+                        <i class="fa fa-file-arrow-up"></i> Export
+                    </button>
                 </form>
-                <button class="w3-button w3-bar-item w3-blue-grey w3-round" onclick="backBtn()">Back</button>
+                <button class="w3-button w3-bar-item w3-blue-grey w3-round" onclick="backBtn()">
+                    <i class="fa fa-folder-open"></i> Back
+                </button>
             </div>
             <p></p>
         </div>
