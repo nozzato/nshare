@@ -80,6 +80,10 @@ input:focus, textarea:focus {
   white-space: nowrap;
 }
 
+.nz-ghost {
+  pointer-events: none;
+}
+
 .nz-text-animate-left {
   position: absolute;
   animation: text-animate-left linear 20s infinite;

@@ -65,6 +65,9 @@ input:focus, textarea:focus {
     text-overflow: ellipsis;
     white-space: nowrap;
 }
+.nz-ghost {
+    pointer-events: none;
+}
 
 .nz-text-animate-left {
     position: absolute;

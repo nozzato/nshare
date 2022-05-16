@@ -153,10 +153,10 @@ $_SESSION['page'] = 'home';
     </div>
     <div class="w3-container">
         <div id="foxes" style="display:none">
-            <div class="nz-fox-animate-right">
+            <div class="nz-fox-animate-right nz-ghost">
                 <img src="images/fox-bounce-right.gif">
             </div>
-            <div class="nz-fox-animate-left">
+            <div class="nz-fox-animate-left nz-ghost">
                 <img src="images/fox-bounce-left.gif">
             </div>
         </div>
