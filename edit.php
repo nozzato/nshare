@@ -258,12 +258,12 @@ function backBtn() {
         <div class="w3-display-bottommiddle" style="bottom:9px" id="msg_box">
         <?php if(isset($_SESSION['msg'])) {
             if(substr($_SESSION['msg'], 0, 6) == 'Error:') { ?>
-                <span class="w3-text-red" id="msg"><?php echo $_SESSION['msg']; ?></span>
+                <span class="w3-text-red nz-overflow-hide" id="msg"><?php echo $_SESSION['msg']; ?></span>
             <?php } else { ?>
-                <span id="msg"><?php echo $_SESSION['msg']; ?></span>
+                <span class="nz-overflow-hide" id="msg"><?php echo $_SESSION['msg']; ?></span>
             <?php }
         } else { ?>
-            <span id="msg"></span>
+            <span class="nz-overflow-hide" id="msg"></span>
         <?php }
         unset($_SESSION['msg']); ?>
         </div>
