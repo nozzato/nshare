@@ -11,21 +11,21 @@ if(isset($_POST['file'])) {
     $file_name  = $_POST['file'];
     $file      = $file_path . $file_name;
     $file_info = new finfo(FILEINFO_MIME);                          //[1]
-    $mime_type = $file_info -> buffer(file_get_contents($file));
-    
-    // If uncommented, echo file type
-    //echo $mime_type;
+    $file_mime = $file_info -> buffer(file_get_contents($file));
 
-    if(substr($mime_type, 0, 4) == 'text') {
+    // If uncommented, echo mime type
+    //echo $file_mime;
+
+    if(substr($file_mime, 0, 4) == 'text') {
         $file_type = 'text';
-    } else if(substr($mime_type, 0, 5) == 'image') {
+    } else if(substr($file_mime, 0, 5) == 'image') {
         $file_type = 'image';
-    } else if(substr($mime_type, 0, 5) == 'video') {
+    } else if(substr($file_mime, 0, 5) == 'video') {
         $file_type = 'video';
-    } else if(substr($mime_type, 0, 5) == 'audio') {
+    } else if(substr($file_mime, 0, 5) == 'audio') {
         $file_type = 'audio';
     } else {
-        if(str_contains($mime_type, 'empty')) {
+        if(str_contains($file_mime, 'empty')) {
             $file_type = 'text';
         } else {
             header('location:' . $file);
