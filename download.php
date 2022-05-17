@@ -10,10 +10,14 @@ if(isset($_POST['file'])) {
     }
     $file_name  = $_POST['file'];
     $file       = $file_path . $file_name;
+    $file_info = new finfo(FILEINFO_MIME);                          //[1]
+    $file_mime = $file_info -> buffer(file_get_contents($file));
+    $file_type = substr($file_mime, 0, strpos($file_mime, ';'));
 
     header('Content-Description: File Transfer');
-    header('Content-Type: application/octet-stream');
-    header('Content-Disposition: attachment; filename="'.basename($file).'"');
+    header('Content-Type: ' . $file_type);
+    header('Content-Disposition: attachment; filename="' . $file_name . '"');
+    header('Content-Transfer-Encoding: binary');
     header('Expires: 0');
     header('Cache-Control: must-revalidate');
     header('Pragma: public');
