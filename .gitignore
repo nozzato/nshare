@@ -1,5 +1,6 @@
 # Ignore all directories in files/ except public/
 files/*
+!files/*.php
 !files/public/
 files/public/*
 !files/public/welcome.txt
