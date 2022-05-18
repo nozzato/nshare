@@ -2,26 +2,33 @@
   font-family: "DejaVuSansCondensed";
   src: url(fonts/dejavu-sans-condensed/DejaVuSansCondensed.ttf);
 }
+textarea {
+  resize: none;
+}
+
 input:focus, textarea:focus {
   outline: none;
 }
 
-.nz-dark, .nz-hover-dark:hover {
-  color: #ffffff;
-  background-color: #22231c;
+.nz-page {
+  margin: auto;
+  max-width: 960px;
 }
 
-.nz-black, .nz-hover-black:hover {
-  color: #ffffff;
-  background-color: #181916;
-}
-
-.nz-text-black {
-  color: #181916;
+.nz-dropdown-left {
+  right: 0;
 }
 
 .nz-round-top {
   border-radius: 4px 4px 0 0;
+}
+
+.nz-round-top-left {
+  border-radius: 4px 0 0 0;
+}
+
+.nz-round-top-right {
+  border-radius: 0 4px 0 0;
 }
 
 .nz-round-bottom {
@@ -33,55 +40,35 @@ input:focus, textarea:focus {
 }
 
 .nz-round-bottom-right {
-  border-radius: 0 0 4px;
+  border-radius: 0 0 4px 0;
 }
 
-.nz-dropdown-left {
-  right: 0;
+.nz-dark {
+  color: #ffffff;
+  background-color: #22231c;
 }
 
-.nz-centre-small {
-  margin: auto;
-  max-width: 500px;
+.nz-text-dark {
+  color: #22231c;
 }
 
-.nz-centre-small input {
-  margin: auto;
-  max-width: 450px;
+.nz-black {
+  color: #ffffff;
+  background-color: #181916;
 }
 
-.nz-centre-medium {
-  margin: auto;
-  max-width: 700px;
-}
-
-.nz-centre-medium input {
-  margin: auto;
-  max-width: 450px;
-}
-
-.nz-centre-large {
-  margin: auto;
-  max-width: 930px;
-}
-
-.nz-centre-large input {
-  margin: auto;
-  max-width: 450px;
-}
-
-.nz-monospace {
-  font-family: monospace;
-}
-
-.nz-overflow-hide {
-  overflow: hidden;
-  text-overflow: ellipsis;
-  white-space: nowrap;
+.nz-text-black {
+  color: #181916;
 }
 
 .nz-ghost {
   pointer-events: none;
+}
+
+.nz-truncate {
+  overflow: hidden;
+  white-space: nowrap;
+  text-overflow: ellipsis;
 }
 
 .nz-text-animate-left {

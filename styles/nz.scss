@@ -1,25 +1,50 @@
+///////////
+// Fonts //
+///////////
+
 @font-face {
     font-family: "DejaVuSansCondensed";
     src: url(fonts/dejavu-sans-condensed/DejaVuSansCondensed.ttf);
 }
 
+//////////////
+// Elements //
+//////////////
+
+// Input
+
+textarea {
+    resize: none;
+}
 input:focus, textarea:focus {
     outline: none;
 }
 
-.nz-dark, .nz-hover-dark:hover {
-    color: #ffffff;
-    background-color: #22231c;
+/////////////
+// Classes //
+/////////////
+
+// Alignment
+
+.nz-page {
+    margin: auto;
+    max-width: 960px;
 }
-.nz-black, .nz-hover-black:hover {
-    color: #ffffff;
-    background-color: #181916;
+
+.nz-dropdown-left {
+    right: 0;
 }
-.nz-text-black {
-    color: #181916;
-}
+
+// Borders
+
 .nz-round-top {
     border-radius: 4px 4px 0 0;
+}
+.nz-round-top-left {
+    border-radius: 4px 0 0 0;
+}
+.nz-round-top-right {
+    border-radius: 0 4px 0 0;
 }
 .nz-round-bottom {
     border-radius: 0 0 4px 4px;
@@ -28,46 +53,46 @@ input:focus, textarea:focus {
     border-radius: 0 0 0 4px;
 }
 .nz-round-bottom-right {
-    border-radius: 0 0 4px;
+    border-radius: 0 0 4px 0;
 }
-.nz-dropdown-left {
-    right: 0;
+
+// Colors
+
+.nz-dark {
+    color: #ffffff;
+    background-color: #22231c;
 }
-.nz-centre-small {
-    margin: auto;
-    max-width: 500px;
+.nz-text-dark {
+    color: #22231c;
 }
-.nz-centre-small input {
-    margin: auto;
-    max-width: 450px;
+
+.nz-black {
+    color: #ffffff;
+    background-color: #181916;
 }
-.nz-centre-medium {
-    margin: auto;
-    max-width: 700px;
+.nz-text-black {
+    color: #181916;
 }
-.nz-centre-medium input {
-    margin: auto;
-    max-width: 450px;
-}
-.nz-centre-large {
-    margin: auto;
-    max-width: 930px;
-}
-.nz-centre-large input {
-    margin: auto;
-    max-width: 450px;
-}
-.nz-monospace {
-    font-family: monospace;
-}
-.nz-overflow-hide {
-    overflow: hidden;
-    text-overflow: ellipsis;
-    white-space: nowrap;
-}
+
+// Input
+
 .nz-ghost {
     pointer-events: none;
 }
+
+// Layout
+
+.nz-truncate {
+    overflow: hidden;
+    white-space: nowrap;
+    text-overflow: ellipsis;
+}
+
+////////////////
+// Animations //
+////////////////
+
+// Scroll
 
 .nz-text-animate-left {
     position: absolute;
@@ -80,6 +105,9 @@ input:focus, textarea:focus {
         transform: translateX(-50%);
     }
 }
+
+// Bounce
+
 .nz-fox-animate-right {
     position: absolute;
     left: -30%;

@@ -1,13 +1,16 @@
 <?php
 session_start();
 
-$_SESSION['page'] = 'home';
+if(!isset($_SESSION['user'])) {
+    header('location:/');
+}
+$_SESSION['page'] = 'account';
 ?>
 <!DOCTYPE html>
 <html lang='en'>
 <head>
 
-<title>NozzDesk Server</title>
+<title>NozzDesk Server - Account</title>
 <link rel='icon' type='image/gif' href='/media/favicon.gif'>
 
 <meta charset='utf-8'>
@@ -130,28 +133,76 @@ $_SESSION['page'] = 'home';
     </div>
 </div>
 
-<div class='w3-container w3-padding-16 w3-center' id='content' style='margin-bottom:38.5px'>
-    <pre>
-                  -`                 
-                 .o+`                
-                `ooo/                
-               `+oooo:               
-              `+oooooo:              
-              -+oooooo+:             
-            `/:-:++oooo+:            
-           `/++++/+++++++:           
-          `/++++++++++++++:          
-         `/+++ooooooooooooo/`        
-        ./ooosssso++osssssso+`       
-       .oossssso-````/ossssss+`      
-      -osssssso.      :ssssssso.     
-     :osssssss/        osssso+++.    
-    /ossssssss/        +ssssooo/-    
-  `/ossssso+/:-        -:/+osssso+-  
- `+sso+:-`                 `.-/+oso: 
-`++:.                           `-/+/
-.`                                 `/
-</pre>
+<div class='w3-container w3-padding-16 nz-page w3-center' id='content' style='margin-bottom:38.5px'>
+    <div class='w3-round w3-card-2'>
+
+        <div class='w3-container nz-black nz-round-top'>
+            <h2>Change password</h2>
+        </div>
+
+        <form class='w3-container w3-padding-16' action='/user/password.php' method='POST' onsubmit='return passwordVerify(this)'>
+
+            <input class='w3-input nz-black w3-border-0 w3-round' id='old-password' type='password' placeholder='Old Password' name='password_old'>
+
+            <p></p>
+            <input class='w3-input nz-black w3-border-0 w3-round' id='new-password' type='password' placeholder='New Password' name='password_new'>
+
+            <p></p>
+            <button class='w3-btn w3-green w3-round' type='submit' name='password_btn'>Change</button>
+
+        </form>
+    </div>
+    <br>
+    <?php if($_SESSION['rank'] == 'admin') { ?>
+    <div class='w3-round w3-card-2'>
+
+        <div class='w3-container nz-black nz-round-top'>
+            <h2>Create account</h2>
+        </div>
+
+        <form class='w3-container w3-padding-16' action='/user/signup.php' method='POST' onsubmit='return signupVerify(this)'>
+
+            <input class='w3-input nz-black w3-border-0 w3-round' id='signup-username' type='text' placeholder='Username' name='signup_username'>
+
+            <p></p>
+            <input class='w3-input nz-black w3-border-0 w3-round' id='signup-password' type='password' placeholder='Password' name='signup_password'>
+
+            <p></p>
+            <span>Admin?</span>
+
+            <input class='w3-radio' id='signup-member' type='radio' value='member' name='signup_rank' checked>
+            <label for='signup-member'>No</label>
+
+            <input class='w3-radio' id='signup-admin' type='radio' value='admin' name='signup_rank'>
+            <label for='signup-admin'>Yes</label>
+
+            <br><br>
+            <button class='w3-btn w3-green w3-round' type='submit' name='signup_btn'>Signup</button>
+
+        </form>
+
+    </div>
+    <br>
+    <?php } ?>
+    <div class='w3-round w3-card-2'>
+
+        <div class='w3-container nz-black nz-round-top'>
+            <h2>Close account</h2>
+        </div>
+
+        <form class='w3-container w3-padding-16' action='/user/close.php' method='POST' onsubmit='return closeVerify(this)'>
+
+            <input class='w3-input nz-black w3-border-0 w3-round' id='close-username' type='text' placeholder='Username' name='close_username'>
+
+            <p></p>
+            <input class='w3-input nz-black w3-border-0 w3-round' id='close-password' type='password' placeholder='Password' name='close_password'>
+
+            <p></p>
+            <button class='w3-btn w3-red w3-round' type='submit' name='close_btn'>Close</button>
+
+        </form>
+
+    </div>
 </div>
 
 <div class='nz-black w3-bottom' id='footer'>
