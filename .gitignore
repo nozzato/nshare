@@ -5,4 +5,7 @@ files/public/*
 !files/public/welcome.txt
 
 # Ignore font awesome icons
-fontawesome-free-6.1.1-web/
+styles/icons/
+
+# Ignore maintenance switch
+maintenance/enable
