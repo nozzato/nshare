@@ -2,35 +2,31 @@
 session_start();
 include_once('/srv/http/nozzato.com/scripts/scripts.php');
 
-if(isset($_POST['edit_btn'])) {
-    $file_path = '/files/' . $_SESSION['username'] . '/';
-    $file_path_server = '/srv/http/nozzato.com/files/' . $_SESSION['username'] . '/';
-    $file_name   = $_POST['edit_btn'];
-    $file        = $file_path . $file_name;
-    $file_server = $file_path_server . $file_name;
-    $file_info   = new finfo(FILEINFO_MIME);
-    $file_mime   = $file_info -> buffer(file_get_contents($file_server));
+$file_path = '/files/' . $_SESSION['username'] . '/';
+$file_path_server = '/srv/http/nozzato.com/files/' . $_SESSION['username'] . '/';
+$file_name   = $_POST['edit_btn'];
+$file        = $file_path . $file_name;
+$file_server = $file_path_server . $file_name;
+$file_info   = new finfo(FILEINFO_MIME);
+$file_mime   = $file_info -> buffer(file_get_contents($file_server));
 
-    if(substr($file_mime, 0, 4) == 'text') {
-        $file_type = 'text';
-    } else if(substr($file_mime, 0, 5) == 'image') {
-        $file_type = 'image';
-    } else if(substr($file_mime, 0, 5) == 'video') {
-        $file_type = 'video';
-    } else if(substr($file_mime, 0, 5) == 'audio') {
-        $file_type = 'audio';
-    } else {
-        if(str_contains($file_mime, 'empty')) {
-            $file_type = 'text';
-        } else {
-            header('location:' . $file);
-            exit;
-        }
-    }
-    $file_modal = '"' . $file_name . '"';
+if(substr($file_mime, 0, 4) == 'text') {
+    $file_type = 'text';
+} else if(substr($file_mime, 0, 5) == 'image') {
+    $file_type = 'image';
+} else if(substr($file_mime, 0, 5) == 'video') {
+    $file_type = 'video';
+} else if(substr($file_mime, 0, 5) == 'audio') {
+    $file_type = 'audio';
 } else {
-    go_back();
+    if(str_contains($file_mime, 'empty')) {
+        $file_type = 'empty';
+    } else {
+        header('location:' . $file);
+        exit;
+    }
 }
+$file_modal = '"' . $file_name . '"';
 ?>
 <!DOCTYPE html>
 <html lang='en'>
@@ -146,31 +142,23 @@ if(isset($_POST['edit_btn'])) {
     <div class='w3-round w3-card-2 nz-page'>
 
         <div class='w3-container nz-black nz-round-top'>
-            <h2 class='nz-truncate'>
+            <?php if($file_type != 'empty') { ?>
+                <h2 class='nz-truncate'><?php echo $_SESSION['username'] . '/' . $file_name; ?></h2>
 
-                <?php if($_SESSION['page'] == 'public') {
-                    echo 'public/' . $file_name;
-                } else {
-                    echo $_SESSION['username'] . '/' . $file_name;
-                } ?>
-
-            </h2>
+            <?php } else { ?>
+                <h2 class='nz-truncate'><?php echo $_SESSION['username'] . '/New text file'; ?></h2>
+            <?php } ?>
         </div>
 
         <div class='w3-container w3-padding-16'>
 
-            <?php if($file_type == 'text') { ?>
+            <?php if($file_type == 'text' || $file_type == 'empty') { ?>
                 <form action='/files/upload.php' method='POST'>
-                    <?php if(isset($_SESSION['user']) && $_SESSION['page'] == 'private' || isset($_SESSION['rank']) && $_SESSION['rank'] == 'admin') { ?>
 
-                        <textarea class='w3-input nz-monospace nz-black w3-border-0 w3-round' rows='20' name='upload_content' autofocus><?php readfile($file_server); ?></textarea>
+                    <textarea class='w3-input nz-monospace nz-black w3-border-0 w3-round' rows='20' name='upload_content' autofocus><?php readfile($file_server); ?></textarea>
 
-                        <button class='w3-hide' id='save-btn' type='submit' value='<?php echo $file_name; ?>' name='upload_btn' style='margin-right:5px'>Save</button>
+                    <button class='w3-hide' id='save-btn' type='submit' value='<?php echo $file_name; ?>' name='upload_btn' style='margin-right:5px'>Save</button>
 
-                    <?php } else { ?>
-                        <textarea class='w3-input nz-monospace nz-black w3-border-0 w3-round' rows='20' readonly><?php readfile($file_server); ?></textarea>
-
-                    <?php } ?>
                 </form>
 
             <?php } else if($file_type == 'image') { ?>
@@ -214,19 +202,15 @@ if(isset($_POST['edit_btn'])) {
             <p></p>
             <div class='w3-bar'>
 
-                <?php if(isset($_SESSION['user']) && $_SESSION['page'] == 'private' || isset($_SESSION['rank']) && $_SESSION['rank'] == 'admin') { ?>
-
-                    <?php if($file_type == 'text') { ?>
-                        <label class='w3-button w3-bar-item w3-green w3-round' for='save-btn' style='cursor:pointer; margin-right:5px'>
-                            <i class='fa fa-floppy-disk'></i> Save
-                        </label>
-                    <?php } ?>
-
-                    <button class='w3-button w3-bar-item w3-red w3-round' onclick='openModal(<?php echo $file_modal ?>)' style='margin-right:5px'>
-                        <i class='fa fa-trash-can'></i> Delete
-                    </button>
-
+                <?php if($file_type == 'text') { ?>
+                    <label class='w3-button w3-bar-item w3-green w3-round' for='save-btn' style='cursor:pointer; margin-right:5px'>
+                        <i class='fa fa-floppy-disk'></i> Save
+                    </label>
                 <?php } ?>
+
+                <button class='w3-button w3-bar-item w3-red w3-round' onclick='openModal(<?php echo $file_modal ?>)' style='margin-right:5px'>
+                    <i class='fa fa-trash-can'></i> Delete
+                </button>
 
                 <form action='/files/download.php' method='POST'>
                     <button class='w3-button w3-bar-item w3-blue w3-round' value='<?php echo $file_name; ?>' name='download_btn' style='margin-right:5px'>
