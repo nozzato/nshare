@@ -13,7 +13,7 @@ if(isset($_FILES['upload_file']) || isset($_POST['upload_btn'])) {
         $file_temp    = $_FILES['upload_file']['tmp_name'];
         $file_privacy = $_POST['upload_privacy'];
 
-        if(filesize($file_server) == 0) {
+        if(filesize($file_temp) == 0) {
             $_SESSION['msg'] = "Error: File empty";
             go_back();
         }
