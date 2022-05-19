@@ -15,8 +15,8 @@ if(isset($_FILES['upload_file']) || isset($_POST['upload_btn'])) {
 
         if(move_uploaded_file($file_temp, $file_server)) {
             try {
-                $stmt = $pdo-> prepare("SELECT * FROM `files` WHERE `filename` = ?;");
-                $stmt-> execute([$file_name]);
+                $stmt = $pdo-> prepare("SELECT * FROM `files` WHERE `user_id` = ? AND `filename` = ?;");
+                $stmt-> execute([$_SESSION['user'], $file_name]);
                 $count = $stmt-> rowCount();
             } catch (\PDOException $e) {
                 throw new \PDOException($e-> getMessage(), (int)$e-> getCode());
@@ -30,8 +30,8 @@ if(isset($_FILES['upload_file']) || isset($_POST['upload_btn'])) {
                 }
             } else {
                 try {
-                    $stmt = $pdo-> prepare("UPDATE `files` SET `user_id` = ?, `filename` = ?, `privacy` = ? WHERE `filename` = ?;");
-                    $stmt-> execute([$_SESSION['user'], $file_name, $file_privacy, $file_name]);
+                    $stmt = $pdo-> prepare("UPDATE `files` SET `user_id` = ?, `filename` = ?, `privacy` = ? WHERE `user_id` = ? AND `filename` = ?;");
+                    $stmt-> execute([$_SESSION['user'], $file_name, $file_privacy, $_SESSION['user'], $file_name]);
                 } catch (\PDOException $e) {
                     throw new \PDOException($e-> getMessage(), (int)$e-> getCode());
                 }
