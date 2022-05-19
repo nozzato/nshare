@@ -12,7 +12,7 @@ function loginVerify() {
 
     if(loginUsername === '' || loginPassword === '') {
         msg.innerHTML = 'Error: Both fields are required';
-        msg.className = 'w3-text-red';
+        msg.classList.add('w3-text-red');
         msgClear();
         return false;
     } else {
@@ -27,22 +27,22 @@ function signupVerify() {
 
     if(signupUsername === '' || signupPassword === '') {
         msg.innerHTML = 'Error: Both fields are required';
-        msg.className = 'w3-text-red';
+        msg.classList.add('w3-text-red');
         msgClear();
         return false;
     } else if(signupUsername.length > 50) {
         msg.innerHTML = 'Error: Username must be 50 characters or less';
-        msg.className = 'w3-text-red';
+        msg.classList.add('w3-text-red');
         msgClear();
         return false;
     } else if(signupPassword.length < 8) {
         msg.innerHTML = 'Error: Password must be 8 characters or more';
-        msg.className = 'w3-text-red';
+        msg.classList.add('w3-text-red');
         msgClear();
         return false;
     } else if(signupPassword.length > 72) {
         msg.innerHTML = 'Error: Password must be 72 characters or less';
-        msg.className = 'w3-text-red';
+        msg.classList.add('w3-text-red');
         msgClear();
         return false;
     } else {
@@ -57,17 +57,17 @@ function passwordVerify() {
 
     if(oldPassword === '' || newPassword === '') {
         msg.innerHTML = 'Error: Both fields are required';
-        msg.className = 'w3-text-red';
+        msg.classList.add('w3-text-red');
         msgClear();
         return false;
     } else if(newPassword.length < 8) {
         msg.innerHTML = 'Error: New password must be 8 characters or more';
-        msg.className = 'w3-text-red';
+        msg.classList.add('w3-text-red');
         msgClear();
         return false;
     } else if(newPassword.length > 72) {
         msg.innerHTML = 'Error: New password must be 72 characters or less';
-        msg.className = 'w3-text-red';
+        msg.classList.add('w3-text-red');
         msgClear();
         return false;
     } else {
@@ -82,7 +82,7 @@ function closeVerify() {
 
     if(closeUsername === '' || closePassword === '') {
         msg.innerHTML = 'Error: Both fields are required';
-        msg.className = 'w3-text-red';
+        msg.classList.add('w3-text-red');
         msgClear();
         return false;
     } else {
