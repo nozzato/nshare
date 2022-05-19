@@ -4,12 +4,7 @@ include_once('/srv/http/nozzato.com/scripts/scripts.php');
 
 if(isset($_POST['download_btn'])) {
     $file_server = $file_path_server = $file_name = $file_info = $file_mime = $file_type = '';
-
-    if($_SESSION['page'] == 'public') {
-        $file_path_server = '/srv/http/nozzato.com/files/public/';
-    } else if($_SESSION['page'] == 'private') {
-        $file_path_server = '/srv/http/nozzato.com/files/' . $_SESSION['username'] . '/';
-    }
+    $file_path_server = '/srv/http/nozzato.com/files/' . $_SESSION['username'] . '/';
     $file_name   = $_POST['download_btn'];
     $file_server = $file_path_server . $file_name;
     $file_info   = new finfo(FILEINFO_MIME);

@@ -5,28 +5,28 @@ include_once('/srv/http/nozzato.com/database/connect.php');
 
 if(isset($_POST['close_btn'])) {
     if(!empty($_POST['close_username']) && !empty($_POST['close_password'])) {
-        $username = $password = '';
+        $close_username = $close_password = '';
 
-        $username = trim($_POST['close_username']);
-        $password = trim($_POST['close_password']);
+        $close_username = trim($_POST['close_username']);
+        $close_password = trim($_POST['close_password']);
 
         try {
             $stmt = $pdo-> prepare("SELECT * FROM `users` WHERE `username` = ?;");
-            $stmt-> execute([$username]);
+            $stmt-> execute([$close_username]);
             $row = $stmt-> fetch(PDO::FETCH_ASSOC);
         } catch (\PDOException $e) {
             throw new \PDOException($e-> getMessage(), (int)$e-> getCode());
         }
-        if(password_verify($password, $row['password']) && $_SESSION['rank'] == 'admin') {
+        if(password_verify($close_password, $row['password']) && $_SESSION['rank'] == 'admin') {
             try {
                 $stmt = $pdo-> prepare("DELETE FROM `users` WHERE `username` = ?;");
-                $stmt-> execute([$username]);
+                $stmt-> execute([$close_username]);
             } catch (\PDOException $e) {
                 throw new \PDOException($e-> getMessage(), (int)$e-> getCode());
             }
-            remove_dir('/srv/http/nozzato.com/files/' . $username);
+            remove_dir('/srv/http/nozzato.com/files/' . $close_username);
 
-            if($username == $_SESSION['username']) {
+            if($close_username == $_SESSION['username']) {
                 $_SESSION['delete_logout'] = 1;
                 header('location:logout.php');
                 exit;
@@ -34,15 +34,15 @@ if(isset($_POST['close_btn'])) {
                 $_SESSION['msg'] = "Account deleted";
                 go_back();
             }
-        } else if(password_verify($password, $row['password']) && $_SESSION['rank'] == 'member') {
-            if($username == $_SESSION['username']) {
+        } else if(password_verify($close_password, $row['password']) && $_SESSION['rank'] == 'member') {
+            if($close_username == $_SESSION['username']) {
                 try {
                     $stmt = $pdo-> prepare("DELETE FROM `users` WHERE `username` = ?;");
-                    $stmt-> execute([$username]);
+                    $stmt-> execute([$close_username]);
                 } catch (\PDOException $e) {
                     throw new \PDOException($e-> getMessage(), (int)$e-> getCode());
                 }
-                remove_dir('/srv/http/nozzato.com/files/' . $username);
+                remove_dir('/srv/http/nozzato.com/files/' . $close_username);
 
                 $_SESSION['delete_logout'] = 1;
                 header('location:logout.php');

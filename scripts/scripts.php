@@ -6,11 +6,8 @@ function go_back() {
     } else if($_SESSION['page'] == 'account') {
         header('location:/user/');
         exit;
-    } else if($_SESSION['page'] == 'public') {
-        header('location:/files/public.php');
-        exit;
-    } else if($_SESSION['page'] == 'private') {
-        header('location:/files/private.php');
+    } else if($_SESSION['page'] == 'files') {
+        header('location:/files/');
         exit;
     } else {
         header('location:/');

@@ -105,6 +105,10 @@ function openModal(content) {
     document.getElementById('delete-button').value = content;
 }
 
+function goBack() {
+    window.location.href = '/files/';
+}
+
 function toggleFoxes() {
     var divFoxes = document.getElementById('foxes');
     if (divFoxes.style.display == 'none') {

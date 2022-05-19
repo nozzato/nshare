@@ -7,15 +7,10 @@ if(!isset($_SESSION['delete_logout'])) {
         $_SESSION['msg'] = "Logged out";
         header('location:/');
         exit;
-    } else if($_SESSION['page'] == 'public') {
+    } else if($_SESSION['page'] == 'files') {
         session_unset();
         $_SESSION['msg'] = "Logged out";
-        header('location:/files/public.php');
-        exit;
-    } else if($_SESSION['page'] == 'private') {
-        session_unset();
-        $_SESSION['msg'] = "Logged out";
-        header('location:/files/public.php');
+        header('location:/files/');
         exit;
     } else if($_SESSION['page'] == 'account') {
         session_unset();

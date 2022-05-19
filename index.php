@@ -27,47 +27,28 @@ $_SESSION['page'] = 'home';
 
         <a class='w3-bar-item w3-button w3-text-blue w3-mobile' href='/'>NozzDesk Server</a>
 
+        <?php if(isset($_SESSION['user'])) { ?>
         <div class='w3-dropdown-hover'>
             <button class='w3-button'>
                 <i class='fa fa-folder-open'></i> Files <i class='fa fa-caret-down'></i>
             </button>
             <div class='w3-dropdown-content w3-bar-block nz-black nz-round-bottom w3-card-2 w3-hide-small'>
 
-                <?php if(!isset($_SESSION['user'])) { ?>
-                <a class='w3-bar-item w3-button nz-round-bottom' href='/files/public.php'>
-                    <i class='fa fa-globe'></i> Public
-                </a>
-
-                <?php } else { ?>
-                <a class='w3-bar-item w3-button' href='/files/public.php'>
-                    <i class='fa fa-globe'></i> Public
-                </a>
-
-                <a class='w3-bar-item w3-button nz-round-bottom' href='/files/private.php'>
+                <a class='w3-bar-item w3-button nz-round-bottom' href='/files/'>
                     <i class='fa fa-lock'></i> Private
                 </a>
-                <?php } ?>
 
             </div>
             <div class='w3-dropdown-content w3-bar-block nz-black nz-round-bottom-right w3-card-2 w3-hide-large w3-hide-medium'>
 
-            <?php if(!isset($_SESSION['user'])) { ?>
-                <a class='w3-bar-item w3-button nz-round-bottom-right' href='/files/public.php'>
-                    <i class='fa fa-globe'></i> Public
-                </a>
-
-                <?php } else { ?>
-                <a class='w3-bar-item w3-button' href='/files/public.php'>
-                    <i class='fa fa-globe'></i> Public
-                </a>
-
-                <a class='w3-bar-item w3-button nz-round-bottom-right' href='/files/private.php'>
+                <a class='w3-bar-item w3-button nz-round-bottom-right' href='/files/'>
                     <i class='fa fa-lock'></i> Private
                 </a>
-                <?php } ?>
 
             </div>
         </div>
+        <?php } ?>
+
         <?php if(isset($_SESSION['rank']) && $_SESSION['rank'] == 'admin') { ?>
         <div class='w3-dropdown-hover'>
             <button class='w3-button'>
@@ -81,7 +62,9 @@ $_SESSION['page'] = 'home';
 
             </div>
         </div>
-        <?php } if(!isset($_SESSION['user'])) { ?>
+        <?php }
+        
+        if(!isset($_SESSION['user'])) { ?>
         <div class='w3-dropdown-click w3-right'>
             <button class='w3-button' onclick='dropdownToggle()'>
                 <i class='fa fa-door-open'></i> Login <i class='fa fa-caret-down'></i>

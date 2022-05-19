@@ -15,11 +15,11 @@ if(isset($_POST['signup_btn'])) {
             $_SESSION['msg'] = "Error: Username must be 50 characters or less";
             go_back();
         }
-        if(strlen($signup_username) < 8) {
+        if(strlen($signup_password) < 8) {
             $_SESSION['msg'] = "Error: Password must be 8 characters or more";
             go_back();
         }
-        if(strlen($signup_username) > 72) {
+        if(strlen($signup_password) > 72) {
             $_SESSION['msg'] = "Error: Password must be 72 characters or less";
             go_back();
         }

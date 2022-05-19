@@ -1,24 +1,41 @@
 <?php
 session_start();
 include_once('/srv/http/nozzato.com/scripts/scripts.php');
+include_once('/srv/http/nozzato.com/database/connect.php');
 
 if(isset($_FILES['upload_file']) || isset($_POST['upload_btn'])) {
-    $file = $file_server = $file_path = $file_path_server = $file_name = $file_info = $file_mime = $file_type = '';
-
-    if($_SESSION['page'] == 'public') {
-        $file_path = '/files/public/';
-        $file_path_server = '/srv/http/nozzato.com/files/public/';
-    } else if($_SESSION['page'] == 'private') {
-        $file_path = '/files/' . $_SESSION['username'] . '/';
-        $file_path_server = '/srv/http/nozzato.com/files/' . $_SESSION['username'] . '/';
-    }
+    $file_path = '/files/' . $_SESSION['username'] . '/';
+    $file_path_server = '/srv/http/nozzato.com/files/' . $_SESSION['username'] . '/';
     if(isset($_FILES['upload_file'])) {
-        $file_name = $_FILES['upload_file']['name'];
-        $file      = $file_path . $file_name;
+        $file_name    = $_FILES['upload_file']['name'];
+        $file         = $file_path . $file_name;
         $file_server  = $file_path_server . $file_name;
-        $file_temp = $_FILES['upload_file']['tmp_name'];
+        $file_temp    = $_FILES['upload_file']['tmp_name'];
+        $file_privacy = $_POST['upload_privacy'];
 
         if(move_uploaded_file($file_temp, $file_server)) {
+            try {
+                $stmt = $pdo-> prepare("SELECT * FROM `files` WHERE `filename` = ?;");
+                $stmt-> execute([$file_name]);
+                $count = $stmt-> rowCount();
+            } catch (\PDOException $e) {
+                throw new \PDOException($e-> getMessage(), (int)$e-> getCode());
+            }
+            if($count == 0) {
+                try {
+                    $stmt = $pdo-> prepare("INSERT INTO `files` (`user_id`, `filename`, `privacy`) VALUES (?, ?, ?);");
+                    $stmt-> execute([$_SESSION['user'], $file_name, $file_privacy]);
+                } catch (\PDOException $e) {
+                    throw new \PDOException($e-> getMessage(), (int)$e-> getCode());
+                }
+            } else {
+                try {
+                    $stmt = $pdo-> prepare("UPDATE `files` SET `user_id` = ?, `filename` = ?, `privacy` = ? WHERE `filename` = ?;");
+                    $stmt-> execute([$_SESSION['user'], $file_name, $file_privacy, $file_name]);
+                } catch (\PDOException $e) {
+                    throw new \PDOException($e-> getMessage(), (int)$e-> getCode());
+                }
+            }
             chmod($file_server, 0775);
 
             $_SESSION['msg'] = "File uploaded";

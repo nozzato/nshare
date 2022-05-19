@@ -3,13 +3,8 @@ session_start();
 include_once('/srv/http/nozzato.com/scripts/scripts.php');
 
 if(isset($_POST['edit_btn'])) {
-    if($_SESSION['page'] == 'public') {
-        $file_path = '/files/public/';
-        $file_path_server = '/srv/http/nozzato.com/files/public/';
-    } else if($_SESSION['page'] == 'private') {
-        $file_path = '/files/' . $_SESSION['username'] . '/';
-        $file_path_server = '/srv/http/nozzato.com/files/' . $_SESSION['username'] . '/';
-    }
+    $file_path = '/files/' . $_SESSION['username'] . '/';
+    $file_path_server = '/srv/http/nozzato.com/files/' . $_SESSION['username'] . '/';
     $file_name   = $_POST['edit_btn'];
     $file        = $file_path . $file_name;
     $file_server = $file_path_server . $file_name;
@@ -41,14 +36,7 @@ if(isset($_POST['edit_btn'])) {
 <html lang='en'>
 <head>
 
-<title>
-    <?php if($_SESSION['page'] == 'public') {
-        echo 'NozzDesk Server - public/' . $file_name;
-    } else {
-        echo 'NozzDesk Server - ' . $_SESSION['username'] . '/' . $file_name;
-    } 
-    ?>
-</title>
+<title><?php echo 'NozzDesk Server - ' . $_SESSION['username'] . '/' . $file_name; ?></title>
 <link rel='icon' type='image/gif' href='/media/favicon.gif'>
 
 <meta charset='utf-8'>
@@ -59,15 +47,6 @@ if(isset($_POST['edit_btn'])) {
 <link rel='stylesheet' href='/styles/icons/css/all.css'>
 
 <script src='/scripts/scripts.js' type='text/javascript'></script>
-<script type='text/javascript'>
-function goBack() {
-    <?php if($_SESSION['page'] == 'public') { ?>
-        window.location.href = 'public.php';
-    <?php } else { ?>
-        window.location.href = 'private.php';
-    <?php } ?>
-}
-</script>
 
 </head>
 <body class='nz-dark'>
@@ -77,47 +56,28 @@ function goBack() {
 
         <a class='w3-bar-item w3-button w3-text-blue w3-mobile' href='/'>NozzDesk Server</a>
 
+        <?php if(isset($_SESSION['user'])) { ?>
         <div class='w3-dropdown-hover'>
             <button class='w3-button'>
                 <i class='fa fa-folder-open'></i> Files <i class='fa fa-caret-down'></i>
             </button>
             <div class='w3-dropdown-content w3-bar-block nz-black nz-round-bottom w3-card-2 w3-hide-small'>
 
-                <?php if(!isset($_SESSION['user'])) { ?>
-                <a class='w3-bar-item w3-button nz-round-bottom' href='/files/public.php'>
-                    <i class='fa fa-globe'></i> Public
-                </a>
-
-                <?php } else { ?>
-                <a class='w3-bar-item w3-button' href='/files/public.php'>
-                    <i class='fa fa-globe'></i> Public
-                </a>
-
-                <a class='w3-bar-item w3-button nz-round-bottom' href='/files/private.php'>
+                <a class='w3-bar-item w3-button nz-round-bottom' href='/files/'>
                     <i class='fa fa-lock'></i> Private
                 </a>
-                <?php } ?>
 
             </div>
             <div class='w3-dropdown-content w3-bar-block nz-black nz-round-bottom-right w3-card-2 w3-hide-large w3-hide-medium'>
 
-            <?php if(!isset($_SESSION['user'])) { ?>
-                <a class='w3-bar-item w3-button nz-round-bottom-right' href='/files/public.php'>
-                    <i class='fa fa-globe'></i> Public
-                </a>
-
-                <?php } else { ?>
-                <a class='w3-bar-item w3-button' href='/files/public.php'>
-                    <i class='fa fa-globe'></i> Public
-                </a>
-
-                <a class='w3-bar-item w3-button nz-round-bottom-right' href='/files/private.php'>
+                <a class='w3-bar-item w3-button nz-round-bottom-right' href='/files/'>
                     <i class='fa fa-lock'></i> Private
                 </a>
-                <?php } ?>
 
             </div>
         </div>
+        <?php } ?>
+
         <?php if(isset($_SESSION['rank']) && $_SESSION['rank'] == 'admin') { ?>
         <div class='w3-dropdown-hover'>
             <button class='w3-button'>
@@ -131,7 +91,9 @@ function goBack() {
 
             </div>
         </div>
-        <?php } if(!isset($_SESSION['user'])) { ?>
+        <?php }
+        
+        if(!isset($_SESSION['user'])) { ?>
         <div class='w3-dropdown-click w3-right'>
             <button class='w3-button' onclick='dropdownToggle()'>
                 <i class='fa fa-door-open'></i> Login <i class='fa fa-caret-down'></i>
@@ -181,7 +143,7 @@ function goBack() {
 </div>
 
 <div class='w3-container w3-padding-16' id='content' style='margin-bottom:38.5px'>
-    <div class='w3-round w3-card-2 nz-centre-large'>
+    <div class='w3-round w3-card-2 nz-page'>
 
         <div class='w3-container nz-black nz-round-top'>
             <h2 class='nz-truncate'>
