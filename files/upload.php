@@ -13,6 +13,10 @@ if(isset($_FILES['upload_file']) || isset($_POST['upload_btn'])) {
         $file_temp    = $_FILES['upload_file']['tmp_name'];
         $file_privacy = $_POST['upload_privacy'];
 
+        if(filesize($file_server) == 0) {
+            $_SESSION['msg'] = "Error: File empty";
+            go_back();
+        }
         if(move_uploaded_file($file_temp, $file_server)) {
             try {
                 $stmt = $pdo-> prepare("SELECT * FROM `files` WHERE `user_id` = ? AND `filename` = ?;");
@@ -50,6 +54,10 @@ if(isset($_FILES['upload_file']) || isset($_POST['upload_btn'])) {
         $file_server  = $file_path_server . $file_name;
         $file_content = $_POST['upload_content'];
 
+        if(filesize($file_server) == 0) {
+            $_SESSION['msg'] = "Error: File empty";
+            go_back();
+        }
         if(file_put_contents($file_server, $file_content) != false) {
             $_SESSION['msg'] = "File saved";
             go_back();
