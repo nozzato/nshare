@@ -27,7 +27,7 @@ if(isset($_POST['close_btn'])) {
             remove_dir('/srv/http/nozzato.com/files/' . $close_username);
 
             if($close_username == $_SESSION['username']) {
-                $_SESSION['delete_logout'] = 1;
+                $_SESSION['close_logout'] = 1;
                 header('location:logout.php');
                 exit;
             } else {
@@ -44,7 +44,7 @@ if(isset($_POST['close_btn'])) {
                 }
                 remove_dir('/srv/http/nozzato.com/files/' . $close_username);
 
-                $_SESSION['delete_logout'] = 1;
+                $_SESSION['close_logout'] = 1;
                 header('location:logout.php');
                 exit;
             } else {

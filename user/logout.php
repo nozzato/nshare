@@ -1,7 +1,7 @@
 <?php
 session_start();
 
-if(!isset($_SESSION['delete_logout'])) {
+if(!isset($_SESSION['close_logout'])) {
     if($_SESSION['page'] == 'home') {
         session_unset();
         $_SESSION['msg'] = "Logged out";
