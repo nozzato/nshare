@@ -1,9 +1,14 @@
-# Ignore all directories in files/ except public/
+# Ignore user directories except example files
 files/*
 !files/*.php
-!files/public/
-files/public/*
-!files/public/welcome.txt
+
+!files/Admin/
+files/Admin/*
+!files/Admin/example*
+
+!files/Member/
+files/Member/*
+!files/Member/example*
 
 # Ignore font awesome icons
 styles/icons/
