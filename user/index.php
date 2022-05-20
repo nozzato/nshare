@@ -154,13 +154,13 @@ $_SESSION['page'] = 'profile';
             <h2>Profile</h2>
         </div>
         
-        <div class="w3-responsive">
+        <div class='w3-container w3-padding-16 w3-responsive'>
             <table class='w3-table'>
                 <tr>
                     <th>Username</th>
-                    <th class="w3-tooltip">
+                    <th class='w3-tooltip'>
                         User ID
-                        <span class="w3-text w3-text-blue w3-tag w3-round w3-margin-left" style="position:absolute">
+                        <span class='w3-text w3-text-blue w3-tag w3-round w3-margin-left' style='position:absolute'>
                             <a href='javascript:void(0)'>Share</a>
                         </span>
                     </th>
