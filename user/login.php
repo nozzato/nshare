@@ -1,6 +1,7 @@
 <?php
 session_start();
 include_once('/srv/http/nozzato.com/scripts/scripts.php');
+include_once('/srv/http/nozzato.com/database/connect.php');
 
 if (isset($_POST['login_btn'])) {
     if(!empty($_POST['login_username']) && !empty($_POST['login_password'])) {
@@ -10,8 +11,6 @@ if (isset($_POST['login_btn'])) {
         $login_password = trim($_POST['login_password']);
 
         try {
-            include_once('/srv/http/nozzato.com/database/connect.php');
-
             $stmt = $pdo-> prepare('SELECT * FROM `users` WHERE `username` = ?;');
             $stmt-> execute([$login_username]);
             $row = $stmt-> fetch(PDO::FETCH_ASSOC);
