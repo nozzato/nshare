@@ -192,7 +192,7 @@ $_SESSION['page'] = 'files';
 <div class='nz-black w3-bottom' id='footer'>
     <div class='w3-bar'>
 
-        <a class='w3-bar-item w3-button nz-text-black w3-hover-none' onclick='toggleFoxes()' href='javascript:void(0)'>fox.exe</a>
+        <a class='w3-bar-item w3-button nz-text-black w3-hover-none' href='javascript:void(0)' onclick='toggleFoxes()'>fox.exe</a>
 
         <div class='w3-display-bottommiddle' style='bottom:9px'>
             <?php if(isset($_SESSION['msg'])) {
