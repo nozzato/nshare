@@ -59,19 +59,19 @@ $file_modal = '"' . $file_name . '"';
         <?php if(isset($_SESSION['user'])) { ?>
         <div class='w3-dropdown-hover'>
             <button class='w3-button'>
-                <i class='fa fa-folder-open'></i> Files <i class='fa fa-caret-down'></i>
+                <i class='fa fa-fw fa-folder-open'></i> Files <i class='fa fa-fw fa-caret-down'></i>
             </button>
             <div class='w3-dropdown-content w3-bar-block nz-black nz-round-bottom w3-card-2 w3-hide-small'>
 
                 <a class='w3-bar-item w3-button nz-round-bottom' href='/files/'>
-                    <i class='fa fa-lock'></i> Private
+                    <i class='fa fa-fw fa-lock'></i> Private
                 </a>
 
             </div>
             <div class='w3-dropdown-content w3-bar-block nz-black nz-round-bottom-right w3-card-2 w3-hide-large w3-hide-medium'>
 
                 <a class='w3-bar-item w3-button nz-round-bottom-right' href='/files/'>
-                    <i class='fa fa-lock'></i> Private
+                    <i class='fa fa-fw fa-lock'></i> Private
                 </a>
 
             </div>
@@ -81,12 +81,12 @@ $file_modal = '"' . $file_name . '"';
         <?php if(isset($_SESSION['rank']) && $_SESSION['rank'] == 'admin') { ?>
         <div class='w3-dropdown-hover'>
             <button class='w3-button'>
-                <i class='fa fa-server'></i> Admin <i class='fa fa-caret-down'></i>
+                <i class='fa fa-fw fa-server'></i> Admin <i class='fa fa-fw fa-caret-down'></i>
             </button>
             <div class='w3-dropdown-content w3-bar-block nz-black nz-round-bottom w3-card-2'>
 
                 <a class='w3-bar-item w3-button nz-round-bottom' href='/database/adminer.php'>
-                    <i class='fa fa-database'></i> Database
+                    <i class='fa fa-fw fa-database'></i> Database
                 </a>
 
             </div>
@@ -96,24 +96,24 @@ $file_modal = '"' . $file_name . '"';
         if(!isset($_SESSION['user'])) { ?>
         <div class='w3-dropdown-click w3-right'>
             <button class='w3-button' onclick='dropdownToggle()'>
-                <i class='fa fa-door-open'></i> Login <i class='fa fa-caret-down'></i>
+                <i class='fa fa-fw fa-door-open'></i> Login <i class='fa fa-fw fa-caret-down'></i>
             </button>
             <div class='w3-dropdown-content w3-bar-block nz-black nz-round-bottom-left w3-card-2 nz-dropdown-left' id='dropdown' style='max-width:100px'>
 
                 <form class='w3-right' action='/user/login.php' method='POST' onsubmit='return loginVerify(this)'>
 
                     <div style='display:flex'>
-                        <i class='fa fa-user' style='margin:8px 0 8px 16px;padding:4px 0.93px 0 0.93px;vertical-align:center'></i>
+                        <i class='fa fa-fw fa-user' style='margin:8px 2px 8px 18px;padding:4px 0.93px 0 0.93px;vertical-align:center'></i>
                         <input class='w3-bar-item w3-input nz-black' id='login-username' type='text' placeholder='Username' name='login_username' style='padding:8px 16px 8px 5px'>
                     </div>
 
                     <div style='display:flex'>
-                        <i class='fa fa-key' style='margin:8px 0 8px 16px;padding-top:4px;vertical-align:center'></i>
+                        <i class='fa fa-fw fa-key' style='margin:8px 2px 8px 18px;padding-top:4px;vertical-align:center'></i>
                         <input class='w3-bar-item w3-input nz-black' id='login-password' type='password' placeholder='Password' name='login_password' style='padding:8px 16px 8px 5px'>
                     </div>
 
                     <button class='w3-bar-item w3-button w3-green nz-round-bottom-left' type='submit' name='login_btn'>
-                        <i class='fa fa-right-to-bracket'></i> Login
+                        <i class='fa fa-fw fa-right-to-bracket'></i> Login
                     </button>
 
                 </form>
@@ -122,17 +122,21 @@ $file_modal = '"' . $file_name . '"';
         <?php } else { ?>
         <div class='w3-dropdown-hover w3-right'>
             <button class='w3-button'>
-                <i class='fa fa-door-closed'></i> Account <i class='fa fa-caret-down'></i>
+                <i class='fa fa-fw fa-door-closed'></i> Account <i class='fa fa-fw fa-caret-down'></i>
             </button>
             <div class='w3-dropdown-content w3-bar-block nz-black nz-round-bottom-left w3-card-2 nz-dropdown-left' style='max-width:100px'>
 
-                <a class='w3-bar-item w3-button' href='/user/'>
-                    <i class='fa fa-user'></i> <?php echo $_SESSION['username']; ?>
+                <a class='w3-bar-item w3-button' href='/user/?id=<?php echo $_SESSION['user']; ?>'>
+                    <i class='fa fa-fw fa-user'></i> <?php echo $_SESSION['username']; ?>
+                </a>
+
+                <a class='w3-bar-item w3-button' href='/user/settings.php'>
+                    <i class='fa fa-fw fa-gear'></i> Settings
                 </a>
 
                 <form action='/user/logout.php' method='POST'>
                     <button class='w3-bar-item w3-button w3-red nz-round-bottom-left' type='submit' name='logout_btn'>
-                        <i class='fa fa-right-from-bracket'></i> Logout
+                        <i class='fa fa-fw fa-right-from-bracket'></i> Logout
                     </button>
                 </form>
 
