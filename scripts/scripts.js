@@ -1,7 +1,6 @@
 function msgClear() {
     setTimeout(() => {
-        var msg = document.getElementById('msg');
-        msg.innerHTML = '';
+        msg = document.getElementById('msg').innerHTML = '';
     }, 10000);
 }
 
@@ -93,6 +92,7 @@ function closeVerify() {
 
 function dropdownToggle() {
     var dropdown = document.getElementById('dropdown');
+
     if(dropdown.className.indexOf('w3-show') == -1) {
         dropdown.className += ' w3-show';
     } else {
@@ -109,8 +109,15 @@ function goBack() {
     window.location.href = '/files/';
 }
 
+function copy() {
+    var userId = document.getElementById('userId').innerHTML
+
+    navigator.clipboard.writeText(userId);
+}
+
 function toggleFoxes() {
     var divFoxes = document.getElementById('foxes');
+
     if (divFoxes.style.display == 'none') {
         divFoxes.style.display = 'block';
     } else {

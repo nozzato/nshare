@@ -161,14 +161,14 @@ $_SESSION['page'] = 'profile';
                     <th class='w3-tooltip'>
                         User ID
                         <span class='w3-text w3-text-blue w3-tag w3-round w3-margin-left' style='position:absolute'>
-                            <a href='javascript:void(0)'>Share</a>
+                            <a href='javascript:void(0)' onclick='copy()'>Share</a>
                         </span>
                     </th>
                     <th>Rank</th>
                 </tr>
                 <tr>
                     <td><?php echo $username; ?></td>
-                    <td><?php echo $user; ?></td>
+                    <td id='userId'><?php echo $user; ?></td>
                     <td><?php echo ucfirst($rank); ?></td>
                 </tr>
             </table>
