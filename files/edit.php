@@ -2,6 +2,10 @@
 session_start();
 include_once('/srv/http/nozzato.com/scripts/scripts.php');
 
+if(!isset($_SESSION['user'])) {
+    header('location:/');
+    exit;
+}
 $file_path = '/files/' . $_SESSION['username'] . '/';
 $file_path_server = '/srv/http/nozzato.com/files/' . $_SESSION['username'] . '/';
 $file_name   = $_POST['edit_btn'];
