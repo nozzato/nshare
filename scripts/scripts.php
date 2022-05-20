@@ -3,8 +3,11 @@ function go_back() {
     if($_SESSION['page'] == 'home') {
         header('location:/');
         exit;
-    } else if($_SESSION['page'] == 'account') {
+    } else if($_SESSION['page'] == 'profile') {
         header('location:/user/');
+        exit;
+    } else if($_SESSION['page'] == 'settings') {
+        header('location:/user/settings.php');
         exit;
     } else if($_SESSION['page'] == 'files') {
         header('location:/files/');

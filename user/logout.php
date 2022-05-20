@@ -7,15 +7,20 @@ if(!isset($_SESSION['close_logout'])) {
         $_SESSION['msg'] = "Logged out";
         header('location:/');
         exit;
+    } else if($_SESSION['page'] == 'profile') {
+        session_unset();
+        $_SESSION['msg'] = "Logged out";
+        header('location:/');
+        exit;
+    } else if($_SESSION['page'] == 'settings') {
+        session_unset();
+        $_SESSION['msg'] = "Logged out";
+        header('location:/');
+        exit;
     } else if($_SESSION['page'] == 'files') {
         session_unset();
         $_SESSION['msg'] = "Logged out";
         header('location:/files/');
-        exit;
-    } else if($_SESSION['page'] == 'account') {
-        session_unset();
-        $_SESSION['msg'] = "Logged out";
-        header('location:/');
         exit;
     } else {
         session_unset();
