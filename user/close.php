@@ -51,6 +51,9 @@ if(isset($_POST['close_btn'])) {
                 $_SESSION['msg'] = "Error: Invalid username or password";
                 go_back();
             }
+        } else {
+            $_SESSION['msg'] = "Error: Invalid username or password";
+            go_back();
         }
     } else {
         $_SESSION['msg'] = "Error: Both fields are required";
