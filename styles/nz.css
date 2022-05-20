@@ -2,6 +2,10 @@
   font-family: "DejaVuSansCondensed";
   src: url(fonts/dejavu-sans-condensed/DejaVuSansCondensed.ttf);
 }
+a {
+  text-decoration: none;
+}
+
 textarea {
   resize: none;
 }
