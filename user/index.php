@@ -1,17 +1,43 @@
 <?php
 session_start();
+include_once('/srv/http/nozzato.com/database/connect.php');
 
 if(!isset($_SESSION['user'])) {
     header('location:/');
     exit;
 }
-$_SESSION['page'] = 'account';
+if(!isset($_GET['id'])) {
+    header('location:/user/?id=' . $_SESSION['user']);
+    exit;
+}
+if($_GET['id'] == $_SESSION['user']) {
+    $user     = $_SESSION['user'];
+    $username = $_SESSION['username'];
+    $rank     = $_SESSION['rank'];
+} else {
+    try {
+        $stmt = $pdo-> prepare('SELECT * FROM `users` WHERE `user_id` = ?;');
+        $stmt-> execute([$_GET['id']]);
+        $row = $stmt-> fetch(PDO::FETCH_ASSOC);
+    } catch (\PDOException $e) {
+        throw new \PDOException($e-> getMessage(), (int)$e-> getCode());
+    }
+    if(empty($row)) {
+        $_SESSION['msg'] = 'Error: Invalid user';
+        header('location:/user/?id=' . $_SESSION['user']);
+        exit;
+    }
+    $user     = $row['user_id'];
+    $username = $row['username'];
+    $rank     = $row['rank'];
+}
+$_SESSION['page'] = 'profile';
 ?>
 <!DOCTYPE html>
 <html lang='en'>
 <head>
 
-<title>NozzDesk Server - Account</title>
+<title>NozzDesk Server - Profile</title>
 <link rel='icon' type='image/gif' href='/media/favicon.gif'>
 
 <meta charset='utf-8'>
@@ -121,72 +147,31 @@ $_SESSION['page'] = 'account';
     <div class='w3-round w3-card-2'>
 
         <div class='w3-container nz-black nz-round-top'>
-            <h2>Change password</h2>
+            <h2>Profile</h2>
         </div>
-
-        <form class='w3-container w3-padding-16' action='/user/password.php' method='POST' onsubmit='return passwordVerify(this)'>
-
-            <input class='w3-input nz-black w3-border-0 w3-round' id='old-password' type='password' placeholder='Old Password' name='password_old'>
-
-            <p></p>
-            <input class='w3-input nz-black w3-border-0 w3-round' id='new-password' type='password' placeholder='New Password' name='password_new'>
-
-            <p></p>
-            <button class='w3-btn w3-green w3-round' type='submit' name='password_btn'>Change</button>
-
-        </form>
-    </div>
-    <br>
-    <?php if($_SESSION['rank'] == 'admin') { ?>
-    <div class='w3-round w3-card-2'>
-
-        <div class='w3-container nz-black nz-round-top'>
-            <h2>Create account</h2>
+        
+        <div class="w3-responsive">
+            <table class='w3-table'>
+                <tr>
+                    <th>Username</th>
+                    <th class="w3-tooltip">
+                        User ID
+                        <span class="w3-text w3-text-blue w3-tag w3-round w3-margin-left" style="position:absolute">
+                            <a href='javascript:void(0)'>Share</a>
+                        </span>
+                    </th>
+                    <th>Rank</th>
+                </tr>
+                <tr>
+                    <td><?php echo $username; ?></td>
+                    <td><?php echo $user; ?></td>
+                    <td><?php echo ucfirst($rank); ?></td>
+                </tr>
+            </table>
         </div>
-
-        <form class='w3-container w3-padding-16' action='/user/signup.php' method='POST' onsubmit='return signupVerify(this)'>
-
-            <input class='w3-input nz-black w3-border-0 w3-round' id='signup-username' type='text' placeholder='Username' name='signup_username'>
-
-            <p></p>
-            <input class='w3-input nz-black w3-border-0 w3-round' id='signup-password' type='password' placeholder='Password' name='signup_password'>
-
-            <p></p>
-            <span>Rank</span>
-
-            <input class='w3-radio' id='signup-member' type='radio' value='member' name='signup_rank' checked>
-            <label for='signup-member'>Member</label>
-
-            <input class='w3-radio' id='signup-admin' type='radio' value='admin' name='signup_rank'>
-            <label for='signup-admin'>Admin</label>
-
-            <br><br>
-            <button class='w3-btn w3-green w3-round' type='submit' name='signup_btn'>Signup</button>
-
-        </form>
 
     </div>
     <br>
-    <?php } ?>
-    <div class='w3-round w3-card-2'>
-
-        <div class='w3-container nz-black nz-round-top'>
-            <h2>Close account</h2>
-        </div>
-
-        <form class='w3-container w3-padding-16' action='/user/close.php' method='POST' onsubmit='return closeVerify(this)'>
-
-            <input class='w3-input nz-black w3-border-0 w3-round' id='close-username' type='text' placeholder='Username' name='close_username'>
-
-            <p></p>
-            <input class='w3-input nz-black w3-border-0 w3-round' id='close-password' type='password' placeholder='Password' name='close_password'>
-
-            <p></p>
-            <button class='w3-btn w3-red w3-round' type='submit' name='close_btn'>Close</button>
-
-        </form>
-
-    </div>
 </div>
 
 <div class='nz-black w3-bottom' id='footer'>
