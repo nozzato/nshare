@@ -106,7 +106,7 @@ function openModal(content) {
 }
 
 function goBack() {
-    window.location.href = '/files/';
+    window.location.href = '/files/index.php';
 }
 
 function copy() {
