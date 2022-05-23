@@ -64,7 +64,7 @@ $_SESSION['page'] = 'profile';
         <?php } ?>
 
         <?php if(isset($_SESSION['rank']) && $_SESSION['rank'] == 'admin') { ?>
-            <a class='w3-bar-item w3-button' href='/database/adminer.php'>
+            <a class='w3-bar-item w3-button' href='/database/adminer/adminer.php'>
                 <i class='fa fa-fw fa-server'></i> Admin
             </a>
         <?php }
