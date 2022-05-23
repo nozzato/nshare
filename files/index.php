@@ -126,11 +126,9 @@ $_SESSION['page'] = 'files';
                         $file_modal = '"' . $rows[$i]['filename'] . '"' ?>
 
                         <tr>
-                            <form action='/files/edit.php' method='POST'>
-                                <td><button class='w3-button w3-round' value='<?php echo $rows[$i]['filename']; ?>' style='vertical-align:middle' name='edit_btn'><?php echo $rows[$i]['filename']; ?></button></td>
-                            </form>
+                            <td style='padding:8px'><a class='w3-button w3-round' href='/files/edit.php?id=<?php echo $rows[$i]['filename']; ?>'><?php echo $rows[$i]['filename']; ?></a></td>
 
-                            <td style='vertical-align:middle'><button class='w3-button w3-round'><?php echo ucfirst($rows[$i]['privacy']); ?></button></td>
+                            <td><button class='w3-button w3-round'><?php echo ucfirst($rows[$i]['privacy']); ?></button></td>
 
                             <td><button class='w3-button w3-hover-red w3-round' onclick='openModal(<?php echo $file_modal; ?>)'>Delete</button></td>
                         </tr>

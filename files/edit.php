@@ -6,9 +6,15 @@ if(!isset($_SESSION['user'])) {
     header('location:/');
     exit;
 }
-$file_path = '/files/' . $_SESSION['username'] . '/';
 $file_path_server = '/srv/http/nozzato.com/files/' . $_SESSION['username'] . '/';
-$file_name   = $_POST['edit_btn'];
+
+if(!isset($_GET['id']) || !file_exists($file_path_server . $_GET['id'])) {
+    $_SESSION['msg'] = 'Error: Invalid file';
+    header('location:/files/index.php');
+    exit;
+}
+$file_path = '/files/' . $_SESSION['username'] . '/';
+$file_name   = $_GET['id'];
 $file        = $file_path . $file_name;
 $file_server = $file_path_server . $file_name;
 $file_info   = new finfo(FILEINFO_MIME);
@@ -24,7 +30,7 @@ if(substr($file_mime, 0, 4) == 'text') {
     $file_type = 'audio';
 } else {
     if(str_contains($file_mime, 'empty')) {
-        $file_type = 'empty';
+        $file_type = 'text';
     } else {
         header('location:' . $file);
         exit;
@@ -125,12 +131,7 @@ $file_modal = '"' . $file_name . '"';
     <div class='w3-round w3-card-2 nz-page'>
 
         <div class='w3-container nz-black nz-round-top'>
-            <?php if($file_type != 'empty') { ?>
-                <h2 class='nz-truncate'><?php echo $_SESSION['username'] . '/' . $file_name; ?></h2>
-
-            <?php } else { ?>
-                <h2 class='nz-truncate'><?php echo $_SESSION['username'] . '/New text file'; ?></h2>
-            <?php } ?>
+            <h2 class='nz-truncate'><?php echo $_SESSION['username'] . '/' . $file_name; ?></h2>
         </div>
 
         <div class='w3-container w3-padding-16'>
