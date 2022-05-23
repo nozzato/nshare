@@ -32,40 +32,15 @@ $_SESSION['page'] = 'settings';
         <a class='w3-bar-item w3-button w3-text-blue w3-mobile' href='/'>NozzDesk Server</a>
 
         <?php if(isset($_SESSION['user'])) { ?>
-        <div class='w3-dropdown-hover'>
-            <button class='w3-button'>
-                <i class='fa fa-fw fa-folder-open'></i> Files <i class='fa fa-fw fa-caret-down'></i>
-            </button>
-            <div class='w3-dropdown-content w3-bar-block nz-black nz-round-bottom w3-card-2 w3-hide-small'>
-
-                <a class='w3-bar-item w3-button nz-round-bottom' href='/files/'>
-                    <i class='fa fa-fw fa-lock'></i> Private
-                </a>
-
-            </div>
-            <div class='w3-dropdown-content w3-bar-block nz-black nz-round-bottom-right w3-card-2 w3-hide-large w3-hide-medium'>
-
-                <a class='w3-bar-item w3-button nz-round-bottom-right' href='/files/'>
-                    <i class='fa fa-fw fa-lock'></i> Private
-                </a>
-
-            </div>
-        </div>
+            <a class='w3-bar-item w3-button' href='/files/'>
+                <i class='fa fa-fw fa-folder-open'></i> Files
+            </a>
         <?php } ?>
 
         <?php if(isset($_SESSION['rank']) && $_SESSION['rank'] == 'admin') { ?>
-        <div class='w3-dropdown-hover'>
-            <button class='w3-button'>
-                <i class='fa fa-fw fa-server'></i> Admin <i class='fa fa-fw fa-caret-down'></i>
-            </button>
-            <div class='w3-dropdown-content w3-bar-block nz-black nz-round-bottom w3-card-2'>
-
-                <a class='w3-bar-item w3-button nz-round-bottom' href='/database/adminer.php'>
-                    <i class='fa fa-fw fa-database'></i> Database
-                </a>
-
-            </div>
-        </div>
+            <a class='w3-bar-item w3-button' href='/database/adminer.php'>
+                <i class='fa fa-fw fa-server'></i> Admin
+            </a>
         <?php }
         
         if(!isset($_SESSION['user'])) { ?>
