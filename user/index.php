@@ -55,10 +55,10 @@ $_SESSION['page'] = 'profile';
 <div class='nz-black' id='header'>
     <div class='w3-bar'>
 
-        <a class='w3-bar-item w3-button w3-text-blue w3-mobile' href='/'>NozzDesk Server</a>
+        <a class='w3-bar-item w3-button w3-text-blue w3-mobile' href='/index.php'>NozzDesk Server</a>
 
         <?php if(isset($_SESSION['user'])) { ?>
-            <a class='w3-bar-item w3-button' href='/files/'>
+            <a class='w3-bar-item w3-button' href='/files/index.php'>
                 <i class='fa fa-fw fa-folder-open'></i> Files
             </a>
         <?php } ?>
@@ -102,7 +102,7 @@ $_SESSION['page'] = 'profile';
             </button>
             <div class='w3-dropdown-content w3-bar-block nz-black nz-round-bottom-left w3-card-2 nz-dropdown-left' style='max-width:100px'>
 
-                <a class='w3-bar-item w3-button' href='/user/?id=<?php echo $_SESSION['user']; ?>'>
+                <a class='w3-bar-item w3-button' href='/user/index.php?id=<?php echo $_SESSION['user']; ?>'>
                     <i class='fa fa-fw fa-user'></i> <?php echo $_SESSION['username']; ?>
                 </a>
 
