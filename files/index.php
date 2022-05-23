@@ -1,5 +1,6 @@
 <?php
 session_start();
+include_once('/srv/http/nozzato.com/database/connect.php');
 
 if(!isset($_SESSION['user'])) {
     header('location:/');
@@ -104,38 +105,58 @@ $_SESSION['page'] = 'files';
         </div>
 
         <div class='w3-container w3-padding-16'>
-            <?php $dir = array_slice(scandir('/srv/http/nozzato.com/files/' . $_SESSION['username'] . '/'), 2);
-            foreach($dir as $dir_file) {
-                $file_modal = '"' . $dir_file . '"'; ?>
 
-                <div class='w3-bar' style='margin-bottom:5px'>
+            <div class='w3-responsive'>
+                <table class="w3-table">
+                    <tr>
+                        <th style='padding:8px 24px 8px 24px'>Filename</th>
+                        <th style='padding:8px 24px 8px 24px'>Privacy</th>
+                        <th style='padding:8px 24px 8px 24px'>Delete</th>
+                    </tr>
 
-                <button class='w3-button w3-bar-item w3-red w3-round' onclick='openModal(<?php echo $file_modal ?>)' style='margin-right:5px;padding-left:17.76px;padding-right:17.76px'>Delete</button>
+                    <?php try {
+                        $stmt = $pdo-> prepare('SELECT * FROM `files` WHERE `user_id` = ?;');
+                        $stmt-> execute([$_SESSION['user']]);
+                        $rows = $stmt-> fetchAll(PDO::FETCH_ASSOC);
+                        $count = $stmt-> rowCount();
+                    } catch (\PDOException $e) {
+                        throw new \PDOException($e-> getMessage(), (int)$e-> getCode());
+                    }
+                    for($i = 0; $i <= $count - 1; $i++) {
+                        $file_modal = '"' . $rows[$i]['filename'] . '"' ?>
 
-                <form action='/files/edit.php' method='POST'>
-                    <button class='w3-button w3-bar-item w3-blue-grey w3-round' value='<?php echo $dir_file; ?>' name='edit_btn'><?php echo $dir_file; ?></button>
-                </form>
+                        <tr>
+                            <form action='/files/edit.php' method='POST'>
+                                <td><button class='w3-button w3-round' value='<?php echo $rows[$i]['filename']; ?>' style='vertical-align:middle' name='edit_btn'><?php echo $rows[$i]['filename']; ?></button></td>
+                            </form>
 
+                            <td style='vertical-align:middle'><button class='w3-button w3-round'><?php echo ucfirst($rows[$i]['privacy']); ?></button></td>
+
+                            <td><button class='w3-button w3-hover-red w3-round' onclick='openModal(<?php echo $file_modal; ?>)'>Delete</button></td>
+                        </tr>
+
+                    <?php } ?>
+                </table>
             </div>
-            <?php } ?>
-                <form class='w3-margin-top' action='/files/upload.php' method='POST' enctype='multipart/form-data'>
 
-                    <button class='w3-button w3-green w3-round' type='submit' name='upload_btn'>Upload</button>
+            <form class='w3-margin-top' action='/files/upload.php' method='POST' enctype='multipart/form-data'>
 
-                    <input class='w3-hide' id='upload-file' type='file' name='upload_file' required>
+                <button class='w3-button w3-green w3-round' type='submit' name='upload_btn'>Upload</button>
 
-                    <label class='w3-button w3-blue-grey w3-round' for='upload-file' style='cursor:pointer'>Browse...</label>
+                <input class='w3-hide' id='upload-file' type='file' name='upload_file' required>
 
-                    <p></p>
-                    <span>Privacy</span>
+                <label class='w3-button w3-blue-grey w3-round' for='upload-file' style='cursor:pointer'>Browse...</label>
 
-                    <input class='w3-radio' id='upload-private' type='radio' value='private' name='upload_privacy' checked>
-                    <label for='upload-private'>Private</label>
+                <p></p>
+                <span>Privacy</span>
 
-                    <input class='w3-radio' id='upload-public' type='radio' value='public' name='upload_privacy'>
-                    <label for='upload-public'>Public</label>
+                <input class='w3-radio' id='upload-private' type='radio' value='private' name='upload_privacy' checked>
+                <label for='upload-private'>Private</label>
 
-                </form>
+                <input class='w3-radio' id='upload-public' type='radio' value='public' name='upload_privacy'>
+                <label for='upload-public'>Public</label>
+
+            </form>
 
         </div>
 
