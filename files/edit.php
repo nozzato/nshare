@@ -1,20 +1,28 @@
 <?php
 session_start();
 include_once('/srv/http/nozzato.com/scripts/scripts.php');
+include_once('/srv/http/nozzato.com/database/connect.php');
 
 if(!isset($_SESSION['user'])) {
     header('location:/');
     exit;
 }
+try {
+    $stmt = $pdo-> prepare('SELECT * FROM `files` WHERE `file_id` = ?;');
+    $stmt-> execute([$_GET['id']]);
+    $row = $stmt-> fetch(PDO::FETCH_ASSOC);
+} catch (\PDOException $e) {
+    throw new \PDOException($e-> getMessage(), (int)$e-> getCode());
+}
 $file_path_server = '/srv/http/nozzato.com/files/' . $_SESSION['username'] . '/';
 
-if(!isset($_GET['id']) || !file_exists($file_path_server . $_GET['id'])) {
+if(!isset($_GET['id']) || empty($row['filename'])) {
     $_SESSION['msg'] = 'Error: Invalid file';
     header('location:/files/index.php');
     exit;
 }
-$file_path = '/files/' . $_SESSION['username'] . '/';
-$file_name   = $_GET['id'];
+$file_path   = '/files/' . $_SESSION['username'] . '/';
+$file_name   = $row['filename'];
 $file        = $file_path . $file_name;
 $file_server = $file_path_server . $file_name;
 $file_info   = new finfo(FILEINFO_MIME);

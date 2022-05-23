@@ -126,7 +126,7 @@ $_SESSION['page'] = 'files';
                         $file_modal = '"' . $rows[$i]['filename'] . '"' ?>
 
                         <tr>
-                            <td style='padding:8px'><a class='w3-button w3-round' href='/files/edit.php?id=<?php echo $rows[$i]['filename']; ?>'><?php echo $rows[$i]['filename']; ?></a></td>
+                            <td style='padding:8px'><a class='w3-button w3-round' href='/files/edit.php?id=<?php echo $rows[$i]['file_id']; ?>'><?php echo $rows[$i]['filename']; ?></a></td>
 
                             <td><button class='w3-button w3-round'><?php echo ucfirst($rows[$i]['privacy']); ?></button></td>
 
