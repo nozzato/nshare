@@ -16,6 +16,7 @@ if(isset($_FILES['upload_file']) || isset($_POST['upload_btn'])) {
         if(strlen($file_name) < 1) {
             $_SESSION['msg'] = "Error: Filename must be 1 character or more";
             go_back();
+        }
         if(strlen($file_name) > 1023) {
             $_SESSION['msg'] = "Error: Filename must be 1023 characters or less";
             go_back();
@@ -60,6 +61,7 @@ if(isset($_FILES['upload_file']) || isset($_POST['upload_btn'])) {
         if(strlen($file_name) < 1) {
             $_SESSION['msg'] = "Error: Filename must be 1 character or more";
             go_back();
+        }
         if(strlen($file_name) > 1023) {
             $_SESSION['msg'] = "Error: Filename must be 1023 characters or less";
             go_back();
