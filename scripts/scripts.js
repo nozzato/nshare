@@ -75,6 +75,26 @@ function emailVerify() {
         return true;
     }
 }
+function usernameVerify() {
+    var msg = document.getElementById('msg');
+    var oldUsername = document.getElementById('old-username').value;
+    var newUsername = document.getElementById('new-username').value;
+
+    if(oldUsername === '' || newUsername === '') {
+        msg.innerHTML = 'Error: Both fields are required';
+        msg.classList.add('w3-text-red');
+        msgClear();
+        return false;
+    } else if(newUsername.length > 255) {
+        msg.innerHTML = 'Error: New username must be 255 characters or less';
+        msg.classList.add('w3-text-red');
+        msgClear();
+        return false;
+    } else {
+        msgClear();
+        return true;
+    }
+}
 function passwordVerify() {
     var msg = document.getElementById('msg');
     var oldPassword = document.getElementById('old-password').value;
