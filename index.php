@@ -7,7 +7,7 @@ $_SESSION['page'] = 'home';
 <html lang='en'>
 <head>
 
-<title>Dashboard - NozzDesk</title>
+<title>Dashboard - NShare</title>
 <link rel='icon' type='image/gif' href='/media/favicon.gif'>
 
 <meta charset='utf-8'>
@@ -25,7 +25,7 @@ $_SESSION['page'] = 'home';
 <div class='nz-black' id='header'>
     <div class='w3-bar'>
 
-        <a class='w3-bar-item w3-button w3-text-blue w3-mobile' href='/index.php'>NozzDesk</a>
+        <a class='w3-bar-item w3-button w3-text-blue w3-mobile' href='/index.php'>NShare</a>
 
         <?php if(isset($_SESSION['user'])) { ?>
             <a class='w3-bar-item w3-button' href='/files/index.php'>
