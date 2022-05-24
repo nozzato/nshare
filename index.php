@@ -93,27 +93,6 @@ $_SESSION['page'] = 'home';
 </div>
 
 <div class='w3-container w3-padding-16 w3-center' id='content' style='margin-bottom:38.5px'>
-    <pre>
-                  -`                 
-                 .o+`                
-                `ooo/                
-               `+oooo:               
-              `+oooooo:              
-              -+oooooo+:             
-            `/:-:++oooo+:            
-           `/++++/+++++++:           
-          `/++++++++++++++:          
-         `/+++ooooooooooooo/`        
-        ./ooosssso++osssssso+`       
-       .oossssso-````/ossssss+`      
-      -osssssso.      :ssssssso.     
-     :osssssss/        osssso+++.    
-    /ossssssss/        +ssssooo/-    
-  `/ossssso+/:-        -:/+osssso+-  
- `+sso+:-`                 `.-/+oso: 
-`++:.                           `-/+/
-.`                                 `/
-</pre>
 </div>
 
 <div class='nz-black w3-bottom' id='footer'>
