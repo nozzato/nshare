@@ -106,7 +106,7 @@ function openFile(id) {
 </div>
 
 <div class='w3-container w3-padding-16' id='content' style='margin-bottom:38.5px'>
-    <div class='w3-round w3-card-2 nz-centre-large' id='files'>
+    <div class='w3-round w3-card-2 nz-page' id='files'>
 
         <div class='w3-container nz-black nz-round-top'>
             <h2 class='nz-truncate'><?php echo $_SESSION['username'] ?>/</h2>
@@ -118,8 +118,8 @@ function openFile(id) {
                 <table class='nz-table-all'>
                     <tr>
                         <th>Filename <i class='fa fa-fw fa-caret-down'></i></th>
-                        <th>Privacy</i>
-                        </th>
+                        <th>Size</th>
+                        <th>Privacy</th>
                         <th>Delete</th>
                     </tr>
 
@@ -136,6 +136,8 @@ function openFile(id) {
 
                         <tr>
                             <td class='w3-button' onclick='openFile(<?php echo $rows[$i]['file_id']; ?>)'><?php echo $rows[$i]['filename']; ?></td>
+
+                            <td><?php echo $rows[$i]['size']; ?> B</td>
 
                             <td class='w3-button'><?php echo ucfirst($rows[$i]['privacy']); ?></td>
 
