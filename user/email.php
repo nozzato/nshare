@@ -18,6 +18,10 @@ if(isset($_POST['email_btn'])) {
             $_SESSION['msg'] = 'Error: New email must be 255 characters or less';
             go_back();
         }
+        if(!filter_var($email_new, FILTER_VALIDATE_EMAIL)) {
+            $_SESSION['msg'] = 'Error: Invalid email format';
+            go_back();
+        }
         try {
             $stmt = $pdo-> prepare('SELECT * FROM `users` WHERE `user_id` = ?;');
             $stmt-> execute([$_SESSION['user']]);
