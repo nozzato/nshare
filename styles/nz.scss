@@ -98,17 +98,8 @@ input:focus, textarea:focus {
 .nz-striped tbody tr:nth-child(odd) {
     background-color: #181916;
 }
-.nz-table-all tr:nth-child(odd) {
+.nz-table-all tbody tr:nth-child(odd) {
     background-color:#181916;
-}
-.nz-table-all tr:nth-child(odd) {
-    background-color:#22231c;
-}
-.nz-hoverable tbody tr:hover, .nz-ul.nz-hoverable li:hover {
-    background-color:#181916;
-}
-.nz-centered tr th, .nz-centered tr td {
-    text-align:center;
 }
 .nz-table td, .nz-table-all td, .nz-table th, .nz-table-all th {
     padding: 16px 24px 16px 24px;
