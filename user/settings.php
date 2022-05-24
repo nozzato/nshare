@@ -156,7 +156,7 @@ $_SESSION['page'] = 'settings';
     <div class='w3-round w3-card-2'>
 
         <div class='w3-container nz-black nz-round-top'>
-            <h2>Change Username</h2>
+            <h2>Change username</h2>
         </div>
 
         <form class='w3-container w3-padding-16' action='/user/username.php' method='POST' onsubmit='return usernameVerify(this)'>
