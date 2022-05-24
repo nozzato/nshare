@@ -4,10 +4,14 @@ include_once('/srv/http/nozzato.com/scripts/scripts.php');
 include_once('/srv/http/nozzato.com/database/connect.php');
 
 if(isset($_POST['close_btn'])) {
-    if(!empty($_POST['close_username']) && !empty($_POST['close_password'])) {
+    if(!empty($_POST['close_password'])) {
         $close_username = $close_password = '';
 
-        $close_username = trim($_POST['close_username']);
+        if(!empty($_POST['close_username'])) {
+            $close_username = trim($_POST['close_username']);
+        } else {
+            $close_username = $_SESSION['username'];
+        }
         $close_password = trim($_POST['close_password']);
 
         try {
@@ -56,7 +60,7 @@ if(isset($_POST['close_btn'])) {
             go_back();
         }
     } else {
-        $_SESSION['msg'] = 'Error: Both fields are required';
+        $_SESSION['msg'] = 'Error: Password is required';
         go_back();
     }
 }
