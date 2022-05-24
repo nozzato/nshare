@@ -11,7 +11,7 @@ $_SESSION['page'] = 'settings';
 <html lang='en'>
 <head>
 
-<title>NozzDesk Server - Settings</title>
+<title>Settings: Account - NozzDesk</title>
 <link rel='icon' type='image/gif' href='/media/favicon.gif'>
 
 <meta charset='utf-8'>
@@ -29,7 +29,7 @@ $_SESSION['page'] = 'settings';
 <div class='nz-black' id='header'>
     <div class='w3-bar'>
 
-        <a class='w3-bar-item w3-button w3-text-blue w3-mobile' href='/index.php'>NozzDesk Server</a>
+        <a class='w3-bar-item w3-button w3-text-blue w3-mobile' href='/index.php'>NozzDesk</a>
 
         <?php if(isset($_SESSION['user'])) { ?>
             <a class='w3-bar-item w3-button' href='/files/index.php'>
