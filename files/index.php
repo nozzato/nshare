@@ -121,7 +121,7 @@ function openFile(id) {
                     </tr>
 
                     <?php try {
-                        $stmt = $pdo-> prepare('SELECT * FROM `files` WHERE `user_id` = ?;');
+                        $stmt = $pdo-> prepare('SELECT * FROM `files` WHERE `user_id` = ? ORDER BY `filename` ASC;');
                         $stmt-> execute([$_SESSION['user']]);
                         $rows = $stmt-> fetchAll(PDO::FETCH_ASSOC);
                         $count = $stmt-> rowCount();
