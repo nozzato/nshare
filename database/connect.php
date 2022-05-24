@@ -1,6 +1,6 @@
 <?php
 $hostname    = '127.0.0.1';
-$database    = 'nozzato';
+$database    = 'nshare';
 $charset     = 'utf8mb4';
 $db_username = 'noah';
 $db_password = 'nozz1234';
