@@ -39,7 +39,7 @@ if(isset($_POST['password_btn'])) {
             $_SESSION['msg'] = 'Password changed';
             go_back();
         } else {
-            $_SESSION['msg'] = 'Error: Invalid username or password';
+            $_SESSION['msg'] = 'Error: Invalid password';
             go_back();
         }
     } else {
