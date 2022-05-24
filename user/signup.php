@@ -16,9 +16,8 @@ if(isset($_POST['signup_btn'])) {
             $_SESSION['msg'] = 'Error: Email must be 255 characters or less';
             go_back();
         }
-        if (!filter_var($signup_email, FILTER_VALIDATE_EMAIL)) {
+        if(!filter_var($signup_email, FILTER_VALIDATE_EMAIL)) {
             $_SESSION['msg'] = 'Error: Invalid email format';
-            echo $signup_email;
             go_back();
         }
         if(strlen($signup_username) > 50) {
