@@ -5,8 +5,13 @@ include_once('/srv/http/nozzato.com/database/connect.php');
 
 if(isset($_POST['password_btn'])) {
     if(!empty($_POST['password_old']) && !empty($_POST['password_new'])) {
-        $password_old = $password_new = '';
+        $password_user = $password_old = $password_new = '';
 
+        if(!empty($_POST['password_user'])) {
+            $password_user = trim($_POST['password_user']);
+        } else {
+            $password_user = $_SESSION['user'];
+        }
         $password_old = trim($_POST['password_old']);
         $password_new = trim($_POST['password_new']);
 
@@ -24,7 +29,7 @@ if(isset($_POST['password_btn'])) {
         }
         try {
             $stmt = $pdo-> prepare('SELECT * FROM `users` WHERE `user_id` = ?;');
-            $stmt-> execute([$_SESSION['user']]);
+            $stmt-> execute([$password_user]);
             $row = $stmt-> fetch(PDO::FETCH_ASSOC);
         } catch (\PDOException $e) {
             throw new \PDOException($e-> getMessage(), (int)$e-> getCode());
@@ -32,7 +37,7 @@ if(isset($_POST['password_btn'])) {
         if(password_verify($password_old, $row['password'])) {
             try {
                 $stmt = $pdo-> prepare('UPDATE `users` SET `password` = ? WHERE `user_id` = ?;');
-                $stmt-> execute([password_hash($password_new, PASSWORD_DEFAULT), $_SESSION['user']]);
+                $stmt-> execute([password_hash($password_new, PASSWORD_DEFAULT), $password_user]);
             } catch (\PDOException $e) {
                 throw new \PDOException($e-> getMessage(), (int)$e-> getCode());
             }

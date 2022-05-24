@@ -5,8 +5,13 @@ include_once('/srv/http/nozzato.com/database/connect.php');
 
 if(isset($_POST['username_btn'])) {
     if(!empty($_POST['username_old']) && !empty($_POST['username_new'])) {
-        $username_old = $username_new = '';
+        $username_user = $username_old = $username_new = '';
 
+        if(!empty($_POST['username_user'])) {
+            $username_user = trim($_POST['username_user']);
+        } else {
+            $username_user = $_SESSION['user'];
+        }
         $username_old = trim($_POST['username_old']);
         $username_new = trim($_POST['username_new']);
 
@@ -20,22 +25,28 @@ if(isset($_POST['username_btn'])) {
         }
         try {
             $stmt = $pdo-> prepare('SELECT * FROM `users` WHERE `user_id` = ?;');
-            $stmt-> execute([$_SESSION['user']]);
+            $stmt-> execute([$username_user]);
             $row = $stmt-> fetch(PDO::FETCH_ASSOC);
+            $count = $stmt-> rowCount();
         } catch (\PDOException $e) {
             throw new \PDOException($e-> getMessage(), (int)$e-> getCode());
         }
-        if($username_old == $row['username']) {
-            try {
-                $stmt = $pdo-> prepare('UPDATE `users` SET `username` = ? WHERE `user_id` = ?;');
-                $stmt-> execute([$username_new, $_SESSION['user']]);
-            } catch (\PDOException $e) {
-                throw new \PDOException($e-> getMessage(), (int)$e-> getCode());
+        if($count == 0) {
+            if($username_old == $row['username']) {
+                try {
+                    $stmt = $pdo-> prepare('UPDATE `users` SET `username` = ? WHERE `user_id` = ?;');
+                    $stmt-> execute([$username_new, $username_user]);
+                } catch (\PDOException $e) {
+                    throw new \PDOException($e-> getMessage(), (int)$e-> getCode());
+                }
+                $_SESSION['msg'] = 'Username changed';
+                go_back();
+            } else {
+                $_SESSION['msg'] = 'Error: Invalid username';
+                go_back();
             }
-            $_SESSION['msg'] = 'Username changed';
-            go_back();
         } else {
-            $_SESSION['msg'] = 'Error: Invalid username';
+            $_SESSION['msg'] = 'Error: Username already in use';
             go_back();
         }
     } else {

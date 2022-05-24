@@ -35,6 +35,7 @@ if(isset($_POST['signup_btn'])) {
         try {
             $stmt = $pdo-> prepare('SELECT * FROM `users` WHERE `email` = ? OR `username` = ?;');
             $stmt-> execute([$signup_email, $signup_username]);
+            $row = $stmt-> fetch(PDO::FETCH_ASSOC);
             $count = $stmt-> rowCount();
         } catch (\PDOException $e) {
             throw new \PDOException($e-> getMessage(), (int)$e-> getCode());
@@ -53,10 +54,10 @@ if(isset($_POST['signup_btn'])) {
             $_SESSION['msg'] = 'Account created';
             go_back();
         } else {
-            if(!empty($row['email'])) {
+            if($row['email'] == $signup_email) {
                 $_SESSION['msg'] = 'Error: Email already in use';
                 go_back();
-            } else if(!empty($row['username'])) {
+            } else if($row['username'] == $signup_username) {
                 $_SESSION['msg'] = 'Error: Username already in use';
                 go_back();
             }

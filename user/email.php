@@ -5,8 +5,13 @@ include_once('/srv/http/nozzato.com/database/connect.php');
 
 if(isset($_POST['email_btn'])) {
     if(!empty($_POST['email_old']) && !empty($_POST['email_new'])) {
-        $email_old = $email_new = '';
+        $email_user = $email_old = $email_new = '';
 
+        if(!empty($_POST['email_user'])) {
+            $email_user = trim($_POST['email_user']);
+        } else {
+            $email_user = $_SESSION['user'];
+        }
         $email_old = trim($_POST['email_old']);
         $email_new = trim($_POST['email_new']);
 
@@ -24,22 +29,28 @@ if(isset($_POST['email_btn'])) {
         }
         try {
             $stmt = $pdo-> prepare('SELECT * FROM `users` WHERE `user_id` = ?;');
-            $stmt-> execute([$_SESSION['user']]);
+            $stmt-> execute([$email_user]);
             $row = $stmt-> fetch(PDO::FETCH_ASSOC);
+            $count = $stmt-> rowCount();
         } catch (\PDOException $e) {
             throw new \PDOException($e-> getMessage(), (int)$e-> getCode());
         }
-        if($email_old == $row['email']) {
-            try {
-                $stmt = $pdo-> prepare('UPDATE `users` SET `email` = ? WHERE `user_id` = ?;');
-                $stmt-> execute([$email_new, $_SESSION['user']]);
-            } catch (\PDOException $e) {
-                throw new \PDOException($e-> getMessage(), (int)$e-> getCode());
+        if($count == 0) {
+            if($email_old == $row['email']) {
+                try {
+                    $stmt = $pdo-> prepare('UPDATE `users` SET `email` = ? WHERE `user_id` = ?;');
+                    $stmt-> execute([$email_new, $email_user]);
+                } catch (\PDOException $e) {
+                    throw new \PDOException($e-> getMessage(), (int)$e-> getCode());
+                }
+                $_SESSION['msg'] = 'Email changed';
+                go_back();
+            } else {
+                $_SESSION['msg'] = 'Error: Invalid email';
+                go_back();
             }
-            $_SESSION['msg'] = 'Email changed';
-            go_back();
         } else {
-            $_SESSION['msg'] = 'Error: Invalid email';
+            $_SESSION['msg'] = 'Error: Email already in use';
             go_back();
         }
     } else {
