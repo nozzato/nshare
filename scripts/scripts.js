@@ -57,8 +57,8 @@ function signupVerify() {
 }
 function emailVerify() {
     var msg = document.getElementById('msg');
-    var oldEmail = document.getElementById('old-email').value;
-    var newEmail = document.getElementById('new-email').value;
+    var oldEmail = document.getElementById('email-old').value;
+    var newEmail = document.getElementById('email-new').value;
 
     if(oldEmail === '' || newEmail === '') {
         msg.innerHTML = 'Error: Both fields are required';
@@ -77,8 +77,8 @@ function emailVerify() {
 }
 function usernameVerify() {
     var msg = document.getElementById('msg');
-    var oldUsername = document.getElementById('old-username').value;
-    var newUsername = document.getElementById('new-username').value;
+    var oldUsername = document.getElementById('username-old').value;
+    var newUsername = document.getElementById('username-new').value;
 
     if(oldUsername === '' || newUsername === '') {
         msg.innerHTML = 'Error: Both fields are required';
@@ -97,8 +97,8 @@ function usernameVerify() {
 }
 function passwordVerify() {
     var msg = document.getElementById('msg');
-    var oldPassword = document.getElementById('old-password').value;
-    var newPassword = document.getElementById('new-password').value;
+    var oldPassword = document.getElementById('password-old').value;
+    var newPassword = document.getElementById('password-new').value;
 
     if(oldPassword === '' || newPassword === '') {
         msg.innerHTML = 'Error: Both fields are required';

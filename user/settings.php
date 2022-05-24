@@ -142,10 +142,10 @@ $_SESSION['page'] = 'settings';
 
         <form class='w3-container w3-padding-16' action='/user/email.php' method='POST' onsubmit='return emailVerify(this)'>
 
-            <input class='w3-input nz-black w3-border-0 w3-round' id='old-email' type='text' placeholder='Old Email' name='email_old'>
+            <input class='w3-input nz-black w3-border-0 w3-round' id='email-old' type='text' placeholder='Old Email' name='email_old'>
 
             <p></p>
-            <input class='w3-input nz-black w3-border-0 w3-round' id='new-email' type='text' placeholder='New Email' name='email_new'>
+            <input class='w3-input nz-black w3-border-0 w3-round' id='email-new' type='text' placeholder='New Email' name='email_new'>
 
             <p></p>
             <button class='w3-btn w3-green w3-round' type='submit' name='email_btn'>Change</button>
@@ -161,10 +161,10 @@ $_SESSION['page'] = 'settings';
 
         <form class='w3-container w3-padding-16' action='/user/username.php' method='POST' onsubmit='return usernameVerify(this)'>
 
-            <input class='w3-input nz-black w3-border-0 w3-round' id='old-username' type='text' placeholder='Old Username' name='username_old'>
+            <input class='w3-input nz-black w3-border-0 w3-round' id='username-old' type='text' placeholder='Old Username' name='username_old'>
 
             <p></p>
-            <input class='w3-input nz-black w3-border-0 w3-round' id='new-username' type='text' placeholder='New Username' name='username_new'>
+            <input class='w3-input nz-black w3-border-0 w3-round' id='username-new' type='text' placeholder='New Username' name='username_new'>
 
             <p></p>
             <button class='w3-btn w3-green w3-round' type='submit' name='username_btn'>Change</button>
@@ -180,10 +180,10 @@ $_SESSION['page'] = 'settings';
 
         <form class='w3-container w3-padding-16' action='/user/password.php' method='POST' onsubmit='return passwordVerify(this)'>
 
-            <input class='w3-input nz-black w3-border-0 w3-round' id='old-password' type='password' placeholder='Old Password' name='password_old'>
+            <input class='w3-input nz-black w3-border-0 w3-round' id='password-old' type='password' placeholder='Old Password' name='password_old'>
 
             <p></p>
-            <input class='w3-input nz-black w3-border-0 w3-round' id='new-password' type='password' placeholder='New Password' name='password_new'>
+            <input class='w3-input nz-black w3-border-0 w3-round' id='password-new' type='password' placeholder='New Password' name='password_new'>
 
             <p></p>
             <button class='w3-btn w3-green w3-round' type='submit' name='password_btn'>Change</button>
