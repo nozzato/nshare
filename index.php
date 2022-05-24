@@ -1,5 +1,6 @@
 <?php
 session_start();
+include_once('/srv/http/nozzato.com/database/connect.php');
 
 $_SESSION['page'] = 'home';
 ?>
@@ -96,6 +97,38 @@ $_SESSION['page'] = 'home';
 </div>
 
 <div class='w3-container w3-padding-16 w3-center' id='content' style='margin-bottom:38.5px'>
+    <?php if(!isset($_SESSION['user'])) { ?>
+        <h1>Welcome to NShare</h1>
+        <br>
+        <h2>A file sharing and editing website</h2>
+    <?php } else { 
+        try {
+            $stmt = $pdo-> prepare('SELECT * FROM `files` WHERE `user_id` = ?;');
+            $stmt-> execute([$_SESSION['user']]);
+            $rows = $stmt-> fetchAll(PDO::FETCH_ASSOC);
+            $count = $stmt-> rowCount();
+        } catch (\PDOException $e) {
+            throw new \PDOException($e-> getMessage(), (int)$e-> getCode());
+        } ?>
+
+        <div class='w3-round nz-page w3-card-2'>
+
+            <div class='w3-container nz-black nz-round-top'>
+                <h2>Stats</h2>
+            </div>
+
+            <div class='w3-padding-16'>
+                <?php 
+                $total_size = 0;
+                for($i = 0; $i <= $count - 1; $i++) {
+                    $total_size += $rows[$i]['size'];
+                } ?>
+                <span>Storage used: <?php echo $total_size; ?> B / 10 GB</span>
+            </div>
+        
+        </div>
+
+    <?php } ?>
 </div>
 
 <div class='nz-black w3-bottom' id='footer'>
