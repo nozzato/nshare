@@ -10,7 +10,7 @@ if(isset($_POST['delete_btn'])) {
     $file_server = $file_path_server . $_POST['delete_btn'];
 
     try {
-        $stmt = $pdo-> prepare("DELETE FROM `files` WHERE `user_id` = ? AND `filename` = ?;");
+        $stmt = $pdo-> prepare('DELETE FROM `files` WHERE `user_id` = ? AND `filename` = ?;');
         $stmt-> execute([$_SESSION['user'], $file_name]);
     } catch (\PDOException $e) {
         throw new \PDOException($e-> getMessage(), (int)$e-> getCode());

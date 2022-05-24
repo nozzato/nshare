@@ -11,7 +11,7 @@ if(isset($_POST['close_btn'])) {
         $close_password = trim($_POST['close_password']);
 
         try {
-            $stmt = $pdo-> prepare("SELECT * FROM `users` WHERE `username` = ?;");
+            $stmt = $pdo-> prepare('SELECT * FROM `users` WHERE `username` = ?;');
             $stmt-> execute([$close_username]);
             $row = $stmt-> fetch(PDO::FETCH_ASSOC);
         } catch (\PDOException $e) {
@@ -19,7 +19,7 @@ if(isset($_POST['close_btn'])) {
         }
         if(password_verify($close_password, $row['password']) && $_SESSION['rank'] == 'admin') {
             try {
-                $stmt = $pdo-> prepare("DELETE FROM `users` WHERE `username` = ?;");
+                $stmt = $pdo-> prepare('DELETE FROM `users` WHERE `username` = ?;');
                 $stmt-> execute([$close_username]);
             } catch (\PDOException $e) {
                 throw new \PDOException($e-> getMessage(), (int)$e-> getCode());
@@ -31,13 +31,13 @@ if(isset($_POST['close_btn'])) {
                 header('location:logout.php');
                 exit;
             } else {
-                $_SESSION['msg'] = "Account deleted";
+                $_SESSION['msg'] = 'Account deleted';
                 go_back();
             }
         } else if(password_verify($close_password, $row['password']) && $_SESSION['rank'] == 'member') {
             if($close_username == $_SESSION['username']) {
                 try {
-                    $stmt = $pdo-> prepare("DELETE FROM `users` WHERE `username` = ?;");
+                    $stmt = $pdo-> prepare('DELETE FROM `users` WHERE `username` = ?;');
                     $stmt-> execute([$close_username]);
                 } catch (\PDOException $e) {
                     throw new \PDOException($e-> getMessage(), (int)$e-> getCode());
@@ -48,15 +48,15 @@ if(isset($_POST['close_btn'])) {
                 header('location:logout.php');
                 exit;
             } else {
-                $_SESSION['msg'] = "Error: Invalid username or password";
+                $_SESSION['msg'] = 'Error: Invalid username or password';
                 go_back();
             }
         } else {
-            $_SESSION['msg'] = "Error: Invalid username or password";
+            $_SESSION['msg'] = 'Error: Invalid username or password';
             go_back();
         }
     } else {
-        $_SESSION['msg'] = "Error: Both fields are required";
+        $_SESSION['msg'] = 'Error: Both fields are required';
         go_back();
     }
 }
