@@ -1,5 +1,6 @@
 <?php
 session_start();
+include_once('/srv/http/nozzato.com/scripts/scripts.php');
 include_once('/srv/http/nozzato.com/database/connect.php');
 
 $_SESSION['page'] = 'home';
@@ -120,10 +121,13 @@ $_SESSION['page'] = 'home';
             <div class='w3-padding-16'>
                 <?php 
                 $total_size = 0;
+
                 for($i = 0; $i <= $count - 1; $i++) {
                     $total_size += $rows[$i]['size'];
-                } ?>
-                <span>Storage used: <?php echo $total_size; ?> B / 10 GB</span>
+                }
+                $total_size = human_filesize($total_size); ?>
+
+                <span>Storage used: <?php echo $total_size; ?> / 10.00G</span>
             </div>
         
         </div>

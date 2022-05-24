@@ -1,5 +1,6 @@
 <?php
 session_start();
+include_once('/srv/http/nozzato.com/scripts/scripts.php');
 include_once('/srv/http/nozzato.com/database/connect.php');
 
 if(!isset($_SESSION['user'])) {
@@ -137,7 +138,7 @@ function openFile(id) {
                         <tr>
                             <td class='w3-button' onclick='openFile(<?php echo $rows[$i]['file_id']; ?>)'><?php echo $rows[$i]['filename']; ?></td>
 
-                            <td><?php echo $rows[$i]['size']; ?> B</td>
+                            <td><?php echo human_filesize($rows[$i]['size']); ?></td>
 
                             <td class='w3-button'><?php echo ucfirst($rows[$i]['privacy']); ?></td>
 
