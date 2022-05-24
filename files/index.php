@@ -136,7 +136,7 @@ function openFile(id) {
 
                             <td class='w3-button'><?php echo ucfirst($rows[$i]['privacy']); ?></td>
 
-                            <td class='w3-button' onclick='openModal(<?php echo $file_modal; ?>)'>Delete</td>
+                            <td class='w3-button w3-hover-red' onclick='openModal(<?php echo $file_modal; ?>)'>Delete</td>
                         </tr>
 
                     <?php } ?>
