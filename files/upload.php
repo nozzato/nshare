@@ -13,6 +13,13 @@ if(isset($_FILES['upload_file']) || isset($_POST['upload_btn'])) {
         $file_temp    = $_FILES['upload_file']['tmp_name'];
         $file_privacy = $_POST['upload_privacy'];
 
+        if(strlen($file_name) < 1) {
+            $_SESSION['msg'] = "Error: Filename must be 1 character or more";
+            go_back();
+        if(strlen($file_name) > 1023) {
+            $_SESSION['msg'] = "Error: Filename must be 1023 characters or less";
+            go_back();
+        }
         if(move_uploaded_file($file_temp, $file_server)) {
             try {
                 $stmt = $pdo-> prepare("SELECT * FROM `files` WHERE `user_id` = ? AND `filename` = ?;");
@@ -50,6 +57,13 @@ if(isset($_FILES['upload_file']) || isset($_POST['upload_btn'])) {
         $file_server  = $file_path_server . $file_name;
         $file_content = $_POST['upload_content'];
 
+        if(strlen($file_name) < 1) {
+            $_SESSION['msg'] = "Error: Filename must be 1 character or more";
+            go_back();
+        if(strlen($file_name) > 1023) {
+            $_SESSION['msg'] = "Error: Filename must be 1023 characters or less";
+            go_back();
+        }
         if(file_put_contents($file_server, $file_content) != false) {
             $_SESSION['msg'] = "File saved";
             go_back();
