@@ -1,3 +1,11 @@
+///////////////
+// Variables //
+///////////////
+
+// Colors
+
+
+
 //////////////
 // Elements //
 //////////////
@@ -73,6 +81,40 @@ input:focus, textarea:focus {
 
 .nz-ghost {
     pointer-events: none;
+}
+
+.nz-table, .nz-table-all {
+    border-collapse: collapse;
+    border-spacing: 0;
+    width: 100%;
+    display: table;
+}
+.nz-table-all {
+    border :1px solid #181916;
+}
+.nz-bordered tr, .nz-table-all tr {
+    border-bottom: 1px solid #181916;
+}
+.nz-striped tbody tr:nth-child(odd) {
+    background-color: #181916;
+}
+.nz-table-all tr:nth-child(odd) {
+    background-color:#181916;
+}
+.nz-table-all tr:nth-child(odd) {
+    background-color:#22231c;
+}
+.nz-hoverable tbody tr:hover, .nz-ul.nz-hoverable li:hover {
+    background-color:#181916;
+}
+.nz-centered tr th, .nz-centered tr td {
+    text-align:center;
+}
+.nz-table td, .nz-table-all td, .nz-table th, .nz-table-all th {
+    padding: 16px 24px 16px 24px;
+    display: table-cell;
+    text-align: left;
+    vertical-align: top;
 }
 
 // Layout

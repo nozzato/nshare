@@ -23,6 +23,11 @@ $_SESSION['page'] = 'files';
 <link rel='stylesheet' href='/styles/icons/css/all.css'>
 
 <script src='/scripts/scripts.js' type='text/javascript'></script>
+<script type='text/javascript'>
+function openFile(id) {
+    window.location.href = '/files/edit.php?id=' + id;
+}
+</script>
 
 </head>
 <body class='nz-dark'>
@@ -107,11 +112,12 @@ $_SESSION['page'] = 'files';
         <div class='w3-container w3-padding-16'>
 
             <div class='w3-responsive'>
-                <table class="w3-table">
+                <table class="nz-table nz-striped">
                     <tr>
-                        <th style='padding:8px 24px 8px 24px'>Filename</th>
-                        <th style='padding:8px 24px 8px 24px'>Privacy</th>
-                        <th style='padding:8px 24px 8px 24px'>Delete</th>
+                        <th>Filename <i class='fa fa-fw fa-caret-down'></i></th>
+                        <th>Privacy</i>
+                        </th>
+                        <th>Delete</th>
                     </tr>
 
                     <?php try {
@@ -126,11 +132,11 @@ $_SESSION['page'] = 'files';
                         $file_modal = '"' . $rows[$i]['filename'] . '"' ?>
 
                         <tr>
-                            <td style='padding:8px'><a class='w3-button w3-round' href='/files/edit.php?id=<?php echo $rows[$i]['file_id']; ?>'><?php echo $rows[$i]['filename']; ?></a></td>
+                            <td class='w3-button' onclick='openFile(<?php echo $rows[$i]['file_id']; ?>)'><?php echo $rows[$i]['filename']; ?></td>
 
-                            <td><button class='w3-button w3-round'><?php echo ucfirst($rows[$i]['privacy']); ?></button></td>
+                            <td class='w3-button'><?php echo ucfirst($rows[$i]['privacy']); ?></td>
 
-                            <td><button class='w3-button w3-hover-red w3-round' onclick='openModal(<?php echo $file_modal; ?>)'>Delete</button></td>
+                            <td class='w3-button' onclick='openModal(<?php echo $file_modal; ?>)'>Delete</td>
                         </tr>
 
                     <?php } ?>
