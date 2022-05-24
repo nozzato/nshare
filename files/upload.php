@@ -22,6 +22,10 @@ if(isset($_FILES['upload_file']) || isset($_POST['upload_btn'])) {
             $_SESSION['msg'] = "Error: Filename must be 1023 characters or less";
             go_back();
         }
+        if($file_size > 10737418240) {
+            $_SESSION['msg'] = "Error: File size must be 10 GB characters or less";
+            go_back();
+        }
         if(move_uploaded_file($file_temp, $file_server)) {
             try {
                 $stmt = $pdo-> prepare("SELECT * FROM `files` WHERE `user_id` = ? AND `filename` = ?;");
