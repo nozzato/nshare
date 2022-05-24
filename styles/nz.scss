@@ -4,7 +4,9 @@
 
 // Colors
 
-
+$dark:  #22231c;
+$black: #181916;
+$white: #ffffff;
 
 //////////////
 // Elements //
@@ -62,19 +64,19 @@ input:focus, textarea:focus {
 // Colors
 
 .nz-dark {
-    color: #ffffff;
-    background-color: #22231c;
+    color: $white;
+    background-color: $dark;
 }
 .nz-text-dark {
-    color: #22231c;
+    color: $dark;
 }
 
 .nz-black {
-    color: #ffffff;
-    background-color: #181916;
+    color: $white;
+    background-color: $black;
 }
 .nz-text-black {
-    color: #181916;
+    color: $black;
 }
 
 // Input
@@ -90,16 +92,16 @@ input:focus, textarea:focus {
     display: table;
 }
 .nz-table-all {
-    border :1px solid #181916;
+    border :1px solid $black;
 }
 .nz-bordered tr, .nz-table-all tr {
-    border-bottom: 1px solid #181916;
+    border-bottom: 1px solid $black;
 }
 .nz-striped tbody tr:nth-child(odd) {
-    background-color: #181916;
+    background-color: $black;
 }
 .nz-table-all tbody tr:nth-child(odd) {
-    background-color:#181916;
+    background-color:$black;
 }
 .nz-table td, .nz-table-all td, .nz-table th, .nz-table-all th {
     padding: 16px 24px 16px 24px;
