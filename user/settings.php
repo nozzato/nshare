@@ -100,25 +100,6 @@ $_SESSION['page'] = 'settings';
 </div>
 
 <div class='w3-container w3-padding-16 nz-page w3-center' id='content' style='margin-bottom:38.5px'>
-    <div class='w3-round w3-card-2'>
-
-        <div class='w3-container nz-black nz-round-top'>
-            <h2>Change password</h2>
-        </div>
-
-        <form class='w3-container w3-padding-16' action='/user/password.php' method='POST' onsubmit='return passwordVerify(this)'>
-
-            <input class='w3-input nz-black w3-border-0 w3-round' id='old-password' type='password' placeholder='Old Password' name='password_old'>
-
-            <p></p>
-            <input class='w3-input nz-black w3-border-0 w3-round' id='new-password' type='password' placeholder='New Password' name='password_new'>
-
-            <p></p>
-            <button class='w3-btn w3-green w3-round' type='submit' name='password_btn'>Change</button>
-
-        </form>
-    </div>
-    <br>
     <?php if($_SESSION['rank'] == 'admin') { ?>
     <div class='w3-round w3-card-2'>
 
@@ -128,6 +109,9 @@ $_SESSION['page'] = 'settings';
 
         <form class='w3-container w3-padding-16' action='/user/signup.php' method='POST' onsubmit='return signupVerify(this)'>
 
+            <input class='w3-input nz-black w3-border-0 w3-round' id='signup-email' type='text' placeholder='Email' name='signup_email'>
+
+            <p></p>
             <input class='w3-input nz-black w3-border-0 w3-round' id='signup-username' type='text' placeholder='Username' name='signup_username'>
 
             <p></p>
@@ -153,14 +137,54 @@ $_SESSION['page'] = 'settings';
     <div class='w3-round w3-card-2'>
 
         <div class='w3-container nz-black nz-round-top'>
+            <h2>Change email</h2>
+        </div>
+
+        <form class='w3-container w3-padding-16' action='/user/email.php' method='POST' onsubmit='return emailVerify(this)'>
+
+            <input class='w3-input nz-black w3-border-0 w3-round' id='old-email' type='text' placeholder='Old Email' name='email_old'>
+
+            <p></p>
+            <input class='w3-input nz-black w3-border-0 w3-round' id='new-email' type='text' placeholder='New Email' name='email_new'>
+
+            <p></p>
+            <button class='w3-btn w3-green w3-round' type='submit' name='email_btn'>Change</button>
+
+        </form>
+    </div>
+    <br>
+    <div class='w3-round w3-card-2'>
+
+        <div class='w3-container nz-black nz-round-top'>
+            <h2>Change password</h2>
+        </div>
+
+        <form class='w3-container w3-padding-16' action='/user/password.php' method='POST' onsubmit='return passwordVerify(this)'>
+
+            <input class='w3-input nz-black w3-border-0 w3-round' id='old-password' type='password' placeholder='Old Password' name='password_old'>
+
+            <p></p>
+            <input class='w3-input nz-black w3-border-0 w3-round' id='new-password' type='password' placeholder='New Password' name='password_new'>
+
+            <p></p>
+            <button class='w3-btn w3-green w3-round' type='submit' name='password_btn'>Change</button>
+
+        </form>
+    </div>
+    <br>
+    <div class='w3-round w3-card-2'>
+
+        <div class='w3-container nz-black nz-round-top'>
             <h2>Close account</h2>
         </div>
 
         <form class='w3-container w3-padding-16' action='/user/close.php' method='POST' onsubmit='return closeVerify(this)'>
 
-            <input class='w3-input nz-black w3-border-0 w3-round' id='close-username' type='text' placeholder='Username' name='close_username'>
+            <?php if($_SESSION['rank'] == 'admin') { ?>
+                <input class='w3-input nz-black w3-border-0 w3-round' id='close-username' type='text' placeholder='Username' name='close_username'>
+                <p></p>
+            <?php } ?>
 
-            <p></p>
             <input class='w3-input nz-black w3-border-0 w3-round' id='close-password' type='password' placeholder='Password' name='close_password'>
 
             <p></p>

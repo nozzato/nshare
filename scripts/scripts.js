@@ -21,11 +21,17 @@ function loginVerify() {
 }
 function signupVerify() {
     var msg = document.getElementById('msg');
+    var signupEmail = document.getElementById('signup-email').value;
     var signupUsername = document.getElementById('signup-username').value;
     var signupPassword = document.getElementById('signup-password').value;
 
-    if(signupUsername === '' || signupPassword === '') {
-        msg.innerHTML = 'Error: Both fields are required';
+    if(signupUsername === '' || signupPassword === '' || signupEmail === '') {
+        msg.innerHTML = 'Error: All fields are required';
+        msg.classList.add('w3-text-red');
+        msgClear();
+        return false;
+    } else if(signupEmail.length > 255) {
+        msg.innerHTML = 'Error: Email must be 255 characters or less';
         msg.classList.add('w3-text-red');
         msgClear();
         return false;
@@ -41,6 +47,26 @@ function signupVerify() {
         return false;
     } else if(signupPassword.length > 72) {
         msg.innerHTML = 'Error: Password must be 72 characters or less';
+        msg.classList.add('w3-text-red');
+        msgClear();
+        return false;
+    } else {
+        msgClear();
+        return true;
+    }
+}
+function emailVerify() {
+    var msg = document.getElementById('msg');
+    var oldEmail = document.getElementById('old-email').value;
+    var newEmail = document.getElementById('new-email').value;
+
+    if(oldEmail === '' || newEmail === '') {
+        msg.innerHTML = 'Error: Both fields are required';
+        msg.classList.add('w3-text-red');
+        msgClear();
+        return false;
+    } else if(newEmail.length > 255) {
+        msg.innerHTML = 'Error: New email must be 255 characters or less';
         msg.classList.add('w3-text-red');
         msgClear();
         return false;
@@ -76,11 +102,10 @@ function passwordVerify() {
 }
 function closeVerify() {
     var msg = document.getElementById('msg');
-    var closeUsername = document.getElementById('close-username').value;
     var closePassword = document.getElementById('close-password').value;
 
-    if(closeUsername === '' || closePassword === '') {
-        msg.innerHTML = 'Error: Both fields are required';
+    if(closePassword === '') {
+        msg.innerHTML = 'Error: Password is required';
         msg.classList.add('w3-text-red');
         msgClear();
         return false;
