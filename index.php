@@ -9,7 +9,13 @@ $_SESSION['page'] = 'home';
 <html lang='en'>
 <head>
 
-<title>Dashboard - NShare</title>
+<title>
+    <?php if(!isset($_SESSION['user'])) { ?>
+        Welcome - NShare
+    <?php } else { ?>
+        Dashboard - NShare
+    <?php } ?>
+</title>
 <link rel='icon' type='image/gif' href='/media/favicon.gif'>
 
 <meta charset='utf-8'>
