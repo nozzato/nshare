@@ -156,8 +156,8 @@ $_SESSION['page'] = 'profile';
     <br>
 </div>
 
-<div class='nz-black w3-bottom' id='footer'>
-    <div class='w3-bar'>
+<div class='w3-bottom' id='footer'>
+    <div class='w3-bar nz-black'>
 
         <a class='w3-bar-item w3-button nz-text-black w3-hover-none' href='javascript:void(0)' onclick='toggleFoxes()'>fox.exe</a>
 
