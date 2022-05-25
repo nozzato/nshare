@@ -245,10 +245,7 @@ $file_modal = '"' . $file_name . '"';
 </div>
 
 <div class='w3-bottom' id='footer'>
-    <div class='w3-bar nz-black'>
-
-        <a class='w3-bar-item w3-button nz-text-black w3-hover-none' href='javascript:void(0)' onclick='toggleFoxes()'>fox.exe</a>
-
+    <div class='w3-bar nz-black' style='height:38.5px'>
         <div class='w3-display-bottommiddle' style='bottom:9px'>
             <?php if(isset($_SESSION['msg'])) {
                 if(substr($_SESSION['msg'], 0, 6) == 'Error:') { ?>
@@ -269,19 +266,7 @@ $file_modal = '"' . $file_name . '"';
 
             unset($_SESSION['msg']); ?>
         </div>
-
     </div>
-    <div class='w3-container'>
-        <div id='foxes' style='display:none'>
-            <div class='nz-fox-animate-right nz-ghost'>
-                <img src='/media/fox-bounce-right.gif'>
-            </div>
-            <div class='nz-fox-animate-left nz-ghost'>
-                <img src='/media/fox-bounce-left.gif'>
-            </div>
-        </div>
-    </div>
-
 </div>
 
 </body>
