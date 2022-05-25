@@ -150,7 +150,7 @@ $file_modal = '"' . $file_name . '"';
             <?php if($file_type == 'text' || $file_type == 'empty') { ?>
                 <form action='/files/upload.php' method='POST'>
 
-                    <textarea class='w3-input nz-monospace nz-black w3-border-0 w3-round' rows='20' name='upload_content' autofocus><?php readfile($file_server); ?></textarea>
+                    <textarea class='w3-input w3-monospace nz-black w3-border-0 w3-round' rows='20' name='upload_content' autofocus><?php readfile($file_server); ?></textarea>
 
                     <button class='w3-hide' id='save-btn' type='submit' value='<?php echo $file_name; ?>' name='upload_btn' style='margin-right:5px'>Save</button>
 
