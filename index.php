@@ -24,8 +24,8 @@ $_SESSION['page'] = 'home';
 </head>
 <body class='nz-dark'>
 
-<div class='nz-black' id='header'>
-    <div class='w3-bar'>
+<div id='header'>
+    <div class='w3-bar nz-black'>
 
         <?php if(!isset($_SESSION['user'])) { ?>
             <a class='w3-bar-item w3-button w3-text-blue' href='/index.php'>NShare</a>
