@@ -14,16 +14,25 @@ if(isset($_FILES['upload_file']) || isset($_POST['upload_btn'])) {
         $file_size    = filesize($file_temp);
         $file_privacy = $_POST['upload_privacy'];
 
-        if(strlen($file_name) < 1) {
-            $_SESSION['msg'] = 'Error: Filename must be 1 character or more';
-            go_back();
-        }
         if(strlen($file_name) > 1023) {
             $_SESSION['msg'] = 'Error: Filename must be 1023 characters or less';
             go_back();
         }
-        if($file_size > 10737418240) {
-            $_SESSION['msg'] = 'Error: File size must be 10 GB characters or less';
+        try {
+            $stmt = $pdo-> prepare('SELECT * FROM `files` WHERE `user_id` = ?;');
+            $stmt-> execute([$_SESSION['user']]);
+            $rows = $stmt-> fetchAll(PDO::FETCH_ASSOC);
+            $count = $stmt-> rowCount();
+        } catch (\PDOException $e) {
+            throw new \PDOException($e-> getMessage(), (int)$e-> getCode());
+        }
+        $total_size = 0;
+
+        for($i = 0; $i <= $count - 1; $i++) {
+            $total_size += $rows[$i]['size'];
+        }
+        if($file_size + $total_size > 5368709120) {
+            $_SESSION['msg'] = 'Error: Not enough storage space';
             go_back();
         }
         if(move_uploaded_file($file_temp, $file_server)) {
