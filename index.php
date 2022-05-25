@@ -99,10 +99,9 @@ $_SESSION['page'] = 'home';
 
 <div class='w3-container w3-padding-16 w3-center' id='content' style='margin-bottom:38.5px'>
     <?php if(!isset($_SESSION['user'])) { ?>
-        <h1>Welcome to NShare</h1>
-        <br>
+        <h1><b>Welcome to NShare</b></h1>
         <h2>A file sharing and editing website</h2>
-    <?php } else { 
+    <?php } else {
         try {
             $stmt = $pdo-> prepare('SELECT * FROM `files` WHERE `user_id` = ?;');
             $stmt-> execute([$_SESSION['user']]);
@@ -119,7 +118,7 @@ $_SESSION['page'] = 'home';
             </div>
 
             <div class='w3-padding-16'>
-                <?php 
+                <?php
                 $total_size = 0;
 
                 for($i = 0; $i <= $count - 1; $i++) {
@@ -127,7 +126,7 @@ $_SESSION['page'] = 'home';
                 }
                 $total_size = human_filesize($total_size); ?>
 
-                <span>Storage used: <?php echo $total_size; ?> / 10.00G</span>
+                <span>Storage used: <?php echo $total_size; ?> / 5.00G</span>
             </div>
         
         </div>
