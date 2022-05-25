@@ -11,8 +11,8 @@ if (isset($_POST['login_btn'])) {
         $login_password = trim($_POST['login_password']);
 
         try {
-            $stmt = $pdo-> prepare('SELECT * FROM `users` WHERE `username` = ?;');
-            $stmt-> execute([$login_username]);
+            $stmt = $pdo-> prepare('SELECT * FROM `users` WHERE `email` = ? OR `username` = ?;');
+            $stmt-> execute([$login_username, $login_username]);
             $row = $stmt-> fetch(PDO::FETCH_ASSOC);
         } catch (\PDOException $e) {
             throw new \PDOException($e-> getMessage(), (int)$e-> getCode());
