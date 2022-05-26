@@ -132,7 +132,7 @@ function openFile(id) {
                     } catch (\PDOException $e) {
                         throw new \PDOException($e-> getMessage(), (int)$e-> getCode());
                     }
-                    for($i = 0; $i <= $count - 1; $i++) {
+                    for($i = 0; $i < $count; $i++) {
                         $file_modal = '"' . $rows[$i]['filename'] . '"' ?>
                         <tr>
                             <td class='w3-button' onclick='openFile(<?php echo $rows[$i]['file_id']; ?>)'><?php echo $rows[$i]['filename']; ?></td>
