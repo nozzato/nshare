@@ -130,9 +130,12 @@ $_SESSION['page'] = 'home';
                 for($i = 0; $i <= $count - 1; $i++) {
                     $total_size += $rows[$i]['size'];
                 }
-                $total_size = human_filesize($total_size); ?>
+                $remaining_size = 5368709120 - $total_size; ?>
 
-                <span>Storage used: <?php echo $total_size; ?> / 5.00G</span>
+                <span>Used storage: <?php echo human_filesize($total_size); ?> / 5.00G</span>
+                <br>
+                <br>
+                <span>Available storage: <?php echo human_filesize($remaining_size); ?></span>
             </div>
         
         </div>
