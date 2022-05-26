@@ -173,7 +173,7 @@ function openFile(id) {
 
                 <input class='w3-hide' id='upload-file' type='file' name='upload_file' required>
 
-                <label class='w3-button w3-blue-grey w3-round' for='upload-file' style='cursor:pointer'>Browse...</label>
+                <label class='w3-button w3-blue-grey w3-round' for='upload-file'>Browse...</label>
 
                 <p></p>
                 <span>Privacy</span>
