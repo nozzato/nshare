@@ -149,13 +149,13 @@ function openFile(id) {
                             <b>Total Size</b>
                         </td>
                         <td class='nz-truncate'>
-                            <?php $total_size = 0;
+                            <?php $db_file_size_total = 0;
 
                             for($i = 0; $i <= $count - 1; $i++) {
-                                $total_size += $rows[$i]['size'];
+                                $db_file_size_total += $rows[$i]['size'];
                             } ?>
 
-                            <?php echo human_filesize($total_size); ?> / 5.00G
+                            <?php echo human_filesize($db_file_size_total); ?> / 5.00G
                         </td>
                         <td>
 
@@ -171,7 +171,7 @@ function openFile(id) {
 
                 <button class='w3-button w3-green w3-round' type='submit' name='upload_btn'>Upload</button>
 
-                <input class='w3-hide' id='upload-file' type='file' name='upload_file' required>
+                <input class='w3-hide' id='upload-file' type='file' name='upload_file[]' multiple required>
 
                 <label class='w3-button w3-blue-grey w3-round' for='upload-file'>Browse...</label>
 
