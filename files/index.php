@@ -134,7 +134,6 @@ function openFile(id) {
                     }
                     for($i = 0; $i <= $count - 1; $i++) {
                         $file_modal = '"' . $rows[$i]['filename'] . '"' ?>
-
                         <tr>
                             <td class='w3-button' onclick='openFile(<?php echo $rows[$i]['file_id']; ?>)'><?php echo $rows[$i]['filename']; ?></td>
 
@@ -144,8 +143,28 @@ function openFile(id) {
 
                             <td class='w3-button w3-hover-red' onclick='openModal(<?php echo $file_modal; ?>)'>Delete</td>
                         </tr>
-
                     <?php } ?>
+                        <tr>
+                            <td>
+                                <b>Total Size</b>
+                            </td>
+                            <td>
+                                <?php $total_size = 0;
+
+                                for($i = 0; $i <= $count - 1; $i++) {
+                                    $total_size += $rows[$i]['size'];
+                                }
+                                $total_size = human_filesize($total_size); ?>
+
+                                <?php echo $total_size; ?> / 5.00G
+                            </td>
+                            <td>
+
+                            </td>
+                            <td>
+
+                            </td>
+                        </tr>
                 </table>
             </div>
 
