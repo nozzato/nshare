@@ -9,6 +9,10 @@ if(isset($_FILES['upload_file']) || isset($_POST['upload_btn'])) {
     if(isset($_FILES['upload_file'])) {
 
         $file_count = count($_FILES['upload_file']['name']);
+        if($file_count > 20) {
+            $_SESSION['msg'] = 'Error: Cannot upload more than 20 files at a time';
+            go_back();
+        }
         $file_privacy = $_POST['upload_privacy'];
         $file_size_total = 0;
 
