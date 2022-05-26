@@ -144,27 +144,27 @@ function openFile(id) {
                             <td class='w3-button w3-hover-red' onclick='openModal(<?php echo $file_modal; ?>)'>Delete</td>
                         </tr>
                     <?php } ?>
-                        <tr>
-                            <td>
-                                <b>Total Size</b>
-                            </td>
-                            <td>
-                                <?php $total_size = 0;
+                    <tr>
+                        <td>
+                            <b>Total Size</b>
+                        </td>
+                        <td class='nz-truncate'>
+                            <?php $total_size = 0;
 
-                                for($i = 0; $i <= $count - 1; $i++) {
-                                    $total_size += $rows[$i]['size'];
-                                }
-                                $total_size = human_filesize($total_size); ?>
+                            for($i = 0; $i <= $count - 1; $i++) {
+                                $total_size += $rows[$i]['size'];
+                            }
+                            $total_size = human_filesize($total_size); ?>
 
-                                <?php echo $total_size; ?> / 5.00G
-                            </td>
-                            <td>
+                            <?php echo $total_size; ?> / 5.00G
+                        </td>
+                        <td>
 
-                            </td>
-                            <td>
+                        </td>
+                        <td>
 
-                            </td>
-                        </tr>
+                        </td>
+                    </tr>
                 </table>
             </div>
 
