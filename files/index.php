@@ -116,7 +116,7 @@ function openFile(id) {
         <div class='w3-container w3-padding-16'>
 
             <div class='w3-responsive'>
-                <table class='nz-table-all'>
+                <table class='nz-table'>
                     <tr>
                         <th>Filename <i class='fa fa-fw fa-caret-down'></i></th>
                         <th>Size</th>

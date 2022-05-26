@@ -65,30 +65,27 @@ input:focus, textarea:focus {
   pointer-events: none;
 }
 
-.nz-table, .nz-table-all {
+.nz-table {
   border-collapse: collapse;
   border-spacing: 0;
+  border: 1px solid #181916;
   width: 100%;
   display: table;
 }
 
-.nz-table-all {
-  border: 1px solid #181916;
-}
-
-.nz-bordered tr, .nz-table-all tr {
+.nz-table tr {
   border-bottom: 1px solid #181916;
 }
 
-.nz-striped tbody tr:nth-child(odd) {
+.nz-table tbody tr:first-child {
   background-color: #181916;
 }
 
-.nz-table-all tbody tr:nth-child(odd) {
+.nz-table tbody tr:last-child {
   background-color: #181916;
 }
 
-.nz-table td, .nz-table-all td, .nz-table th, .nz-table-all th {
+.nz-table td, .nz-table th {
   padding: 16px 24px 16px 24px;
   display: table-cell;
   text-align: left;
