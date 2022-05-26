@@ -125,17 +125,17 @@ $_SESSION['page'] = 'home';
 
             <div class='w3-padding-16'>
                 <?php
-                $total_size = 0;
+                $db_file_size_total = 0;
 
                 for($i = 0; $i <= $count - 1; $i++) {
-                    $total_size += $rows[$i]['size'];
+                    $db_file_size_total += $rows[$i]['size'];
                 }
-                $remaining_size = 5368709120 - $total_size; ?>
+                $db_file_size_left = 5368709120 - $db_file_size_total; ?>
 
-                <span>Used storage: <?php echo human_filesize($total_size); ?> / 5.00G</span>
+                <span>Used storage: <?php echo human_filesize($db_file_size_total); ?> / 5.00G</span>
                 <br>
                 <br>
-                <span>Available storage: <?php echo human_filesize($remaining_size); ?></span>
+                <span>Available storage: <?php echo human_filesize($db_file_size_left); ?></span>
             </div>
         
         </div>
