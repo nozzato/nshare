@@ -153,10 +153,9 @@ function openFile(id) {
 
                             for($i = 0; $i <= $count - 1; $i++) {
                                 $total_size += $rows[$i]['size'];
-                            }
-                            $total_size = human_filesize($total_size); ?>
+                            } ?>
 
-                            <?php echo $total_size; ?> / 5.00G
+                            <?php echo human_filesize($total_size); ?> / 5.00G
                         </td>
                         <td>
 
