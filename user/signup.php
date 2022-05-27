@@ -121,7 +121,7 @@ $_SESSION['page'] = 'signup';
             <p></p>
             <input class='w3-input nz-black w3-border-0 w3-round' id='create-password' type='password' placeholder='Password' name='create_password'>
 
-            <p></p>
+            <br>
             <div id='h-captcha' class='h-captcha' data-sitekey='fc621593-608b-4635-be8e-9f43bb5d1e46'></div>
 
             <p></p>
