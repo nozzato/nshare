@@ -3,6 +3,10 @@ session_start();
 include_once('/srv/http/nozzato.com/scripts/scripts.php');
 include_once('/srv/http/nozzato.com/database/connect.php');
 
+if(isset($_SESSION['user'])) {
+    header('location:/');
+    exit;
+}
 $_SESSION['page'] = 'signup';
 ?>
 <!DOCTYPE html>
