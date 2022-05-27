@@ -107,7 +107,7 @@ $_SESSION['page'] = 'settings';
             <h2>Create account</h2>
         </div>
 
-        <form class='w3-container w3-padding-16' action='/user/signup.php' method='POST' onsubmit='return signupVerify(this)'>
+        <form class='w3-container w3-padding-16' action='/user/create.php' method='POST' onsubmit='return signupVerify(this)'>
 
             <input class='w3-input nz-black w3-border-0 w3-round' id='signup-email' type='text' placeholder='Email' name='signup_email'>
 
