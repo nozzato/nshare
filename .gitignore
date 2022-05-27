@@ -14,7 +14,7 @@ files/Member/*
 styles/icons/
 
 # Ignore maintenance switch
-maintenance/enable
+error/maintenance.enable
 
 # Ignore sass map
 styles/nz.css.map
