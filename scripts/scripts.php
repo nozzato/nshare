@@ -1,4 +1,6 @@
 <?php
+session_start();
+
 function go_back() {
     if($_SESSION['page'] == 'home') {
         header('location:/index.php');
