@@ -107,6 +107,8 @@ $_SESSION['page'] = 'home';
     <?php if(!isset($_SESSION['user'])) { ?>
         <h1><b>Welcome to NShare</b></h1>
         <h2>A file sharing and editing website</h2>
+        <br>
+        <p>Don't have an account? <a class='w3-text-blue' href='/user/signup.php'>Sign up now!</a></p>
     <?php } else {
         try {
             $stmt = $pdo-> prepare('SELECT * FROM `files` WHERE `user_id` = ?;');

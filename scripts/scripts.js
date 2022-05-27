@@ -19,33 +19,33 @@ function loginVerify() {
         return true;
     }
 }
-function signupVerify() {
+function createVerify() {
     var msg = document.getElementById('msg');
-    var signupEmail = document.getElementById('signup-email').value;
-    var signupUsername = document.getElementById('signup-username').value;
-    var signupPassword = document.getElementById('signup-password').value;
+    var createEmail = document.getElementById('create-email').value;
+    var createUsername = document.getElementById('create-username').value;
+    var createPassword = document.getElementById('create-password').value;
 
-    if(signupUsername === '' || signupPassword === '' || signupEmail === '') {
+    if(createUsername === '' || createPassword === '' || createEmail === '') {
         msg.innerHTML = 'Error: All fields are required';
         msg.classList.add('w3-text-red');
         msgClear();
         return false;
-    } else if(signupEmail.length > 255) {
+    } else if(createEmail.length > 255) {
         msg.innerHTML = 'Error: Email must be 255 characters or less';
         msg.classList.add('w3-text-red');
         msgClear();
         return false;
-    } else if(signupUsername.length > 50) {
+    } else if(createUsername.length > 50) {
         msg.innerHTML = 'Error: Username must be 50 characters or less';
         msg.classList.add('w3-text-red');
         msgClear();
         return false;
-    } else if(signupPassword.length < 8) {
+    } else if(createPassword.length < 8) {
         msg.innerHTML = 'Error: Password must be 8 characters or more';
         msg.classList.add('w3-text-red');
         msgClear();
         return false;
-    } else if(signupPassword.length > 72) {
+    } else if(createPassword.length > 72) {
         msg.innerHTML = 'Error: Password must be 72 characters or less';
         msg.classList.add('w3-text-red');
         msgClear();

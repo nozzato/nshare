@@ -3,6 +3,9 @@ function go_back() {
     if($_SESSION['page'] == 'home') {
         header('location:/index.php');
         exit;
+    } else if ($_SESSION['page'] == 'signup') {
+        header('location:/user/signup.php');
+        exit;
     } else if($_SESSION['page'] == 'profile') {
         header('location:/user/index.php');
         exit;
