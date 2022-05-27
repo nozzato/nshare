@@ -4,6 +4,8 @@ include_once('/srv/http/nozzato.com/scripts/scripts.php');
 include_once('/srv/http/nozzato.com/database/connect.php');
 
 if(isset($_POST['create_btn'])) {
+    h_captcha($_POST['h-captcha-response']);
+
     if(!empty($_POST['create_username']) && !empty($_POST['create_password']) && !empty($_POST['create_email'])) {
         $create_email = $create_username = $create_password = $create_rank = '';
 

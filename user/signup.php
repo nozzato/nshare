@@ -26,6 +26,7 @@ $_SESSION['page'] = 'signup';
 <link rel='stylesheet' href='/styles/icons/css/all.css'>
 
 <script src='/scripts/scripts.js' type='text/javascript'></script>
+<script src='https://js.hcaptcha.com/1/api.js' async defer></script>
 
 </head>
 <body class='nz-dark'>
@@ -119,6 +120,9 @@ $_SESSION['page'] = 'signup';
 
             <p></p>
             <input class='w3-input nz-black w3-border-0 w3-round' id='create-password' type='password' placeholder='Password' name='create_password'>
+
+            <p></p>
+            <div id='h-captcha' class='h-captcha' data-sitekey='fc621593-608b-4635-be8e-9f43bb5d1e46'></div>
 
             <p></p>
             <button class='w3-btn w3-green w3-round' type='submit' name='create_btn'>Signup</button>
