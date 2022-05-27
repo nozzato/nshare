@@ -15,7 +15,6 @@ function loginVerify() {
         msgClear();
         return false;
     } else {
-        msgClear();
         return true;
     }
 }
@@ -51,7 +50,6 @@ function createVerify() {
         msgClear();
         return false;
     } else {
-        msgClear();
         return true;
     }
 }
@@ -71,7 +69,6 @@ function emailVerify() {
         msgClear();
         return false;
     } else {
-        msgClear();
         return true;
     }
 }
@@ -91,7 +88,6 @@ function usernameVerify() {
         msgClear();
         return false;
     } else {
-        msgClear();
         return true;
     }
 }
@@ -116,7 +112,6 @@ function passwordVerify() {
         msgClear();
         return false;
     } else {
-        msgClear();
         return true;
     }
 }
@@ -130,7 +125,6 @@ function closeVerify() {
         msgClear();
         return false;
     } else {
-        msgClear();
         return true;
     }
 }
