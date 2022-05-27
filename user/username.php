@@ -27,6 +27,9 @@ if(isset($_POST['username_btn'])) {
             $stmt = $pdo-> prepare('SELECT * FROM `users` WHERE `user_id` = ?;');
             $stmt-> execute([$username_user]);
             $row = $stmt-> fetch(PDO::FETCH_ASSOC);
+
+            $stmt = $pdo-> prepare('SELECT * FROM `users` WHERE `username` = ?;');
+            $stmt-> execute([$username_new]);
             $count = $stmt-> rowCount();
         } catch (\PDOException $e) {
             throw new \PDOException($e-> getMessage(), (int)$e-> getCode());
