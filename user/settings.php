@@ -128,7 +128,7 @@ $_SESSION['page'] = 'settings';
             <label for='create-admin'>Admin</label>
 
             <br><br>
-            <div id='h-captcha' class='h-captcha' data-sitekey='fc621593-608b-4635-be8e-9f43bb5d1e46'></div>
+            <div id='h-captcha' class='h-captcha' data-sitekey='fc621593-608b-4635-be8e-9f43bb5d1e46' data-theme='dark'></div>
 
             <p></p>
             <button class='w3-btn w3-green w3-round' type='submit' name='create_btn'>Signup</button>
