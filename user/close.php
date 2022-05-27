@@ -51,7 +51,7 @@ if(isset($_POST['close_btn'])) {
             header('location:logout.php');
             exit;
         } else {
-            $_SESSION['msg'] = 'Error: Invalid username or password';
+            $_SESSION['msg'] = 'Error: Invalid password';
             go_back();
         }
     } else {
