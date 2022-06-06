@@ -13,8 +13,8 @@ files/Member/*
 # Ignore font awesome icons
 styles/icons/
 
-# Ignore maintenance switch
-error/maintenance.enable
-
 # Ignore sass map
 styles/nz.css.map
+
+# Ignore maintenance switch
+status/maintenance.enable
