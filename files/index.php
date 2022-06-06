@@ -3,6 +3,10 @@ session_start();
 include_once('/srv/http/nozzato.com/scripts/scripts.php');
 include_once('/srv/http/nozzato.com/database/connect.php');
 
+if($_SESSION['ban_status'] >= 1) {
+    header('location:/status/banned.php');
+    exit;
+}
 if(!isset($_SESSION['user'])) {
     header('location:/');
     exit;

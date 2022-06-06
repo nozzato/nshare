@@ -18,9 +18,11 @@ if (isset($_POST['login_btn'])) {
             throw new \PDOException($e-> getMessage(), (int)$e-> getCode());
         }
         if(password_verify($login_password, $row['password'])) {
-            $_SESSION['user']     = $row['user_id'];
-            $_SESSION['username'] = $row['username'];
-            $_SESSION['rank']     = $row['rank'];
+            $_SESSION['user']       = $row['user_id'];
+            $_SESSION['username']   = $row['username'];
+            $_SESSION['rank']       = $row['rank'];
+            $_SESSION['ban_status'] = $row['ban_status'];
+            $_SESSION['ban_reason'] = $row['ban_reason'];
 
             $_SESSION['msg'] = 'Logged in';
         } else {

@@ -2,6 +2,10 @@
 session_start();
 include_once('/srv/http/nozzato.com/database/connect.php');
 
+if($_SESSION['ban_status'] >= 1) {
+    header('location:/status/banned.php');
+    exit;
+}
 if(!isset($_SESSION['user'])) {
     header('location:/');
     exit;
@@ -136,8 +140,7 @@ $_SESSION['page'] = 'profile';
             <table class='w3-table'>
                 <tr>
                     <th>Username</th>
-                    <th class='w3-tooltip'>
-                        User ID
+                    <th class='w3-tooltip'>User ID
                         <span class='w3-text w3-text-blue w3-tag w3-round w3-margin-left' style='position:absolute'>
                             <a href='javascript:void(0)' onclick='copy()'>Share</a>
                         </span>
@@ -153,7 +156,29 @@ $_SESSION['page'] = 'profile';
         </div>
 
     </div>
+    <?php if($_SESSION['rank'] == 'admin') { ?>
     <br>
+    <div class='w3-round w3-card-2'>
+
+        <div class='w3-container nz-black nz-round-top'>
+            <h2>Ban account</h2>
+        </div>
+        
+        <form class='w3-container w3-padding-16' action='/user/ban.php' method='POST' onsubmit='return banVerify(this)'>
+
+            <input class='w3-input nz-black w3-border-0 w3-round' id='ban-user' type='text' placeholder='User ID' name='ban_user'>
+            <p></p>
+
+            <p></p>
+            <input class='w3-input nz-black w3-border-0 w3-round' id='ban-reason' type='text' placeholder='Reason' name='ban_reason'>
+
+            <p></p>
+            <button class='w3-btn w3-red w3-round' type='submit' name='ban_btn'>Ban</button>
+
+        </form>
+
+    </div>
+    <?php } ?>
 </div>
 
 <div class='w3-bottom' id='footer'>

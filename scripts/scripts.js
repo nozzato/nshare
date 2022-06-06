@@ -128,6 +128,25 @@ function closeVerify() {
         return true;
     }
 }
+function banVerify() {
+    var msg = document.getElementById('msg');
+    var banUser = document.getElementById('ban-user').value;
+    var banReason = document.getElementById('ban-reason').value;
+
+    if(banUser === '' || banReason === '') {
+        msg.innerHTML = 'Error: Both fields are required';
+        msg.classList.add('w3-text-red');
+        msgClear();
+        return false;
+    } else if(banReason.length > 255) {
+        msg.innerHTML = 'Error: Reason must be 255 characters or less';
+        msg.classList.add('w3-text-red');
+        msgClear();
+        return false;
+    } else {
+        return true;
+    }
+}
 
 function dropdownToggle() {
     var dropdown = document.getElementById('dropdown');

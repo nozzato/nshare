@@ -1,6 +1,10 @@
 <?php
 session_start();
 
+if($_SESSION['ban_status'] >= 1) {
+    header('location:/status/banned.php');
+    exit;
+}
 if(!isset($_SESSION['user'])) {
     header('location:/');
     exit;
