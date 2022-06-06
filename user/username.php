@@ -42,6 +42,8 @@ if(isset($_POST['username_btn'])) {
                 } catch (\PDOException $e) {
                     throw new \PDOException($e-> getMessage(), (int)$e-> getCode());
                 }
+                $_SESSION['username'] = $username_new;
+
                 $_SESSION['msg'] = 'Username changed';
                 go_back();
             } else {
