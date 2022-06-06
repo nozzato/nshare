@@ -21,7 +21,7 @@ if(isset($_FILES['upload_file']) || isset($_POST['upload_btn'])) {
             $file_size = filesize($file_temp);
             $file_size_total = $file_size;
 
-            $file_name = $_FILES['upload_file']['name'][0];
+            $file_name = trim($_FILES['upload_file']['name'][0], '.');
             if(strlen($file_name) > 1023) {
                 $_SESSION['msg'] = 'Error: Filename must be 1023 characters or less';
                 go_back();
@@ -32,7 +32,7 @@ if(isset($_FILES['upload_file']) || isset($_POST['upload_btn'])) {
                 $file_size = filesize($file_temp);
                 $file_size_total += $file_size;
 
-                $file_name = $_FILES['upload_file']['name'][$i];
+                $file_name = trim($_FILES['upload_file']['name'][$i], '.');
                 if(strlen($file_name) > 1023) {
                     $_SESSION['msg'] = 'Error: Filenames must be 1023 characters or less';
                     go_back();
@@ -57,7 +57,7 @@ if(isset($_FILES['upload_file']) || isset($_POST['upload_btn'])) {
             go_back();
         }
         for($i = 0; $i < $file_count; $i++) {
-            $file_name   = $_FILES['upload_file']['name'][$i];
+            $file_name   = trim($_FILES['upload_file']['name'][$i], '.');
             $file        = $file_path . $file_name;
             $file_server = $file_path_server . $file_name;
             $file_temp   = $_FILES['upload_file']['tmp_name'][$i];
