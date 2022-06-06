@@ -109,7 +109,7 @@ $_SESSION['page'] = 'signup';
 </div>
 
 <div class='w3-container w3-padding-16 w3-center' id='content' style='margin-bottom:38.5px'>
-    <div class='w3-round nz-page w3-card-2'>
+    <div class='w3-round w3-card-2 nz-page'>
 
         <div class='w3-container nz-black nz-round-top'>
             <h2>Create account</h2>

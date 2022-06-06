@@ -123,7 +123,7 @@ $_SESSION['page'] = 'home';
             throw new \PDOException($e-> getMessage(), (int)$e-> getCode());
         } ?>
 
-        <div class='w3-round nz-page w3-card-2'>
+        <div class='w3-round w3-card-2 nz-page'>
 
             <div class='w3-container nz-black nz-round-top'>
                 <h2>Stats</h2>

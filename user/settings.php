@@ -104,9 +104,9 @@ $_SESSION['page'] = 'settings';
     </div>
 </div>
 
-<div class='w3-container w3-padding-16 nz-page w3-center' id='content' style='margin-bottom:38.5px'>
+<div class='w3-container w3-padding-16 w3-center' id='content' style='margin-bottom:38.5px'>
     <?php if($_SESSION['rank'] == 'admin') { ?>
-    <div class='w3-round w3-card-2'>
+    <div class='w3-round w3-card-2 nz-page'>
 
         <div class='w3-container nz-black nz-round-top'>
             <h2>Create account</h2>
@@ -142,7 +142,7 @@ $_SESSION['page'] = 'settings';
     </div>
     <br>
     <?php } ?>
-    <div class='w3-round w3-card-2'>
+    <div class='w3-round w3-card-2 nz-page'>
 
         <div class='w3-container nz-black nz-round-top'>
             <h2>Change email</h2>
@@ -166,7 +166,7 @@ $_SESSION['page'] = 'settings';
         </form>
     </div>
     <br>
-    <div class='w3-round w3-card-2'>
+    <div class='w3-round w3-card-2 nz-page'>
 
         <div class='w3-container nz-black nz-round-top'>
             <h2>Change username</h2>
@@ -190,7 +190,7 @@ $_SESSION['page'] = 'settings';
         </form>
     </div>
     <br>
-    <div class='w3-round w3-card-2'>
+    <div class='w3-round w3-card-2 nz-page'>
 
         <div class='w3-container nz-black nz-round-top'>
             <h2>Change password</h2>
@@ -214,7 +214,7 @@ $_SESSION['page'] = 'settings';
         </form>
     </div>
     <br>
-    <div class='w3-round w3-card-2'>
+    <div class='w3-round w3-card-2 nz-page'>
 
         <div class='w3-container nz-black nz-round-top'>
             <h2>Close account</h2>
