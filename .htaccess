@@ -1,11 +1,18 @@
 RewriteEngine On
+
+<Files ~ '^\.(htaccess|htpasswd)$'>
+deny from all
+</Files>
+
+ErrorDocument 404 /status/404.html
+
 RewriteCond %{REMOTE_ADDR} !127.0.0.1
-RewriteCond %{DOCUMENT_ROOT}/status/maintenance.html -f
-RewriteCond %{DOCUMENT_ROOT}/status/maintenance.enable -f
-RewriteCond %{SCRIPT_FILENAME} !maintenance.html
+RewriteCond %{DOCUMENT_ROOT}/status/503.html -f
+RewriteCond %{DOCUMENT_ROOT}/status/503.enable -f
+RewriteCond %{SCRIPT_FILENAME} !503.html
 RewriteCond %{REQUEST_URI} !/media/favicon.gif
 RewriteCond %{REQUEST_URI} !/styles/w3.css
 RewriteCond %{REQUEST_URI} !/media/engineer-at-work.webp
-RewriteRule ^.*$ /status/maintenance.html [R=503,L]
-ErrorDocument 503 /status/maintenance.html
-Header Set Cache-Control "max-age=0, no-store"
+RewriteRule ^.*$ /status/503.html [R=503,L]
+ErrorDocument 503 /status/503.html
+Header Set Cache-Control 'max-age=0, no-store'
