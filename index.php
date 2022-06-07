@@ -88,7 +88,7 @@ $_SESSION['page'] = 'home';
             <div class='w3-dropdown-content w3-bar-block nz-black nz-round-bottom-left w3-card-2 nz-dropdown-left' style='max-width:100px'>
 
                 <a class='w3-bar-item w3-button' href='/user/index.php?id=<?php echo $_SESSION['user']; ?>'>
-                    <i class='fa fa-fw fa-user'></i> <?php echo $_SESSION['username']; ?>
+                    <i class='fa fa-fw fa-user'></i> <?php echo $_SESSION['username']; ?><span class='w3-text-gray'>#<?php echo $_SESSION['user']; ?></span>
                 </a>
 
                 <a class='w3-bar-item w3-button' href='/user/settings.php'>
