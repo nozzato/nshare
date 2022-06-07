@@ -13,12 +13,7 @@ $_SESSION['page'] = 'signup';
 <html lang='en'>
 <head>
 
-<title>
-    <?php if(!isset($_SESSION['user'])) { ?>
-        Welcome - NShare
-    <?php } else { ?>
-        Dashboard - NShare
-    <?php } ?>
+<title>Signup - NShare
 </title>
 <link rel='icon' type='image/gif' href='/media/favicon.gif'>
 
@@ -112,7 +107,7 @@ $_SESSION['page'] = 'signup';
     <div class='w3-round w3-card-2 nz-page'>
 
         <div class='w3-container nz-black nz-round-top'>
-            <h2>Create account</h2>
+            <h2>Create Account</h2>
         </div>
 
         <form class='w3-container w3-padding-16' action='/user/create.php' method='POST' onsubmit='return createVerify(this)'>

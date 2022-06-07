@@ -125,29 +125,19 @@ $_SESSION['page'] = 'home';
 
         <h1><b>Welcome, <?php echo $_SESSION['username']; ?></b></h1>
 
+        <p></p>
+        <?php
+        $db_file_size_total = 0;
+
+        for($i = 0; $i <= $count - 1; $i++) {
+            $db_file_size_total += $rows[$i]['size'];
+        }
+        $db_file_size_left = 5368709120 - $db_file_size_total; ?>
+
+        <span>Used Storage: <?php echo human_filesize($db_file_size_total); ?> / 5.00G</span>
+
         <br>
-        <div class='w3-round w3-card-2 nz-page'>
-
-            <div class='w3-container nz-black nz-round-top'>
-                <h2>Stats</h2>
-            </div>
-
-            <div class='w3-padding-16'>
-                <?php
-                $db_file_size_total = 0;
-
-                for($i = 0; $i <= $count - 1; $i++) {
-                    $db_file_size_total += $rows[$i]['size'];
-                }
-                $db_file_size_left = 5368709120 - $db_file_size_total; ?>
-
-                <span>Used storage: <?php echo human_filesize($db_file_size_total); ?> / 5.00G</span>
-                <br>
-                <br>
-                <span>Available storage: <?php echo human_filesize($db_file_size_left); ?></span>
-            </div>
-        
-        </div>
+        <span>Available Storage: <?php echo human_filesize($db_file_size_left); ?></span>
 
     <?php } ?>
 </div>

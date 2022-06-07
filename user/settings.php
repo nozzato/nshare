@@ -109,7 +109,7 @@ $_SESSION['page'] = 'settings';
     <div class='w3-round w3-card-2 nz-page'>
 
         <div class='w3-container nz-black nz-round-top'>
-            <h2>Create account</h2>
+            <h2>Create Account</h2>
         </div>
 
         <form class='w3-container w3-padding-16' action='/user/create.php' method='POST' onsubmit='return createVerify(this)'>
@@ -145,7 +145,7 @@ $_SESSION['page'] = 'settings';
     <div class='w3-round w3-card-2 nz-page'>
 
         <div class='w3-container nz-black nz-round-top'>
-            <h2>Change email</h2>
+            <h2>Change Email</h2>
         </div>
 
         <form class='w3-container w3-padding-16' action='/user/email.php' method='POST' onsubmit='return emailVerify(this)'>
@@ -169,7 +169,7 @@ $_SESSION['page'] = 'settings';
     <div class='w3-round w3-card-2 nz-page'>
 
         <div class='w3-container nz-black nz-round-top'>
-            <h2>Change username</h2>
+            <h2>Change Username</h2>
         </div>
 
         <form class='w3-container w3-padding-16' action='/user/username.php' method='POST' onsubmit='return usernameVerify(this)'>
@@ -193,7 +193,7 @@ $_SESSION['page'] = 'settings';
     <div class='w3-round w3-card-2 nz-page'>
 
         <div class='w3-container nz-black nz-round-top'>
-            <h2>Change password</h2>
+            <h2>Change Password</h2>
         </div>
 
         <form class='w3-container w3-padding-16' action='/user/password.php' method='POST' onsubmit='return passwordVerify(this)'>
@@ -217,7 +217,7 @@ $_SESSION['page'] = 'settings';
     <div class='w3-round w3-card-2 nz-page'>
 
         <div class='w3-container nz-black nz-round-top'>
-            <h2>Close account</h2>
+            <h2>Close Account</h2>
         </div>
 
         <form class='w3-container w3-padding-16' action='/user/close.php' method='POST' onsubmit='return closeVerify(this)'>

@@ -36,7 +36,7 @@ if($row['ban_status'] == 0) {
 <html lang='en'>
 <head>
 
-<title>Error: Account Banned - NShare</title>
+<title>Account Banned - NShare</title>
 <link rel='icon' type='image/gif' href='/media/favicon.gif'>
 
 <meta charset='utf-8'>

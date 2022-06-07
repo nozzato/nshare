@@ -47,7 +47,7 @@ $_SESSION['page'] = 'profile';
 <html lang='en'>
 <head>
 
-<title>Profile: <?php echo $_SESSION['username']; ?> - NShare</title>
+<title>Profile: <?php echo $username; ?> - NShare</title>
 <link rel='icon' type='image/gif' href='/media/favicon.gif'>
 
 <meta charset='utf-8'>
@@ -173,7 +173,7 @@ $_SESSION['page'] = 'profile';
     <div class='w3-round nz-page w3-card-2'>
 
         <div class='w3-container nz-black nz-round-top'>
-            <h2>Ban account</h2>
+            <h2>Ban Account</h2>
         </div>
         
         <form class='w3-container w3-padding-16' action='/user/ban.php' method='POST' onsubmit='return banVerify(this)'>
