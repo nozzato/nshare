@@ -12,7 +12,7 @@ if(isset($_POST['create_btn'])) {
         $create_email    = trim($_POST['create_email']);
         $create_username = trim($_POST['create_username']);
         $create_password = trim($_POST['create_password']);
-        if(isset($_POST['rank'])) {
+        if(isset($_POST['create_rank'])) {
             $create_rank = $_POST['create_rank'];
         } else {
             $create_rank = 'member';
@@ -47,7 +47,7 @@ if(isset($_POST['create_btn'])) {
         }
         if($count == 0) {
             try {
-                $stmt = $pdo-> prepare('INSERT INTO `users` (`email`, `username`, `password`, `rank`) VALUES (?, ?, ?, ?);');
+                $stmt = $pdo-> prepare('INSERT INTO `users` (`email`, `username`, `password`, `rank`, `ban_status`) VALUES (?, ?, ?, ?, 0);');
                 $stmt-> execute([$create_email, $create_username, password_hash($create_password, PASSWORD_DEFAULT), $create_rank]);
             } catch (\PDOException $e) {
                 throw new \PDOException($e-> getMessage(), (int)$e-> getCode());
