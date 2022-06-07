@@ -157,6 +157,13 @@ function dropdownToggle() {
         dropdown.className = dropdown.className.replace(' w3-show', '');
     }
 }
+function openPage(pageName) {
+    var pages = document.getElementsByClassName('page');
+    for (var i = 0; i < pages.length; i++) {
+        pages[i].style.display = 'none';
+    }
+    document.getElementById(pageName).style.display = 'block';
+}
 function openModal(content) {
     document.getElementById('modal').style.display = 'block';
     document.getElementById('modal-content').innerHTML = content;
