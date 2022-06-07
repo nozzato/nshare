@@ -11,6 +11,10 @@ try {
     $stmt-> execute([$_SESSION['user']]);
     $row = $stmt-> fetch(PDO::FETCH_ASSOC);
 
+    $stmt = $pdo-> prepare('SELECT `username` FROM `users` WHERE `user_id` = ?;');
+    $stmt-> execute([$row['ban_judge']]);
+    $ban_judge = $stmt-> fetchColumn();
+
     $stmt = $pdo-> prepare('SELECT DATE_FORMAT(`ban_date`, "%d.%m.%Y") FROM `users` WHERE `user_id` = ?;');
     $stmt-> execute([$_SESSION['user']]);
     $row['ban_date'] = $stmt-> fetchColumn();
@@ -65,21 +69,21 @@ if($row['ban_status'] == 0) {
 
         <p>We have found your account in violation of our rules.</p>
 
-        <p>Your files will be deleted automatically on the <b><?php echo $ban_date_deadline; ?></b>.<br><a class='w3-text-blue' href='/files/export-all.php'>Click here</a> to download your files before they are deleted.</p>
+        <p>Your files will be deleted automatically on the <b><?php echo $ban_date_deadline; ?></b>.<br><a class='w3-text-blue' href='/files/index.php'>Click here</a> to download your files before they are deleted.</p>
 
         <span>Username:</span>
-        <span><?php echo $_SESSION['username']; ?></span>
+        <span><?php echo $_SESSION['username']; ?><span class='w3-text-gray' title='User ID'>#<?php echo $_SESSION['user']; ?></span></span>
 
         <br>
-        <span>User ID:</span>
-        <span><?php echo $_SESSION['user']; ?></span>
+        <span>Banned By:</span>
+        <span><?php echo $ban_judge; ?><span class='w3-text-gray' title='User ID'>#<?php echo $row['ban_judge']; ?></span></span>
 
         <br>
-        <span>Ban date:</span>
+        <span>Ban Date:</span>
         <span><?php echo $row['ban_date']; ?></span>
 
         <br>
-        <span>Ban reason:</span>
+        <span>Ban Reason:</span>
         <span><?php echo $row['ban_reason']; ?></span>
     </div>
 </div>
