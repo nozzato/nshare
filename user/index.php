@@ -2,10 +2,6 @@
 session_start();
 include_once('/srv/http/nozzato.com/database/connect.php');
 
-if($_SESSION['ban_status'] >= 1) {
-    header('location:/status/banned.php');
-    exit;
-}
 if(!isset($_SESSION['user'])) {
     header('location:/');
     exit;
@@ -18,7 +14,11 @@ if($_GET['id'] == $_SESSION['user']) {
     $user       = $_SESSION['user'];
     $username   = $_SESSION['username'];
     $rank       = $_SESSION['rank'];
-    $ban_status = 'Unbanned';
+    if($_SESSION['ban_status'] == 0) {
+        $ban_status = 'Unbanned';
+    } else {
+        $ban_status = 'Banned';
+    }
 } else {
     try {
         $stmt = $pdo-> prepare('SELECT * FROM `users` WHERE `user_id` = ?;');
@@ -119,9 +119,11 @@ $_SESSION['page'] = 'profile';
                     <i class='fa fa-fw fa-user'></i> <?php echo $_SESSION['username']; ?><span class='w3-text-gray'>#<?php echo $_SESSION['user']; ?></span>
                 </a>
 
-                <a class='w3-bar-item w3-button' href='/user/settings.php'>
-                    <i class='fa fa-fw fa-gear'></i> Settings
-                </a>
+                <?php if(!$_SESSION['ban_status'] >= 1) { ?>
+                    <a class='w3-bar-item w3-button' href='/user/settings.php'>
+                        <i class='fa fa-fw fa-gear'></i> Settings
+                    </a>
+                <?php } ?>
 
                 <form action='/user/logout.php' method='POST'>
                     <button class='w3-bar-item w3-button w3-red nz-round-bottom-left' type='submit' name='logout_btn'>
@@ -154,6 +156,8 @@ $_SESSION['page'] = 'profile';
                     <?php if($_SESSION['rank'] == 'admin') { ?>
                         <th>Rank</th>
                         <th>Ban Status</th>
+                    <?php } else if($_SESSION['ban_status'] >= 1 && $user == $_SESSION['user']) { ?>
+                        <th>Ban Status</th>
                     <?php } ?>
                 </tr>
                 <tr>
@@ -161,6 +165,8 @@ $_SESSION['page'] = 'profile';
                     <td id='userId'><?php echo $user; ?></td>
                     <?php if($_SESSION['rank'] == 'admin') { ?>
                         <td><?php echo ucfirst($rank); ?></td>
+                        <td><?php echo $ban_status; ?></td>
+                    <?php } else if($_SESSION['ban_status'] >= 1 && $user == $_SESSION['user']) { ?>
                         <td><?php echo $ban_status; ?></td>
                     <?php } ?>
                 </tr>

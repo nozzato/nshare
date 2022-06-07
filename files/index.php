@@ -3,10 +3,6 @@ session_start();
 include_once('/srv/http/nozzato.com/scripts/scripts.php');
 include_once('/srv/http/nozzato.com/database/connect.php');
 
-if($_SESSION['ban_status'] >= 1) {
-    header('location:/status/banned.php');
-    exit;
-}
 if(!isset($_SESSION['user'])) {
     header('location:/');
     exit;
@@ -94,9 +90,11 @@ function openFile(id) {
                     <i class='fa fa-fw fa-user'></i> <?php echo $_SESSION['username']; ?><span class='w3-text-gray'>#<?php echo $_SESSION['user']; ?></span>
                 </a>
 
-                <a class='w3-bar-item w3-button' href='/user/settings.php'>
-                    <i class='fa fa-fw fa-gear'></i> Settings
-                </a>
+                <?php if(!$_SESSION['ban_status'] >= 1) { ?>
+                    <a class='w3-bar-item w3-button' href='/user/settings.php'>
+                        <i class='fa fa-fw fa-gear'></i> Settings
+                    </a>
+                <?php } ?>
 
                 <form action='/user/logout.php' method='POST'>
                     <button class='w3-bar-item w3-button w3-red nz-round-bottom-left' type='submit' name='logout_btn'>
@@ -124,8 +122,10 @@ function openFile(id) {
                     <tr>
                         <th>Filename <i class='fa fa-fw fa-caret-down'></i></th>
                         <th>Size</th>
-                        <th>Privacy</th>
-                        <th>Delete</th>
+                        <?php if(!$_SESSION['ban_status'] >= 1) { ?>
+                            <th>Privacy</th>
+                            <th>Delete</th>
+                        <?php } ?>
                     </tr>
 
                     <?php try {
@@ -143,9 +143,11 @@ function openFile(id) {
 
                             <td><?php echo human_filesize($rows[$i]['size']); ?></td>
 
-                            <td class='w3-button'><?php echo ucfirst($rows[$i]['privacy']); ?></td>
+                            <?php if(!$_SESSION['ban_status'] >= 1) { ?>
+                                <td class='w3-button'><?php echo ucfirst($rows[$i]['privacy']); ?></td>
 
-                            <td class='w3-button w3-hover-red' onclick='openModal(<?php echo $file_modal; ?>)'>Delete</td>
+                                <td class='w3-button w3-hover-red' onclick='openModal(<?php echo $file_modal; ?>)'>Delete</td>
+                            <?php } ?>
                         </tr>
                     <?php } ?>
                     <tr>
@@ -161,34 +163,43 @@ function openFile(id) {
 
                             <?php echo human_filesize($db_file_size_total); ?> / 5.00G
                         </td>
-                        <td>
+                        <?php if(!$_SESSION['ban_status'] >= 1) { ?>
+                            <td>
 
-                        </td>
-                        <td>
+                            </td>
+                            <td>
 
-                        </td>
+                            </td>
+                        <?php } ?>
                     </tr>
                 </table>
             </div>
 
-            <form class='w3-margin-top' action='/files/upload.php' method='POST' enctype='multipart/form-data'>
+            <?php if(!$_SESSION['ban_status'] >= 1) { ?>
+                <form class='w3-margin-top' action='/files/upload.php' method='POST' enctype='multipart/form-data'>
 
-                <button class='w3-button w3-green w3-round' type='submit' name='upload_btn'>Upload</button>
+                    <button class='w3-button w3-green w3-round' type='submit' name='upload_btn'>Upload</button>
 
-                <input class='w3-hide' id='upload-file' type='file' name='upload_file[]' multiple required>
+                    <input class='w3-hide' id='upload-file' type='file' name='upload_file[]' multiple required>
 
-                <label class='w3-button w3-blue-grey w3-round' for='upload-file'>Browse...</label>
+                    <label class='w3-button w3-blue-grey w3-round' for='upload-file'>Browse...</label>
 
+                    <p></p>
+                    <span>Privacy</span>
+
+                    <input class='w3-radio' id='upload-private' type='radio' value='private' name='upload_privacy' checked>
+                    <label for='upload-private'>Private</label>
+
+                    <input class='w3-radio' id='upload-public' type='radio' value='public' name='upload_privacy'>
+                    <label for='upload-public'>Public</label>
+
+                </form>
+            <?php } else { ?>
                 <p></p>
-                <span>Privacy</span>
-
-                <input class='w3-radio' id='upload-private' type='radio' value='private' name='upload_privacy' checked>
-                <label for='upload-private'>Private</label>
-
-                <input class='w3-radio' id='upload-public' type='radio' value='public' name='upload_privacy'>
-                <label for='upload-public'>Public</label>
-
-            </form>
+                <form action='/files/download.php' method='POST'>
+                    <button class='w3-button w3-blue w3-round' name='download_all_btn'>Export All</button>
+                </form>
+            <?php } ?>
 
         </div>
 

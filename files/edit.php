@@ -3,10 +3,6 @@ session_start();
 include_once('/srv/http/nozzato.com/scripts/scripts.php');
 include_once('/srv/http/nozzato.com/database/connect.php');
 
-if($_SESSION['ban_status'] >= 1) {
-    header('location:/status/banned.php');
-    exit;
-}
 if(!isset($_SESSION['user'])) {
     header('location:/');
     exit;
@@ -126,9 +122,11 @@ $file_modal = '"' . $file_name . '"';
                     <i class='fa fa-fw fa-user'></i> <?php echo $_SESSION['username']; ?><span class='w3-text-gray'>#<?php echo $_SESSION['user']; ?></span>
                 </a>
 
-                <a class='w3-bar-item w3-button' href='/user/settings.php'>
-                    <i class='fa fa-fw fa-gear'></i> Settings
-                </a>
+                <?php if(!$_SESSION['ban_status'] >= 1) { ?>
+                    <a class='w3-bar-item w3-button' href='/user/settings.php'>
+                        <i class='fa fa-fw fa-gear'></i> Settings
+                    </a>
+                <?php } ?>
 
                 <form action='/user/logout.php' method='POST'>
                     <button class='w3-bar-item w3-button w3-red nz-round-bottom-left' type='submit' name='logout_btn'>
@@ -154,7 +152,7 @@ $file_modal = '"' . $file_name . '"';
             <?php if($file_type == 'text' || $file_type == 'empty') { ?>
                 <form action='/files/upload.php' method='POST'>
 
-                    <textarea class='w3-input w3-monospace nz-black w3-border-0 w3-round' rows='20' name='upload_content' autofocus><?php readfile($file_server); ?></textarea>
+                    <textarea class='w3-input w3-monospace nz-black w3-border-0 w3-round' rows='20' name='upload_content' autofocus <?php if($_SESSION['ban_status'] >= 1) { ?>readonly<?php }?>><?php readfile($file_server); ?></textarea>
 
                     <button class='w3-hide' id='save-btn' type='submit' value='<?php echo $file_name; ?>' name='upload_btn' style='margin-right:5px'>Save</button>
 
@@ -201,15 +199,17 @@ $file_modal = '"' . $file_name . '"';
             <p></p>
             <div class='w3-bar'>
 
-                <?php if($file_type == 'text') { ?>
-                    <label class='w3-button w3-bar-item w3-green w3-round' for='save-btn' style='cursor:pointer; margin-right:5px'>
-                        <i class='fa fa-floppy-disk'></i> Save
-                    </label>
-                <?php } ?>
+                <?php if(!$_SESSION['ban_status'] >= 1) { ?>
+                    <?php if($file_type == 'text') { ?>
+                        <label class='w3-button w3-bar-item w3-green w3-round' for='save-btn' style='cursor:pointer; margin-right:5px'>
+                            <i class='fa fa-floppy-disk'></i> Save
+                        </label>
+                    <?php } ?>
 
-                <button class='w3-button w3-bar-item w3-red w3-round' onclick='openModal(<?php echo $file_modal ?>)' style='margin-right:5px'>
-                    <i class='fa fa-trash-can'></i> Delete
-                </button>
+                    <button class='w3-button w3-bar-item w3-red w3-round' onclick='openModal(<?php echo $file_modal ?>)' style='margin-right:5px'>
+                        <i class='fa fa-trash-can'></i> Delete
+                    </button>
+                <?php } ?>
 
                 <form action='/files/download.php' method='POST'>
                     <button class='w3-button w3-bar-item w3-blue w3-round' value='<?php echo $file_name; ?>' name='download_btn' style='margin-right:5px'>

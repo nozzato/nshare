@@ -91,9 +91,11 @@ $_SESSION['page'] = 'home';
                     <i class='fa fa-fw fa-user'></i> <?php echo $_SESSION['username']; ?><span class='w3-text-gray'>#<?php echo $_SESSION['user']; ?></span>
                 </a>
 
-                <a class='w3-bar-item w3-button' href='/user/settings.php'>
-                    <i class='fa fa-fw fa-gear'></i> Settings
-                </a>
+                <?php if(!$_SESSION['ban_status'] >= 1) { ?>
+                    <a class='w3-bar-item w3-button' href='/user/settings.php'>
+                        <i class='fa fa-fw fa-gear'></i> Settings
+                    </a>
+                <?php } ?>
 
                 <form action='/user/logout.php' method='POST'>
                     <button class='w3-bar-item w3-button w3-red nz-round-bottom-left' type='submit' name='logout_btn'>
