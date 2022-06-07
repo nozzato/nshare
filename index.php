@@ -123,6 +123,9 @@ $_SESSION['page'] = 'home';
             throw new \PDOException($e-> getMessage(), (int)$e-> getCode());
         } ?>
 
+        <h1><b>Welcome, <?php echo $_SESSION['username']; ?></b></h1>
+
+        <br>
         <div class='w3-round w3-card-2 nz-page'>
 
             <div class='w3-container nz-black nz-round-top'>
