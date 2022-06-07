@@ -15,9 +15,10 @@ if(!isset($_GET['id'])) {
     exit;
 }
 if($_GET['id'] == $_SESSION['user']) {
-    $user     = $_SESSION['user'];
-    $username = $_SESSION['username'];
-    $rank     = $_SESSION['rank'];
+    $user       = $_SESSION['user'];
+    $username   = $_SESSION['username'];
+    $rank       = $_SESSION['rank'];
+    $ban_status = 'Unbanned';
 } else {
     try {
         $stmt = $pdo-> prepare('SELECT * FROM `users` WHERE `user_id` = ?;');
@@ -34,6 +35,11 @@ if($_GET['id'] == $_SESSION['user']) {
     $user     = $row['user_id'];
     $username = $row['username'];
     $rank     = $row['rank'];
+    if($row['ban_status'] == 0) {
+        $ban_status = 'Unbanned';
+    } else {
+        $ban_status = 'Banned';
+    }
 }
 $_SESSION['page'] = 'profile';
 ?>
@@ -145,12 +151,18 @@ $_SESSION['page'] = 'profile';
                             <a href='javascript:void(0)' onclick='copy()'>Share</a>
                         </span>
                     </th>
-                    <th>Rank</th>
+                    <?php if($_SESSION['rank'] == 'admin') { ?>
+                        <th>Rank</th>
+                        <th>Ban Status</th>
+                    <?php } ?>
                 </tr>
                 <tr>
                     <td><?php echo $username; ?></td>
                     <td id='userId'><?php echo $user; ?></td>
-                    <td><?php echo ucfirst($rank); ?></td>
+                    <?php if($_SESSION['rank'] == 'admin') { ?>
+                        <td><?php echo ucfirst($rank); ?></td>
+                        <td><?php echo $ban_status; ?></td>
+                    <?php } ?>
                 </tr>
             </table>
         </div>
