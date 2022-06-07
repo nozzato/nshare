@@ -13,8 +13,7 @@ $_SESSION['page'] = 'signup';
 <html lang='en'>
 <head>
 
-<title>Signup - NShare
-</title>
+<title>Signup - NShare</title>
 <link rel='icon' type='image/gif' href='/media/favicon.gif'>
 
 <meta charset='utf-8'>
