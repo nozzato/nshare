@@ -163,6 +163,9 @@ function openPage(pageName) {
         pages[i].style.display = 'none';
     }
     document.getElementById(pageName).style.display = 'block';
+
+    pageName = pageName.charAt(0).toUpperCase() + pageName.slice(1);
+    document.title = 'Settings: ' + pageName + ' - NShare';
 }
 function openModal(content) {
     document.getElementById('modal').style.display = 'block';
