@@ -34,7 +34,7 @@ if(isset($_POST['ban_btn'])) {
             go_back();
         }
         try {
-            $stmt = $pdo-> prepare('UPDATE `users` SET `ban_status` = ?, `ban_date` = CURDATE(), `ban_judge` = ?, `ban_reason` = ? WHERE `user_id` = ?;');
+            $stmt = $pdo-> prepare('UPDATE `users` SET `ban_status` = ?, `ban_judge` = ?, `ban_date` = CURDATE(), `ban_reason` = ? WHERE `user_id` = ?;');
             $stmt-> execute([1, $_SESSION['user'], $ban_reason, $ban_user]);
         } catch (\PDOException $e) {
             throw new \PDOException($e-> getMessage(), (int)$e-> getCode());
