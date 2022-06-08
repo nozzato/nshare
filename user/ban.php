@@ -29,6 +29,10 @@ if(isset($_POST['ban_btn'])) {
             $_SESSION['msg'] = 'Error: Invalid user';
             go_back();
         }
+        if($row['ban_status'] == 1) {
+            $_SESSION['msg'] = 'Error: Account already banned';
+            go_back();
+        }
         if($row['rank'] == 'admin') {
             $_SESSION['msg'] = 'Error: You cannot ban admins';
             go_back();
