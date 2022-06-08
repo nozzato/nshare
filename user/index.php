@@ -177,7 +177,9 @@ $_SESSION['page'] = 'profile';
             <input class='w3-input nz-black w3-border-0 w3-round' id='ban-reason' type='text' placeholder='Reason' name='ban_reason'>
 
             <p></p>
-            <button class='w3-btn w3-red w3-round' type='submit' name='ban_btn'>Ban</button>
+            <button class='w3-btn w3-red w3-round' type='submit' name='ban_btn'>
+                <i class='fa fa-fw fa-gavel'></i> Ban
+            </button>
 
         </form>
 

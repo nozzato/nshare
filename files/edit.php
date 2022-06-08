@@ -225,7 +225,9 @@ $file_modal = '"' . $file_name . '"';
                         <td><b>Name:</b> <?php echo $row['filename']; ?></td>
                         <td><b>File ID:</b> <?php echo $row['file_id']; ?></td>
                         <td><b>Size:</b> <?php echo human_filesize($row['size']); ?></td>
-                        <td><b>Privacy:</b> <?php echo ucfirst($row['privacy']); ?></td>
+                        <?php if(!$_SESSION['ban_status'] >= 1) { ?>
+                            <td><b>Privacy:</b> <?php echo ucfirst($row['privacy']); ?></td>
+                        <?php } ?>
                     </tr>
                 </table>
             </div>
@@ -234,18 +236,18 @@ $file_modal = '"' . $file_name . '"';
             <div class='w3-bar' style='display:flex;justify-content:center'>
                 <?php if(!$_SESSION['ban_status'] >= 1 && $perms == 'rw') { ?>
                     <button class='w3-button w3-bar-item w3-red w3-round' onclick='openModal(<?php echo $file_modal ?>)' style='margin-right:5px'>
-                        <i class='fa fa-trash-can'></i> Delete
+                        <i class='fa fa-fw fa-trash-can'></i> Delete
                     </button>
                 <?php } ?>
 
                 <form action='/files/download.php' method='POST'>
                     <button class='w3-button w3-bar-item w3-blue w3-round' value='<?php echo $file_name; ?>' name='download_btn' style='margin-right:5px'>
-                        <i class='fa fa-file-arrow-up'></i> Export
+                        <i class='fa fa-fw fa-file-arrow-down'></i> Download
                     </button>
                 </form>
 
                 <button class='w3-button w3-bar-item w3-blue-grey w3-round' onclick='goBack()'>
-                    <i class='fa fa-folder-open'></i> Back
+                    <i class='fa fa-fw fa-folder-open'></i> Back
                 </button>
             </div>
         </div>
@@ -264,10 +266,14 @@ $file_modal = '"' . $file_name . '"';
             <footer class='w3-container w3-bar'>
 
                 <form action='/files/delete.php' method='POST'>
-                    <button class='w3-button w3-bar-item w3-red w3-round w3-margin-bottom' id='delete-button' type='submit' name='delete_btn' style='margin-right:5px'>Delete</button>
+                    <button class='w3-button w3-bar-item w3-red w3-round w3-margin-bottom' id='delete-button' type='submit' name='delete_btn' style='margin-right:5px'>
+                        <i class='fa fa-fw fa-trash-can'></i> Delete
+                    </button>
                 </form>
 
-                <button class='w3-button w3-bar-item w3-blue-grey w3-round w3-margin-bottom' onclick='document.getElementById("modal").style.display="none"'>Cancel</button>
+                <button class='w3-button w3-bar-item w3-blue-grey w3-round w3-margin-bottom' onclick='document.getElementById("modal").style.display="none"'>
+                    <i class='fa fa-fw fa-ban'></i> Cancel
+                </button>
 
             </footer>
         </div>

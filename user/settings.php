@@ -144,7 +144,9 @@ $_SESSION['page'] = 'settings';
                 <div id='h-captcha' class='h-captcha' data-sitekey='fc621593-608b-4635-be8e-9f43bb5d1e46' data-theme='dark'></div>
 
                 <p></p>
-                <button class='w3-btn w3-green w3-round' type='submit' name='create_btn'>Signup</button>
+                <button class='w3-btn w3-green w3-round' type='submit' name='create_btn'>
+                    <i class='fa fa-fw fa-user'></i> Signup
+                </button>
 
             </form>
 
@@ -170,7 +172,9 @@ $_SESSION['page'] = 'settings';
                 <input class='w3-input nz-black w3-border-0 w3-round' id='email-new' type='text' placeholder='New Email' name='email_new'>
 
                 <p></p>
-                <button class='w3-btn w3-green w3-round' type='submit' name='email_btn'>Change</button>
+                <button class='w3-btn w3-green w3-round' type='submit' name='email_btn'>
+                    <i class='fa fa-fw fa-envelope'></i> Change
+                </button>
 
             </form>
         </div>
@@ -194,7 +198,9 @@ $_SESSION['page'] = 'settings';
                 <input class='w3-input nz-black w3-border-0 w3-round' id='username-new' type='text' placeholder='New Username' name='username_new'>
 
                 <p></p>
-                <button class='w3-btn w3-green w3-round' type='submit' name='username_btn'>Change</button>
+                <button class='w3-btn w3-green w3-round' type='submit' name='username_btn'>
+                    <i class='fa fa-fw fa-tag'></i> Change
+                </button>
 
             </form>
         </div>
@@ -218,7 +224,9 @@ $_SESSION['page'] = 'settings';
                 <input class='w3-input nz-black w3-border-0 w3-round' id='password-new' type='password' placeholder='New Password' name='password_new'>
 
                 <p></p>
-                <button class='w3-btn w3-green w3-round' type='submit' name='password_btn'>Change</button>
+                <button class='w3-btn w3-green w3-round' type='submit' name='password_btn'>
+                    <i class='fa fa-fw fa-key'></i> Change
+                </button>
 
             </form>
         </div>
@@ -239,7 +247,9 @@ $_SESSION['page'] = 'settings';
                 <input class='w3-input nz-black w3-border-0 w3-round' id='close-password' type='password' placeholder='Password' name='close_password'>
 
                 <p></p>
-                <button class='w3-btn w3-red w3-round' type='submit' name='close_btn'>Close</button>
+                <button class='w3-btn w3-red w3-round' type='submit' name='close_btn'>
+                    <i class='fa fa-fw fa-user-slash'></i> Close
+                </button>
 
             </form>
 
