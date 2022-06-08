@@ -139,7 +139,26 @@ function banVerify() {
         msgClear();
         return false;
     } else if(banReason.length > 255) {
-        msg.innerHTML = 'Error: Reason must be 255 characters or less';
+        msg.innerHTML = 'Error: Ban reason must be 255 characters or less';
+        msg.classList.add('w3-text-red');
+        msgClear();
+        return false;
+    } else {
+        return true;
+    }
+}
+function unbanVerify() {
+    var msg = document.getElementById('msg');
+    var unbanUser = document.getElementById('unban-user').value;
+    var unbanReason = document.getElementById('unban-reason').value;
+
+    if(unbanUser === '' || unbanReason === '') {
+        msg.innerHTML = 'Error: Both fields are required';
+        msg.classList.add('w3-text-red');
+        msgClear();
+        return false;
+    } else if(unbanReason.length > 255) {
+        msg.innerHTML = 'Error: Unban reason must be 255 characters or less';
         msg.classList.add('w3-text-red');
         msgClear();
         return false;

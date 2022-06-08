@@ -174,11 +174,34 @@ $_SESSION['page'] = 'profile';
             <p></p>
 
             <p></p>
-            <input class='w3-input nz-black w3-border-0 w3-round' id='ban-reason' type='text' placeholder='Reason' name='ban_reason'>
+            <input class='w3-input nz-black w3-border-0 w3-round' id='ban-reason' type='text' placeholder='Ban Reason' name='ban_reason'>
 
             <p></p>
             <button class='w3-btn w3-red w3-round' type='submit' name='ban_btn'>
                 <i class='fa fa-fw fa-gavel'></i> Ban
+            </button>
+
+        </form>
+
+    </div>
+    <br>
+    <div class='w3-round nz-page w3-card-2'>
+
+        <div class='w3-container nz-black nz-round-top'>
+            <h2>Unban Account</h2>
+        </div>
+        
+        <form class='w3-container w3-padding-16' action='/user/unban.php' method='POST' onsubmit='return unbanVerify(this)'>
+
+            <input class='w3-input nz-black w3-border-0 w3-round' id='unban-user' type='text' placeholder='User ID' name='unban_user'>
+            <p></p>
+
+            <p></p>
+            <input class='w3-input nz-black w3-border-0 w3-round' id='unban-reason' type='text' placeholder='Unban Reason' name='unban_reason'>
+
+            <p></p>
+            <button class='w3-btn w3-green w3-round' type='submit' name='unban_btn'>
+                <i class='fa fa-fw fa-scale-unbalanced'></i> Unban
             </button>
 
         </form>
