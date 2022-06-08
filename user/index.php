@@ -145,7 +145,7 @@ $_SESSION['page'] = 'profile';
         </div>
         
         <div class='w3-container w3-padding-16 w3-responsive'>
-            <table class='w3-table'>
+            <table class='nz-table-bordered'>
                 <tr>
                     <th>Username</th>
                     <th class='w3-tooltip'>User ID

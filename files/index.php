@@ -118,7 +118,7 @@ function openFile(id) {
         <div class='w3-container w3-padding-16'>
 
             <div class='w3-responsive'>
-                <table class='nz-table'>
+                <table class='nz-table-bordered'>
                     <tr>
                         <th>Filename <i class='fa fa-fw fa-caret-down'></i></th>
                         <th>Size</th>
@@ -150,7 +150,7 @@ function openFile(id) {
                             <?php } ?>
                         </tr>
                     <?php } ?>
-                    <tr>
+                    <tr class='nz-black'>
                         <td>
                             <b>Total Size</b>
                         </td>

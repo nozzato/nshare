@@ -85,26 +85,25 @@ input:focus, textarea:focus {
     pointer-events: none;
 }
 
-.nz-table {
+.nz-table, .nz-table-bordered {
     border-collapse: collapse;
     border-spacing: 0;
-    border :1px solid $black;
     width: 100%;
     display: table;
 }
-.nz-table tr {
-    border-bottom: 1px solid $black;
-}
-.nz-table tbody tr:first-child {
-    background-color:$black;
-}
-.nz-table tbody tr:last-child {
-    background-color:$black;
-}
-.nz-table td, .nz-table th {
+.nz-table td, .nz-table th, .nz-table-bordered td, .nz-table-bordered th {
     padding: 16px 24px 16px 24px;
     display: table-cell;
     text-align: left;
+}
+.nz-table th, .nz-table-bordered th {
+    background-color:$black;
+}
+.nz-table-bordered {
+    border :1px solid $black;
+}
+.nz-table-bordered tr {
+    border-bottom: 1px solid $black;
 }
 
 // Layout
