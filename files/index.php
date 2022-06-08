@@ -121,6 +121,7 @@ function openFile(id) {
                 <table class='nz-table-bordered'>
                     <tr>
                         <th>Filename <i class='fa fa-fw fa-caret-down'></i></th>
+                        <th>File ID</th>
                         <th>Size</th>
                         <?php if(!$_SESSION['ban_status'] >= 1) { ?>
                             <th>Privacy</th>
@@ -140,6 +141,8 @@ function openFile(id) {
                         $file_modal = '"' . $rows[$i]['filename'] . '"' ?>
                         <tr>
                             <td class='w3-button' onclick='openFile(<?php echo $rows[$i]['file_id']; ?>)'><?php echo $rows[$i]['filename']; ?></td>
+
+                            <td><?php echo $rows[$i]['file_id']; ?></td>
 
                             <td><?php echo human_filesize($rows[$i]['size']); ?></td>
 
@@ -164,27 +167,15 @@ function openFile(id) {
                             <?php echo human_filesize($db_file_size_total); ?> / 5.00G
                         </td>
                         <?php if(!$_SESSION['ban_status'] >= 1) { ?>
-                            <td>
-
-                            </td>
-                            <td>
-
-                            </td>
+                            <td></td><td></td><td></td>
                         <?php } ?>
                     </tr>
                 </table>
             </div>
 
             <?php if(!$_SESSION['ban_status'] >= 1) { ?>
-                <form class='w3-margin-top' action='/files/upload.php' method='POST' enctype='multipart/form-data'>
+                <form class='w3-margin-top w3-center' action='/files/upload.php' method='POST' enctype='multipart/form-data'>
 
-                    <button class='w3-button w3-green w3-round' type='submit' name='upload_btn'>Upload</button>
-
-                    <input class='w3-hide' id='upload-file' type='file' name='upload_file[]' multiple required>
-
-                    <label class='w3-button w3-blue-grey w3-round' for='upload-file'>Browse...</label>
-
-                    <p></p>
                     <span>Privacy</span>
 
                     <input class='w3-radio' id='upload-private' type='radio' value='private' name='upload_privacy' checked>
@@ -192,6 +183,13 @@ function openFile(id) {
 
                     <input class='w3-radio' id='upload-public' type='radio' value='public' name='upload_privacy'>
                     <label for='upload-public'>Public</label>
+
+                    <br><br>
+                    <button class='w3-button w3-green w3-round' type='submit' name='upload_btn'>Upload</button>
+
+                    <input class='w3-hide' id='upload-file' type='file' name='upload_file[]' multiple required>
+
+                    <label class='w3-button w3-blue-grey w3-round' for='upload-file'>Browse...</label>
 
                 </form>
             <?php } else { ?>
