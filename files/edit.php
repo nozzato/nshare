@@ -174,11 +174,9 @@ $file_modal = '"' . $file_name . '"';
         <div class='w3-container w3-padding-16'>
 
             <?php if($file_type == 'text' || $file_type == 'empty') { ?>
-                <form action='/files/upload.php' method='POST'>
+                <form id='upload-form' action='/files/upload.php' method='POST'>
 
                     <textarea class='w3-input w3-monospace nz-black w3-border-0 w3-round' rows='20' name='upload_content' autofocus <?php if($_SESSION['ban_status'] >= 1) { ?>readonly<?php }?>><?php readfile($file_server); ?></textarea>
-
-                    <button class='w3-hide' id='save-btn' type='submit' value='<?php echo $file_name; ?>' name='upload_btn' style='margin-right:5px'>Save</button>
 
                 </form>
 
@@ -221,15 +219,20 @@ $file_modal = '"' . $file_name . '"';
             <?php } ?>
 
             <p></p>
-            <div class='w3-bar'>
+            <div class='w3-responsive'>
+                <table class='nz-table'>
+                    <tr>
+                        <td><b>Name:</b> <?php echo $row['filename']; ?></td>
+                        <td><b>File ID:</b> <?php echo $row['file_id']; ?></td>
+                        <td><b>Size:</b> <?php echo human_filesize($row['size']); ?></td>
+                        <td><b>Privacy:</b> <?php echo ucfirst($row['privacy']); ?></td>
+                    </tr>
+                </table>
+            </div>
 
+            <p></p>
+            <div class='w3-bar' style='display:flex;justify-content:center'>
                 <?php if(!$_SESSION['ban_status'] >= 1 && $perms == 'rw') { ?>
-                    <?php if($file_type == 'text') { ?>
-                        <label class='w3-button w3-bar-item w3-green w3-round' for='save-btn' style='cursor:pointer; margin-right:5px'>
-                            <i class='fa fa-floppy-disk'></i> Save
-                        </label>
-                    <?php } ?>
-
                     <button class='w3-button w3-bar-item w3-red w3-round' onclick='openModal(<?php echo $file_modal ?>)' style='margin-right:5px'>
                         <i class='fa fa-trash-can'></i> Delete
                     </button>
@@ -244,7 +247,6 @@ $file_modal = '"' . $file_name . '"';
                 <button class='w3-button w3-bar-item w3-blue-grey w3-round' onclick='goBack()'>
                     <i class='fa fa-folder-open'></i> Back
                 </button>
-
             </div>
         </div>
     </div>
