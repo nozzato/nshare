@@ -176,7 +176,7 @@ $file_modal = '"' . $file_name . '"';
             <?php if($file_type == 'text' || $file_type == 'empty') { ?>
                 <form id='upload-form' action='/files/upload.php' method='POST'>
 
-                    <textarea class='w3-input w3-monospace nz-black w3-border-0 w3-round' rows='20' name='upload_content' autofocus <?php if($_SESSION['ban_status'] >= 1) { ?>readonly<?php }?>><?php readfile($file_server); ?></textarea>
+                    <textarea class='w3-input w3-monospace nz-black w3-border-0 w3-round' rows='20' name='upload_content' autofocus <?php if($_SESSION['ban_status'] >= 1 || $perms == 'ro') { ?>readonly<?php }?>><?php readfile($file_server); ?></textarea>
 
                 </form>
 
@@ -225,7 +225,7 @@ $file_modal = '"' . $file_name . '"';
                         <td><b>Name:</b> <?php echo $row['filename']; ?></td>
                         <td><b>File ID:</b> <?php echo $row['file_id']; ?></td>
                         <td><b>Size:</b> <?php echo human_filesize($row['size']); ?></td>
-                        <?php if(!$_SESSION['ban_status'] >= 1) { ?>
+                        <?php if(!$_SESSION['ban_status'] >= 1 || $row['user_id'] != $_SESSION['user']) { ?>
                             <td><b>Privacy:</b> <?php echo ucfirst($row['privacy']); ?></td>
                         <?php } ?>
                     </tr>
@@ -235,6 +235,12 @@ $file_modal = '"' . $file_name . '"';
             <p></p>
             <div class='w3-bar' style='display:flex;justify-content:center'>
                 <?php if(!$_SESSION['ban_status'] >= 1 && $perms == 'rw') { ?>
+                    <?php if($file_type == 'text') { ?>
+                        <button class='w3-button w3-bar-item w3-green w3-round' for='upload-btn' name='save_btn' style='margin-right:5px'>
+                            <i class='fa fa-floppy-disk'></i> Save
+                        </button>
+                    <?php } ?>
+
                     <button class='w3-button w3-bar-item w3-red w3-round' onclick='openModal(<?php echo $file_modal ?>)' style='margin-right:5px'>
                         <i class='fa fa-fw fa-trash-can'></i> Delete
                     </button>
