@@ -145,29 +145,15 @@ $_SESSION['page'] = 'profile';
         </div>
         
         <div class='w3-container w3-padding-16 w3-responsive'>
-            <table class='nz-table-bordered'>
+            <table class='nz-table'>
                 <tr>
-                    <th>Username</th>
-                    <th class='w3-tooltip'>User ID
-                        <span class='w3-text w3-text-blue w3-tag w3-round w3-margin-left' style='position:absolute'>
-                            <a href='javascript:void(0)' onclick='copy()'>Share</a>
-                        </span>
-                    </th>
+                    <td><b>Username:</b> <?php echo $username; ?></td>
+                    <td><b>User ID:</b> <?php echo $user; ?></td>
                     <?php if($_SESSION['rank'] == 'admin') { ?>
-                        <th>Rank</th>
-                        <th>Ban Status</th>
+                        <td><b>Rank:</b> <?php echo ucfirst($rank); ?></td>
+                        <td><b>Ban Status:</b> <?php echo $ban_status; ?></td>
                     <?php } else if($_SESSION['ban_status'] >= 1 && $user == $_SESSION['user']) { ?>
-                        <th>Ban Status</th>
-                    <?php } ?>
-                </tr>
-                <tr>
-                    <td><?php echo $username; ?></td>
-                    <td id='userId'><?php echo $user; ?></td>
-                    <?php if($_SESSION['rank'] == 'admin') { ?>
-                        <td><?php echo ucfirst($rank); ?></td>
-                        <td><?php echo $ban_status; ?></td>
-                    <?php } else if($_SESSION['ban_status'] >= 1 && $user == $_SESSION['user']) { ?>
-                        <td><?php echo $ban_status; ?></td>
+                        <td><b>Ban Status:</b> <?php echo $ban_status; ?></td>
                     <?php } ?>
                 </tr>
             </table>
