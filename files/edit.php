@@ -14,20 +14,44 @@ try {
 } catch (\PDOException $e) {
     throw new \PDOException($e-> getMessage(), (int)$e-> getCode());
 }
-$file_path_server = '/srv/http/nozzato.com/files/' . $_SESSION['username'] . '/';
+if($row['privacy'] == 'private' && $row['user_id'] != $_SESSION['user']) {
+    $_SESSION['msg'] = 'Error: You do not have permission view this file';
+    header('location:/files/index.php');
+    exit;
+} else if($row['privacy'] == 'public' && $row['user_id'] != $_SESSION['user']) {
+    $perms = 'ro';
+} else {
+    $perms = 'rw';
+}
+
+$file_name   = $row['filename'];
+
+if($row['user_id'] == $_SESSION['user']) {
+    $username = $_SESSION['username'];
+
+    $file_path_server = '/srv/http/nozzato.com/files/' . $username . '/';
+    $file_path   = '/files/' . $username . '/';
+} else {
+    try {
+        $stmt = $pdo-> prepare('SELECT `username` FROM `users` WHERE `user_id` = ?;');
+        $stmt-> execute([$row['user_id']]);
+        $username = $stmt-> fetchColumn();
+    } catch (\PDOException $e) {
+        throw new \PDOException($e-> getMessage(), (int)$e-> getCode());
+    }
+    $file_path_server = '/srv/http/nozzato.com/files/' . $username . '/';
+    $file_path   = '/files/' . $username . '/';
+}
+$file        = $file_path . $file_name;
+$file_server = $file_path_server . $file_name;
+$file_info   = new finfo(FILEINFO_MIME);
+$file_mime   = $file_info -> buffer(file_get_contents($file_server));
 
 if(!isset($_GET['id']) || empty($row['filename'])) {
     $_SESSION['msg'] = 'Error: Invalid file';
     header('location:/files/index.php');
     exit;
 }
-$file_path   = '/files/' . $_SESSION['username'] . '/';
-$file_name   = $row['filename'];
-$file        = $file_path . $file_name;
-$file_server = $file_path_server . $file_name;
-$file_info   = new finfo(FILEINFO_MIME);
-$file_mime   = $file_info -> buffer(file_get_contents($file_server));
-
 if(substr($file_mime, 0, 4) == 'text') {
     $file_type = 'text';
 } else if(substr($file_mime, 0, 5) == 'image') {
@@ -50,7 +74,7 @@ $file_modal = '"' . $file_name . '"';
 <html lang='en'>
 <head>
 
-<title>Files: <?php echo $_SESSION['username'] . '/' . $file_name; ?> - NShare</title>
+<title>Files: <?php echo $username . '/' . $file_name; ?> - NShare</title>
 <link rel='icon' type='image/gif' href='/media/favicon.gif'>
 
 <meta charset='utf-8'>
@@ -144,7 +168,7 @@ $file_modal = '"' . $file_name . '"';
     <div class='w3-round w3-card-2 nz-page'>
 
         <div class='w3-container nz-black nz-round-top'>
-            <h2 class='nz-truncate'><?php echo $_SESSION['username'] . '/' . $file_name; ?></h2>
+            <h2 class='nz-truncate'><?php echo $username . '/' . $file_name; ?></h2>
         </div>
 
         <div class='w3-container w3-padding-16'>
@@ -199,7 +223,7 @@ $file_modal = '"' . $file_name . '"';
             <p></p>
             <div class='w3-bar'>
 
-                <?php if(!$_SESSION['ban_status'] >= 1) { ?>
+                <?php if(!$_SESSION['ban_status'] >= 1 && $perms == 'rw') { ?>
                     <?php if($file_type == 'text') { ?>
                         <label class='w3-button w3-bar-item w3-green w3-round' for='save-btn' style='cursor:pointer; margin-right:5px'>
                             <i class='fa fa-floppy-disk'></i> Save
