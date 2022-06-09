@@ -47,7 +47,7 @@ if(isset($_POST['create_btn'])) {
         }
         if($count == 0) {
             try {
-                $stmt = $pdo-> prepare('INSERT INTO `users` (`email`, `username`, `password`, `rank`, `ban_status`) VALUES (?, ?, ?, ?, 0);');
+                $stmt = $pdo-> prepare('INSERT INTO `users` (`email`, `username`, `password`, `rank`, `ban_status`, `creation_date`) VALUES (?, ?, ?, ?, 0, CURDATE());');
                 $stmt-> execute([$create_email, $create_username, password_hash($create_password, PASSWORD_DEFAULT), $create_rank]);
             } catch (\PDOException $e) {
                 throw new \PDOException($e-> getMessage(), (int)$e-> getCode());
