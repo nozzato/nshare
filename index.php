@@ -53,7 +53,7 @@ $_SESSION['page'] = 'home';
                 <i class='fa fa-fw fa-server'></i> Admin
             </a>
         <?php }
-        
+
         if(!isset($_SESSION['user'])) { ?>
         <div class='w3-dropdown-click w3-right'>
             <button class='w3-button' onclick='dropdownToggle()'>
@@ -116,14 +116,10 @@ $_SESSION['page'] = 'home';
         <br>
         <p>Don't have an account? <a class='w3-text-blue' href='/user/signup.php'>Sign up now!</a></p>
     <?php } else {
-        try {
-            $stmt = $pdo-> prepare('SELECT * FROM `files` WHERE `user_id` = ?;');
-            $stmt-> execute([$_SESSION['user']]);
-            $rows = $stmt-> fetchAll(PDO::FETCH_ASSOC);
-            $count = $stmt-> rowCount();
-        } catch (\PDOException $e) {
-            throw new \PDOException($e-> getMessage(), (int)$e-> getCode());
-        } ?>
+        $stmt = $pdo-> prepare('SELECT * FROM `files` WHERE `user_id` = ?;');
+        $stmt-> execute([$_SESSION['user']]);
+        $rows = $stmt-> fetchAll(PDO::FETCH_ASSOC);
+        $count = $stmt-> rowCount(); ?>
 
         <h1><b>Welcome, <?php echo $_SESSION['username']; ?></b></h1>
 

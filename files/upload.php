@@ -39,14 +39,11 @@ if(isset($_FILES['upload_file']) || isset($_POST['upload_btn'])) {
                 }
             }
         }
-        try {
-            $stmt = $pdo-> prepare('SELECT * FROM `files` WHERE `user_id` = ?;');
-            $stmt-> execute([$_SESSION['user']]);
-            $rows = $stmt-> fetchAll(PDO::FETCH_ASSOC);
-            $count = $stmt-> rowCount();
-        } catch (\PDOException $e) {
-            throw new \PDOException($e-> getMessage(), (int)$e-> getCode());
-        }
+        $stmt = $pdo-> prepare('SELECT * FROM `files` WHERE `user_id` = ?;');
+        $stmt-> execute([$_SESSION['user']]);
+        $rows = $stmt-> fetchAll(PDO::FETCH_ASSOC);
+        $count = $stmt-> rowCount();
+
         $db_file_size_total = 0;
 
         for($i = 0; $i <= $count - 1; $i++) {
@@ -62,29 +59,18 @@ if(isset($_FILES['upload_file']) || isset($_POST['upload_btn'])) {
             $file_server = $file_path_server . $file_name;
             $file_temp   = $_FILES['upload_file']['tmp_name'][$i];
             $file_size   = filesize($file_temp);
-        
+
             if(move_uploaded_file($file_temp, $file_server)) {
-                try {
-                    $stmt = $pdo-> prepare('SELECT * FROM `files` WHERE `user_id` = ? AND `filename` = ?;');
-                    $stmt-> execute([$_SESSION['user'], $file_name]);
-                    $count = $stmt-> rowCount();
-                } catch (\PDOException $e) {
-                    throw new \PDOException($e-> getMessage(), (int)$e-> getCode());
-                }
+                $stmt = $pdo-> prepare('SELECT * FROM `files` WHERE `user_id` = ? AND `filename` = ?;');
+                $stmt-> execute([$_SESSION['user'], $file_name]);
+                $count = $stmt-> rowCount();
+
                 if($count == 0) {
-                    try {
-                        $stmt = $pdo-> prepare('INSERT INTO `files` (`user_id`, `filename`, `size`, `privacy`) VALUES (?, ?, ?, ?);');
-                        $stmt-> execute([$_SESSION['user'], $file_name, $file_size, $file_privacy]);
-                    } catch (\PDOException $e) {
-                        throw new \PDOException($e-> getMessage(), (int)$e-> getCode());
-                    }
+                    $stmt = $pdo-> prepare('INSERT INTO `files` (`user_id`, `filename`, `size`, `privacy`) VALUES (?, ?, ?, ?);');
+                    $stmt-> execute([$_SESSION['user'], $file_name, $file_size, $file_privacy]);
                 } else {
-                    try {
-                        $stmt = $pdo-> prepare('UPDATE `files` SET `user_id` = ?, `filename` = ?, `size` = ?, `privacy` = ? WHERE `user_id` = ? AND `filename` = ?;');
-                        $stmt-> execute([$_SESSION['user'], $file_name, $file_size, $file_privacy, $_SESSION['user'], $file_name]);
-                    } catch (\PDOException $e) {
-                        throw new \PDOException($e-> getMessage(), (int)$e-> getCode());
-                    }
+                    $stmt = $pdo-> prepare('UPDATE `files` SET `user_id` = ?, `filename` = ?, `size` = ?, `privacy` = ? WHERE `user_id` = ? AND `filename` = ?;');
+                    $stmt-> execute([$_SESSION['user'], $file_name, $file_size, $file_privacy, $_SESSION['user'], $file_name]);
                 }
                 chmod($file_server, 0775);
             } else {
@@ -103,12 +89,9 @@ if(isset($_FILES['upload_file']) || isset($_POST['upload_btn'])) {
         if(file_put_contents($file_server, $file_content) != false) {
             $file_size = filesize($file_server);
 
-            try {
-                $stmt = $pdo-> prepare('UPDATE `files` SET `size` = ? WHERE `user_id` = ? AND `filename` = ?;');
-                $stmt-> execute([$file_size, $_SESSION['user'], $file_name]);
-            } catch (\PDOException $e) {
-                throw new \PDOException($e-> getMessage(), (int)$e-> getCode());
-            }
+            $stmt = $pdo-> prepare('UPDATE `files` SET `size` = ? WHERE `user_id` = ? AND `filename` = ?;');
+            $stmt-> execute([$file_size, $_SESSION['user'], $file_name]);
+
             $_SESSION['msg'] = 'File saved';
             go_back();
         } else {

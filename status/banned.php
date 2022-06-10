@@ -6,28 +6,25 @@ include_once('/srv/http/nozzato.com/database/connect.php');
 if(!isset($_SESSION['user'])) {
     go_back();
 }
-try {
-    $stmt = $pdo-> prepare('SELECT * FROM `users` WHERE `user_id` = ?;');
-    $stmt-> execute([$_SESSION['user']]);
-    $row = $stmt-> fetch(PDO::FETCH_ASSOC);
+$stmt = $pdo-> prepare('SELECT * FROM `users` WHERE `user_id` = ?;');
+$stmt-> execute([$_SESSION['user']]);
+$row = $stmt-> fetch(PDO::FETCH_ASSOC);
 
-    $stmt = $pdo-> prepare('SELECT `username` FROM `users` WHERE `user_id` = ?;');
-    $stmt-> execute([$row['ban_judge']]);
-    $ban_judge = $stmt-> fetchColumn();
+$stmt = $pdo-> prepare('SELECT `username` FROM `users` WHERE `user_id` = ?;');
+$stmt-> execute([$row['ban_judge']]);
+$ban_judge = $stmt-> fetchColumn();
 
-    $stmt = $pdo-> prepare('SELECT DATE_FORMAT(`ban_date`, "%d.%m.%Y") FROM `users` WHERE `user_id` = ?;');
-    $stmt-> execute([$_SESSION['user']]);
-    $row['ban_date'] = $stmt-> fetchColumn();
+$stmt = $pdo-> prepare('SELECT DATE_FORMAT(`ban_date`, "%d.%m.%Y") FROM `users` WHERE `user_id` = ?;');
+$stmt-> execute([$_SESSION['user']]);
+$row['ban_date'] = $stmt-> fetchColumn();
 
-    $stmt = $pdo-> prepare('SELECT `ban_date` INTO @ban_date FROM `users` WHERE `user_id` = ?;');
-    $stmt-> execute([$_SESSION['user']]);
+$stmt = $pdo-> prepare('SELECT `ban_date` INTO @ban_date FROM `users` WHERE `user_id` = ?;');
+$stmt-> execute([$_SESSION['user']]);
 
-    $stmt = $pdo-> prepare('SELECT DATE_FORMAT(DATE_ADD(@ban_date, INTERVAL 7 DAY), "%D of %M");');
-    $stmt-> execute();
-    $ban_date_deadline = $stmt-> fetchColumn();
-} catch (\PDOException $e) {
-    throw new \PDOException($e-> getMessage(), (int)$e-> getCode());
-}
+$stmt = $pdo-> prepare('SELECT DATE_FORMAT(DATE_ADD(@ban_date, INTERVAL 7 DAY), "%D of %M");');
+$stmt-> execute();
+$ban_date_deadline = $stmt-> fetchColumn();
+
 if($row['ban_status'] == 0) {
     go_back();
 }
@@ -68,7 +65,7 @@ if($row['ban_status'] == 0) {
                 <i class='fa fa-fw fa-server'></i> Admin
             </a>
         <?php }
-        
+
         if(!isset($_SESSION['user'])) { ?>
         <div class='w3-dropdown-click w3-right'>
             <button class='w3-button' onclick='dropdownToggle()'>

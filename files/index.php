@@ -52,7 +52,7 @@ function openFile(id) {
                 <i class='fa fa-fw fa-server'></i> Admin
             </a>
         <?php }
-        
+
         if(!isset($_SESSION['user'])) { ?>
         <div class='w3-dropdown-click w3-right'>
             <button class='w3-button' onclick='dropdownToggle()'>
@@ -129,14 +129,12 @@ function openFile(id) {
                         <?php } ?>
                     </tr>
 
-                    <?php try {
-                        $stmt = $pdo-> prepare('SELECT * FROM `files` WHERE `user_id` = ? ORDER BY `filename` ASC;');
-                        $stmt-> execute([$_SESSION['user']]);
-                        $rows = $stmt-> fetchAll(PDO::FETCH_ASSOC);
-                        $count = $stmt-> rowCount();
-                    } catch (\PDOException $e) {
-                        throw new \PDOException($e-> getMessage(), (int)$e-> getCode());
-                    }
+                    <?php
+                    $stmt = $pdo-> prepare('SELECT * FROM `files` WHERE `user_id` = ? ORDER BY `filename` ASC;');
+                    $stmt-> execute([$_SESSION['user']]);
+                    $rows = $stmt-> fetchAll(PDO::FETCH_ASSOC);
+                    $count = $stmt-> rowCount();
+
                     for($i = 0; $i < $count; $i++) {
                         $file_modal = '"' . $rows[$i]['filename'] . '"' ?>
                         <tr>
@@ -212,7 +210,7 @@ function openFile(id) {
     <div class='w3-modal' id='modal'>
         <div class='w3-modal-content nz-dark w3-round w3-card-2'>
 
-            <header class='w3-container nz-black nz-round-top'> 
+            <header class='w3-container nz-black nz-round-top'>
                 <h2>Really delete?</h2>
             </header>
 

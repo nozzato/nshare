@@ -10,13 +10,10 @@ if (isset($_POST['login_btn'])) {
         $login_username = trim($_POST['login_username']);
         $login_password = trim($_POST['login_password']);
 
-        try {
-            $stmt = $pdo-> prepare('SELECT * FROM `users` WHERE `email` = ? OR `username` = ?;');
-            $stmt-> execute([$login_username, $login_username]);
-            $row = $stmt-> fetch(PDO::FETCH_ASSOC);
-        } catch (\PDOException $e) {
-            throw new \PDOException($e-> getMessage(), (int)$e-> getCode());
-        }
+        $stmt = $pdo-> prepare('SELECT * FROM `users` WHERE `email` = ? OR `username` = ?;');
+        $stmt-> execute([$login_username, $login_username]);
+        $row = $stmt-> fetch(PDO::FETCH_ASSOC);
+
         if(password_verify($login_password, $row['password'])) {
             $_SESSION['user']       = $row['user_id'];
             $_SESSION['username']   = $row['username'];
@@ -31,6 +28,6 @@ if (isset($_POST['login_btn'])) {
     } else {
         $_SESSION['msg'] = 'Error: Both fields are required';
     }
-} 
+}
 go_back();
 ?>

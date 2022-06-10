@@ -23,25 +23,19 @@ if(isset($_POST['username_btn'])) {
             $_SESSION['msg'] = 'Error: Username must be 50 characters or less';
             go_back();
         }
-        try {
-            $stmt = $pdo-> prepare('SELECT * FROM `users` WHERE `user_id` = ?;');
-            $stmt-> execute([$username_user]);
-            $row = $stmt-> fetch(PDO::FETCH_ASSOC);
+        $stmt = $pdo-> prepare('SELECT * FROM `users` WHERE `user_id` = ?;');
+        $stmt-> execute([$username_user]);
+        $row = $stmt-> fetch(PDO::FETCH_ASSOC);
 
-            $stmt = $pdo-> prepare('SELECT * FROM `users` WHERE `username` = ?;');
-            $stmt-> execute([$username_new]);
-            $count = $stmt-> rowCount();
-        } catch (\PDOException $e) {
-            throw new \PDOException($e-> getMessage(), (int)$e-> getCode());
-        }
+        $stmt = $pdo-> prepare('SELECT * FROM `users` WHERE `username` = ?;');
+        $stmt-> execute([$username_new]);
+        $count = $stmt-> rowCount();
+
         if($count == 0) {
             if($username_old == $row['username']) {
-                try {
-                    $stmt = $pdo-> prepare('UPDATE `users` SET `username` = ? WHERE `user_id` = ?;');
-                    $stmt-> execute([$username_new, $username_user]);
-                } catch (\PDOException $e) {
-                    throw new \PDOException($e-> getMessage(), (int)$e-> getCode());
-                }
+                $stmt = $pdo-> prepare('UPDATE `users` SET `username` = ? WHERE `user_id` = ?;');
+                $stmt-> execute([$username_new, $username_user]);
+
                 $_SESSION['username'] = $username_new;
 
                 $_SESSION['msg'] = 'Username changed';

@@ -7,13 +7,10 @@ if(!isset($_SESSION['user'])) {
     header('location:/');
     exit;
 }
-try {
-    $stmt = $pdo-> prepare('SELECT * FROM `files` WHERE `file_id` = ?;');
-    $stmt-> execute([$_GET['id']]);
-    $row = $stmt-> fetch(PDO::FETCH_ASSOC);
-} catch (\PDOException $e) {
-    throw new \PDOException($e-> getMessage(), (int)$e-> getCode());
-}
+$stmt = $pdo-> prepare('SELECT * FROM `files` WHERE `file_id` = ?;');
+$stmt-> execute([$_GET['id']]);
+$row = $stmt-> fetch(PDO::FETCH_ASSOC);
+
 if($row['privacy'] == 'private' && $row['user_id'] != $_SESSION['user']) {
     $_SESSION['msg'] = 'Error: You do not have permission view this file';
     header('location:/files/index.php');
@@ -32,13 +29,10 @@ if($row['user_id'] == $_SESSION['user']) {
     $file_path_server = '/srv/http/nozzato.com/files/' . $username . '/';
     $file_path   = '/files/' . $username . '/';
 } else {
-    try {
-        $stmt = $pdo-> prepare('SELECT `username` FROM `users` WHERE `user_id` = ?;');
-        $stmt-> execute([$row['user_id']]);
-        $username = $stmt-> fetchColumn();
-    } catch (\PDOException $e) {
-        throw new \PDOException($e-> getMessage(), (int)$e-> getCode());
-    }
+    $stmt = $pdo-> prepare('SELECT `username` FROM `users` WHERE `user_id` = ?;');
+    $stmt-> execute([$row['user_id']]);
+    $username = $stmt-> fetchColumn();
+
     $file_path_server = '/srv/http/nozzato.com/files/' . $username . '/';
     $file_path   = '/files/' . $username . '/';
 }
@@ -108,7 +102,7 @@ $file_modal = '"' . $file_name . '"';
                 <i class='fa fa-fw fa-server'></i> Admin
             </a>
         <?php }
-        
+
         if(!isset($_SESSION['user'])) { ?>
         <div class='w3-dropdown-click w3-right'>
             <button class='w3-button' onclick='dropdownToggle()'>
@@ -261,7 +255,7 @@ $file_modal = '"' . $file_name . '"';
     <div class='w3-modal' id='modal'>
         <div class='w3-modal-content nz-dark w3-round w3-card-2'>
 
-            <header class='w3-container nz-black nz-round-top'> 
+            <header class='w3-container nz-black nz-round-top'>
                 <h2>Really delete?</h2>
             </header>
 

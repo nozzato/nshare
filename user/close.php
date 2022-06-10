@@ -14,20 +14,14 @@ if(isset($_POST['close_btn'])) {
         }
         $close_password = trim($_POST['close_password']);
 
-        try {
-            $stmt = $pdo-> prepare('SELECT * FROM `users` WHERE `user_id` = ?;');
-            $stmt-> execute([$close_user]);
-            $row = $stmt-> fetch(PDO::FETCH_ASSOC);
-        } catch (\PDOException $e) {
-            throw new \PDOException($e-> getMessage(), (int)$e-> getCode());
-        }
+        $stmt = $pdo-> prepare('SELECT * FROM `users` WHERE `user_id` = ?;');
+        $stmt-> execute([$close_user]);
+        $row = $stmt-> fetch(PDO::FETCH_ASSOC);
+
         if(password_verify($close_password, $row['password']) && $_SESSION['rank'] == 'admin') {
-            try {
-                $stmt = $pdo-> prepare('DELETE FROM `users` WHERE `user_id` = ?;');
-                $stmt-> execute([$close_user]);
-            } catch (\PDOException $e) {
-                throw new \PDOException($e-> getMessage(), (int)$e-> getCode());
-            }
+            $stmt = $pdo-> prepare('DELETE FROM `users` WHERE `user_id` = ?;');
+            $stmt-> execute([$close_user]);
+
             remove_dir('/srv/http/nozzato.com/files/' . $row['username']);
 
             if($close_user == $_SESSION['user']) {
@@ -39,12 +33,9 @@ if(isset($_POST['close_btn'])) {
                 go_back();
             }
         } else if(password_verify($close_password, $row['password']) && $_SESSION['rank'] == 'member') {
-            try {
-                $stmt = $pdo-> prepare('DELETE FROM `users` WHERE `user_id` = ?;');
-                $stmt-> execute([$close_user]);
-            } catch (\PDOException $e) {
-                throw new \PDOException($e-> getMessage(), (int)$e-> getCode());
-            }
+            $stmt = $pdo-> prepare('DELETE FROM `users` WHERE `user_id` = ?;');
+            $stmt-> execute([$close_user]);
+
             remove_dir('/srv/http/nozzato.com/files/' . $_SESSION['username']);
 
             $_SESSION['close_logout'] = 1;

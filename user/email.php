@@ -27,22 +27,16 @@ if(isset($_POST['email_btn'])) {
             $_SESSION['msg'] = 'Error: Invalid email format';
             go_back();
         }
-        try {
-            $stmt = $pdo-> prepare('SELECT * FROM `users` WHERE `user_id` = ?;');
-            $stmt-> execute([$email_user]);
-            $row = $stmt-> fetch(PDO::FETCH_ASSOC);
-            $count = $stmt-> rowCount();
-        } catch (\PDOException $e) {
-            throw new \PDOException($e-> getMessage(), (int)$e-> getCode());
-        }
+        $stmt = $pdo-> prepare('SELECT * FROM `users` WHERE `user_id` = ?;');
+        $stmt-> execute([$email_user]);
+        $row = $stmt-> fetch(PDO::FETCH_ASSOC);
+        $count = $stmt-> rowCount();
+
         if($count == 0) {
             if($email_old == $row['email']) {
-                try {
-                    $stmt = $pdo-> prepare('UPDATE `users` SET `email` = ? WHERE `user_id` = ?;');
-                    $stmt-> execute([$email_new, $email_user]);
-                } catch (\PDOException $e) {
-                    throw new \PDOException($e-> getMessage(), (int)$e-> getCode());
-                }
+                $stmt = $pdo-> prepare('UPDATE `users` SET `email` = ? WHERE `user_id` = ?;');
+                $stmt-> execute([$email_new, $email_user]);
+
                 $_SESSION['msg'] = 'Email changed';
                 go_back();
             } else {

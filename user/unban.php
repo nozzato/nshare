@@ -18,13 +18,10 @@ if(isset($_POST['unban_btn'])) {
             $_SESSION['msg'] = 'Error: Reason must be 255 characters or less';
             go_back();
         }
-        try {
-            $stmt = $pdo-> prepare('SELECT * FROM `users` WHERE `user_id` = ?;');
-            $stmt-> execute([$unban_user]);
-            $row = $stmt-> fetch(PDO::FETCH_ASSOC);
-        } catch (\PDOException $e) {
-            throw new \PDOException($e-> getMessage(), (int)$e-> getCode());
-        }
+        $stmt = $pdo-> prepare('SELECT * FROM `users` WHERE `user_id` = ?;');
+        $stmt-> execute([$unban_user]);
+        $row = $stmt-> fetch(PDO::FETCH_ASSOC);
+
         if(empty($row)) {
             $_SESSION['msg'] = 'Error: Invalid user';
             go_back();
@@ -37,12 +34,9 @@ if(isset($_POST['unban_btn'])) {
             $_SESSION['msg'] = 'Error: You cannot unban admins';
             go_back();
         }
-        try {
-            $stmt = $pdo-> prepare('UPDATE `users` SET `ban_status` = ?, `ban_judge` = NULL, `ban_date` = NULL, `ban_reason` = NULL WHERE `user_id` = ?;');
-            $stmt-> execute([0, $unban_user]);
-        } catch (\PDOException $e) {
-            throw new \PDOException($e-> getMessage(), (int)$e-> getCode());
-        }
+        $stmt = $pdo-> prepare('UPDATE `users` SET `ban_status` = ?, `ban_judge` = NULL, `ban_date` = NULL, `ban_reason` = NULL WHERE `user_id` = ?;');
+        $stmt-> execute([0, $unban_user]);
+
         $_SESSION['msg'] = 'Account unbanned';
         go_back();
     } else {

@@ -27,20 +27,14 @@ if(isset($_POST['password_btn'])) {
             $_SESSION['msg'] = 'Error: New password must be 72 characters or less';
             go_back();
         }
-        try {
-            $stmt = $pdo-> prepare('SELECT * FROM `users` WHERE `user_id` = ?;');
-            $stmt-> execute([$password_user]);
-            $row = $stmt-> fetch(PDO::FETCH_ASSOC);
-        } catch (\PDOException $e) {
-            throw new \PDOException($e-> getMessage(), (int)$e-> getCode());
-        }
+        $stmt = $pdo-> prepare('SELECT * FROM `users` WHERE `user_id` = ?;');
+        $stmt-> execute([$password_user]);
+        $row = $stmt-> fetch(PDO::FETCH_ASSOC);
+
         if(password_verify($password_old, $row['password'])) {
-            try {
-                $stmt = $pdo-> prepare('UPDATE `users` SET `password` = ? WHERE `user_id` = ?;');
-                $stmt-> execute([password_hash($password_new, PASSWORD_DEFAULT), $password_user]);
-            } catch (\PDOException $e) {
-                throw new \PDOException($e-> getMessage(), (int)$e-> getCode());
-            }
+            $stmt = $pdo-> prepare('UPDATE `users` SET `password` = ? WHERE `user_id` = ?;');
+            $stmt-> execute([password_hash($password_new, PASSWORD_DEFAULT), $password_user]);
+
             $_SESSION['msg'] = 'Password changed';
             go_back();
         } else {

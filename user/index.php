@@ -20,13 +20,10 @@ if($_GET['id'] == $_SESSION['user']) {
         $ban_status = 'Banned';
     }
 } else {
-    try {
-        $stmt = $pdo-> prepare('SELECT * FROM `users` WHERE `user_id` = ?;');
-        $stmt-> execute([$_GET['id']]);
-        $row = $stmt-> fetch(PDO::FETCH_ASSOC);
-    } catch (\PDOException $e) {
-        throw new \PDOException($e-> getMessage(), (int)$e-> getCode());
-    }
+    $stmt = $pdo-> prepare('SELECT * FROM `users` WHERE `user_id` = ?;');
+    $stmt-> execute([$_GET['id']]);
+    $row = $stmt-> fetch(PDO::FETCH_ASSOC);
+
     if(empty($row)) {
         $_SESSION['msg'] = 'Error: Invalid user';
         header('location:/user/?id=' . $_SESSION['user']);
@@ -81,7 +78,7 @@ $_SESSION['page'] = 'profile';
                 <i class='fa fa-fw fa-server'></i> Admin
             </a>
         <?php }
-        
+
         if(!isset($_SESSION['user'])) { ?>
         <div class='w3-dropdown-click w3-right'>
             <button class='w3-button' onclick='dropdownToggle()'>
@@ -143,7 +140,7 @@ $_SESSION['page'] = 'profile';
         <div class='w3-container nz-black nz-round-top'>
             <h2>Profile</h2>
         </div>
-        
+
         <div class='w3-container w3-padding-16 w3-responsive'>
             <table class='nz-table'>
                 <tr>
@@ -167,7 +164,7 @@ $_SESSION['page'] = 'profile';
         <div class='w3-container nz-black nz-round-top'>
             <h2>Ban Account</h2>
         </div>
-        
+
         <form class='w3-container w3-padding-16' action='/user/ban.php' method='POST' onsubmit='return banVerify(this)'>
 
             <input class='w3-input nz-black w3-border-0 w3-round' id='ban-user' type='text' placeholder='User ID' name='ban_user'>
@@ -190,7 +187,7 @@ $_SESSION['page'] = 'profile';
         <div class='w3-container nz-black nz-round-top'>
             <h2>Unban Account</h2>
         </div>
-        
+
         <form class='w3-container w3-padding-16' action='/user/unban.php' method='POST' onsubmit='return unbanVerify(this)'>
 
             <input class='w3-input nz-black w3-border-0 w3-round' id='unban-user' type='text' placeholder='User ID' name='unban_user'>

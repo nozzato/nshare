@@ -37,21 +37,15 @@ if(isset($_POST['create_btn'])) {
             $_SESSION['msg'] = 'Error: Password must be 72 characters or less';
             go_back();
         }
-        try {
-            $stmt = $pdo-> prepare('SELECT * FROM `users` WHERE `email` = ? OR `username` = ?;');
-            $stmt-> execute([$create_email, $create_username]);
-            $row = $stmt-> fetch(PDO::FETCH_ASSOC);
-            $count = $stmt-> rowCount();
-        } catch (\PDOException $e) {
-            throw new \PDOException($e-> getMessage(), (int)$e-> getCode());
-        }
+        $stmt = $pdo-> prepare('SELECT * FROM `users` WHERE `email` = ? OR `username` = ?;');
+        $stmt-> execute([$create_email, $create_username]);
+        $row = $stmt-> fetch(PDO::FETCH_ASSOC);
+        $count = $stmt-> rowCount();
+
         if($count == 0) {
-            try {
-                $stmt = $pdo-> prepare('INSERT INTO `users` (`email`, `username`, `password`, `rank`, `ban_status`, `creation_date`) VALUES (?, ?, ?, ?, 0, CURDATE());');
-                $stmt-> execute([$create_email, $create_username, password_hash($create_password, PASSWORD_DEFAULT), $create_rank]);
-            } catch (\PDOException $e) {
-                throw new \PDOException($e-> getMessage(), (int)$e-> getCode());
-            }
+            $stmt = $pdo-> prepare('INSERT INTO `users` (`email`, `username`, `password`, `rank`, `ban_status`, `creation_date`) VALUES (?, ?, ?, ?, 0, CURDATE());');
+            $stmt-> execute([$create_email, $create_username, password_hash($create_password, PASSWORD_DEFAULT), $create_rank]);
+
             $old_umask = umask(0);
             mkdir('/srv/http/nozzato.com/files/' . $create_username, 0775);
             umask($old_umask);

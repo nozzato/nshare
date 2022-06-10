@@ -14,27 +14,16 @@ if(isset($_POST['folder_btn'])) {
         $_SESSION['msg'] = 'Error: Folder name must be 1023 characters or less';
         go_back();
     }
-    try {
-        $stmt = $pdo-> prepare('SELECT * FROM `files` WHERE `user_id` = ? AND `foldername` = ?;');
-        $stmt-> execute([$_SESSION['user'], $folder_name]);
-        $count = $stmt-> rowCount();
-    } catch (\PDOException $e) {
-        throw new \PDOException($e-> getMessage(), (int)$e-> getCode());
-    }
+    $stmt = $pdo-> prepare('SELECT * FROM `files` WHERE `user_id` = ? AND `foldername` = ?;');
+    $stmt-> execute([$_SESSION['user'], $folder_name]);
+    $count = $stmt-> rowCount();
+
     if($count == 0) {
-        try {
-            $stmt = $pdo-> prepare('INSERT INTO `files` (`user_id`, `foldername`) VALUES (?, ?);');
-            $stmt-> execute([$_SESSION['user'], $folder_name]);
-        } catch (\PDOException $e) {
-            throw new \PDOException($e-> getMessage(), (int)$e-> getCode());
-        }
+        $stmt = $pdo-> prepare('INSERT INTO `files` (`user_id`, `foldername`) VALUES (?, ?);');
+        $stmt-> execute([$_SESSION['user'], $folder_name]);
     } else {
-        try {
-            $stmt = $pdo-> prepare('UPDATE `files` SET `user_id` = ?, `foldername` = ? WHERE `user_id` = ? AND `foldername` = ?;');
-            $stmt-> execute([$_SESSION['user'], $folder_name, $_SESSION['user'], $folder_name]);
-        } catch (\PDOException $e) {
-            throw new \PDOException($e-> getMessage(), (int)$e-> getCode());
-        }
+        $stmt = $pdo-> prepare('UPDATE `files` SET `user_id` = ?, `foldername` = ? WHERE `user_id` = ? AND `foldername` = ?;');
+        $stmt-> execute([$_SESSION['user'], $folder_name, $_SESSION['user'], $folder_name]);
     }
     chmod($folder_server, 0775);
 
