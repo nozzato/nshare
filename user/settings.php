@@ -50,7 +50,7 @@ $_SESSION['page'] = 'settings';
                 <i class='fa fa-fw fa-server'></i> Admin
             </a>
         <?php }
-        
+
         if(!isset($_SESSION['user'])) { ?>
         <div class='w3-dropdown-click w3-right'>
             <button class='w3-button' onclick='dropdownToggle()'>
