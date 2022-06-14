@@ -1,19 +1,25 @@
 <?php
 session_start();
-include_once('/srv/http/nozzato.com/scripts/scripts.php');
-include_once('/srv/http/nozzato.com/database/connect.php');
 
+// if not logged in
 if(!isset($_SESSION['user'])) {
     header('location:/');
     exit;
 }
+
+// include functions
+include_once('/srv/http/nozzato.com/scripts/scripts.php');
+
+// connect to database
+include_once('/srv/http/nozzato.com/database/connect.php');
+
 $_SESSION['page'] = 'files';
 ?>
 <!DOCTYPE html>
 <html lang='en'>
 <head>
 
-<title>Files: <?php echo $_SESSION['username'] . '/'; ?> - NShare</title>
+<title>Files: <?= $_SESSION['username'] . '/'; ?> - NShare</title>
 <link rel='icon' type='image/gif' href='/media/favicon.gif'>
 
 <meta charset='utf-8'>
@@ -36,200 +42,185 @@ function openFile(id) {
 <div id='header'>
     <div class='w3-bar nz-black'>
 
-        <?php if(!isset($_SESSION['user'])) { ?>
-            <a class='w3-bar-item w3-button w3-text-blue' href='/index.php'>NShare</a>
-        <?php } else { ?>
-            <a class='w3-bar-item w3-button w3-text-blue w3-mobile' href='/index.php'>NShare</a>
-        <?php } ?>
-        <?php if(isset($_SESSION['user'])) { ?>
-            <a class='w3-bar-item w3-button' href='/files/index.php'>
-                <i class='fa fa-fw fa-folder-open'></i> Files
-            </a>
-        <?php } ?>
+    <?php if(!isset($_SESSION['user'])) { ?>
+        <a class='w3-bar-item w3-button w3-text-blue' href='/index.php'>NShare</a>
+    <?php } else { ?>
+        <a class='w3-bar-item w3-button w3-text-blue w3-mobile' href='/index.php'>NShare</a>
+    <?php } ?>
 
-        <?php if(isset($_SESSION['rank']) && $_SESSION['rank'] == 'admin') { ?>
-            <a class='w3-bar-item w3-button' href='/database/adminer/adminer.php'>
-                <i class='fa fa-fw fa-server'></i> Admin
-            </a>
-        <?php }
+    <?php if(isset($_SESSION['user'])) { ?>
+        <a class='w3-bar-item w3-button' href='/files/index.php'>
+            <i class='fa fa-fw fa-folder-open'></i> Files
+        </a>
+    <?php } ?>
 
-        if(!isset($_SESSION['user'])) { ?>
+    <?php if(isset($_SESSION['rank']) && $_SESSION['rank'] == 'admin') { ?>
+        <a class='w3-bar-item w3-button' href='/database/adminer/adminer.php'>
+            <i class='fa fa-fw fa-server'></i> Admin
+        </a>
+    <?php } ?>
+
+    <?php if(!isset($_SESSION['user'])) { ?>
         <div class='w3-dropdown-click w3-right'>
             <button class='w3-button' onclick='dropdownToggle()'>
                 <i class='fa fa-fw fa-door-open'></i> Login <i class='fa fa-fw fa-caret-down'></i>
             </button>
             <div class='w3-dropdown-content w3-bar-block nz-black nz-round-bottom-left w3-card-2 nz-dropdown-left' id='dropdown' style='max-width:100px'>
-
-                <form class='w3-right' action='/user/login.php' method='POST' onsubmit='return loginVerify(this)'>
-
+                <form class='w3-right' action='/user/login.php' method='POST' onsubmit='return loginValidate(this)'>
                     <div style='display:flex'>
                         <i class='fa fa-fw fa-user' style='margin:8px 2px 8px 18px;padding:4px 0.93px 0 0.93px;vertical-align:center'></i>
                         <input class='w3-bar-item w3-input nz-black' id='login-username' type='text' placeholder='Username' name='login_username' style='padding:8px 16px 8px 5px'>
                     </div>
-
                     <div style='display:flex'>
                         <i class='fa fa-fw fa-key' style='margin:8px 2px 8px 18px;padding-top:4px;vertical-align:center'></i>
                         <input class='w3-bar-item w3-input nz-black' id='login-password' type='password' placeholder='Password' name='login_password' style='padding:8px 16px 8px 5px'>
                     </div>
-
                     <button class='w3-bar-item w3-button w3-green nz-round-bottom-left' type='submit' name='login_btn'>
                         <i class='fa fa-fw fa-right-to-bracket'></i> Login
                     </button>
-
                 </form>
             </div>
         </div>
-        <?php } else { ?>
+    <?php } else { ?>
         <div class='w3-dropdown-hover w3-right'>
             <button class='w3-button'>
                 <i class='fa fa-fw fa-door-closed'></i> Account <i class='fa fa-fw fa-caret-down'></i>
             </button>
             <div class='w3-dropdown-content w3-bar-block nz-black nz-round-bottom-left w3-card-2 nz-dropdown-left' style='max-width:100px'>
-
-                <a class='w3-bar-item w3-button' href='/user/index.php?id=<?php echo $_SESSION['user']; ?>'>
-                    <i class='fa fa-fw fa-user'></i> <?php echo $_SESSION['username']; ?><span class='w3-text-gray'>#<?php echo $_SESSION['user']; ?></span>
+                <a class='w3-bar-item w3-button' href='/user/index.php?id=<?= $_SESSION['user']; ?>'>
+                    <i class='fa fa-fw fa-user'></i> <?= $_SESSION['username']; ?><span class='w3-text-gray'>#<?= $_SESSION['user']; ?></span>
                 </a>
 
-                <?php if(!$_SESSION['ban_status'] >= 1) { ?>
-                    <a class='w3-bar-item w3-button' href='/user/settings.php'>
-                        <i class='fa fa-fw fa-gear'></i> Settings
-                    </a>
-                <?php } ?>
+            <?php if(!$_SESSION['ban_status'] >= 1) { ?>
+                <a class='w3-bar-item w3-button' href='/user/settings.php'>
+                    <i class='fa fa-fw fa-gear'></i> Settings
+                </a>
+            <?php } ?>
 
                 <form action='/user/logout.php' method='POST'>
                     <button class='w3-bar-item w3-button w3-red nz-round-bottom-left' type='submit' name='logout_btn'>
                         <i class='fa fa-fw fa-right-from-bracket'></i> Logout
                     </button>
                 </form>
-
             </div>
         </div>
-        <?php } ?>
+    <?php } ?>
+
     </div>
 </div>
 
 <div class='w3-container w3-padding-16' id='content' style='margin-bottom:38.5px'>
     <div class='w3-round w3-card-2 nz-page' id='files'>
-
         <div class='w3-container nz-black nz-round-top'>
-            <h2 class='nz-truncate'><?php echo $_SESSION['username'] ?>/</h2>
+            <h2 class='nz-truncate'><?= $_SESSION['username'] ?>/</h2>
         </div>
-
         <div class='w3-container w3-padding-16'>
-
             <div class='w3-responsive'>
                 <table class='nz-table-bordered'>
                     <tr>
                         <th>Filename <i class='fa fa-fw fa-caret-down'></i></th>
                         <th>File ID</th>
                         <th>Size</th>
-                        <?php if(!$_SESSION['ban_status'] >= 1) { ?>
-                            <th>Privacy</th>
-                            <th>Delete</th>
-                        <?php } ?>
+
+                    <?php if(!$_SESSION['ban_status'] >= 1) { ?>
+                        <th>Privacy</th>
+                        <th>Delete</th>
+                    <?php } ?>
+        
                     </tr>
 
-                    <?php
-                    $stmt = $pdo-> prepare('SELECT * FROM `files` WHERE `user_id` = ? ORDER BY `filename` ASC;');
-                    $stmt-> execute([$_SESSION['user']]);
-                    $rows = $stmt-> fetchAll(PDO::FETCH_ASSOC);
-                    $count = $stmt-> rowCount();
+                <?php
+                // select user's files and order alphabetically
+                $stmt = $pdo-> prepare('SELECT * FROM `files` WHERE `user_id` = ? ORDER BY `filename` ASC;');
+                $stmt-> execute([$_SESSION['user']]);
+                $rows = $stmt-> fetchAll(PDO::FETCH_ASSOC);
+                $count = $stmt-> rowCount();
+                ?>
 
-                    for($i = 0; $i < $count; $i++) {
-                        $file_modal = '"' . $rows[$i]['filename'] . '"' ?>
-                        <tr>
-                            <td class='w3-button' onclick='openFile(<?php echo $rows[$i]['file_id']; ?>)'><?php echo $rows[$i]['filename']; ?></td>
-
-                            <td><?php echo $rows[$i]['file_id']; ?></td>
-
-                            <td><?php echo human_filesize($rows[$i]['size']); ?></td>
-
-                            <?php if(!$_SESSION['ban_status'] >= 1) { ?>
-                                <td class='w3-button'><?php echo ucfirst($rows[$i]['privacy']); ?></td>
-
-                                <td class='w3-button w3-hover-red' onclick='openModal(<?php echo $file_modal; ?>)'>Delete</td>
-                            <?php } ?>
-                        </tr>
+                <?php for($i = 0; $i < $count; $i++) {
+                    $file_modal = '"' . $rows[$i]['filename'] . '"' ?>
+                    <tr>
+                        <td class='w3-button' onclick='openFile(<?= $rows[$i]['file_id']; ?>)'><?= $rows[$i]['filename']; ?></td>
+                        <td><?= $rows[$i]['file_id']; ?></td>
+                        <td><?= human_filesize($rows[$i]['size']); ?></td>
+        
+                    <?php if(!$_SESSION['ban_status'] >= 1) { ?>
+                        <td class='w3-button'><?= ucfirst($rows[$i]['privacy']); ?></td>
+                        <td class='w3-button w3-hover-red' onclick='openModal(<?= $file_modal; ?>)'>Delete</td>
                     <?php } ?>
+        
+                    </tr>
+                <?php } ?>
+
                     <tr class='nz-black'>
                         <td>
                             <b>Total Size</b>
                         </td>
                         <td class='nz-truncate'>
-                            <?php $db_file_size_total = 0;
+
+                            <?php
+                            $db_file_size_total = 0;
 
                             for($i = 0; $i <= $count - 1; $i++) {
                                 $db_file_size_total += $rows[$i]['size'];
-                            } ?>
+                            }
 
-                            <?php echo human_filesize($db_file_size_total); ?> / 5.00G
+                            echo human_filesize($db_file_size_total); ?> / 5.00G
                         </td>
                         <td>
-                        <?php if(!$_SESSION['ban_status'] >= 1) { ?>
-                            </td><td></td><td></td>
-                        <?php } ?>
+            
+                    <?php if(!$_SESSION['ban_status'] >= 1) { ?>
+                        </td><td></td><td></td>    
+                    <?php } ?>
+
                     </tr>
                 </table>
             </div>
 
-            <?php if(!$_SESSION['ban_status'] >= 1) { ?>
-                <form class='w3-margin-top w3-center' action='/files/upload.php' method='POST' enctype='multipart/form-data'>
-
-                    <span>Privacy</span>
-
-                    <input class='w3-radio' id='upload-private' type='radio' value='private' name='upload_privacy' checked>
-                    <label for='upload-private'>Private</label>
-
-                    <input class='w3-radio' id='upload-public' type='radio' value='public' name='upload_privacy'>
-                    <label for='upload-public'>Public</label>
-
-                    <br><br>
-                    <button class='w3-button w3-green w3-round' type='submit' name='upload_btn'>
-                        <i class='fa fa-fw fa-file-arrow-up'></i> Upload
-                    </button>
-
-                    <input class='w3-hide' id='upload-file' type='file' name='upload_file[]' multiple required>
-
-                    <label class='w3-button w3-blue-grey w3-round' for='upload-file'>
-                        <i class='fa fa-fw fa-folder-tree'></i> Browse
-                    </label>
-
-                </form>
-            <?php } else { ?>
-                <p></p>
-                <form class='w3-margin-top w3-center' action='/files/download.php' method='POST'>
-                    <button class='w3-button w3-blue w3-round' name='download_all_btn'>
-                        <i class='fa fa-fw fa-file-arrow-down'></i> Download All
-                    </button>
-                </form>
-            <?php } ?>
+        <?php if(!$_SESSION['ban_status'] >= 1) { ?>
+            <form class='w3-margin-top w3-center' action='/files/upload.php' method='POST' enctype='multipart/form-data'>
+                <span>Privacy</span>
+                <input class='w3-radio' id='upload-private' type='radio' value='private' name='upload_privacy' checked>
+                <label for='upload-private'>Private</label>
+                <input class='w3-radio' id='upload-public' type='radio' value='public' name='upload_privacy'>
+                <label for='upload-public'>Public</label>
+                <br><br>
+                <button class='w3-button w3-green w3-round' type='submit' name='upload_btn'>
+                    <i class='fa fa-fw fa-file-arrow-up'></i> Upload
+                </button>
+                <input class='w3-hide' id='upload-file' type='file' name='upload_file[]' multiple required>
+                <label class='w3-button w3-blue-grey w3-round' for='upload-file'>
+                    <i class='fa fa-fw fa-folder-tree'></i> Browse
+                </label>
+            </form>
+        <?php } else { ?>
+            <p></p>
+            <form class='w3-margin-top w3-center' action='/files/download.php' method='POST'>
+                <button class='w3-button w3-blue w3-round' name='download_all_btn'>
+                    <i class='fa fa-fw fa-file-arrow-down'></i> Download All
+                </button>
+            </form>
+        <?php } ?>
 
         </div>
-
     </div>
     <div class='w3-modal' id='modal'>
         <div class='w3-modal-content nz-dark w3-round w3-card-2'>
-
             <header class='w3-container nz-black nz-round-top'>
                 <h2>Really delete?</h2>
             </header>
-
             <div class='w3-container'>
                 <p class ='m-0 text-center' id='modal-content'></p>
             </div>
-
             <footer class='w3-container w3-bar'>
-
                 <form action='/files/delete.php' method='POST'>
                     <button class='w3-button w3-bar-item w3-red w3-round w3-margin-bottom' id='delete-button' type='submit' name='delete_btn' style='margin-right:5px'>
                         <i class='fa fa-fw fa-trash-can'></i> Delete
                     </button>
                 </form>
-
                 <button class='w3-button w3-bar-item w3-blue-grey w3-round w3-margin-bottom' onclick='document.getElementById("modal").style.display="none"'>
                     <i class='fa fa-fw fa-ban'></i> Cancel
                 </button>
-
             </footer>
         </div>
     </div>
@@ -238,24 +229,22 @@ function openFile(id) {
 <div class='w3-bottom' id='footer'>
     <div class='w3-bar nz-black' style='height:38.5px'>
         <div class='w3-display-bottommiddle' style='bottom:9px'>
-            <?php if(isset($_SESSION['msg'])) {
-                if(substr($_SESSION['msg'], 0, 6) == 'Error:') { ?>
 
-                <span class='w3-text-red nz-truncate' id='msg'>
-                    <?php echo $_SESSION['msg']; ?>
-                </span>
+    <?php if(isset($_SESSION['msg'])) {
+        if(substr($_SESSION['msg'], 0, 6) == 'Error:') { ?>
+            <span class='w3-text-red nz-truncate' id='msg'>
+                <?= $_SESSION['msg']; ?>
+            </span>
+        <?php } else { ?>
+            <span class='nz-truncate' id='msg'>
+                <?= $_SESSION['msg']; ?>
+            </span>
+        <?php }
+    } else { ?>
+            <span class='nz-truncate' id='msg'></span>
+    <?php }
+    unset($_SESSION['msg']); ?>
 
-                <?php } else { ?>
-                <span class='nz-truncate' id='msg'>
-                    <?php echo $_SESSION['msg']; ?>
-                </span>
-
-                <?php }
-            } else { ?>
-                <span class='nz-truncate' id='msg'></span>
-            <?php }
-
-            unset($_SESSION['msg']); ?>
         </div>
     </div>
 </div>
