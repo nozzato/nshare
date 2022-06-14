@@ -1,4 +1,4 @@
-# Ignore user directories except example files
+# ignore user directories except example files
 files/*
 !files/*.php
 
@@ -10,11 +10,11 @@ files/Admin/*
 files/Member/*
 !files/Member/example*
 
-# Ignore font awesome icons
+# ignore font awesome icons
 styles/icons/
 
-# Ignore sass map
+# ignore sass map
 styles/nz.css.map
 
-# Ignore maintenance switch
+# ignore maintenance switch
 status/maintenance.enable

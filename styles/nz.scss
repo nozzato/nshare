@@ -1,19 +1,13 @@
-///////////////
-// Variables //
-///////////////
+/* variables */
 
-// Colors
-
+// colors
 $dark:  #22231c;
 $black: #181916;
 $white: #ffffff;
 
-//////////////
-// Elements //
-//////////////
+/* elements */
 
 // Input
-
 a {
     text-decoration: none;
 }
@@ -25,12 +19,9 @@ input:focus, textarea:focus {
     outline: none;
 }
 
-/////////////
-// Classes //
-/////////////
+/* classes */
 
-// Alignment
-
+// alignment
 .nz-page {
     margin: auto;
     max-width: 960px;
@@ -40,8 +31,7 @@ input:focus, textarea:focus {
     right: 0;
 }
 
-// Borders
-
+// borders
 .nz-round-top {
     border-radius: 4px 4px 0 0;
 }
@@ -61,8 +51,7 @@ input:focus, textarea:focus {
     border-radius: 0 0 4px 0;
 }
 
-// Colors
-
+// colors
 .nz-dark {
     color: $white;
     background-color: $dark;
@@ -79,8 +68,7 @@ input:focus, textarea:focus {
     color: $black;
 }
 
-// Input
-
+// input
 .nz-ghost {
     pointer-events: none;
 }
@@ -106,8 +94,7 @@ input:focus, textarea:focus {
     border-bottom: 1px solid $black;
 }
 
-// Layout
-
+// layout
 .nz-truncate {
     overflow: hidden;
     white-space: nowrap;
