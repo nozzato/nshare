@@ -1,10 +1,50 @@
+// general
+function copy() {
+    var userId = document.getElementById('userId').innerHTML
+
+    navigator.clipboard.writeText(userId);
+}
+
+// message handling
 function msgClear() {
     setTimeout(() => {
         msg = document.getElementById('msg').innerHTML = '';
     }, 10000);
 }
 
-function loginVerify() {
+// page location
+function goBack() {
+    window.location.href = '/files/index.php';
+}
+
+// UI elements
+function dropdownToggle() {
+    var dropdown = document.getElementById('dropdown');
+
+    if(dropdown.className.indexOf('w3-show') == -1) {
+        dropdown.className += ' w3-show';
+    } else {
+        dropdown.className = dropdown.className.replace(' w3-show', '');
+    }
+}
+function openModal(content) {
+    document.getElementById('modal').style.display = 'block';
+    document.getElementById('modal-content').innerHTML = content;
+    document.getElementById('delete-button').value = content;
+}
+function openPage(pageName) {
+    var pages = document.getElementsByClassName('page');
+    for (var i = 0; i < pages.length; i++) {
+        pages[i].style.display = 'none';
+    }
+    document.getElementById(pageName).style.display = 'block';
+
+    pageName = pageName.charAt(0).toUpperCase() + pageName.slice(1);
+    document.title = 'Settings: ' + pageName + ' - NShare';
+}
+
+// validation
+function loginValidate() {
     var msg = document.getElementById('msg');
     var loginUsername = document.getElementById('login-username').value;
     var loginPassword = document.getElementById('login-password').value;
@@ -18,7 +58,7 @@ function loginVerify() {
         return true;
     }
 }
-function createVerify() {
+function createValidate() {
     var msg = document.getElementById('msg');
     var createEmail = document.getElementById('create-email').value;
     var createUsername = document.getElementById('create-username').value;
@@ -53,7 +93,7 @@ function createVerify() {
         return true;
     }
 }
-function emailVerify() {
+function emailValidate() {
     var msg = document.getElementById('msg');
     var oldEmail = document.getElementById('email-old').value;
     var newEmail = document.getElementById('email-new').value;
@@ -72,7 +112,7 @@ function emailVerify() {
         return true;
     }
 }
-function usernameVerify() {
+function usernameValidate() {
     var msg = document.getElementById('msg');
     var oldUsername = document.getElementById('username-old').value;
     var newUsername = document.getElementById('username-new').value;
@@ -91,7 +131,7 @@ function usernameVerify() {
         return true;
     }
 }
-function passwordVerify() {
+function passwordValidate() {
     var msg = document.getElementById('msg');
     var oldPassword = document.getElementById('password-old').value;
     var newPassword = document.getElementById('password-new').value;
@@ -115,7 +155,7 @@ function passwordVerify() {
         return true;
     }
 }
-function closeVerify() {
+function closeValidate() {
     var msg = document.getElementById('msg');
     var closePassword = document.getElementById('close-password').value;
 
@@ -128,7 +168,7 @@ function closeVerify() {
         return true;
     }
 }
-function banVerify() {
+function banValidate() {
     var msg = document.getElementById('msg');
     var banUser = document.getElementById('ban-user').value;
     var banReason = document.getElementById('ban-reason').value;
@@ -147,7 +187,7 @@ function banVerify() {
         return true;
     }
 }
-function unbanVerify() {
+function unbanValidate() {
     var msg = document.getElementById('msg');
     var unbanUser = document.getElementById('unban-user').value;
     var unbanReason = document.getElementById('unban-reason').value;
@@ -164,50 +204,5 @@ function unbanVerify() {
         return false;
     } else {
         return true;
-    }
-}
-
-function dropdownToggle() {
-    var dropdown = document.getElementById('dropdown');
-
-    if(dropdown.className.indexOf('w3-show') == -1) {
-        dropdown.className += ' w3-show';
-    } else {
-        dropdown.className = dropdown.className.replace(' w3-show', '');
-    }
-}
-function openPage(pageName) {
-    var pages = document.getElementsByClassName('page');
-    for (var i = 0; i < pages.length; i++) {
-        pages[i].style.display = 'none';
-    }
-    document.getElementById(pageName).style.display = 'block';
-
-    pageName = pageName.charAt(0).toUpperCase() + pageName.slice(1);
-    document.title = 'Settings: ' + pageName + ' - NShare';
-}
-function openModal(content) {
-    document.getElementById('modal').style.display = 'block';
-    document.getElementById('modal-content').innerHTML = content;
-    document.getElementById('delete-button').value = content;
-}
-
-function goBack() {
-    window.location.href = '/files/index.php';
-}
-
-function copy() {
-    var userId = document.getElementById('userId').innerHTML
-
-    navigator.clipboard.writeText(userId);
-}
-
-function toggleFoxes() {
-    var divFoxes = document.getElementById('foxes');
-
-    if (divFoxes.style.display == 'none') {
-        divFoxes.style.display = 'block';
-    } else {
-        divFoxes.style.display = 'none';
     }
 }

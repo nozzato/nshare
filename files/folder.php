@@ -1,34 +1,52 @@
 <?php
 session_start();
+
+// include functions
 include_once('/srv/http/nozzato.com/scripts/scripts.php');
-include_once('/srv/http/nozzato.com/database/connect.php');
 
+// if folder button clicked
 if(isset($_POST['folder_btn'])) {
-    $folder_path = '/files/' . $_SESSION['username'] . '/';
-    $folder_path_server = '/srv/http/nozzato.com/files/' . $_SESSION['username'] . '/';
-    $folder_name    = $_POST['folder_name'];
-    $folder         = $folder_path . $folder_name;
-    $folder_server  = $folder_path_server . $folder_name;
+    // connect to database
+    include_once('/srv/http/nozzato.com/database/connect.php');
 
+    // set folder variables
+    $folder_path        = '/files/' . $_SESSION['username'] . '/';
+    $folder_path_server = '/srv/http/nozzato.com/files/' . $_SESSION['username'] . '/';
+    $folder_name        = $_POST['folder_name'];
+    $folder             = $folder_path . $folder_name;
+    $folder_server      = $folder_path_server . $folder_name;
+
+    // validate folder
     if(strlen($folder_name) > 1023) {
         $_SESSION['msg'] = 'Error: Folder name must be 1023 characters or less';
         go_back();
     }
+
+    // check if folder exists
     $stmt = $pdo-> prepare('SELECT * FROM `files` WHERE `user_id` = ? AND `foldername` = ?;');
     $stmt-> execute([$_SESSION['user'], $folder_name]);
     $count = $stmt-> rowCount();
 
+    // if folder does not exist
     if($count == 0) {
+        // insert folder into database
         $stmt = $pdo-> prepare('INSERT INTO `files` (`user_id`, `foldername`) VALUES (?, ?);');
         $stmt-> execute([$_SESSION['user'], $folder_name]);
+    // else folder exists
     } else {
+        // update folder in database
         $stmt = $pdo-> prepare('UPDATE `files` SET `user_id` = ?, `foldername` = ? WHERE `user_id` = ? AND `foldername` = ?;');
         $stmt-> execute([$_SESSION['user'], $folder_name, $_SESSION['user'], $folder_name]);
     }
-    chmod($folder_server, 0775);
+
+    // create folder
+    $old_umask = umask(0);
+    mkdir($folder_server, 0775);
+    umask($old_umask);
 
     $_SESSION['msg'] = 'Folder created';
     go_back();
 }
+
 go_back();
 ?>

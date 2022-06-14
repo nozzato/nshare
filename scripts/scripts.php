@@ -1,4 +1,31 @@
 <?php
+// conversion
+function human_filesize($bytes, $decimals = 2) {
+    $sz = 'BKMGTP';
+    $factor = floor((strlen($bytes) - 1) / 3);
+    return sprintf("%.{$decimals}f", $bytes / pow(1024, $factor)) . @$sz[$factor];
+}
+
+// files
+function remove_dir($dir) {
+    if(!file_exists($dir)) {
+        return true;
+    }
+    if(!is_dir($dir)) {
+        return unlink($dir);
+    }
+    foreach(scandir($dir) as $item) {
+        if($item == '.' || $item == '..') {
+            continue;
+        }
+        if(!remove_dir($dir . DIRECTORY_SEPARATOR . $item)) {
+            return false;
+        }
+    }
+    return rmdir($dir);
+}
+
+// page location
 function go_back() {
     if($_SESSION['page'] == 'home') {
         header('location:/index.php');
@@ -21,29 +48,7 @@ function go_back() {
     }
 }
 
-function remove_dir($dir) {
-    if (!file_exists($dir)) {
-        return true;
-    }
-    if (!is_dir($dir)) {
-        return unlink($dir);
-    }
-    foreach (scandir($dir) as $item) {
-        if ($item == '.' || $item == '..') {
-            continue;
-        }
-        if (!remove_dir($dir . DIRECTORY_SEPARATOR . $item)) {
-            return false;
-        }
-    }
-    return rmdir($dir);
-}
-
-function human_filesize($bytes, $decimals = 2) {
-    $sz = 'BKMGTP';
-    $factor = floor((strlen($bytes) - 1) / 3);
-    return sprintf("%.{$decimals}f", $bytes / pow(1024, $factor)) . @$sz[$factor];
-}
+// security
 function h_captcha($hcr) {
     $data = array(
         'secret' => '0x5cB5398D7A0e9069531e4C520844E4c9728f74ED',

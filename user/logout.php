@@ -1,6 +1,7 @@
 <?php
 session_start();
 
+// if user did not close their account
 if(!isset($_SESSION['close_logout'])) {
     if($_SESSION['page'] == 'home') {
         session_unset();
@@ -28,6 +29,7 @@ if(!isset($_SESSION['close_logout'])) {
         header('location:/index.php');
         exit;
     }
+// else user closed their account
 } else {
     session_unset();
     $_SESSION['msg'] = 'Account deleted';
