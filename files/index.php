@@ -20,7 +20,7 @@ $_SESSION['page'] = 'files';
 <head>
 
 <title>Files: <?= $_SESSION['username'] . '/'; ?> - NShare</title>
-<link rel='icon' type='image/gif' href='/assets/favicon.gif'>
+<link rel='icon' type='image/gif' href='/media/favicon.gif'>
 
 <meta charset='utf-8'>
 <meta name='viewport' content='width=device-width, initial-scale=1'>
@@ -119,7 +119,6 @@ function openFile(id) {
                 <table class='nz-table-bordered'>
                     <tr>
                         <th class='nz-truncate'>Name <i class='fa fa-fw fa-caret-down'></i></th>
-                        <th class='nz-truncate'>File ID</th>
                         <th>Size</th>
                         <th title='Date Modified'>Date</th>
 
@@ -148,7 +147,6 @@ function openFile(id) {
                 ?>
                     <tr>
                         <td class='w3-button' onclick='openFile(<?= $rows[$i]['file_id']; ?>)'><?= $rows[$i]['filename']; ?></td>
-                        <td><?= $rows[$i]['file_id']; ?></td>
                         <td><?= human_filesize($rows[$i]['size']); ?></td>
                         <td><?= $rows[$i]['upload_date']; ?></td>
 
@@ -175,7 +173,7 @@ function openFile(id) {
 
                             echo human_filesize($db_file_size_total); ?> / 5.00G
                         </td>
-                        <td></td><td></td>
+                        <td></td>
 
                     <?php if(!$_SESSION['ban_status'] >= 1) { ?>
                         <td></td><td></td>
