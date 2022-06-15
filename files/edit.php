@@ -18,6 +18,11 @@ $stmt = $pdo -> prepare('SELECT * FROM `files` WHERE `file_id` = ?;');
 $stmt -> execute([$_GET['id']]);
 $row = $stmt -> fetch(PDO::FETCH_ASSOC);
 
+// select formatted upload date
+$stmt = $pdo-> prepare('SELECT DATE_FORMAT(`upload_date`, "%d-%m-%Y") FROM `files` WHERE `file_id` = ?;');
+$stmt-> execute([$_GET['id']]);
+$row['upload_date'] = $stmt-> fetchColumn();
+
 // if selected file is private and not owned by user
 if($row['privacy'] == 'private' && $row['user_id'] != $_SESSION['user']) {
     $_SESSION['msg'] = 'Error: You do not have permission view this file';
@@ -217,12 +222,13 @@ else {
             <div class='w3-responsive'>
                 <table class='nz-table'>
                     <tr>
-                        <td><b>Name:</b> <?= $row['filename']; ?></td>
-                        <td><b>File ID:</b> <?= $row['file_id']; ?></td>
-                        <td><b>Size:</b> <?= human_filesize($row['size']); ?></td>
+                        <td><b>Name</b><br><?= $row['filename']; ?></td>
+                        <td class='nz-truncate'><b>File ID</b><br><?= $row['file_id']; ?></td>
+                        <td><b>Size</b><br><?= human_filesize($row['size']); ?></td>
+                        <td><b>Date</b><br><?= $row['upload_date']; ?></td>
 
                     <?php if(!$_SESSION['ban_status'] >= 1 || $row['user_id'] != $_SESSION['user']) { ?>
-                        <td><b>Privacy:</b> <?= ucfirst($row['privacy']); ?></td>
+                        <td><b>Privacy</b><br><?= ucfirst($row['privacy']); ?></td>
                     <?php } ?>
 
                     </tr>
