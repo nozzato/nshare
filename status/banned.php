@@ -107,7 +107,7 @@ if($row['ban_status'] == 0) {
             </button>
             <div class='w3-dropdown-content w3-bar-block nz-black nz-round-bottom-left w3-card-2 nz-dropdown-left' style='max-width:100px'>
                 <a class='w3-bar-item w3-button' href='/user/index.php?id=<?= $_SESSION['user']; ?>'>
-                    <i class='fa fa-fw fa-user'></i> <?= $_SESSION['username']; ?><span class='w3-text-gray'>#<?= $_SESSION['user']; ?></span>
+                    <i class='fa fa-fw fa-user'></i> <?= $_SESSION['username']; ?>
                 </a>
 
             <?php if(!$_SESSION['ban_status'] >= 1) { ?>
@@ -134,10 +134,10 @@ if($row['ban_status'] == 0) {
         <p>We have found your account in violation of our rules.</p>
         <p>Your files will be deleted automatically on the <b><?= $ban_date_deadline; ?></b>.<br><a class='w3-text-blue' href='/files/index.php'>Click here</a> to download your files before they are deleted.</p>
         <span>Username:</span>
-        <span><?= $_SESSION['username']; ?><span class='w3-text-gray' title='User ID'>#<?= $_SESSION['user']; ?></span></span>
+        <span><?= $_SESSION['username']; ?></span>
         <br>
         <span>Banned By:</span>
-        <span><?= $ban_judge; ?><span class='w3-text-gray' title='User ID'>#<?= $row['ban_judge']; ?></span></span>
+        <span><?= $ban_judge; ?></span>
         <br>
         <span>Ban Date:</span>
         <span><?= $row['ban_date']; ?></span>

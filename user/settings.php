@@ -83,7 +83,7 @@ $_SESSION['page'] = 'settings';
             </button>
             <div class='w3-dropdown-content w3-bar-block nz-black nz-round-bottom-left w3-card-2 nz-dropdown-left' style='max-width:100px'>
                 <a class='w3-bar-item w3-button' href='/user/index.php?id=<?= $_SESSION['user']; ?>'>
-                    <i class='fa fa-fw fa-user'></i> <?= $_SESSION['username']; ?><span class='w3-text-gray'>#<?= $_SESSION['user']; ?></span>
+                    <i class='fa fa-fw fa-user'></i> <?= $_SESSION['username']; ?>
                 </a>
 
             <?php if(!$_SESSION['ban_status'] >= 1) { ?>
