@@ -89,12 +89,12 @@ if(isset($_FILES['upload_file']) || isset($_POST['upload_btn'])) {
                 // if file does not exist
                 if($count == 0) {
                     // insert file into database
-                    $stmt = $pdo-> prepare('INSERT INTO `files` (`user_id`, `filename`, `size`, `privacy`) VALUES (?, ?, ?, ?);');
+                    $stmt = $pdo-> prepare('INSERT INTO `files` (`user_id`, `filename`, `size`, `privacy`, `upload_date`) VALUES (?, ?, ?, ?, CURDATE());');
                     $stmt-> execute([$_SESSION['user'], $file_name, $file_size, $file_privacy]);
                 // else file exists
                 } else {
                     // update file in database
-                    $stmt = $pdo-> prepare('UPDATE `files` SET `user_id` = ?, `filename` = ?, `size` = ?, `privacy` = ? WHERE `user_id` = ? AND `filename` = ?;');
+                    $stmt = $pdo-> prepare('UPDATE `files` SET `user_id` = ?, `filename` = ?, `size` = ?, `privacy` = ?, `upload_date` = NOW() WHERE `user_id` = ? AND `filename` = ?;');
                     $stmt-> execute([$_SESSION['user'], $file_name, $file_size, $file_privacy, $_SESSION['user'], $file_name]);
                 }
 

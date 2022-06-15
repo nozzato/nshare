@@ -57,7 +57,7 @@ if(isset($_POST['create_btn'])) {
         // if user does not exist
         if($count == 0) {
             // insert user into database
-            $stmt = $pdo-> prepare('INSERT INTO `users` (`email`, `username`, `password`, `rank`, `ban_status`, `creation_date`) VALUES (?, ?, ?, ?, 0, CURDATE());');
+            $stmt = $pdo-> prepare('INSERT INTO `users` (`email`, `username`, `password`, `rank`, `ban_status`, `creation_date`) VALUES (?, ?, ?, ?, 0, NOW());');
             $stmt-> execute([$create_email, $create_username, password_hash($create_password, PASSWORD_DEFAULT), $create_rank]);
 
             // create directory

@@ -43,7 +43,7 @@ if(isset($_POST['ban_btn'])) {
         }
 
         // insert ban into database
-        $stmt = $pdo-> prepare('UPDATE `users` SET `ban_status` = ?, `ban_judge` = ?, `ban_date` = CURDATE(), `ban_reason` = ? WHERE `user_id` = ?;');
+        $stmt = $pdo-> prepare('UPDATE `users` SET `ban_status` = ?, `ban_judge` = ?, `ban_date` = NOW(), `ban_reason` = ? WHERE `user_id` = ?;');
         $stmt-> execute([1, $_SESSION['user'], $ban_reason, $ban_user]);
 
         $_SESSION['msg'] = 'Account banned';
