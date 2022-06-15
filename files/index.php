@@ -118,7 +118,7 @@ function openFile(id) {
             <div class='w3-responsive'>
                 <table class='nz-table-bordered'>
                     <tr>
-                        <th class='nz-truncate'>Filename <i class='fa fa-fw fa-caret-down'></i></th>
+                        <th class='nz-truncate'>Name <i class='fa fa-fw fa-caret-down'></i></th>
                         <th class='nz-truncate'>File ID</th>
                         <th>Size</th>
                         <th title='Date Modified'>Date</th>
