@@ -153,14 +153,14 @@ $_SESSION['page'] = 'profile';
         <div class='w3-container w3-padding-16 w3-responsive'>
             <table class='nz-table'>
                 <tr>
-                    <td><b>Username:</b> <?= $username; ?></td>
-                    <td><b>User ID:</b> <?= $user; ?></td>
+                    <td><b>Username</b><br><?= $username; ?></td>
+                    <td class='nz-truncate'><b>User ID</b><br><?= $user; ?></td>
 
                 <?php if($_SESSION['rank'] == 'admin') { ?>
-                    <td><b>Rank:</b> <?= ucfirst($rank); ?></td>
-                    <td><b>Ban Status:</b> <?= $ban_status; ?></td>
+                    <td><b>Rank</b><br><?= ucfirst($rank); ?></td>
+                    <td class='nz-truncate'><b>Ban Status</b><br><?= $ban_status; ?></td>
                 <?php } else if($_SESSION['ban_status'] >= 1 && $user == $_SESSION['user']) { ?>
-                    <td><b>Ban Status:</b> <?= $ban_status; ?></td>
+                    <td><b>Ban Status</b><br><?= $ban_status; ?></td>
                 <?php } ?>
 
                 </tr>
