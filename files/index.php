@@ -118,15 +118,16 @@ function openFile(id) {
             <div class='w3-responsive'>
                 <table class='nz-table-bordered'>
                     <tr>
-                        <th>Filename <i class='fa fa-fw fa-caret-down'></i></th>
-                        <th>File ID</th>
+                        <th class='nz-truncate'>Filename <i class='fa fa-fw fa-caret-down'></i></th>
+                        <th class='nz-truncate'>File ID</th>
                         <th>Size</th>
+                        <th title='Date Modified'>Date</th>
 
                     <?php if(!$_SESSION['ban_status'] >= 1) { ?>
                         <th>Privacy</th>
                         <th>Delete</th>
                     <?php } ?>
-        
+
                     </tr>
 
                 <?php
@@ -138,17 +139,24 @@ function openFile(id) {
                 ?>
 
                 <?php for($i = 0; $i < $count; $i++) {
-                    $file_modal = '"' . $rows[$i]['filename'] . '"' ?>
+                    $file_modal = '"' . $rows[$i]['filename'] . '"';
+
+                    // select formatted upload date
+                    $stmt = $pdo-> prepare('SELECT DATE_FORMAT(`upload_date`, "%d-%m-%Y") FROM `files` WHERE `user_id` = ? AND `filename` = ?;');
+                    $stmt-> execute([$_SESSION['user'], $rows[$i]['filename']]);
+                    $rows[$i]['upload_date'] = $stmt-> fetchColumn();
+                ?>
                     <tr>
                         <td class='w3-button' onclick='openFile(<?= $rows[$i]['file_id']; ?>)'><?= $rows[$i]['filename']; ?></td>
                         <td><?= $rows[$i]['file_id']; ?></td>
                         <td><?= human_filesize($rows[$i]['size']); ?></td>
-        
+                        <td><?= $rows[$i]['upload_date']; ?></td>
+
                     <?php if(!$_SESSION['ban_status'] >= 1) { ?>
                         <td class='w3-button'><?= ucfirst($rows[$i]['privacy']); ?></td>
                         <td class='w3-button w3-hover-red' onclick='openModal(<?= $file_modal; ?>)'>Delete</td>
                     <?php } ?>
-        
+
                     </tr>
                 <?php } ?>
 
@@ -167,10 +175,10 @@ function openFile(id) {
 
                             echo human_filesize($db_file_size_total); ?> / 5.00G
                         </td>
-                        <td>
-            
+                        <td></td><td></td>
+
                     <?php if(!$_SESSION['ban_status'] >= 1) { ?>
-                        </td><td></td><td></td>    
+                        <td></td><td></td>
                     <?php } ?>
 
                     </tr>
