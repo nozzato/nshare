@@ -16,6 +16,11 @@ if(!isset($_GET['id'])) {
 // connect to database
 include_once('/srv/http/nozzato.com/database/connect.php');
 
+// select user data from GET id
+$stmt = $pdo-> prepare('SELECT * FROM `users` WHERE `user_id` = ?;');
+$stmt-> execute([$_GET['id']]);
+$row = $stmt-> fetch(PDO::FETCH_ASSOC);
+
 // if GET id matches user
 if($_GET['id'] == $_SESSION['user']) {
     // set user variables from session
@@ -30,11 +35,6 @@ if($_GET['id'] == $_SESSION['user']) {
     }
 // else GET id does not match user
 } else {
-    // select user data from GET id
-    $stmt = $pdo-> prepare('SELECT * FROM `users` WHERE `user_id` = ?;');
-    $stmt-> execute([$_GET['id']]);
-    $row = $stmt-> fetch(PDO::FETCH_ASSOC);
-
     // if user does not exist
     if(empty($row)) {
         $_SESSION['msg'] = 'Error: Invalid user';
@@ -159,7 +159,9 @@ $_SESSION['page'] = 'profile';
                 <?php if($_SESSION['rank'] == 'admin') { ?>
                     <td><b>Rank</b><br><?= ucfirst($rank); ?></td>
                     <td class='nz-truncate'><b>Ban Status</b><br><?= $ban_status; ?></td>
-                <?php } else if($_SESSION['ban_status'] >= 1 && $user == $_SESSION['user']) { ?>
+                <?php } else if($rank == 'admin') { ?>
+                    <td><b>Rank</b><br><?= ucfirst($rank); ?></td>
+                <?php } else if($row['ban_status'] >= 1) { ?>
                     <td><b>Ban Status</b><br><?= $ban_status; ?></td>
                 <?php } ?>
 
