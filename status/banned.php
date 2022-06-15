@@ -23,7 +23,7 @@ $stmt-> execute([$row['ban_judge']]);
 $ban_judge = $stmt-> fetchColumn();
 
 // select formatted ban date
-$stmt = $pdo-> prepare('SELECT DATE_FORMAT(`ban_date`, "%d.%m.%Y") FROM `users` WHERE `user_id` = ?;');
+$stmt = $pdo-> prepare('SELECT DATE_FORMAT(`ban_date`, "%d-%m-%Y") FROM `users` WHERE `user_id` = ?;');
 $stmt-> execute([$_SESSION['user']]);
 $row['ban_date'] = $stmt-> fetchColumn();
 
