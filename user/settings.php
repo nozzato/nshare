@@ -19,7 +19,7 @@ $_SESSION['page'] = 'settings';
 <head>
 
 <title>Settings: Account - NShare</title>
-<link rel='icon' type='image/gif' href='/media/favicon.gif'>
+<link rel='icon' type='image/gif' href='/assets/favicon.gif'>
 
 <meta charset='utf-8'>
 <meta name='viewport' content='width=device-width, initial-scale=1'>
