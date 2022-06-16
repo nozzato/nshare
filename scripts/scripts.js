@@ -52,15 +52,21 @@ function openModal(content) {
     document.getElementById('modal-content').innerHTML = content;
     document.getElementById('delete-button').value = content;
 }
-function openPage(pageName) {
+function openPage(page, parentPage) {
     var pages = document.getElementsByClassName('page');
+    var buttons = document.getElementsByClassName('page-button');
+
     for (var i = 0; i < pages.length; i++) {
         pages[i].style.display = 'none';
+        buttons[i].classList.remove('w3-dark-gray');
     }
-    document.getElementById(pageName).style.display = 'block';
+    document.getElementById(page).style.display = 'block';
+    document.getElementById(page + 'Btn').classList.add('w3-dark-gray');
 
-    pageName = pageName.charAt(0).toUpperCase() + pageName.slice(1);
-    document.title = 'Settings: ' + pageName + ' - NShare';
+    if(parentPage == 'settings') {
+        page = page.charAt(0).toUpperCase() + page.slice(1);
+        document.title = 'Settings: ' + page + ' - NShare';
+    }
 }
 function goBack() {
     window.location.href = '/files/index.php';
