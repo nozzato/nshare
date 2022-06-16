@@ -10,6 +10,10 @@ files/Admin/*
 files/Member/*
 !files/Member/example*
 
+# ignore unnecessary adminer files
+admin/adminer/*
+!admin/adminer/adminer.php
+
 # ignore font awesome icons
 styles/icons/
 
