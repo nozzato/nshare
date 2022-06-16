@@ -151,7 +151,7 @@ function openFile(id) {
                         <td><?= $rows[$i]['upload_date']; ?></td>
 
                     <?php if(!$_SESSION['ban_status'] >= 1) { ?>
-                        <td class='w3-button'><?= ucfirst($rows[$i]['privacy']); ?></td>
+                        <td class='w3-button' id='<?= $rows[$i]['file_id']; ?>' onclick='changePrivacy("<?= $rows[$i]['file_id']; ?>")'><?= ucfirst($rows[$i]['privacy']); ?></td>
                         <td class='w3-button w3-hover-red' onclick='openModal(<?= $file_modal; ?>)'>Delete</td>
                     <?php } ?>
 

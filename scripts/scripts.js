@@ -1,3 +1,23 @@
+// database
+function changePrivacy(fileID) {
+    var xmlhttp = new XMLHttpRequest();
+
+    xmlhttp.onreadystatechange = function() {
+        if (this.readyState == 4 && this.status == 200) {
+            if(state == 'Private') {
+                document.getElementById(fileID).innerHTML = 'Public';
+            } else if(state == 'Public') {
+                document.getElementById(fileID).innerHTML = 'Private';
+            }
+        }
+    };
+
+    var state = document.getElementById(fileID).innerHTML
+
+    xmlhttp.open('GET', 'privacy.php?id=' + fileID + '&state=' + state);
+    xmlhttp.send();
+}
+
 // document
 function favicon(asset) {
     var link = document.querySelector("link[rel*='icon']") || document.createElement('link');
@@ -6,27 +26,18 @@ function favicon(asset) {
     link.href = '/assets/' + asset;
     document.getElementsByTagName('head')[0].appendChild(link);
 }
-
-// general
 function copy() {
     var userId = document.getElementById('userId').innerHTML
 
     navigator.clipboard.writeText(userId);
 }
 
-// message handling
+// UI elements
 function msgClear() {
     setTimeout(() => {
         msg = document.getElementById('msg').innerHTML = '';
     }, 10000);
 }
-
-// page location
-function goBack() {
-    window.location.href = '/files/index.php';
-}
-
-// UI elements
 function dropdownToggle() {
     var dropdown = document.getElementById('dropdown');
 
@@ -50,6 +61,9 @@ function openPage(pageName) {
 
     pageName = pageName.charAt(0).toUpperCase() + pageName.slice(1);
     document.title = 'Settings: ' + pageName + ' - NShare';
+}
+function goBack() {
+    window.location.href = '/files/index.php';
 }
 
 // validation
