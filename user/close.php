@@ -8,7 +8,7 @@ if(isset($_POST['close_btn'])) {
     // if password field is not empty
     if(!empty($_POST['close_password'])) {
         // connect to database
-        include_once('/srv/http/nozzato.com/database/connect.php');
+        include_once('/srv/http/nozzato.com/admin/connect.php');
 
         // set close variables
         $close_password = trim($_POST['close_password']);

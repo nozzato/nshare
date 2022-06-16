@@ -9,7 +9,7 @@ if(isset($_POST['password_btn'])) {
     // if both fields are not empty
     if(!empty($_POST['password_old']) && !empty($_POST['password_new'])) {
         // connect to database
-        include_once('/srv/http/nozzato.com/database/connect.php');
+        include_once('/srv/http/nozzato.com/admin/connect.php');
 
         // set password variables
         $password_old = trim($_POST['password_old']);

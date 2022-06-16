@@ -7,7 +7,7 @@ include_once('/srv/http/nozzato.com/scripts/scripts.php');
 // if delete button clicked
 if(isset($_POST['delete_btn'])) {
     // connect to database
-    include_once('/srv/http/nozzato.com/database/connect.php');
+    include_once('/srv/http/nozzato.com/admin/connect.php');
 
     // set delete variables
     $file_path_server = '/srv/http/nozzato.com/files/' . $_SESSION['username'] . '/';

@@ -9,7 +9,7 @@ if(isset($_POST['username_btn'])) {
     // if both fields are not empty
     if(!empty($_POST['username_old']) && !empty($_POST['username_new'])) {
         // connect to database
-        include_once('/srv/http/nozzato.com/database/connect.php');
+        include_once('/srv/http/nozzato.com/admin/connect.php');
 
         // set username variables
         $username_old = trim($_POST['username_old']);

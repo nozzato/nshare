@@ -42,6 +42,9 @@ function go_back() {
     } else if($_SESSION['page'] == 'files') {
         header('location:/files/index.php');
         exit;
+    } else if($_SESSION['page'] == 'admin') {
+        header('location:/admin/index.php');
+        exit;
     } else {
         header('location:/index.php');
         exit;

@@ -7,7 +7,7 @@ include_once('/srv/http/nozzato.com/scripts/scripts.php');
 // if privacy ID sent
 if($_GET['id'] && $_GET['state']) {
     // connect to database
-    include_once('/srv/http/nozzato.com/database/connect.php');
+    include_once('/srv/http/nozzato.com/admin/connect.php');
 
     // set privacy variables
     $file_id = $_GET['id'];

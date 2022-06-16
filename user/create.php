@@ -11,7 +11,7 @@ if(isset($_POST['create_btn'])) {
     // if all fields are not empty
     if(!empty($_POST['create_username']) && !empty($_POST['create_password']) && !empty($_POST['create_email'])) {
         // connect to database
-        include_once('/srv/http/nozzato.com/database/connect.php');
+        include_once('/srv/http/nozzato.com/admin/connect.php');
 
         // set create variables
         $create_email    = trim($_POST['create_email']);

@@ -3,18 +3,18 @@ session_start();
 
 // if not logged in
 if(!isset($_SESSION['user'])) {
-    header('location:/');
+    header('location:/index.php');
     exit;
 }
 
 // if no GET id
 if(!isset($_GET['id'])) {
-    header('location:/user/?id=' . $_SESSION['user']);
+    header('location:/user/index.php?id=' . $_SESSION['user']);
     exit;
 }
 
 // connect to database
-include_once('/srv/http/nozzato.com/database/connect.php');
+include_once('/srv/http/nozzato.com/admin/connect.php');
 
 // select user data from GET id
 $stmt = $pdo-> prepare('SELECT * FROM `users` WHERE `user_id` = ?;');
@@ -38,7 +38,7 @@ if($_GET['id'] == $_SESSION['user']) {
     // if user does not exist
     if(empty($row)) {
         $_SESSION['msg'] = 'Error: Invalid user';
-        header('location:/user/?id=' . $_SESSION['user']);
+        header('location:/user/index.php?id=' . $_SESSION['user']);
         exit;
     }
 
@@ -91,7 +91,7 @@ $_SESSION['page'] = 'profile';
     <?php } ?>
 
     <?php if(isset($_SESSION['rank']) && $_SESSION['rank'] == 'admin') { ?>
-        <a class='w3-bar-item w3-button' href='/database/adminer/adminer.php'>
+        <a class='w3-bar-item w3-button' href='/admin/index.php'>
             <i class='fa fa-fw fa-server'></i> Admin
         </a>
     <?php } ?>

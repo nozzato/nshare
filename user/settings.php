@@ -3,7 +3,7 @@ session_start();
 
 // if not logged in
 if(!isset($_SESSION['user'])) {
-    header('location:/');
+    header('location:/index.php');
     exit;
 }
 // if banned
@@ -50,7 +50,7 @@ $_SESSION['page'] = 'settings';
     <?php } ?>
 
     <?php if(isset($_SESSION['rank']) && $_SESSION['rank'] == 'admin') { ?>
-        <a class='w3-bar-item w3-button' href='/database/adminer/adminer.php'>
+        <a class='w3-bar-item w3-button' href='/admin/index.php'>
             <i class='fa fa-fw fa-server'></i> Admin
         </a>
     <?php } ?>

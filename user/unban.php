@@ -9,7 +9,7 @@ if(isset($_POST['unban_btn'])) {
     // if both fields are not empty
     if(!empty($_POST['unban_user']) && !empty($_POST['unban_reason'])) {
         // connect to database
-        include_once('/srv/http/nozzato.com/database/connect.php');
+        include_once('/srv/http/nozzato.com/admin/connect.php');
 
         // set unban variables
         $unban_user = trim($_POST['unban_user']);

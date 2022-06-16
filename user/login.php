@@ -9,7 +9,7 @@ if (isset($_POST['login_btn'])) {
     // if both fields are not empty
     if(!empty($_POST['login_username']) && !empty($_POST['login_password'])) {
         // connect to database
-        include_once('/srv/http/nozzato.com/database/connect.php');
+        include_once('/srv/http/nozzato.com/admin/connect.php');
 
         // set login variables
         $login_username = trim($_POST['login_username']);

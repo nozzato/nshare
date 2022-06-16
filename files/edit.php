@@ -3,7 +3,7 @@ session_start();
 
 // if not logged in
 if(!isset($_SESSION['user'])) {
-    header('location:/');
+    header('location:/index.php');
     exit;
 }
 
@@ -11,7 +11,7 @@ if(!isset($_SESSION['user'])) {
 include_once('/srv/http/nozzato.com/scripts/scripts.php');
 
 // connect to database
-include_once('/srv/http/nozzato.com/database/connect.php');
+include_once('/srv/http/nozzato.com/admin/connect.php');
 
 // select file from GET id
 $stmt = $pdo -> prepare('SELECT * FROM `files` WHERE `file_id` = ?;');
@@ -127,7 +127,7 @@ else {
     <?php } ?>
 
     <?php if(isset($_SESSION['rank']) && $_SESSION['rank'] == 'admin') { ?>
-        <a class='w3-bar-item w3-button' href='/database/adminer/adminer.php'>
+        <a class='w3-bar-item w3-button' href='/admin/index.php'>
             <i class='fa fa-fw fa-server'></i> Admin
         </a>
     <?php } ?>

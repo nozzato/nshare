@@ -7,7 +7,7 @@ include_once('/srv/http/nozzato.com/scripts/scripts.php');
 // if upload or save button clicked
 if(isset($_FILES['upload_file']) || isset($_POST['upload_btn'])) {
     // connect to database
-    include_once('/srv/http/nozzato.com/database/connect.php');
+    include_once('/srv/http/nozzato.com/admin/connect.php');
 
     // set upload variables
     $file_path = '/files/' . $_SESSION['username'] . '/';

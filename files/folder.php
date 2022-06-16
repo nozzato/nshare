@@ -7,7 +7,7 @@ include_once('/srv/http/nozzato.com/scripts/scripts.php');
 // if folder button clicked
 if(isset($_POST['folder_btn'])) {
     // connect to database
-    include_once('/srv/http/nozzato.com/database/connect.php');
+    include_once('/srv/http/nozzato.com/admin/connect.php');
 
     // set folder variables
     $folder_path        = '/files/' . $_SESSION['username'] . '/';

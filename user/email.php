@@ -9,7 +9,7 @@ if(isset($_POST['email_btn'])) {
     // if both fields are not empty
     if(!empty($_POST['email_old']) && !empty($_POST['email_new'])) {
         // connect to database
-        include_once('/srv/http/nozzato.com/database/connect.php');
+        include_once('/srv/http/nozzato.com/admin/connect.php');
 
         // set email variables
         $email_old = trim($_POST['email_old']);

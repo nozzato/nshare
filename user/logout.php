@@ -23,6 +23,11 @@ if(!isset($_SESSION['close_logout'])) {
         $_SESSION['msg'] = 'Logged out';
         header('location:/index.php');
         exit;
+    } else if($_SESSION['page'] == 'admin') {
+        session_unset();
+        $_SESSION['msg'] = 'Logged out';
+        header('location:/index.php');
+        exit;
     } else {
         session_unset();
         $_SESSION['msg'] = 'Logged out';
