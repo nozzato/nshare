@@ -34,6 +34,9 @@ $_SESSION['page'] = 'files';
 function openFile(id) {
     window.location.href = '/files/edit.php?id=' + id;
 }
+function uploadFile() {
+    document.getElementById("upload-form").submit();
+}
 </script>
 
 </head>
@@ -184,19 +187,16 @@ function openFile(id) {
             </div>
 
         <?php if(!$_SESSION['ban_status'] >= 1) { ?>
-            <form class='w3-margin-top w3-center' action='/files/upload.php' method='POST' enctype='multipart/form-data'>
+            <form class='w3-margin-top w3-center' id='upload-form' action='/files/upload.php' method='POST' enctype='multipart/form-data'>
                 <span>Privacy</span>
                 <input class='w3-radio' id='upload-private' type='radio' value='private' name='upload_privacy' checked>
                 <label for='upload-private'>Private</label>
                 <input class='w3-radio' id='upload-public' type='radio' value='public' name='upload_privacy'>
                 <label for='upload-public'>Public</label>
                 <br><br>
-                <button class='w3-button w3-green w3-round' type='submit' name='upload_btn'>
+                <input class='w3-hide' id='upload-file' type='file' name='upload_file[]' onchange='uploadFile()' multiple required>
+                <label class='w3-button w3-green w3-round' for='upload-file'>
                     <i class='fa fa-fw fa-file-arrow-up'></i> Upload
-                </button>
-                <input class='w3-hide' id='upload-file' type='file' name='upload_file[]' multiple required>
-                <label class='w3-button w3-blue-grey w3-round' for='upload-file'>
-                    <i class='fa fa-fw fa-folder-tree'></i> Browse
                 </label>
             </form>
         <?php } else { ?>
