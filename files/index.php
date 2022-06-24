@@ -40,15 +40,15 @@ function uploadFile() {
 </script>
 
 </head>
-<body class='nz-dark'>
+<body style='width:100vw;height:100vh'>
 
 <div id='header'>
-    <div class='w3-bar nz-black'>
+    <div class='w3-bar'>
 
     <?php if(!isset($_SESSION['user'])) { ?>
-        <a class='w3-bar-item w3-button w3-text-blue' href='/index.php'>NShare</a>
+        <a class='w3-bar-item w3-button nz-brand' href='/index.php'>NShare</a>
     <?php } else { ?>
-        <a class='w3-bar-item w3-button w3-text-blue w3-mobile' href='/index.php'>NShare</a>
+        <a class='w3-bar-item w3-button nz-brand w3-mobile' href='/index.php'>NShare</a>
     <?php } ?>
 
     <?php if(isset($_SESSION['user'])) { ?>
@@ -112,90 +112,46 @@ function uploadFile() {
     </div>
 </div>
 
-<div class='w3-container w3-padding-16' id='content' style='margin-bottom:38.5px'>
-    <div class='w3-round w3-card-2 nz-page' id='files'>
-        <div class='w3-container nz-black nz-round-top'>
-            <h2 class='nz-truncate'><?= $_SESSION['username'] ?>/</h2>
-        </div>
-        <div class='w3-container w3-padding-16'>
-            <div class='w3-responsive'>
-                <table class='nz-table-bordered'>
-                    <tr>
-                        <th class='nz-truncate'>Name <i class='fa fa-fw fa-caret-down'></i></th>
-                        <th>Size</th>
-                        <th title='Date Modified'>Date</th>
+<div id='content' style='margin-bottom:38.5px'>
+    <div class='w3-container w3-col nz-black' style='width:200px;height:100vh'>
+        <table class='nz-table'>
+            <tr><td class='w3-button nz-truncate'>Craig/</td></tr>
+            <tr><td class='w3-button nz-truncate'>Jeff/</td></tr>
+        </table>
 
-                    <?php if(!$_SESSION['ban_status'] >= 1) { ?>
-                        <th>Privacy</th>
-                        <th>Delete</th>
-                    <?php } ?>
+        <div class='w3-display-bottomleft' style='width:168px;bottom:16px;left:16px;'>
+        
+            <?php
+            // select user's files and order alphabetically
+            $stmt = $pdo-> prepare('SELECT * FROM `files` WHERE `user_id` = ? ORDER BY `filename` ASC;');
+            $stmt-> execute([$_SESSION['user']]);
+            $rows = $stmt-> fetchAll(PDO::FETCH_ASSOC);
+            $count = $stmt-> rowCount();
 
-                    </tr>
+            $db_file_size_total = 0;
 
-                <?php
-                // select user's files and order alphabetically
-                $stmt = $pdo-> prepare('SELECT * FROM `files` WHERE `user_id` = ? ORDER BY `filename` ASC;');
-                $stmt-> execute([$_SESSION['user']]);
-                $rows = $stmt-> fetchAll(PDO::FETCH_ASSOC);
-                $count = $stmt-> rowCount();
-                ?>
+            for($i = 0; $i <= $count - 1; $i++) {
+                $db_file_size_total += $rows[$i]['size'];
+            }
+            ?>
 
-                <?php for($i = 0; $i < $count; $i++) {
-                    $file_modal = '"' . $rows[$i]['filename'] . '"';
-
-                    // select formatted upload date
-                    $stmt = $pdo-> prepare('SELECT DATE_FORMAT(`upload_date`, "%d-%m-%Y") FROM `files` WHERE `user_id` = ? AND `filename` = ?;');
-                    $stmt-> execute([$_SESSION['user'], $rows[$i]['filename']]);
-                    $rows[$i]['upload_date'] = $stmt-> fetchColumn();
-                ?>
-                    <tr>
-                        <td class='w3-button' onclick='openFile(<?= $rows[$i]['file_id']; ?>)'><?= $rows[$i]['filename']; ?></td>
-                        <td><?= human_filesize($rows[$i]['size']); ?></td>
-                        <td><?= $rows[$i]['upload_date']; ?></td>
-
-                    <?php if(!$_SESSION['ban_status'] >= 1) { ?>
-                        <td class='w3-button' id='<?= $rows[$i]['file_id']; ?>' onclick='changePrivacy("<?= $rows[$i]['file_id']; ?>")'><?= ucfirst($rows[$i]['privacy']); ?></td>
-                        <td class='w3-button w3-hover-red' onclick='openModal(<?= $file_modal; ?>)'>Delete</td>
-                    <?php } ?>
-
-                    </tr>
-                <?php } ?>
-
-                    <tr class='nz-black'>
-                        <td>
-                            <b>Total Size</b>
-                        </td>
-                        <td class='nz-truncate'>
-
-                            <?php
-                            $db_file_size_total = 0;
-
-                            for($i = 0; $i <= $count - 1; $i++) {
-                                $db_file_size_total += $rows[$i]['size'];
-                            }
-
-                            echo human_filesize($db_file_size_total); ?> / 5.00G
-                        </td>
-                        <td></td>
-
-                    <?php if(!$_SESSION['ban_status'] >= 1) { ?>
-                        <td></td><td></td>
-                    <?php } ?>
-
-                    </tr>
-                </table>
-            </div>
+            <span>Storage Used</span>
+            <br>
+            <span><?= human_filesize($db_file_size_total); ?> / 5.00G
+            <br><br>
 
         <?php if(!$_SESSION['ban_status'] >= 1) { ?>
-            <form class='w3-margin-top w3-center' id='upload-form' action='/files/upload.php' method='POST' enctype='multipart/form-data'>
-                <span>Privacy</span>
+            <form id='upload-form' action='/files/upload.php' method='POST' enctype='multipart/form-data'>
+                <span>Upload Privacy</span>
+                <br>
                 <input class='w3-radio' id='upload-private' type='radio' value='private' name='upload_privacy' checked>
                 <label for='upload-private'>Private</label>
+                <br>
                 <input class='w3-radio' id='upload-public' type='radio' value='public' name='upload_privacy'>
                 <label for='upload-public'>Public</label>
                 <br><br>
                 <input class='w3-hide' id='upload-file' type='file' name='upload_file[]' onchange='uploadFile()' multiple required>
-                <label class='w3-button w3-green w3-round' for='upload-file'>
+                <label class='w3-button w3-green w3-round' for='upload-file' style='width:100%'>
                     <i class='fa fa-fw fa-file-arrow-up'></i> Upload
                 </label>
             </form>
@@ -210,48 +166,67 @@ function uploadFile() {
 
         </div>
     </div>
-    <div class='w3-modal' id='modal'>
-        <div class='w3-modal-content nz-dark w3-round w3-card-2'>
-            <header class='w3-container nz-black nz-round-top'>
-                <h2>Really delete?</h2>
-            </header>
-            <div class='w3-container'>
-                <p class ='m-0 text-center' id='modal-content'></p>
-            </div>
-            <footer class='w3-container w3-bar'>
-                <form action='/files/delete.php' method='POST'>
-                    <button class='w3-button w3-bar-item w3-red w3-round w3-margin-bottom' id='delete-button' type='submit' name='delete_btn' style='margin-right:5px'>
-                        <i class='fa fa-fw fa-trash-can'></i> Delete
-                    </button>
-                </form>
-                <button class='w3-button w3-bar-item w3-blue-grey w3-round w3-margin-bottom' onclick='document.getElementById("modal").style.display="none"'>
-                    <i class='fa fa-fw fa-ban'></i> Cancel
-                </button>
-            </footer>
+    <div class='w3-container w3-rest'>
+        <table class='nz-table'>
+            <tr><td><a href='/files/index.php'><?= $_SESSION['username'] ?>/</a></td></tr>
+        </table>
+        <div class='w3-responsive'>
+            <table class='nz-table'>
+                <tr>
+                    <th class='nz-truncate'>Name <i class='fa fa-fw fa-caret-down'></i></th>
+                    <th>Size</th>
+                    <th title='Date Modified'>Date</th>
+
+                <?php if(!$_SESSION['ban_status'] >= 1) { ?>
+                    <th>Privacy</th>
+                    <th>Delete</th>
+                <?php } ?>
+
+                </tr>
+
+            <?php for($i = 0; $i < $count; $i++) {
+                $file_modal = '"' . $rows[$i]['filename'] . '"';
+
+                // select formatted upload date
+                $stmt = $pdo-> prepare('SELECT DATE_FORMAT(`upload_date`, "%d-%m-%Y") FROM `files` WHERE `user_id` = ? AND `filename` = ?;');
+                $stmt-> execute([$_SESSION['user'], $rows[$i]['filename']]);
+                $rows[$i]['upload_date'] = $stmt-> fetchColumn();
+            ?>
+                <tr>
+                    <td class='w3-button' onclick='openFile(<?= $rows[$i]['file_id']; ?>)'><?= $rows[$i]['filename']; ?></td>
+                    <td><?= human_filesize($rows[$i]['size']); ?></td>
+                    <td><?= $rows[$i]['upload_date']; ?></td>
+
+                <?php if(!$_SESSION['ban_status'] >= 1) { ?>
+                    <td class='w3-button' id='<?= $rows[$i]['file_id']; ?>' onclick='changePrivacy("<?= $rows[$i]['file_id']; ?>")'><?= ucfirst($rows[$i]['privacy']); ?></td>
+                    <td class='w3-button w3-hover-red' onclick='openModal(<?= $file_modal; ?>)'>Delete</td>
+                <?php } ?>
+
+                </tr>
+            <?php } ?>
+
+            </table>
         </div>
     </div>
 </div>
-
-<div class='w3-bottom' id='footer'>
-    <div class='w3-bar nz-black' style='height:38.5px'>
-        <div class='w3-display-bottommiddle' style='bottom:9px'>
-
-    <?php if(isset($_SESSION['msg'])) {
-        if(substr($_SESSION['msg'], 0, 6) == 'Error:') { ?>
-            <span class='w3-text-red nz-truncate' id='msg'>
-                <?= $_SESSION['msg']; ?>
-            </span>
-        <?php } else { ?>
-            <span class='nz-truncate' id='msg'>
-                <?= $_SESSION['msg']; ?>
-            </span>
-        <?php }
-    } else { ?>
-            <span class='nz-truncate' id='msg'></span>
-    <?php }
-    unset($_SESSION['msg']); ?>
-
+<div class='w3-modal' id='modal'>
+    <div class='w3-modal-content nz-dark w3-round w3-card-2'>
+        <header class='w3-container nz-black nz-round-top'>
+            <h2>Really delete?</h2>
+        </header>
+        <div class='w3-container'>
+            <p class ='m-0 text-center' id='modal-content'></p>
         </div>
+        <footer class='w3-container w3-bar'>
+            <form action='/files/delete.php' method='POST'>
+                <button class='w3-button w3-bar-item w3-red w3-round w3-margin-bottom' id='delete-button' type='submit' name='delete_btn' style='margin-right:5px'>
+                    <i class='fa fa-fw fa-trash-can'></i> Delete
+                </button>
+            </form>
+            <button class='w3-button w3-bar-item w3-blue-grey w3-round w3-margin-bottom' onclick='document.getElementById("modal").style.display="none"'>
+                <i class='fa fa-fw fa-ban'></i> Cancel
+            </button>
+        </footer>
     </div>
 </div>
 
