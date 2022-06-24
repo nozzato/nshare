@@ -40,15 +40,15 @@ $_SESSION['page'] = 'home';
 <script src='/scripts/scripts.js' type='text/javascript'></script>
 
 </head>
-<body class='nz-dark'>
+<body>
 
 <div id='header'>
-    <div class='w3-bar nz-black'>
+    <div class='w3-bar'>
 
     <?php if(!isset($_SESSION['user'])) { ?>
-        <a class='w3-bar-item w3-button w3-text-blue' href='/index.php'>NShare</a>
+        <a class='w3-bar-item w3-button nz-brand' href='/index.php'>NShare</a>
     <?php } else { ?>
-        <a class='w3-bar-item w3-button w3-text-blue w3-mobile' href='/index.php'>NShare</a>
+        <a class='w3-bar-item w3-button nz-brand w3-mobile' href='/index.php'>NShare</a>
     <?php } ?>
 
     <?php if(isset($_SESSION['user'])) { ?>
@@ -143,7 +143,7 @@ $_SESSION['page'] = 'home';
 </div>
 
 <div class='w3-bottom' id='footer'>
-    <div class='w3-bar nz-black' style='height:38.5px'>
+    <div class='w3-bar' style='height:38.5px'>
         <div class='w3-display-bottommiddle' style='bottom:9px'>
 
     <?php if(isset($_SESSION['msg'])) {

@@ -27,15 +27,15 @@ $_SESSION['page'] = 'signup';
 <script src='https://js.hcaptcha.com/1/api.js' async defer></script>
 
 </head>
-<body class='nz-dark'>
+<body>
 
 <div id='header'>
-    <div class='w3-bar nz-black'>
+    <div class='w3-bar'>
 
     <?php if(!isset($_SESSION['user'])) { ?>
-        <a class='w3-bar-item w3-button w3-text-blue' href='/index.php'>NShare</a>
+        <a class='w3-bar-item w3-button nz-brand' href='/index.php'>NShare</a>
     <?php } else { ?>
-        <a class='w3-bar-item w3-button w3-text-blue w3-mobile' href='/index.php'>NShare</a>
+        <a class='w3-bar-item w3-button nz-brand w3-mobile' href='/index.php'>NShare</a>
     <?php } ?>
 
     <?php if(isset($_SESSION['user'])) { ?>
@@ -111,7 +111,7 @@ $_SESSION['page'] = 'signup';
             <p></p>
             <input class='w3-input nz-black w3-border-0 w3-round' id='create-password' type='password' placeholder='Password' name='create_password'>
             <br>
-            <div id='h-captcha' class='h-captcha' data-sitekey='fc621593-608b-4635-be8e-9f43bb5d1e46' data-theme='dark'></div>
+            <div id='h-captcha' class='h-captcha' data-sitekey='fc621593-608b-4635-be8e-9f43bb5d1e46' data-theme='light'></div>
             <p></p>
             <button class='w3-btn w3-green w3-round' type='submit' name='create_btn'>Signup</button>
         </form>
@@ -119,7 +119,7 @@ $_SESSION['page'] = 'signup';
 </div>
 
 <div class='w3-bottom' id='footer'>
-    <div class='w3-bar nz-black' style='height:38.5px'>
+    <div class='w3-bar' style='height:38.5px'>
         <div class='w3-display-bottommiddle' style='bottom:9px'>
 
     <?php if(isset($_SESSION['msg'])) {
