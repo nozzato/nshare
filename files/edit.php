@@ -3,7 +3,7 @@ session_start();
 
 // if not logged in
 if(!isset($_SESSION['user'])) {
-    header('location:/index.php');
+    header('location:/index');
     exit;
 }
 
@@ -26,7 +26,7 @@ $row['upload_date'] = $stmt-> fetchColumn();
 // if selected file is private and not owned by user
 if($row['privacy'] == 'private' && $row['user_id'] != $_SESSION['user']) {
     $_SESSION['msg'] = 'Error: You do not have permission view this file';
-    header('location:/files/index.php');
+    header('location:/files/index');
     exit;
 }
 // else if selected file is public and not owned by user
@@ -69,7 +69,7 @@ $file_modal  = '"' . $file_name . '"';
 // if GET query invalid or no file selected
 if(!isset($_GET['id']) || empty($row['filename'])) {
     $_SESSION['msg'] = 'Error: Invalid file';
-    header('location:/files/index.php');
+    header('location:/files/index');
     exit;
 }
 
@@ -115,19 +115,19 @@ else {
     <div class='w3-bar'>
 
     <?php if(!isset($_SESSION['user'])) { ?>
-        <a class='w3-bar-item w3-button nz-brand' href='/index.php'>NShare</a>
+        <a class='w3-bar-item w3-button nz-brand' href='/index'>NShare</a>
     <?php } else { ?>
-        <a class='w3-bar-item w3-button nz-brand w3-mobile' href='/index.php'>NShare</a>
+        <a class='w3-bar-item w3-button nz-brand w3-mobile' href='/index'>NShare</a>
     <?php } ?>
 
     <?php if(isset($_SESSION['user'])) { ?>
-        <a class='w3-bar-item w3-button' href='/files/index.php'>
+        <a class='w3-bar-item w3-button' href='/files/index'>
             <i class='fa fa-fw fa-folder-open'></i> Files
         </a>
     <?php } ?>
 
     <?php if(isset($_SESSION['rank']) && $_SESSION['rank'] == 'admin') { ?>
-        <a class='w3-bar-item w3-button' href='/admin/index.php'>
+        <a class='w3-bar-item w3-button' href='/admin/index'>
             <i class='fa fa-fw fa-server'></i> Admin
         </a>
     <?php } ?>
@@ -159,12 +159,12 @@ else {
                 <i class='fa fa-fw fa-door-closed'></i> Account <i class='fa fa-fw fa-caret-down'></i>
             </button>
             <div class='w3-dropdown-content w3-bar-block nz-black nz-round-bottom-left w3-card-2 nz-dropdown-left' style='max-width:100px'>
-                <a class='w3-bar-item w3-button' href='/user/index.php?id=<?= $_SESSION['user']; ?>'>
+                <a class='w3-bar-item w3-button' href='/user/index?id=<?= $_SESSION['user']; ?>'>
                     <i class='fa fa-fw fa-user'></i> <?= $_SESSION['username']; ?>
                 </a>
 
             <?php if(!$_SESSION['ban_status'] >= 1) { ?>
-                <a class='w3-bar-item w3-button' href='/user/settings.php'>
+                <a class='w3-bar-item w3-button' href='/user/settings'>
                     <i class='fa fa-fw fa-gear'></i> Settings
                 </a>
             <?php } ?>

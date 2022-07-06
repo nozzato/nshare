@@ -62,19 +62,19 @@ if($row['ban_status'] == 0) {
     <div class='w3-bar'>
 
     <?php if(!isset($_SESSION['user'])) { ?>
-        <a class='w3-bar-item w3-button nz-brand' href='/index.php'>NShare</a>
+        <a class='w3-bar-item w3-button nz-brand' href='/index'>NShare</a>
     <?php } else { ?>
-        <a class='w3-bar-item w3-button nz-brand w3-mobile' href='/index.php'>NShare</a>
+        <a class='w3-bar-item w3-button nz-brand w3-mobile' href='/index'>NShare</a>
     <?php } ?>
 
     <?php if(isset($_SESSION['user'])) { ?>
-        <a class='w3-bar-item w3-button' href='/files/index.php'>
+        <a class='w3-bar-item w3-button' href='/files/index'>
             <i class='fa fa-fw fa-folder-open'></i> Files
         </a>
     <?php } ?>
 
     <?php if(isset($_SESSION['rank']) && $_SESSION['rank'] == 'admin') { ?>
-        <a class='w3-bar-item w3-button' href='/admin/index.php'>
+        <a class='w3-bar-item w3-button' href='/admin/index'>
             <i class='fa fa-fw fa-server'></i> Admin
         </a>
     <?php } ?>
@@ -106,12 +106,12 @@ if($row['ban_status'] == 0) {
                 <i class='fa fa-fw fa-door-closed'></i> Account <i class='fa fa-fw fa-caret-down'></i>
             </button>
             <div class='w3-dropdown-content w3-bar-block nz-black nz-round-bottom-left w3-card-2 nz-dropdown-left' style='max-width:100px'>
-                <a class='w3-bar-item w3-button' href='/user/index.php?id=<?= $_SESSION['user']; ?>'>
+                <a class='w3-bar-item w3-button' href='/user/index?id=<?= $_SESSION['user']; ?>'>
                     <i class='fa fa-fw fa-user'></i> <?= $_SESSION['username']; ?>
                 </a>
 
             <?php if(!$_SESSION['ban_status'] >= 1) { ?>
-                <a class='w3-bar-item w3-button' href='/user/settings.php'>
+                <a class='w3-bar-item w3-button' href='/user/settings'>
                     <i class='fa fa-fw fa-gear'></i> Settings
                 </a>
             <?php } ?>
@@ -132,12 +132,12 @@ if($row['ban_status'] == 0) {
     <div class='w3-center'>
         <h1 class='w3-text-red'><b>Account Banned</b></h1>
         <p>We have found your account in violation of our rules.</p>
-        <p>Your files will be deleted automatically on the <b><?= $ban_date_deadline; ?></b>.<br><a class='w3-text-blue' href='/files/index.php'>Click here</a> to download your files before they are deleted.</p>
+        <p>Your files will be deleted automatically on the <b><?= $ban_date_deadline; ?></b>.<br><a class='w3-text-blue' href='/files/index'>Click here</a> to download your files before they are deleted.</p>
         <span>Username:</span>
-        <a class='w3-text-light-blue' href='/user/index.php?id=<?= $_SESSION['user']; ?>'><?= $_SESSION['username']; ?></a>
+        <a class='w3-text-light-blue' href='/user/index?id=<?= $_SESSION['user']; ?>'><?= $_SESSION['username']; ?></a>
         <br>
         <span>Banned By:</span>
-        <a class='w3-text-light-blue' href='/user/index.php?id=<?= $row['ban_judge']; ?>'><?= $ban_judge; ?></a>
+        <a class='w3-text-light-blue' href='/user/index?id=<?= $row['ban_judge']; ?>'><?= $ban_judge; ?></a>
         <br>
         <span>Ban Date:</span>
         <span><?= $row['ban_date']; ?></span>

@@ -69,7 +69,7 @@ function openPage(page, parentPage) {
     }
 }
 function goBack() {
-    window.location.href = '/files/index.php';
+    window.location.href = '/files/index';
 }
 
 // validation

@@ -16,3 +16,8 @@ RewriteCond %{REQUEST_URI} !/media/engineer-at-work.webp
 RewriteRule ^.*$ /status/503.html [R=503,L]
 ErrorDocument 503 /status/503.html
 Header Set Cache-Control 'max-age=0, no-store'
+
+RewriteCond %{REQUEST_FILENAME}.html -f
+RewriteRule !.*\.html$ %{REQUEST_FILENAME}.html [L]
+RewriteCond %{REQUEST_FILENAME}.php -f
+RewriteRule !.*\.html$ %{REQUEST_FILENAME}.php [L]
