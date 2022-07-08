@@ -1,0 +1,5 @@
+{
+    "require": {
+        "mattketmo/email-checker": "^2.1"
+    }
+}

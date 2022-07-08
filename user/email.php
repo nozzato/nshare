@@ -4,6 +4,9 @@ session_start();
 // include functions
 include_once('/srv/http/nozzato.com/scripts/scripts.php');
 
+require('/srv/http/nozzato.com/vendor/autoload.php');
+use EmailChecker\EmailChecker;
+
 // if email button clicked
 if(isset($_POST['email_btn'])) {
     // if both fields are not empty
@@ -36,11 +39,19 @@ if(isset($_POST['email_btn'])) {
             $_SESSION['msg'] = 'Error: Invalid email format';
             go_back();
         }
+        $checker = new EmailChecker();
+        if(!$checker->isValid($email_new)) {
+            $_SESSION['msg'] = 'Error: Invalid email domain';
+            go_back();
+        }
 
-        // check if email exists
+        // select user data
         $stmt = $pdo-> prepare('SELECT * FROM `users` WHERE `user_id` = ?;');
         $stmt-> execute([$email_user]);
         $row = $stmt-> fetch(PDO::FETCH_ASSOC);
+
+        $stmt = $pdo-> prepare('SELECT * FROM `users` WHERE `email` = ?;');
+        $stmt-> execute([$email_new]);
         $count = $stmt-> rowCount();
 
         // if email does not exist

@@ -17,6 +17,9 @@ admin/adminer/*
 # ignore font awesome icons
 styles/icons/
 
+# ignore composer third-party code
+vendor/
+
 # ignore sass map
 styles/nz.css.map
 
