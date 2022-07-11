@@ -55,6 +55,9 @@ function uploadFile() {
         <a class='w3-bar-item w3-button' href='/files/index'>
             <i class='fa fa-fw fa-folder-open'></i> Files
         </a>
+        <a class='w3-bar-item w3-button' href='/user/users'>
+            <i class='fa fa-fw fa-user'></i> Users
+        </a>
     <?php } ?>
 
     <?php if(isset($_SESSION['rank']) && $_SESSION['rank'] == 'admin') { ?>

@@ -6,24 +6,28 @@ if(!isset($_SESSION['user'])) {
     header('location:/index');
     exit;
 }
-// if not admin
-if($_SESSION['rank'] == 'member') {
-    header('location:/index');
-    exit;
-}
 // if banned
 if($_SESSION['ban_status'] >= 1) {
     header('location:/status/banned');
     exit;
 }
 
-$_SESSION['page'] = 'admin';
+// connect to database
+include_once('/srv/http/nozzato.com/admin/connect.php');
+
+// select users and order alphabetically
+$stmt = $pdo-> prepare('SELECT * FROM `users` WHERE `user_id` != ? ORDER BY `username` ASC;');
+$stmt-> execute([$_SESSION['user']]);
+$rows = $stmt-> fetchAll(PDO::FETCH_ASSOC);
+$count = $stmt-> rowCount();
+
+$_SESSION['page'] = 'users';
 ?>
 <!DOCTYPE html>
 <html lang='en'>
 <head>
 
-<title>Admin: Account - NShare</title>
+<title>Users: Friends - NShare</title>
 <link rel='icon' type='image/gif' href='/assets/favicon.gif'>
 
 <meta charset='utf-8'>
@@ -34,6 +38,11 @@ $_SESSION['page'] = 'admin';
 <link rel='stylesheet' href='/styles/icons/css/all.css'>
 
 <script src='/scripts/scripts.js' type='text/javascript'></script>
+<script type='text/javascript'>
+function openProfile(id) {
+    window.location.href = '/user/index?id=' + id;
+}
+</script>
 
 </head>
 <body>
@@ -113,40 +122,42 @@ $_SESSION['page'] = 'admin';
 
 <div class='w3-container w3-padding-16 w3-center' id='content' style='margin-bottom:38.5px'>
     <div class='w3-bar nz-black w3-round nz-page' style='margin-bottom:10px'>
-        <button class='w3-bar-item w3-button page-button w3-dark-gray' id='accountBtn' onclick='openPage("account", "admin")' style='width:102.617px'>Account</button>
-        <a class='w3-bar-item w3-button page-button' id='databaseBtn' href='/admin/adminer/adminer?db=nshare'>Database</a>
+        <button class='w3-bar-item w3-button page-button w3-dark-gray' id='friendsBtn' onclick='openPage("friends", "users")'>Friends</button>
+        <button class='w3-bar-item w3-button page-button' id='exploreBtn' onclick='openPage("explore", "users")' style='width:91.9px'>Explore</button>
     </div>
-    <div class='page' id='account'>
-        <div class='w3-round nz-page w3-card-2'>
+    <div class='page' id='friends'>
+        <div class='w3-round w3-card-2 nz-page'>
             <div class='w3-container nz-black nz-round-top'>
-                <h2>Ban Account</h2>
+                <h2>Friends</h2>
             </div>
-            <form class='w3-container w3-padding-16' action='/user/ban.php' method='POST' onsubmit='return banValidate(this)'>
-                <input class='w3-input nz-black w3-border-0 w3-round' id='ban-user' type='text' placeholder='User ID' name='ban_user'>
-                <p></p>
-                <p></p>
-                <input class='w3-input nz-black w3-border-0 w3-round' id='ban-reason' type='text' placeholder='Ban Reason' name='ban_reason'>
-                <p></p>
-                <button class='w3-btn w3-red w3-round' type='submit' name='ban_btn'>
-                    <i class='fa fa-fw fa-gavel'></i> Ban
-                </button>
-            </form>
+            <div class='w3-padding-16'>
+                <span>Content</span>
+            </div>
         </div>
-        <br>
-        <div class='w3-round nz-page w3-card-2'>
+    </div>
+    <div class='page' id='explore' style='display:none'>
+        <div class='w3-round w3-card-2 nz-page'>
             <div class='w3-container nz-black nz-round-top'>
-                <h2>Unban Account</h2>
+                <h2>Explore</h2>
             </div>
-            <form class='w3-container w3-padding-16' action='/user/unban.php' method='POST' onsubmit='return unbanValidate(this)'>
-                <input class='w3-input nz-black w3-border-0 w3-round' id='unban-user' type='text' placeholder='User ID' name='unban_user'>
-                <p></p>
-                <p></p>
-                <input class='w3-input nz-black w3-border-0 w3-round' id='unban-reason' type='text' placeholder='Unban Reason' name='unban_reason'>
-                <p></p>
-                <button class='w3-btn w3-green w3-round' type='submit' name='unban_btn'>
-                    <i class='fa fa-fw fa-scale-unbalanced'></i> Unban
-                </button>
-            </form>
+            <div class='w3-container w3-padding-16'>
+                <div class='w3-responsive'>
+                    <table class='nz-table'>
+                        <tr>
+                            <th class='nz-truncate'>Username <i class='fa fa-fw fa-caret-down'></i></th>
+                            <th class='nz-truncate'>User ID</th>
+                        </tr>
+
+                    <?php for($i = 0; $i < $count; $i++) { ?>
+                        <tr>
+                            <td class='w3-button' onclick='openProfile(<?= $rows[$i]['user_id']; ?>)'><?= $rows[$i]['username']; ?></td>
+                            <td><?= $rows[$i]['user_id']; ?></td>
+                        </tr>
+                    <?php } ?>
+
+                    </table>
+                </div>
+            </div>
         </div>
     </div>
 </div>
