@@ -63,9 +63,10 @@ function openPage(page, parentPage) {
     document.getElementById(page).style.display = 'block';
     document.getElementById(page + 'Btn').classList.add('w3-dark-gray');
 
-    if(parentPage == 'settings') {
+    if(parentPage != 'admin') {
         page = page.charAt(0).toUpperCase() + page.slice(1);
-        document.title = 'Settings: ' + page + ' - NShare';
+        parentPage = parentPage.charAt(0).toUpperCase() + parentPage.slice(1);
+        document.title = parentPage + ': ' + page + ' - NShare';
     }
 }
 function goBack() {
