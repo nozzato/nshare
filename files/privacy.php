@@ -5,12 +5,12 @@ session_start();
 include_once('/srv/http/nozzato.com/scripts/scripts.php');
 
 // if privacy ID sent
-if($_GET['id'] && $_GET['state']) {
+if($_GET['fileid'] && $_GET['state']) {
     // connect to database
     include_once('/srv/http/nozzato.com/admin/connect.php');
 
     // set privacy variables
-    $file_id = $_GET['id'];
+    $file_id = $_GET['fileid'];
 
     if($_GET['state'] == 'Private') {
         $privacy_state = 'public';
