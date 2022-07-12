@@ -21,6 +21,21 @@ $stmt-> execute([$_SESSION['user']]);
 $rows = $stmt-> fetchAll(PDO::FETCH_ASSOC);
 $count = $stmt-> rowCount();
 
+// select friends array
+$stmt = $pdo-> prepare('SELECT `friends` INTO @friends FROM `friends` WHERE `user_id` = ?;');
+$stmt-> execute([$_SESSION['user']]);
+
+$stmt = $pdo-> prepare('SELECT @friends "array" ;');
+$stmt-> execute();
+$friends = $stmt-> fetch(PDO::FETCH_ASSOC);
+$friends = json_decode($friends['array']);
+
+// select length of friends array
+$stmt = $pdo-> prepare('SELECT JSON_LENGTH(@friends) "length";');
+$stmt-> execute();
+$tmp = $stmt-> fetch(PDO::FETCH_ASSOC);
+$friends_length = $tmp['length'];
+
 $_SESSION['page'] = 'users';
 ?>
 <!DOCTYPE html>
@@ -146,12 +161,27 @@ function openProfile(id) {
                         <tr>
                             <th class='nz-truncate'>Username <i class='fa fa-fw fa-caret-down'></i></th>
                             <th class='nz-truncate'>User ID</th>
+                            <th class='nz-truncate'>Friend Status</th>
                         </tr>
 
                     <?php for($i = 0; $i < $count; $i++) { ?>
                         <tr>
                             <td class='w3-button' onclick='openProfile(<?= $rows[$i]['user_id']; ?>)'><?= $rows[$i]['username']; ?></td>
                             <td><?= $rows[$i]['user_id']; ?></td>
+                            
+                        <?php if(in_array($rows[$i]['user_id'], $friends)) { ?>
+                            <td id='<?= $rows[$i]['user_id']; ?>'>
+                        <?php } else { ?>
+                            <td class='w3-button w3-button w3-hover-green add-friend-button' id='<?= $rows[$i]['user_id']; ?>' onclick='addFriend(<?= $rows[$i]['user_id']; ?>)'>
+                        <?php } ?>
+
+                        <?php if(in_array($rows[$i]['user_id'], $friends)) { ?>
+                            Friends
+                        <?php } else { ?>
+                            <span>Not Friends</span>
+                        <?php } ?>
+
+                            </td>
                         </tr>
                     <?php } ?>
 

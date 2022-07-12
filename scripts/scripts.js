@@ -14,7 +14,24 @@ function changePrivacy(fileID) {
 
     var state = document.getElementById(fileID).innerHTML
 
-    xmlhttp.open('GET', 'privacy.php?id=' + fileID + '&state=' + state);
+    xmlhttp.open('GET', 'privacy.php?fileid=' + fileID + '&state=' + state);
+    xmlhttp.send();
+}
+function addFriend(friendID) {
+    var xmlhttp = new XMLHttpRequest();
+
+    xmlhttp.onreadystatechange = function() {
+        if (this.readyState == 4 && this.status == 200) {
+            if(state.includes('Not Friends')) {
+                document.getElementById(friendID).innerHTML = 'Friends'
+                document.getElementById(friendID).classList.remove('w3-button', 'w3-hover-green', 'add-friend-button')
+            }
+        }
+    };
+
+    var state = document.getElementById(friendID).innerHTML
+
+    xmlhttp.open('GET', 'friend.php?friendid=' + friendID);
     xmlhttp.send();
 }
 

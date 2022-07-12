@@ -60,6 +60,13 @@ if(isset($_POST['create_btn'])) {
             $stmt = $pdo-> prepare('INSERT INTO `users` (`email`, `username`, `password`, `rank`, `ban_status`, `creation_date`) VALUES (?, ?, ?, ?, 0, NOW());');
             $stmt-> execute([$create_email, $create_username, password_hash($create_password, PASSWORD_DEFAULT), $create_rank]);
 
+            $stmt = $pdo-> prepare('SELECT `user_id` FROM `users` WHERE `username` = ?');
+            $stmt-> execute([$create_username]);
+            $create_user = $stmt-> fetchColumn(PDO::FETCH_ASSOC);
+
+            $stmt = $pdo-> prepare('INSERT INTO `friends` (`user_id`, `friends`) VALUES (?, ?);');
+            $stmt-> execute([$create_user, '[0]']);
+
             // create directory
             $old_umask = umask(0);
             mkdir('/srv/http/nozzato.com/files/' . $create_username, 0775);

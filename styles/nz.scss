@@ -27,6 +27,13 @@ input:focus, textarea:focus {
 
 /* classes */
 
+.add-friend-button:hover span {
+    display: none;
+}
+.add-friend-button:hover:before {
+    content: "Add Friend"
+}
+
 // alignment
 .nz-page {
     margin: auto;
