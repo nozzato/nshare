@@ -19,8 +19,8 @@ if($_GET['friendid']) {
     $stmt = $pdo-> prepare('SELECT @friends "array" ;');
     $stmt-> execute();
     $friends = $stmt-> fetch(PDO::FETCH_ASSOC);
-    $friends = substr($friends['array'], 0, -1);
 
+    $friends = substr($friends['array'], 0, -1);
     $friends = $friends . ',' . $friend_id . ']';
 
     // update friend in database

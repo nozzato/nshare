@@ -62,10 +62,11 @@ if(isset($_POST['create_btn'])) {
 
             $stmt = $pdo-> prepare('SELECT `user_id` FROM `users` WHERE `username` = ?');
             $stmt-> execute([$create_username]);
-            $create_user = $stmt-> fetchColumn(PDO::FETCH_ASSOC);
+            $create_user = $stmt-> fetch(PDO::FETCH_ASSOC);
+            $create_user = $create_user['user_id'];
 
             $stmt = $pdo-> prepare('INSERT INTO `friends` (`user_id`, `friends`) VALUES (?, ?);');
-            $stmt-> execute([$create_user, '[0]']);
+            $stmt-> execute([$create_user, '[]']);
 
             // create directory
             $old_umask = umask(0);
