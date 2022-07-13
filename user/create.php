@@ -4,6 +4,9 @@ session_start();
 // include functions
 include_once('/srv/http/nozzato.com/scripts/scripts.php');
 
+require('/srv/http/nozzato.com/vendor/autoload.php');
+use EmailChecker\EmailChecker;
+
 if(isset($_POST['create_btn'])) {
     // verify captcha
     h_captcha($_POST['h-captcha-response']);
@@ -33,6 +36,11 @@ if(isset($_POST['create_btn'])) {
         }
         if(!filter_var($create_email, FILTER_VALIDATE_EMAIL)) {
             $_SESSION['msg'] = 'Error: Invalid email format';
+            go_back();
+        }
+        $checker = new EmailChecker();
+        if(!$checker->isValid($create_email)) {
+            $_SESSION['msg'] = 'Error: Invalid email domain';
             go_back();
         }
         if(strlen($create_username) > 50) {
