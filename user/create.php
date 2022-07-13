@@ -66,7 +66,7 @@ if(isset($_POST['create_btn'])) {
             $create_user = $create_user['user_id'];
 
             $stmt = $pdo-> prepare('INSERT INTO `friends` (`user_id`, `friends`) VALUES (?, ?);');
-            $stmt-> execute([$create_user, '[]']);
+            $stmt-> execute([$create_user, '[0]']);
 
             // create directory
             $old_umask = umask(0);
