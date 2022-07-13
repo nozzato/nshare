@@ -113,8 +113,8 @@ $_SESSION['page'] = 'admin';
 
 <div class='w3-container w3-padding-16 w3-center' id='content' style='margin-bottom:38.5px'>
     <div class='w3-bar nz-black w3-round nz-page' style='margin-bottom:10px'>
-        <button class='w3-bar-item w3-button page-button w3-dark-gray' id='accountBtn' onclick='openPage("account", "admin")' style='width:102.617px'>Account</button>
-        <a class='w3-bar-item w3-button page-button' id='databaseBtn' href='/admin/adminer/adminer?db=nshare'>Database</a>
+        <button class='w3-bar-item w3-button page-button w3-dark-gray' id='accountBtn' onclick='openPage("account", "admin")' style='width:100px'>Account</button>
+        <a class='w3-bar-item w3-button page-button' id='databaseBtn' href='/admin/adminer/adminer?db=nshare' style='width:100px'>Database</a>
     </div>
     <div class='page' id='account'>
         <div class='w3-round nz-page w3-card-2'>
