@@ -117,11 +117,6 @@ function uploadFile() {
 
 <div id='content' style='margin-bottom:38.5px'>
     <div class='w3-container w3-col nz-black' style='width:200px;height:100vh'>
-        <table class='nz-table'>
-            <tr><td class='w3-button nz-truncate'>Craig/</td></tr>
-            <tr><td class='w3-button nz-truncate'>Jeff/</td></tr>
-        </table>
-
         <div class='w3-display-bottomleft' style='width:168px;bottom:16px;left:16px;'>
         
             <?php
