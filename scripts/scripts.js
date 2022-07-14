@@ -69,6 +69,25 @@ function openModal(content) {
     document.getElementById('modal-content').innerHTML = content;
     document.getElementById('delete-button').value = content;
 }
+function openModalDeleteSel() {
+    var array = [];
+    var checkboxes = document.querySelectorAll('input[type=checkbox]:checked');
+
+    for (var i = 0; i < checkboxes.length; i++) {
+        array.push(checkboxes[i].value);
+    }
+
+    if(array.length == 0) {
+        return;
+    } else if(array.length == 1) {
+        document.getElementById('modal').style.display = 'block';
+        fileName = document.getElementById('file-' + checkboxes[0].value).innerHTML;
+        document.getElementById('modal-content').innerHTML = fileName;
+    } else {
+        document.getElementById('modal').style.display = 'block';
+        document.getElementById('modal-content').innerHTML = array.length + ' files';
+    }
+}
 function openPage(page, parentPage) {
     var pages = document.getElementsByClassName('page');
     var buttons = document.getElementsByClassName('page-button');

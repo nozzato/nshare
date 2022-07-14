@@ -171,6 +171,7 @@ function uploadFile() {
         <div class='w3-responsive'>
             <table class='nz-table'>
                 <tr>
+                    <th><input type='checkbox'></th>
                     <th class='nz-truncate'>Name <i class='fa fa-fw fa-caret-down'></i></th>
 
                 <?php if(!$_SESSION['ban_status'] >= 1) { ?>
@@ -179,11 +180,6 @@ function uploadFile() {
 
                     <th>Size</th>
                     <th class='nz-truncate'>Date Modified</th>
-
-                <?php if(!$_SESSION['ban_status'] >= 1) { ?>
-                    <th>Delete</th>
-                <?php } ?>
-
                 </tr>
 
             <?php for($i = 0; $i < $count; $i++) {
@@ -195,24 +191,27 @@ function uploadFile() {
                 $rows[$i]['upload_date'] = $stmt-> fetchColumn();
             ?>
                 <tr>
-                    <td class='w3-button' onclick='openFile(<?= $rows[$i]['file_id']; ?>)'><?= $rows[$i]['filename']; ?></td>
+                    <td><input form='delete-sel-form' type='checkbox' name='delete_sel_files[]' value='<?= $rows[$i]['file_id']; ?>'></td>
+                    <td class='w3-button' id='file-<?= $rows[$i]['file_id']; ?>' onclick='openFile(<?= $rows[$i]['file_id']; ?>)'><?= $rows[$i]['filename']; ?></td>
 
                 <?php if(!$_SESSION['ban_status'] >= 1) { ?>
                     <td class='w3-button' id='<?= $rows[$i]['file_id']; ?>' onclick='changePrivacy("<?= $rows[$i]['file_id']; ?>")'><?= ucfirst($rows[$i]['privacy']); ?></td>
                 <?php } ?>
 
                 <td><?= human_filesize($rows[$i]['size']); ?></td>
-                    <td><?= $rows[$i]['upload_date']; ?></td>
-
-                <?php if(!$_SESSION['ban_status'] >= 1) { ?>
-                    <td class='w3-button w3-hover-red' onclick='openModal(<?= $file_modal; ?>)'>Delete</td>
-                <?php } ?>
-
+                    <td class='nz-truncate'><?= $rows[$i]['upload_date']; ?></td>
                 </tr>
             <?php } ?>
 
             </table>
         </div>
+
+    <?php if(!$_SESSION['ban_status'] >= 1) { ?>
+        <button class='w3-button w3-bar-item w3-red w3-round w3-display-bottomleft' onclick='openModalDeleteSel()' style='bottom:16px;left:216px'>
+            <i class='fa fa-fw fa-trash-can'></i> Delete
+        </button>
+    <?php } ?>
+
     </div>
 </div>
 <div class='w3-modal' id='modal'>
@@ -224,8 +223,8 @@ function uploadFile() {
             <p class ='m-0 text-center' id='modal-content'></p>
         </div>
         <footer class='w3-container w3-bar'>
-            <form action='/files/delete.php' method='POST'>
-                <button class='w3-button w3-bar-item w3-red w3-round w3-margin-bottom' id='delete-button' type='submit' name='delete_btn' style='margin-right:5px'>
+            <form id='delete-sel-form' action='/files/delete.php' method='POST'>
+                <button class='w3-button w3-bar-item w3-red w3-round w3-margin-bottom' type='submit' name='delete_sel_btn' style='margin-right:5px'>
                     <i class='fa fa-fw fa-trash-can'></i> Delete
                 </button>
             </form>
