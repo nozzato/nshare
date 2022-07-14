@@ -172,11 +172,15 @@ function uploadFile() {
             <table class='nz-table'>
                 <tr>
                     <th class='nz-truncate'>Name <i class='fa fa-fw fa-caret-down'></i></th>
-                    <th>Size</th>
-                    <th title='Date Modified'>Date</th>
 
                 <?php if(!$_SESSION['ban_status'] >= 1) { ?>
                     <th>Privacy</th>
+                <?php } ?>
+
+                    <th>Size</th>
+                    <th class='nz-truncate'>Date Modified</th>
+
+                <?php if(!$_SESSION['ban_status'] >= 1) { ?>
                     <th>Delete</th>
                 <?php } ?>
 
@@ -186,17 +190,21 @@ function uploadFile() {
                 $file_modal = '"' . $rows[$i]['filename'] . '"';
 
                 // select formatted upload date
-                $stmt = $pdo-> prepare('SELECT DATE_FORMAT(`upload_date`, "%d-%m-%Y") FROM `files` WHERE `user_id` = ? AND `filename` = ?;');
+                $stmt = $pdo-> prepare('SELECT DATE_FORMAT(`upload_date`, "%d-%m-%Y %h:%i:%s") FROM `files` WHERE `user_id` = ? AND `filename` = ?;');
                 $stmt-> execute([$_SESSION['user'], $rows[$i]['filename']]);
                 $rows[$i]['upload_date'] = $stmt-> fetchColumn();
             ?>
                 <tr>
                     <td class='w3-button' onclick='openFile(<?= $rows[$i]['file_id']; ?>)'><?= $rows[$i]['filename']; ?></td>
-                    <td><?= human_filesize($rows[$i]['size']); ?></td>
-                    <td><?= $rows[$i]['upload_date']; ?></td>
 
                 <?php if(!$_SESSION['ban_status'] >= 1) { ?>
                     <td class='w3-button' id='<?= $rows[$i]['file_id']; ?>' onclick='changePrivacy("<?= $rows[$i]['file_id']; ?>")'><?= ucfirst($rows[$i]['privacy']); ?></td>
+                <?php } ?>
+
+                <td><?= human_filesize($rows[$i]['size']); ?></td>
+                    <td><?= $rows[$i]['upload_date']; ?></td>
+
+                <?php if(!$_SESSION['ban_status'] >= 1) { ?>
                     <td class='w3-button w3-hover-red' onclick='openModal(<?= $file_modal; ?>)'>Delete</td>
                 <?php } ?>
 
