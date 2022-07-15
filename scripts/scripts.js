@@ -25,6 +25,7 @@ function addFriend(friendID) {
             if(state.includes('Not Friends')) {
                 document.getElementById(friendID).innerHTML = 'Friends';
                 document.getElementById(friendID).classList.remove('w3-button', 'w3-hover-green', 'add-friend-button');
+                document.getElementById(friendID).removeAttribute('onclick');
             }
         }
     };
@@ -42,6 +43,7 @@ function removeFriend(friendID) {
             if(state.includes('Friends')) {
                 document.getElementById(friendID).innerHTML = 'Not Friends';
                 document.getElementById(friendID).classList.remove('w3-button', 'w3-hover-red', 'remove-friend-button');
+                document.getElementById(friendID).removeAttribute('onclick');
             }
         }
     };
