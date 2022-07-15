@@ -43,9 +43,16 @@ if(isset($_POST['delete_btn']) || isset($_POST['delete_sel_btn'])) {
 
         // for every file
         for($i = 0; $i < $delete_sel_count; $i++) {
-            // delete file from database
-            $stmt = $pdo -> prepare('DELETE FROM `files` WHERE `user_id` = ? AND `file_id` = ?;');
-            $stmt -> execute([$_SESSION['user'], $_POST['delete_sel_files'][$i]]);
+            $stmt = $pdo -> prepare('SELECT * FROM `files` WHERE `file_id` = ?;');
+            $stmt -> execute([$_POST['delete_sel_files'][$i]]);
+            $row = $stmt -> fetch(PDO::FETCH_ASSOC);
+
+            // if delete succeeds
+            if(unlink($file_path_server . $row['filename']) == true) {
+                // delete file from database
+                $stmt = $pdo -> prepare('DELETE FROM `files` WHERE `user_id` = ? AND `file_id` = ?;');
+                $stmt -> execute([$_SESSION['user'], $_POST['delete_sel_files'][$i]]);
+            }
         }
     }
 }
