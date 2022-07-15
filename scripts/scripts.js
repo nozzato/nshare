@@ -84,12 +84,12 @@ function openModalDeleteSel() {
     if(array.length == 0) {
         return;
     } else if(array.length == 1) {
-        document.getElementById('modal').style.display = 'block';
+        document.getElementById('delete-modal').style.display = 'block';
         fileName = document.getElementById('file-' + checkboxes[0].value).innerHTML;
-        document.getElementById('modal-content').innerHTML = fileName;
+        document.getElementById('delete-modal-content').innerHTML = fileName;
     } else {
-        document.getElementById('modal').style.display = 'block';
-        document.getElementById('modal-content').innerHTML = array.length + ' files';
+        document.getElementById('delete-modal').style.display = 'block';
+        document.getElementById('delete-modal-content').innerHTML = array.length + ' files';
     }
 }
 function openPage(page, parentPage) {
