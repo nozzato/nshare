@@ -71,9 +71,9 @@ function openModal(content) {
 }
 function openModalDeleteSel() {
     var array = [];
-    var checkboxes = document.querySelectorAll('input[type=checkbox]:checked');
+    var checkboxes = document.querySelectorAll('input[type=checkbox]:checked:not(#check-master)');
 
-    for (var i = 0; i < checkboxes.length; i++) {
+    for(var i = 0; i < checkboxes.length; i++) {
         array.push(checkboxes[i].value);
     }
 
@@ -105,6 +105,44 @@ function openPage(page, parentPage) {
 }
 function goBack() {
     window.location.href = '/files/index';
+}
+function selectAll() {
+    var checkMaster = document.getElementById('check-master');
+    var checkboxes = document.querySelectorAll('input[type=checkbox]:not(#check-master)');
+    var checkboxesChecked = document.querySelectorAll('input[type=checkbox]:checked:not(#check-master)');
+
+    if(checkMaster.checked == false && checkboxesChecked.length == checkboxes.length - 1) {
+        return;
+    }
+
+    if(checkMaster.checked == true) {
+        for (var i = 0; i < checkboxes.length; i++) {
+            if(checkboxes[i].checked == false) {
+                checkboxes[i].click();
+            }
+        }
+    } else {
+        for (var i = 0; i < checkboxes.length; i++) {
+            if(checkboxes[i].checked == true) {
+                checkboxes[i].click();
+            }
+        }
+    }
+}
+function checkSelectAll() {
+    var checkMaster = document.getElementById('check-master');
+    var checkboxes = document.querySelectorAll('input[type=checkbox]:not(#check-master)');
+    var checkboxesChecked = document.querySelectorAll('input[type=checkbox]:checked:not(#check-master)');
+
+    if(checkMaster.checked == false && checkboxesChecked.length == checkboxes.length) {
+        if(checkMaster.checked == false) {
+            checkMaster.click();
+        }
+    } else if(checkboxesChecked.length < checkboxes.length && checkMaster.checked == true) {
+        if(checkMaster.checked == true) {
+            checkMaster.click();
+        }
+    }
 }
 
 // validation

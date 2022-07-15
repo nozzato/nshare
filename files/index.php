@@ -171,7 +171,7 @@ function uploadFile() {
         <div class='w3-responsive'>
             <table class='nz-table'>
                 <tr>
-                    <th><input type='checkbox'></th>
+                    <th><input id='check-master' type='checkbox' onclick='selectAll()'></th>
                     <th class='nz-truncate'>Name <i class='fa fa-fw fa-caret-down'></i></th>
 
                 <?php if(!$_SESSION['ban_status'] >= 1) { ?>
@@ -191,7 +191,7 @@ function uploadFile() {
                 $rows[$i]['upload_date'] = $stmt-> fetchColumn();
             ?>
                 <tr>
-                    <td><input form='delete-sel-form' type='checkbox' name='delete_sel_files[]' value='<?= $rows[$i]['file_id']; ?>'></td>
+                    <td><input form='delete-sel-form' type='checkbox' name='delete_sel_files[]' value='<?= $rows[$i]['file_id']; ?>' onclick='checkSelectAll()'></td>
                     <td class='w3-button' id='file-<?= $rows[$i]['file_id']; ?>' onclick='openFile(<?= $rows[$i]['file_id']; ?>)'><?= $rows[$i]['filename']; ?></td>
 
                 <?php if(!$_SESSION['ban_status'] >= 1) { ?>
