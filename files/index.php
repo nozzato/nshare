@@ -115,59 +115,11 @@ function uploadFile() {
     </div>
 </div>
 
-<div id='content' style='margin-bottom:38.5px'>
-    <div class='w3-container w3-col nz-black' style='width:200px;height:100vh'>
-        <div class='w3-display-bottomleft' style='width:168px;bottom:16px;left:16px;'>
-        
-            <?php
-            // select user's files and order alphabetically
-            $stmt = $pdo-> prepare('SELECT * FROM `files` WHERE `user_id` = ? ORDER BY `filename` ASC;');
-            $stmt-> execute([$_SESSION['user']]);
-            $rows = $stmt-> fetchAll(PDO::FETCH_ASSOC);
-            $count = $stmt-> rowCount();
-
-            $db_file_size_total = 0;
-
-            for($i = 0; $i <= $count - 1; $i++) {
-                $db_file_size_total += $rows[$i]['size'];
-            }
-            ?>
-
-            <span>Storage Used</span>
-            <br>
-            <span><?= human_filesize($db_file_size_total); ?> / 5.00G
-            <br><br>
-
-        <?php if(!$_SESSION['ban_status'] >= 1) { ?>
-            <form id='upload-form' action='/files/upload.php' method='POST' enctype='multipart/form-data'>
-                <span>Upload Privacy</span>
-                <br>
-                <input class='w3-radio' id='upload-private' type='radio' value='private' name='upload_privacy' checked>
-                <label for='upload-private'>Private</label>
-                <br>
-                <input class='w3-radio' id='upload-public' type='radio' value='public' name='upload_privacy'>
-                <label for='upload-public'>Public</label>
-                <br><br>
-                <input class='w3-hide' id='upload-file' type='file' name='upload_file[]' onchange='uploadFile()' multiple required>
-                <label class='w3-button w3-green w3-round' for='upload-file' style='width:100%'>
-                    <i class='fa fa-fw fa-file-arrow-up'></i> Upload
-                </label>
-            </form>
-        <?php } else { ?>
-            <p></p>
-            <form class='w3-margin-top w3-center' action='/files/download.php' method='POST'>
-                <button class='w3-button w3-blue w3-round' name='download_all_btn'>
-                    <i class='fa fa-fw fa-file-arrow-down'></i> Download All
-                </button>
-            </form>
-        <?php } ?>
-
+<div id='content'>
+    <div class='w3-container' style='margin-top:8px;margin-bottom:70.5px'>
+        <div class='w3-padding'>
+            <tr><td><a href='/files/index' style='font-size:20px'><?= $_SESSION['username'] ?>/</a></td></tr>
         </div>
-    </div>
-    <div class='w3-container w3-rest'>
-        <table class='nz-table'>
-            <tr><td><a href='/files/index'><?= $_SESSION['username'] ?>/</a></td></tr>
-        </table>
         <div class='w3-responsive'>
             <table class='nz-table'>
                 <tr>
@@ -182,6 +134,20 @@ function uploadFile() {
                     <th class='nz-truncate'>Date Modified</th>
                 </tr>
 
+            <?php
+                // select user's files and order alphabetically
+                $stmt = $pdo-> prepare('SELECT * FROM `files` WHERE `user_id` = ? ORDER BY `filename` ASC;');
+                $stmt-> execute([$_SESSION['user']]);
+                $rows = $stmt-> fetchAll(PDO::FETCH_ASSOC);
+                $count = $stmt-> rowCount();
+
+                $db_file_size_total = 0;
+
+                for($i = 0; $i <= $count - 1; $i++) {
+                    $db_file_size_total += $rows[$i]['size'];
+                }
+            ?>
+
             <?php for($i = 0; $i < $count; $i++) {
                 $file_modal = '"' . $rows[$i]['filename'] . '"';
 
@@ -189,7 +155,8 @@ function uploadFile() {
                 $stmt = $pdo-> prepare('SELECT DATE_FORMAT(`upload_date`, "%d-%m-%Y %h:%i:%s") FROM `files` WHERE `user_id` = ? AND `filename` = ?;');
                 $stmt-> execute([$_SESSION['user'], $rows[$i]['filename']]);
                 $rows[$i]['upload_date'] = $stmt-> fetchColumn();
-            ?>
+                ?>
+
                 <tr>
                     <td><input form='delete-sel-form' type='checkbox' name='delete_sel_files[]' value='<?= $rows[$i]['file_id']; ?>' onclick='checkSelectAll()'></td>
                     <td class='w3-button' id='file-<?= $rows[$i]['file_id']; ?>' onclick='openFile(<?= $rows[$i]['file_id']; ?>)'><?= $rows[$i]['filename']; ?></td>
@@ -205,22 +172,26 @@ function uploadFile() {
 
             </table>
         </div>
-
-    <?php if(!$_SESSION['ban_status'] >= 1) { ?>
-        <button class='w3-button w3-bar-item w3-red w3-round w3-display-bottomleft' onclick='openModalDeleteSel()' style='bottom:16px;left:216px'>
+    </div>
+    <div class='w3-bar w3-bottom w3-padding-16'>
+        <label class='w3-button w3-bar-item w3-green w3-round' onclick='openModal("upload")' style='margin:0 5px 0 16px'>
+            <i class='fa fa-fw fa-file-arrow-up'></i> Upload
+        </label>
+        <button class='w3-button w3-bar-item w3-red w3-round' onclick='openModalDeleteSel()'>
             <i class='fa fa-fw fa-trash-can'></i> Delete
         </button>
-    <?php } ?>
-
+        <div class='w3-bar-item w3-right' style='padding:4px 16px 4px 0'>
+            <span style='font-size:20px'><?= human_filesize($db_file_size_total); ?> / <b>5.00G</b></span>
+        </div>
     </div>
 </div>
-<div class='w3-modal' id='modal'>
+<div class='w3-modal' id='delete-modal'>
     <div class='w3-modal-content nz-dark w3-round w3-card-2'>
         <header class='w3-container nz-black nz-round-top'>
             <h2>Really delete?</h2>
         </header>
         <div class='w3-container'>
-            <p class ='m-0 text-center' id='modal-content'></p>
+            <p class ='m-0 text-center' id='delete-modal-content'></p>
         </div>
         <footer class='w3-container w3-bar'>
             <form id='delete-sel-form' action='/files/delete.php' method='POST'>
@@ -228,9 +199,33 @@ function uploadFile() {
                     <i class='fa fa-fw fa-trash-can'></i> Delete
                 </button>
             </form>
-            <button class='w3-button w3-bar-item w3-blue-grey w3-round w3-margin-bottom' onclick='document.getElementById("modal").style.display="none"'>
+            <button class='w3-button w3-bar-item w3-blue-grey w3-round w3-margin-bottom' onclick='document.getElementById("delete-modal").style.display="none"'>
                 <i class='fa fa-fw fa-ban'></i> Cancel
             </button>
+        </footer>
+    </div>
+</div>
+<div class='w3-modal' id='upload-modal'>
+    <div class='w3-modal-content nz-dark w3-round w3-card-2'>
+        <header class='w3-container nz-black nz-round-top'>
+            <h2>Upload</h2>
+        </header>
+        <div class='w3-container'>
+        </div>
+        <footer class='w3-bar w3-container w3-padding-16'>
+            <form id='upload-form' action='/files/upload.php' method='POST' enctype='multipart/form-data'>
+                <input class='w3-radio' id='upload-private' type='radio' value='private' name='upload_privacy' checked>
+                <label for='upload-private' style='margin-right:5px'>Private</label>
+                <input class='w3-radio' id='upload-public' type='radio' value='public' name='upload_privacy'>
+                <label for='upload-public'>Public</label>
+                <input class='w3-hide' id='upload-file' type='file' name='upload_file[]' onchange='uploadFile()' multiple required>
+                <label class='w3-button w3-bar-item w3-green w3-round' for='upload-file' style='margin-right:5px'>
+                    <i class='fa fa-fw fa-file-arrow-up'></i> Upload
+                </label>
+                <button class='w3-button w3-bar-item w3-blue-grey w3-round' onclick='document.getElementById("upload-modal").style.display="none"' style='margin-right:16px'>
+                    <i class='fa fa-fw fa-ban'></i> Cancel
+                </button>
+            </form>
         </footer>
     </div>
 </div>

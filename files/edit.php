@@ -247,7 +247,7 @@ else {
                 </button>
             <?php } ?>
 
-                <button class='w3-button w3-bar-item w3-red w3-round' onclick='openModal(<?= $file_modal ?>)' style='margin-right:5px'>
+                <button class='w3-button w3-bar-item w3-red w3-round' onclick='openModal("delete", <?= $file_modal ?>)' style='margin-right:5px'>
                     <i class='fa fa-fw fa-trash-can'></i> Delete
                 </button>
         <?php } ?>
@@ -263,13 +263,13 @@ else {
             </div>
         </div>
     </div>
-    <div class='w3-modal' id='modal'>
+    <div class='w3-modal' id='delete-modal'>
         <div class='w3-modal-content nz-dark w3-round w3-card-2'>
             <header class='w3-container nz-black nz-round-top'>
                 <h2>Really delete?</h2>
             </header>
             <div class='w3-container'>
-                <p class ='m-0 text-center' id='modal-content'></p>
+                <p class ='m-0 text-center' id='delete-modal-content'></p>
             </div>
             <footer class='w3-container w3-bar'>
                 <form action='/files/delete.php' method='POST'>
@@ -277,7 +277,7 @@ else {
                         <i class='fa fa-fw fa-trash-can'></i> Delete
                     </button>
                 </form>
-                <button class='w3-button w3-bar-item w3-blue-grey w3-round w3-margin-bottom' onclick='document.getElementById("modal").style.display="none"'>
+                <button class='w3-button w3-bar-item w3-blue-grey w3-round w3-margin-bottom' onclick='document.getElementById("delete-modal").style.display="none"'>
                     <i class='fa fa-fw fa-ban'></i> Cancel
                 </button>
             </footer>

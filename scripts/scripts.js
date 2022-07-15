@@ -64,10 +64,14 @@ function dropdownToggle() {
         dropdown.className = dropdown.className.replace(' w3-show', '');
     }
 }
-function openModal(content) {
-    document.getElementById('modal').style.display = 'block';
-    document.getElementById('modal-content').innerHTML = content;
-    document.getElementById('delete-button').value = content;
+function openModal(type, content) {
+    if(type == 'upload') {
+        document.getElementById('upload-modal').style.display = 'block';
+    } else if(type == 'delete') {
+        document.getElementById('delete-modal').style.display = 'block';
+        document.getElementById('delete-modal-content').innerHTML = content;
+        document.getElementById('delete-button').value = content;
+    }
 }
 function openModalDeleteSel() {
     var array = [];
