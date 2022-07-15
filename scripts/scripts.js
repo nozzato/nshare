@@ -138,6 +138,12 @@ function checkSelectAll() {
     var checkboxes = document.querySelectorAll('input[type=checkbox]:not(#check-master)');
     var checkboxesChecked = document.querySelectorAll('input[type=checkbox]:checked:not(#check-master)');
 
+    if(checkboxesChecked.length > 0) {
+        document.getElementById('delete-btn').classList.remove('w3-disabled', 'w3-hover-red');
+    } else if(checkboxesChecked.length == 0) {
+        document.getElementById('delete-btn').classList.add('w3-disabled', 'w3-hover-red');
+    }
+
     if(checkMaster.checked == false && checkboxesChecked.length == checkboxes.length) {
         if(checkMaster.checked == false) {
             checkMaster.click();

@@ -149,8 +149,6 @@ function uploadFile() {
             ?>
 
             <?php for($i = 0; $i < $count; $i++) {
-                $file_modal = '"' . $rows[$i]['filename'] . '"';
-
                 // select formatted upload date
                 $stmt = $pdo-> prepare('SELECT DATE_FORMAT(`upload_date`, "%d-%m-%Y %h:%i:%s") FROM `files` WHERE `user_id` = ? AND `filename` = ?;');
                 $stmt-> execute([$_SESSION['user'], $rows[$i]['filename']]);
@@ -177,7 +175,7 @@ function uploadFile() {
         <label class='w3-button w3-bar-item w3-green w3-round' onclick='openModal("upload")' style='margin:0 5px 0 16px'>
             <i class='fa fa-fw fa-file-arrow-up'></i> Upload
         </label>
-        <button class='w3-button w3-bar-item w3-red w3-round' onclick='openModalDeleteSel()'>
+        <button class='w3-button w3-bar-item w3-red w3-round w3-disabled w3-hover-red' id='delete-btn' onclick='openModalDeleteSel()'>
             <i class='fa fa-fw fa-trash-can'></i> Delete
         </button>
         <div class='w3-bar-item w3-right' style='padding:4px 16px 4px 0'>
