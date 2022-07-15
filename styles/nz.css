@@ -25,6 +25,14 @@ input:focus, textarea:focus {
   content: "Add Friend";
 }
 
+.remove-friend-button:hover span {
+  display: none;
+}
+
+.remove-friend-button:hover:before {
+  content: "Remove Friend";
+}
+
 .nz-page {
   margin: auto;
   max-width: 960px;

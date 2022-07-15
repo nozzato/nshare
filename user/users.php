@@ -145,8 +145,29 @@ function openProfile(id) {
             <div class='w3-container nz-black nz-round-top'>
                 <h2>Friends</h2>
             </div>
-            <div class='w3-padding-16'>
-                <span>Content</span>
+            <div class='w3-container w3-padding-16'>
+                <div class='w3-responsive'>
+                    <table class='nz-table'>
+                        <tr>
+                            <th class='nz-truncate'>Username <i class='fa fa-fw fa-caret-down'></i></th>
+                            <th class='nz-truncate'>User ID</th>
+                            <th class='nz-truncate'>Friend Status</th>
+                        </tr>
+
+                <?php for($i = 0; $i < $count; $i++) { ?>
+                    <?php if(in_array($rows[$i]['user_id'], $friends)) { ?>
+                        <tr>
+                            <td class='w3-button' onclick='openProfile(<?= $rows[$i]['user_id']; ?>)'><?= $rows[$i]['username']; ?></td>
+                            <td><?= $rows[$i]['user_id']; ?></td>
+                            <td class='w3-button w3-button w3-hover-red remove-friend-button' id='<?= $rows[$i]['user_id']; ?>' onclick='removeFriend(<?= $rows[$i]['user_id']; ?>)'>
+                                <span>Friends</span>
+                            </td>
+                        </tr>
+                    <?php } ?>
+                <?php } ?>
+
+                    </table>
+                </div>
             </div>
         </div>
     </div>

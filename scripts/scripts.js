@@ -34,6 +34,23 @@ function addFriend(friendID) {
     xmlhttp.open('GET', 'friend.php?friendid=' + friendID);
     xmlhttp.send();
 }
+function removeFriend(friendID) {
+    var xmlhttp = new XMLHttpRequest();
+
+    xmlhttp.onreadystatechange = function() {
+        if (this.readyState == 4 && this.status == 200) {
+            if(state.includes('Friends')) {
+                document.getElementById(friendID).innerHTML = 'Not Friends';
+                document.getElementById(friendID).classList.remove('w3-button', 'w3-hover-red', 'remove-friend-button');
+            }
+        }
+    };
+
+    var state = document.getElementById(friendID).innerHTML
+
+    xmlhttp.open('GET', 'unfriend.php?friendid=' + friendID);
+    xmlhttp.send();
+}
 
 // document
 function favicon(asset) {

@@ -33,6 +33,12 @@ input:focus, textarea:focus {
 .add-friend-button:hover:before {
     content: "Add Friend"
 }
+.remove-friend-button:hover span {
+    display: none;
+}
+.remove-friend-button:hover:before {
+    content: "Remove Friend"
+}
 
 // alignment
 .nz-page {
