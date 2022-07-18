@@ -50,6 +50,9 @@ if(isset($_POST['username_btn'])) {
                 $stmt = $pdo-> prepare('UPDATE `users` SET `username` = ? WHERE `user_id` = ?;');
                 $stmt-> execute([$username_new, $username_user]);
 
+                // rename user directory
+                rename('/srv/http/nozzato.com/files/' . $username_old, '/srv/http/nozzato.com/files/' . $username_new);
+
                 // update session array
                 $_SESSION['username'] = $username_new;
 
