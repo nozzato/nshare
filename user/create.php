@@ -76,7 +76,7 @@ if(isset($_POST['create_btn'])) {
             $stmt = $pdo-> prepare('INSERT INTO `friends` (`user_id`, `friends`) VALUES (?, ?);');
             $stmt-> execute([$create_user, '[0]']);
 
-            // create directory
+            // create user directory
             $old_umask = umask(0);
             mkdir('/srv/http/nozzato.com/files/' . $create_username, 0775);
             umask($old_umask);
