@@ -115,8 +115,19 @@ function uploadFile() {
     </div>
 </div>
 
-<div id='content'>
-    <div class='w3-container' style='margin-top:8px;margin-bottom:70.5px'>
+<div class='w3-row' id='content'>
+    <div class='w3-container w3-col nz-black' style='width:200px;height:calc(100vh - 38.5px);font-size:18px;padding-top:8px'>
+        <div style='padding:8px'>
+            <tr><td><a href='/files/index' style='font-size:20px'>Folders</a></td></tr>
+            <ul>
+                <li>Documents</li>
+                <li>Music</li>
+                <li>Pictures</li>
+                <li>Videos</li>
+            </ul>
+        </div>
+    </div>
+    <div class='w3-container w3-rest' style='padding-top:8px;margin-bottom:70.5px'>
         <div class='w3-padding'>
             <tr><td><a href='/files/index' style='font-size:20px'><?= $_SESSION['username'] ?>/</a></td></tr>
         </div>
@@ -170,16 +181,16 @@ function uploadFile() {
 
             </table>
         </div>
-    </div>
-    <div class='w3-bar w3-bottom w3-padding-16'>
-        <label class='w3-button w3-bar-item w3-green w3-round' onclick='openModal("upload")' style='margin:0 5px 0 16px'>
-            <i class='fa fa-fw fa-file-arrow-up'></i> Upload
-        </label>
-        <button class='w3-button w3-bar-item w3-red w3-round w3-disabled w3-hover-red' id='delete-btn' onclick='openModalDeleteSel()'>
-            <i class='fa fa-fw fa-trash-can'></i> Delete
-        </button>
-        <div class='w3-bar-item w3-right' style='padding:4px 16px 4px 0'>
-            <span style='font-size:20px'><?= human_filesize($db_file_size_total); ?> / <b>5.00G</b></span>
+        <div class='w3-bar w3-bottom w3-padding-16'>
+            <label class='w3-button w3-bar-item w3-green w3-round' onclick='openModal("upload")' style='margin-right:5px'>
+                <i class='fa fa-fw fa-file-arrow-up'></i> Upload
+            </label>
+            <button class='w3-button w3-bar-item w3-red w3-round w3-disabled w3-hover-red' id='delete-btn' onclick='openModalDeleteSel()' style='margin-right:16px'>
+                <i class='fa fa-fw fa-trash-can'></i> Delete
+            </button>
+            <div class='w3-bar-item' style='padding:4px 0 4px 0'>
+                <span style='font-size:20px'><?= human_filesize($db_file_size_total); ?> / <b>5.00G</b></span>
+            </div>
         </div>
     </div>
 </div>
