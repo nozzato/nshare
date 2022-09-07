@@ -13,7 +13,7 @@ if($_SESSION['ban_status'] >= 1) {
 }
 
 // connect to database
-include_once('/srv/http/nozzato.com/admin/connect.php');
+include_once($_SERVER['DOCUMENT_ROOT'] . '/admin/connect.php');
 
 // select users and order alphabetically
 $stmt = $pdo-> prepare('SELECT * FROM `users` WHERE `user_id` != ? ORDER BY `username` ASC;');

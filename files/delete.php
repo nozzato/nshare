@@ -2,17 +2,17 @@
 session_start();
 
 // include functions
-include_once('/srv/http/nozzato.com/scripts/scripts.php');
+include_once($_SERVER['DOCUMENT_ROOT'] . '/scripts/scripts.php');
 
 // if delete button or delete selection button clicked
 if(isset($_POST['delete_btn']) || isset($_POST['delete_sel_btn'])) {
     // connect to database
-    include_once('/srv/http/nozzato.com/admin/connect.php');
+    include_once($_SERVER['DOCUMENT_ROOT'] . '/admin/connect.php');
 
     // if delete button clicked
     if(isset($_POST['delete_btn'])) {
         // set delete variables
-        $file_path_server = '/srv/http/nozzato.com/files/' . $_SESSION['username'] . '/';
+        $file_path_server = $_SERVER['DOCUMENT_ROOT'] . '/files/' . $_SESSION['username'] . '/';
         $file_name        = $_POST['delete_btn'];
         $file_server      = $file_path_server . $_POST['delete_btn'];
 
@@ -38,7 +38,7 @@ if(isset($_POST['delete_btn']) || isset($_POST['delete_sel_btn'])) {
         }
 
         // set delete variables
-        $file_path_server = '/srv/http/nozzato.com/files/' . $_SESSION['username'] . '/';
+        $file_path_server = $_SERVER['DOCUMENT_ROOT'] . '/files/' . $_SESSION['username'] . '/';
         $delete_sel_count = count($_POST['delete_sel_files']);
 
         // for every file

@@ -14,7 +14,7 @@ if(!isset($_GET['id'])) {
 }
 
 // connect to database
-include_once('/srv/http/nozzato.com/admin/connect.php');
+include_once($_SERVER['DOCUMENT_ROOT'] . '/admin/connect.php');
 
 // select user data from GET id
 $stmt = $pdo-> prepare('SELECT * FROM `users` WHERE `user_id` = ?;');

@@ -2,16 +2,16 @@
 session_start();
 
 // include functions
-include_once('/srv/http/nozzato.com/scripts/scripts.php');
+include_once($_SERVER['DOCUMENT_ROOT'] . '/scripts/scripts.php');
 
 // if upload or save button clicked
 if(isset($_FILES['upload_file']) || isset($_POST['upload_btn'])) {
     // connect to database
-    include_once('/srv/http/nozzato.com/admin/connect.php');
+    include_once($_SERVER['DOCUMENT_ROOT'] . '/admin/connect.php');
 
     // set upload variables
     $file_path = '/files/' . $_SESSION['username'] . '/';
-    $file_path_server = '/srv/http/nozzato.com/files/' . $_SESSION['username'] . '/';
+    $file_path_server = $_SERVER['DOCUMENT_ROOT'] . '/files/' . $_SESSION['username'] . '/';
 
     // if upload button clicked
     if(isset($_FILES['upload_file'])) {

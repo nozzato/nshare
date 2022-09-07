@@ -2,16 +2,16 @@
 session_start();
 
 // include functions
-include_once('/srv/http/nozzato.com/scripts/scripts.php');
+include_once($_SERVER['DOCUMENT_ROOT'] . '/scripts/scripts.php');
 
 // if folder button clicked
 if(isset($_POST['folder_btn'])) {
     // connect to database
-    include_once('/srv/http/nozzato.com/admin/connect.php');
+    include_once($_SERVER['DOCUMENT_ROOT'] . '/admin/connect.php');
 
     // set folder variables
     $folder_path        = '/files/' . $_SESSION['username'] . '/';
-    $folder_path_server = '/srv/http/nozzato.com/files/' . $_SESSION['username'] . '/';
+    $folder_path_server = $_SERVER['DOCUMENT_ROOT'] . '/files/' . $_SESSION['username'] . '/';
     $folder_name        = $_POST['folder_name'];
     $folder             = $folder_path . $folder_name;
     $folder_server      = $folder_path_server . $folder_name;

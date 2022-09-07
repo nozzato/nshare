@@ -8,10 +8,10 @@ if(!isset($_SESSION['user'])) {
 }
 
 // include functions
-include_once('/srv/http/nozzato.com/scripts/scripts.php');
+include_once($_SERVER['DOCUMENT_ROOT'] . '/scripts/scripts.php');
 
 // connect to database
-include_once('/srv/http/nozzato.com/admin/connect.php');
+include_once($_SERVER['DOCUMENT_ROOT'] . '/admin/connect.php');
 
 // select file from GET id
 $stmt = $pdo -> prepare('SELECT * FROM `files` WHERE `file_id` = ?;');
@@ -46,7 +46,7 @@ $file_name = $row['filename'];
 // if file is owned by user
 if($row['user_id']  == $_SESSION['user']) {
     $username         = $_SESSION['username'];
-    $file_path_server = '/srv/http/nozzato.com/files/' . $username . '/';
+    $file_path_server = $_SERVER['DOCUMENT_ROOT'] . '/files/' . $username . '/';
     $file_path        = '/files/' . $username . '/';
 }
 // else file is not owned by user
@@ -56,7 +56,7 @@ else {
     $stmt -> execute([$row['user_id']]);
     $username = $stmt -> fetchColumn();
 
-    $file_path_server = '/srv/http/nozzato.com/files/' . $username . '/';
+    $file_path_server = $_SERVER['DOCUMENT_ROOT'] . '/files/' . $username . '/';
     $file_path        = '/files/' . $username . '/';
 }
 

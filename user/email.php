@@ -2,9 +2,9 @@
 session_start();
 
 // include functions
-include_once('/srv/http/nozzato.com/scripts/scripts.php');
+include_once($_SERVER['DOCUMENT_ROOT'] . '/scripts/scripts.php');
 
-require('/srv/http/nozzato.com/vendor/autoload.php');
+require($_SERVER['DOCUMENT_ROOT'] . '/vendor/autoload.php');
 use EmailChecker\EmailChecker;
 
 // if email button clicked
@@ -12,7 +12,7 @@ if(isset($_POST['email_btn'])) {
     // if both fields are not empty
     if(!empty($_POST['email_old']) && !empty($_POST['email_new'])) {
         // connect to database
-        include_once('/srv/http/nozzato.com/admin/connect.php');
+        include_once($_SERVER['DOCUMENT_ROOT'] . '/admin/connect.php');
 
         // set email variables
         $email_old = trim($_POST['email_old']);

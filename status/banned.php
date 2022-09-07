@@ -2,7 +2,7 @@
 session_start();
 
 // include functions
-include_once('/srv/http/nozzato.com/scripts/scripts.php');
+include_once($_SERVER['DOCUMENT_ROOT'] . '/scripts/scripts.php');
 
 // if logged in
 if(!isset($_SESSION['user'])) {
@@ -10,7 +10,7 @@ if(!isset($_SESSION['user'])) {
 }
 
 // connect to database
-include_once('/srv/http/nozzato.com/admin/connect.php');
+include_once($_SERVER['DOCUMENT_ROOT'] . '/admin/connect.php');
 
 // select user data
 $stmt = $pdo-> prepare('SELECT * FROM `users` WHERE `user_id` = ?;');

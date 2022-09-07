@@ -2,14 +2,14 @@
 session_start();
 
 // include functions
-include_once('/srv/http/nozzato.com/scripts/scripts.php');
+include_once($_SERVER['DOCUMENT_ROOT'] . '/scripts/scripts.php');
 
 // if unban button clicked
 if(isset($_POST['unban_btn'])) {
     // if both fields are not empty
     if(!empty($_POST['unban_user']) && !empty($_POST['unban_reason'])) {
         // connect to database
-        include_once('/srv/http/nozzato.com/admin/connect.php');
+        include_once($_SERVER['DOCUMENT_ROOT'] . '/admin/connect.php');
 
         // set unban variables
         $unban_user = trim($_POST['unban_user']);

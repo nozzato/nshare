@@ -2,14 +2,14 @@
 session_start();
 
 // include functions
-include_once('/srv/http/nozzato.com/scripts/scripts.php');
+include_once($_SERVER['DOCUMENT_ROOT'] . '/scripts/scripts.php');
 
 // if ban button clicked
 if(isset($_POST['ban_btn'])) {
     // if both fields are not empty
     if(!empty($_POST['ban_user']) && !empty($_POST['ban_reason'])) {
         // connect to database
-        include_once('/srv/http/nozzato.com/admin/connect.php');
+        include_once($_SERVER['DOCUMENT_ROOT'] . '/admin/connect.php');
 
         // set ban variables
         $ban_user = trim($_POST['ban_user']);

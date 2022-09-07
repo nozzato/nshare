@@ -2,12 +2,12 @@
 session_start();
 
 // include functions
-include_once('/srv/http/nozzato.com/scripts/scripts.php');
+include_once($_SERVER['DOCUMENT_ROOT'] . '/scripts/scripts.php');
 
 // if download button clicked
 if(isset($_POST['download_btn'])) {
     // set download variables
-    $file_path_server = '/srv/http/nozzato.com/files/' . $_SESSION['username'] . '/';
+    $file_path_server = $_SERVER['DOCUMENT_ROOT'] . '/files/' . $_SESSION['username'] . '/';
     $file_name        = $_POST['download_btn'];
     $file_server      = $file_path_server . $file_name;
     $file_info        = new finfo(FILEINFO_MIME);

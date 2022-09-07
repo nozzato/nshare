@@ -2,14 +2,14 @@
 session_start();
 
 // include functions
-include_once('/srv/http/nozzato.com/scripts/scripts.php');
+include_once($_SERVER['DOCUMENT_ROOT'] . '/scripts/scripts.php');
 
 // if username button clicked
 if(isset($_POST['username_btn'])) {
     // if both fields are not empty
     if(!empty($_POST['username_old']) && !empty($_POST['username_new'])) {
         // connect to database
-        include_once('/srv/http/nozzato.com/admin/connect.php');
+        include_once($_SERVER['DOCUMENT_ROOT'] . '/admin/connect.php');
 
         // set username variables
         $username_old = trim($_POST['username_old']);
@@ -51,7 +51,7 @@ if(isset($_POST['username_btn'])) {
                 $stmt-> execute([$username_new, $username_user]);
 
                 // rename user directory
-                rename('/srv/http/nozzato.com/files/' . $username_old, '/srv/http/nozzato.com/files/' . $username_new);
+                rename($_SERVER['DOCUMENT_ROOT'] . '/files/' . $username_old, $_SERVER['DOCUMENT_ROOT'] . '/files/' . $username_new);
 
                 // update session array
                 $_SESSION['username'] = $username_new;

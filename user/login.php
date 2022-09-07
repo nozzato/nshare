@@ -2,14 +2,14 @@
 session_start();
 
 // include functions
-include_once('/srv/http/nozzato.com/scripts/scripts.php');
+include_once($_SERVER['DOCUMENT_ROOT'] . '/scripts/scripts.php');
 
 // if login button pushed
 if (isset($_POST['login_btn'])) {
     // if both fields are not empty
     if(!empty($_POST['login_username']) && !empty($_POST['login_password'])) {
         // connect to database
-        include_once('/srv/http/nozzato.com/admin/connect.php');
+        include_once($_SERVER['DOCUMENT_ROOT'] . '/admin/connect.php');
 
         // set login variables
         $login_username = trim($_POST['login_username']);

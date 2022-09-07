@@ -8,10 +8,10 @@ if(isset($_SESSION['ban_status']) && $_SESSION['ban_status'] >= 1) {
 }
 
 // include functions
-include_once('/srv/http/nozzato.com/scripts/scripts.php');
+include_once($_SERVER['DOCUMENT_ROOT'] . '/scripts/scripts.php');
 
 // connect to database
-include_once('/srv/http/nozzato.com/admin/connect.php');
+include_once($_SERVER['DOCUMENT_ROOT'] . '/admin/connect.php');
 
 $_SESSION['page'] = 'home';
 ?>

@@ -2,14 +2,14 @@
 session_start();
 
 // include functions
-include_once('/srv/http/nozzato.com/scripts/scripts.php');
+include_once($_SERVER['DOCUMENT_ROOT'] . '/scripts/scripts.php');
 
 // if password button pushed
 if(isset($_POST['password_btn'])) {
     // if both fields are not empty
     if(!empty($_POST['password_old']) && !empty($_POST['password_new'])) {
         // connect to database
-        include_once('/srv/http/nozzato.com/admin/connect.php');
+        include_once($_SERVER['DOCUMENT_ROOT'] . '/admin/connect.php');
 
         // set password variables
         $password_old = trim($_POST['password_old']);

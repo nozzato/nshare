@@ -2,9 +2,9 @@
 session_start();
 
 // include functions
-include_once('/srv/http/nozzato.com/scripts/scripts.php');
+include_once($_SERVER['DOCUMENT_ROOT'] . '/scripts/scripts.php');
 
-require('/srv/http/nozzato.com/vendor/autoload.php');
+require($_SERVER['DOCUMENT_ROOT'] . '/vendor/autoload.php');
 use EmailChecker\EmailChecker;
 
 if(isset($_POST['create_btn'])) {
@@ -14,7 +14,7 @@ if(isset($_POST['create_btn'])) {
     // if all fields are not empty
     if(!empty($_POST['create_username']) && !empty($_POST['create_password']) && !empty($_POST['create_email'])) {
         // connect to database
-        include_once('/srv/http/nozzato.com/admin/connect.php');
+        include_once($_SERVER['DOCUMENT_ROOT'] . '/admin/connect.php');
 
         // set create variables
         $create_email    = trim($_POST['create_email']);
@@ -78,7 +78,7 @@ if(isset($_POST['create_btn'])) {
 
             // create user directory
             $old_umask = umask(0);
-            mkdir('/srv/http/nozzato.com/files/' . $create_username, 0775);
+            mkdir($_SERVER['DOCUMENT_ROOT'] . '/files/' . $create_username, 0775);
             umask($old_umask);
 
             $_SESSION['msg'] = 'Account created';

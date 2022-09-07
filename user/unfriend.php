@@ -2,12 +2,12 @@
 session_start();
 
 // include functions
-include_once('/srv/http/nozzato.com/scripts/scripts.php');
+include_once($_SERVER['DOCUMENT_ROOT'] . '/scripts/scripts.php');
 
 // if friend ID sent
 if($_GET['friendid']) {
     // connect to database
-    include_once('/srv/http/nozzato.com/admin/connect.php');
+    include_once($_SERVER['DOCUMENT_ROOT'] . '/admin/connect.php');
 
     // set unfriend variables
     $friend_id = $_GET['friendid'];

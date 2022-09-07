@@ -2,12 +2,12 @@
 session_start();
 
 // include functions
-include_once('/srv/http/nozzato.com/scripts/scripts.php');
+include_once($_SERVER['DOCUMENT_ROOT'] . '/scripts/scripts.php');
 
 // if privacy ID sent
 if($_GET['fileid'] && $_GET['state']) {
     // connect to database
-    include_once('/srv/http/nozzato.com/admin/connect.php');
+    include_once($_SERVER['DOCUMENT_ROOT'] . '/admin/connect.php');
 
     // set privacy variables
     $file_id = $_GET['fileid'];

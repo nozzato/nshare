@@ -2,13 +2,13 @@
 session_start();
 
 // include functions
-include_once('/srv/http/nozzato.com/scripts/scripts.php');
+include_once($_SERVER['DOCUMENT_ROOT'] . '/scripts/scripts.php');
 
 if(isset($_POST['close_btn'])) {
     // if password field is not empty
     if(!empty($_POST['close_password'])) {
         // connect to database
-        include_once('/srv/http/nozzato.com/admin/connect.php');
+        include_once($_SERVER['DOCUMENT_ROOT'] . '/admin/connect.php');
 
         // set close variables
         $close_password = trim($_POST['close_password']);
@@ -33,7 +33,7 @@ if(isset($_POST['close_btn'])) {
             $stmt-> execute([$close_user]);
 
             // delete directory
-            remove_dir('/srv/http/nozzato.com/files/' . $row['username']);
+            remove_dir($_SERVER['DOCUMENT_ROOT'] . '/files/' . $row['username']);
 
             // if user deleted themselves
             if($close_user == $_SESSION['user']) {
@@ -52,7 +52,7 @@ if(isset($_POST['close_btn'])) {
             $stmt-> execute([$close_user]);
 
             // delete directory
-            remove_dir('/srv/http/nozzato.com/files/' . $_SESSION['username']);
+            remove_dir($_SERVER['DOCUMENT_ROOT'] . '/files/' . $_SESSION['username']);
 
             $_SESSION['close_logout'] = 1;
             header('location:logout.php');
