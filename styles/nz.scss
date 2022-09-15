@@ -77,71 +77,34 @@ input:focus, textarea:focus {
 }
 
 // colors
-@media (prefers-color-scheme: light) {
-    .nz-light, body {
-        color: $black;
-        background-color: $light;
-    }
-    .nz-text-light {
-        color: $light;
-    }
-
-    .nz-white, .nz-title, #header, #footer {
-        color: $black;
-        background-color: $white;
-    }
-    .nz-text-white {
-        color: $white;
-    }
-
-    .nz-brand {
-        color: #0077ff;
-    }
-
-    .nz-table th, .nz-table-bordered th {
-        background-color: $white;
-    }
-    .nz-table-last tr:last-child {
-        background-color: $white;
-    }
-    .nz-table-bordered {
-        border :1px solid $white;
-    }
-    .nz-table-bordered tr {
-        border-bottom: 1px solid $white;
-    }
+.nz-dark, body {
+    color: $white;
+    background-color: $dark;
+}
+.nz-text-dark {
+    color: $dark;
 }
 
-@media (prefers-color-scheme: dark) {
-    .nz-dark, body {
-        color: $white;
-        background-color: $dark;
-    }
-    .nz-text-dark {
-        color: $dark;
-    }
+.nz-black, .nz-title, #header, #footer {
+    color: $white;
+    background-color: $black;
+}
+.nz-text-black {
+    color: $black;
+}
 
-    .nz-black, .nz-title, #header, #footer {
-        color: $white;
-        background-color: $black;
-    }
-    .nz-text-black {
-        color: $black;
-    }
+.nz-brand {
+    color: #2196f3;
+}
 
-    .nz-brand {
-        color: #2196f3;
-    }
-
-    .nz-table tr:nth-child(even), .nz-table-bordered tr:nth-child(even) {
-        background-color: $black;
-    }
-    .nz-table-bordered {
-        border :1px solid $black;
-    }
-    .nz-table-bordered tr {
-        border-bottom: 1px solid $black;
-    }
+.nz-table tr:nth-child(even), .nz-table-bordered tr:nth-child(even) {
+    background-color: $black;
+}
+.nz-table-bordered {
+    border :1px solid $black;
+}
+.nz-table-bordered tr {
+    border-bottom: 1px solid $black;
 }
 
 // input

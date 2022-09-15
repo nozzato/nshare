@@ -72,65 +72,40 @@ input:focus, textarea:focus {
   border-radius: 0 0 4px 0;
 }
 
-@media (prefers-color-scheme: light) {
-  .nz-light, body {
-    color: #181916;
-    background-color: #eeeeee;
-  }
-  .nz-text-light {
-    color: #eeeeee;
-  }
-  .nz-white, .nz-title, #header, #footer {
-    color: #181916;
-    background-color: #d6d6d6;
-  }
-  .nz-text-white {
-    color: #d6d6d6;
-  }
-  .nz-brand {
-    color: #0077ff;
-  }
-  .nz-table th, .nz-table-bordered th {
-    background-color: #d6d6d6;
-  }
-  .nz-table-last tr:last-child {
-    background-color: #d6d6d6;
-  }
-  .nz-table-bordered {
-    border: 1px solid #d6d6d6;
-  }
-  .nz-table-bordered tr {
-    border-bottom: 1px solid #d6d6d6;
-  }
+.nz-dark, body {
+  color: #d6d6d6;
+  background-color: #22231c;
 }
-@media (prefers-color-scheme: dark) {
-  .nz-dark, body {
-    color: #d6d6d6;
-    background-color: #22231c;
-  }
-  .nz-text-dark {
-    color: #22231c;
-  }
-  .nz-black, .nz-title, #header, #footer {
-    color: #d6d6d6;
-    background-color: #181916;
-  }
-  .nz-text-black {
-    color: #181916;
-  }
-  .nz-brand {
-    color: #2196f3;
-  }
-  .nz-table tr:nth-child(even), .nz-table-bordered tr:nth-child(even) {
-    background-color: #181916;
-  }
-  .nz-table-bordered {
-    border: 1px solid #181916;
-  }
-  .nz-table-bordered tr {
-    border-bottom: 1px solid #181916;
-  }
+
+.nz-text-dark {
+  color: #22231c;
 }
+
+.nz-black, .nz-title, #header, #footer {
+  color: #d6d6d6;
+  background-color: #181916;
+}
+
+.nz-text-black {
+  color: #181916;
+}
+
+.nz-brand {
+  color: #2196f3;
+}
+
+.nz-table tr:nth-child(even), .nz-table-bordered tr:nth-child(even) {
+  background-color: #181916;
+}
+
+.nz-table-bordered {
+  border: 1px solid #181916;
+}
+
+.nz-table-bordered tr {
+  border-bottom: 1px solid #181916;
+}
+
 .nz-ghost {
   pointer-events: none;
 }
