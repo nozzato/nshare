@@ -117,6 +117,7 @@ function uploadFile() {
 
 <div class='w3-row' id='content'>
     <div class='w3-container w3-col nz-black' style='width:200px;height:calc(100vh - 38.5px);font-size:18px;padding-top:8px'>
+<!--
         <div style='padding:8px'>
             <tr><td><a href='/files/index' style='font-size:20px'>Folders</a></td></tr>
             <ul>
@@ -126,6 +127,7 @@ function uploadFile() {
                 <li>Videos</li>
             </ul>
         </div>
+-->
     </div>
     <div class='w3-container w3-rest' style='padding-top:8px;margin-bottom:70.5px'>
         <div class='w3-padding'>
