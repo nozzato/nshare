@@ -169,6 +169,7 @@ $_SESSION['page'] = 'admin';
                 <button class='w3-btn w3-green w3-round' type='submit' name='create_btn'>
                     <i class='fa fa-fw fa-user'></i> Create
                 </button>
+                <input type="hidden" name="captcha" value="no">
             </form>
         </div>
     </div>

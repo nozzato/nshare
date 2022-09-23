@@ -119,6 +119,7 @@ $_SESSION['page'] = 'signup';
             <button class='w3-btn w3-green w3-round' type='submit' name='create_btn'>
                 <i class='fa fa-fw fa-user'></i> Signup
             </button>
+            <input type="hidden" name="captcha" value="yes" />
         </form>
     </div>
 </div>

@@ -8,8 +8,11 @@ require($_SERVER['DOCUMENT_ROOT'] . '/vendor/autoload.php');
 use EmailChecker\EmailChecker;
 
 if(isset($_POST['create_btn'])) {
-    // verify captcha
-    h_captcha($_POST['h-captcha-response']);
+    // if captcha needed
+    if($_POST['captcha'] == 'yes') {
+        // verify captcha
+        h_captcha($_POST['h-captcha-response']);
+    }
 
     // if all fields are not empty
     if(!empty($_POST['create_username']) && !empty($_POST['create_password']) && !empty($_POST['create_email'])) {
