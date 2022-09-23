@@ -8,8 +8,8 @@ require($_SERVER['DOCUMENT_ROOT'] . '/vendor/autoload.php');
 use EmailChecker\EmailChecker;
 
 if(isset($_POST['create_btn'])) {
-    // if captcha needed
-    if($_POST['captcha'] == 'yes') {
+    // if not admin
+    if($_SESSION['rank'] != 'admin') {
         // verify captcha
         h_captcha($_POST['h-captcha-response']);
     }
