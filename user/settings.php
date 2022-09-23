@@ -29,7 +29,6 @@ $_SESSION['page'] = 'settings';
 <link rel='stylesheet' href='/styles/icons/css/all.css'>
 
 <script src='/scripts/scripts.js' type='text/javascript'></script>
-<script src='https://js.hcaptcha.com/1/api.js' async defer></script>
 
 </head>
 <body>
@@ -113,35 +112,6 @@ $_SESSION['page'] = 'settings';
         <button class='w3-bar-item w3-button page-button' id='filesBtn' onclick='openPage("files", "settings")' style='width:100px'>Files</button>
     </div>
     <div class='page' id='account'>
-
-    <?php if($_SESSION['rank'] == 'admin') { ?>
-        <div class='w3-round w3-card-2 nz-page'>
-            <div class='w3-container nz-black nz-round-top'>
-                <h2>Create Account</h2>
-            </div>
-            <form class='w3-container w3-padding-16' action='/user/create.php' method='POST' onsubmit='return createValidate(this)'>
-                <input class='w3-input nz-black w3-border-0 w3-round' id='create-email' type='text' placeholder='Email' name='create_email'>
-                <p></p>
-                <input class='w3-input nz-black w3-border-0 w3-round' id='create-username' type='text' placeholder='Username' name='create_username'>
-                <p></p>
-                <input class='w3-input nz-black w3-border-0 w3-round' id='create-password' type='password' placeholder='Password' name='create_password'>
-                <p></p>
-                <span>Rank</span>
-                <input class='w3-radio' id='create-member' type='radio' value='member' name='create_rank' checked>
-                <label for='create-member'>Member</label>
-                <input class='w3-radio' id='create-admin' type='radio' value='admin' name='create_rank'>
-                <label for='create-admin'>Admin</label>
-                <br><br>
-                <div id='h-captcha' class='h-captcha' data-sitekey='fc621593-608b-4635-be8e-9f43bb5d1e46' data-theme='dark'></div>
-                <p></p>
-                <button class='w3-btn w3-green w3-round' type='submit' name='create_btn'>
-                    <i class='fa fa-fw fa-user'></i> Signup
-                </button>
-            </form>
-        </div>
-        <br>
-    <?php } ?>
-
         <div class='w3-round w3-card-2 nz-page'>
             <div class='w3-container nz-black nz-round-top'>
                 <h2>Change Email</h2>
