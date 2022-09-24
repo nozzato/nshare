@@ -69,11 +69,6 @@ function copy() {
 }
 
 // UI elements
-function msgClear() {
-    setTimeout(() => {
-        msg = document.getElementById('msg').innerHTML = '';
-    }, 10000);
-}
 function dropdownToggle() {
     var dropdown = document.getElementById('dropdown');
 
@@ -173,165 +168,133 @@ function checkSelectAll() {
         }
     }
 }
+function notify(text, urgent) {
+    var msg = document.getElementById('msg');
+    msg.innerHTML = text;
+
+    if(urgent == true) {
+        msg.classList.add('w3-text-red');
+    }
+
+    setTimeout(() => {
+        msg.innerHTML = '';
+    }, 10000);
+}
 
 // validation
 function loginValidate() {
-    var msg = document.getElementById('msg');
     var loginUsername = document.getElementById('login-username').value;
     var loginPassword = document.getElementById('login-password').value;
 
     if(loginUsername === '' || loginPassword === '') {
-        msg.innerHTML = 'Error: Both fields are required';
-        msg.classList.add('w3-text-red');
-        msgClear();
+        notify('Error: Both fields are required', true);
         return false;
     } else {
         return true;
     }
 }
 function createValidate() {
-    var msg = document.getElementById('msg');
     var createEmail = document.getElementById('create-email').value;
     var createUsername = document.getElementById('create-username').value;
     var createPassword = document.getElementById('create-password').value;
 
     if(createUsername === '' || createPassword === '' || createEmail === '') {
-        msg.innerHTML = 'Error: All fields are required';
-        msg.classList.add('w3-text-red');
-        msgClear();
+        notify('Error: All fields are required', true);
         return false;
     } else if(createEmail.length > 255) {
-        msg.innerHTML = 'Error: Email must be 255 characters or less';
-        msg.classList.add('w3-text-red');
-        msgClear();
+        notify('Error: Email must be 255 characters or less', true);
         return false;
     } else if(createUsername.length > 50) {
-        msg.innerHTML = 'Error: Username must be 50 characters or less';
-        msg.classList.add('w3-text-red');
-        msgClear();
+        notify('Error: Username must be 50 characters or less', true);
         return false;
     } else if(createPassword.length < 8) {
-        msg.innerHTML = 'Error: Password must be 8 characters or more';
-        msg.classList.add('w3-text-red');
-        msgClear();
+        notify('Error: Password must be 8 characters or more', true);
         return false;
     } else if(createPassword.length > 72) {
-        msg.innerHTML = 'Error: Password must be 72 characters or less';
-        msg.classList.add('w3-text-red');
-        msgClear();
+        notify('Error: Password must be 72 characters or less', true);
         return false;
     } else {
         return true;
     }
 }
 function emailValidate() {
-    var msg = document.getElementById('msg');
     var oldEmail = document.getElementById('email-old').value;
     var newEmail = document.getElementById('email-new').value;
 
     if(oldEmail === '' || newEmail === '') {
-        msg.innerHTML = 'Error: Both fields are required';
-        msg.classList.add('w3-text-red');
-        msgClear();
+        notify('Error: Both fields are required', true);
         return false;
     } else if(newEmail.length > 255) {
-        msg.innerHTML = 'Error: New email must be 255 characters or less';
-        msg.classList.add('w3-text-red');
-        msgClear();
+        notify('Error: New email must be 255 characters or less', true);
         return false;
     } else {
         return true;
     }
 }
 function usernameValidate() {
-    var msg = document.getElementById('msg');
     var oldUsername = document.getElementById('username-old').value;
     var newUsername = document.getElementById('username-new').value;
 
     if(oldUsername === '' || newUsername === '') {
-        msg.innerHTML = 'Error: Both fields are required';
-        msg.classList.add('w3-text-red');
-        msgClear();
+        notify('Error: Both fields are required', true);
         return false;
     } else if(newUsername.length > 255) {
-        msg.innerHTML = 'Error: New username must be 255 characters or less';
-        msg.classList.add('w3-text-red');
-        msgClear();
+        notify('Error: New username must be 255 characters or less', true);
         return false;
     } else {
         return true;
     }
 }
 function passwordValidate() {
-    var msg = document.getElementById('msg');
     var oldPassword = document.getElementById('password-old').value;
     var newPassword = document.getElementById('password-new').value;
 
     if(oldPassword === '' || newPassword === '') {
-        msg.innerHTML = 'Error: Both fields are required';
-        msg.classList.add('w3-text-red');
-        msgClear();
+        notify('Error: Both fields are required', true);
         return false;
     } else if(newPassword.length < 8) {
-        msg.innerHTML = 'Error: New password must be 8 characters or more';
-        msg.classList.add('w3-text-red');
-        msgClear();
+        notify('Error: New password must be 8 characters or more', true);
         return false;
     } else if(newPassword.length > 72) {
-        msg.innerHTML = 'Error: New password must be 72 characters or less';
-        msg.classList.add('w3-text-red');
-        msgClear();
+        notify('Error: New password must be 72 characters or less', true);
         return false;
     } else {
         return true;
     }
 }
 function closeValidate() {
-    var msg = document.getElementById('msg');
     var closePassword = document.getElementById('close-password').value;
 
     if(closePassword === '') {
-        msg.innerHTML = 'Error: Password is required';
-        msg.classList.add('w3-text-red');
-        msgClear();
+        notify('Error: Password is required', true);
         return false;
     } else {
         return true;
     }
 }
 function banValidate() {
-    var msg = document.getElementById('msg');
     var banUser = document.getElementById('ban-user').value;
     var banReason = document.getElementById('ban-reason').value;
 
     if(banUser === '' || banReason === '') {
-        msg.innerHTML = 'Error: Both fields are required';
-        msg.classList.add('w3-text-red');
-        msgClear();
+        notify('Error: Both fields are required', true);
         return false;
     } else if(banReason.length > 255) {
-        msg.innerHTML = 'Error: Ban reason must be 255 characters or less';
-        msg.classList.add('w3-text-red');
-        msgClear();
+        notify('Error: Ban reason must be 255 characters or less', true);
         return false;
     } else {
         return true;
     }
 }
 function unbanValidate() {
-    var msg = document.getElementById('msg');
     var unbanUser = document.getElementById('unban-user').value;
     var unbanReason = document.getElementById('unban-reason').value;
 
     if(unbanUser === '' || unbanReason === '') {
-        msg.innerHTML = 'Error: Both fields are required';
-        msg.classList.add('w3-text-red');
-        msgClear();
+        notify('Error: Both fields are required', true);
         return false;
     } else if(unbanReason.length > 255) {
-        msg.innerHTML = 'Error: Unban reason must be 255 characters or less';
-        msg.classList.add('w3-text-red');
-        msgClear();
+        notify('Error: Unban reason must be 255 characters or less', true);
         return false;
     } else {
         return true;
