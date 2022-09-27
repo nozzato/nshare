@@ -23,22 +23,27 @@ if(isset($_POST['unban_btn'])) {
         // validate unban
         if(strlen($unban_reason) > 255) {
             $_SESSION['msg'] = 'Error: Reason must be 255 characters or less';
+            $_SESSION['msg_urgent'] = 'true';
             go_back();
         }
         if(empty($row)) {
             $_SESSION['msg'] = 'Error: Invalid user';
+            $_SESSION['msg_urgent'] = 'true';
             go_back();
         }
         if($unban_user == $_SESSION['user']) {
             $_SESSION['msg'] = 'Error: You cannot unban yourself';
+            $_SESSION['msg_urgent'] = 'true';
             go_back();
         }
         if($row['rank'] == 'admin') {
             $_SESSION['msg'] = 'Error: You cannot unban admins';
+            $_SESSION['msg_urgent'] = 'true';
             go_back();
         }
         if($row['ban_status'] == 0) {
             $_SESSION['msg'] = 'Error: Account already unbanned';
+            $_SESSION['msg_urgent'] = 'true';
             go_back();
         }
 
@@ -47,10 +52,12 @@ if(isset($_POST['unban_btn'])) {
         $stmt-> execute([0, $unban_user]);
 
         $_SESSION['msg'] = 'Account unbanned';
+        $_SESSION['msg_urgent'] = 'false';
         go_back();
     // else both fields are empty
     } else {
         $_SESSION['msg'] = 'Error: Both fields are required';
+        $_SESSION['msg_urgent'] = 'true';
         go_back();
     }
 }

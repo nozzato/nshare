@@ -23,11 +23,13 @@ if(isset($_POST['delete_btn']) || isset($_POST['delete_sel_btn'])) {
             $stmt -> execute([$_SESSION['user'], $file_name]);
 
             $_SESSION['msg'] = 'File deleted';
+            $_SESSION['msg_urgent'] = 'false';
             go_back();
         }
         // else delete fails
         else {
             $_SESSION['msg'] = 'Error: Delete failed';
+            $_SESSION['msg_urgent'] = 'true';
             go_back();
         }
     // else if delete selection button clicked
@@ -52,8 +54,20 @@ if(isset($_POST['delete_btn']) || isset($_POST['delete_sel_btn'])) {
                 // delete file from database
                 $stmt = $pdo -> prepare('DELETE FROM `files` WHERE `user_id` = ? AND `file_id` = ?;');
                 $stmt -> execute([$_SESSION['user'], $_POST['delete_sel_files'][$i]]);
+            } else {
+                $_SESSION['msg'] = 'Error: Delete failed';
+                $_SESSION['msg_urgent'] = 'true';
+                go_back();
             }
         }
+
+        if($delete_sel_count == 1) {
+            $_SESSION['msg'] = 'File deleted';
+        } else {
+            $_SESSION['msg'] = 'Files deleted';
+        }
+        $_SESSION['msg_urgent'] = 'false';
+        go_back();
     }
 }
 

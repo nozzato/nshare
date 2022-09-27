@@ -31,7 +31,11 @@ $_SESSION['page'] = 'settings';
 <script src='/scripts/scripts.js' type='text/javascript'></script>
 
 </head>
-<body>
+<?php if(!isset($_SESSION['msg'])) { ?>
+<body style='width:100vw;height:100vh'>
+<?php } else { ?>
+<body onload='notify("<?= $_SESSION['msg']; ?>", <?= $_SESSION['msg_urgent']; ?>)' style='width:100vw;height:100vh'>
+<?php unset($_SESSION['msg']); } ?>
 
 <div id='header'>
     <div class='w3-bar'>
@@ -206,27 +210,11 @@ $_SESSION['page'] = 'settings';
     </div>
 </div>
 
-<div class='w3-bottom' id='footer'>
-    <div class='w3-bar' style='height:38.5px'>
-        <div class='w3-display-bottommiddle' style='bottom:9px'>
-
-    <?php if(isset($_SESSION['msg'])) {
-        if(substr($_SESSION['msg'], 0, 6) == 'Error:') { ?>
-            <span class='w3-text-red nz-truncate' id='msg'>
-                <?= $_SESSION['msg']; ?>
-            </span>
-        <?php } else { ?>
-            <span class='nz-truncate' id='msg'>
-                <?= $_SESSION['msg']; ?>
-            </span>
-        <?php }
-    } else { ?>
-            <span class='nz-truncate' id='msg'></span>
-    <?php }
-    unset($_SESSION['msg']); ?>
-
-        </div>
+<div class='w3-hide w3-center nz-dark w3-border w3-border-green w3-round w3-card-2' style='position:fixed;bottom:16px;right:16px;min-width:200px' id='msg'>
+    <div class='w3-container'>
+        <h3 id='msg-text'></h3>
     </div>
+    <div class='w3-green' id='msg-progress-bar' style='height:4px;width:100%'></div>
 </div>
 
 </body>

@@ -30,13 +30,16 @@ if (isset($_POST['login_btn'])) {
             $_SESSION['ban_reason'] = $row['ban_reason'];
 
             $_SESSION['msg'] = 'Logged in';
+            $_SESSION['msg_urgent'] = 'false';
         // else passwords do not match
         } else {
             $_SESSION['msg'] = 'Error: Invalid username or password';
+            $_SESSION['msg_urgent'] = 'true';
         }
     // else both fields are empty
     } else {
         $_SESSION['msg'] = 'Error: Both fields are required';
+        $_SESSION['msg_urgent'] = 'true';
     }
 }
 

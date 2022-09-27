@@ -69,6 +69,7 @@ function h_captcha($hcr) {
         return;
     } else {
         $_SESSION['msg'] = 'Error: CAPTCHA failed';
+        $_SESSION['msg_urgent'] = 'true';
         go_back();
     }
 }

@@ -168,17 +168,56 @@ function checkSelectAll() {
         }
     }
 }
+var notifying = false;
 function notify(text, urgent) {
-    var msg = document.getElementById('msg');
-    msg.innerHTML = text;
+    if(notifying == false) {
+        notifying = true;
 
-    if(urgent == true) {
-        msg.classList.add('w3-text-red');
+        var msg = document.getElementById('msg');
+        var msgText = document.getElementById('msg-text');
+        var msgProgressBar = document.getElementById('msg-progress-bar');
+
+        msg.classList.remove('w3-hide');
+        msgText.innerHTML = text;
+        if(urgent == true) {
+            msgText.classList.add('w3-text-red');
+
+            msg.classList.remove('w3-border-green');
+            msg.classList.add('w3-border-red');
+
+            msgProgressBar.classList.remove('w3-green');
+            msgProgressBar.classList.add('w3-red');
+
+        }
+
+        function frame() {
+            if (width <= 0) {
+                clearInterval(id);
+                msgProgressBar.style.width = '100%';
+            
+                msg.classList.add('w3-hide');
+                msgText.innerHTML = '';
+
+                if(urgent == true) {
+                    msgText.classList.remove('w3-text-red');
+
+                    msg.classList.remove('w3-border-red');
+                    msg.classList.add('w3-border-green');
+
+                    msgProgressBar.classList.remove('w3-red');
+                    msgProgressBar.classList.add('w3-green');
+                }
+
+                notifying = false;
+            } else {
+                width--;
+                msgProgressBar.style.width = width + '%';
+            }
+        }
+
+        var width = 100;
+        var id = setInterval(frame, 80);
     }
-
-    setTimeout(() => {
-        msg.innerHTML = '';
-    }, 10000);
 }
 
 // validation

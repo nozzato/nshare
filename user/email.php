@@ -29,19 +29,23 @@ if(isset($_POST['email_btn'])) {
         // validate email
         if($email_old == $email_new) {
             $_SESSION['msg'] = 'Error: Email unchanged';
+            $_SESSION['msg_urgent'] = 'true';
             go_back();
         }
         if(strlen($email_new) > 255) {
             $_SESSION['msg'] = 'Error: New email must be 255 characters or less';
+            $_SESSION['msg_urgent'] = 'true';
             go_back();
         }
         if(!filter_var($email_new, FILTER_VALIDATE_EMAIL)) {
             $_SESSION['msg'] = 'Error: Invalid email format';
+            $_SESSION['msg_urgent'] = 'true';
             go_back();
         }
         $checker = new EmailChecker();
         if(!$checker->isValid($email_new)) {
             $_SESSION['msg'] = 'Error: Invalid email domain';
+            $_SESSION['msg_urgent'] = 'true';
             go_back();
         }
 
@@ -63,20 +67,24 @@ if(isset($_POST['email_btn'])) {
                 $stmt-> execute([$email_new, $email_user]);
 
                 $_SESSION['msg'] = 'Email changed';
+                $_SESSION['msg_urgent'] = 'false';
                 go_back();
             // else emails do not match
             } else {
                 $_SESSION['msg'] = 'Error: Invalid email';
+                $_SESSION['msg_urgent'] = 'true';
                 go_back();
             }
         // else email exists
         } else {
             $_SESSION['msg'] = 'Error: Email already in use';
+            $_SESSION['msg_urgent'] = 'true';
             go_back();
         }
     // else both fields are empty
     } else {
         $_SESSION['msg'] = 'Error: Both fields are required';
+        $_SESSION['msg_urgent'] = 'true';
         go_back();
     }
 }
