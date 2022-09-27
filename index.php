@@ -119,7 +119,7 @@ $_SESSION['page'] = 'home';
     </div>
 </div>
 
-<div class='w3-container w3-padding-16 w3-center' id='content' style='margin-bottom:38.5px'>
+<div class='w3-container w3-padding-16 w3-center' id='content'>
 
 <?php if(!isset($_SESSION['user'])) { ?>
     <h1><b>Welcome to NShare</b></h1>

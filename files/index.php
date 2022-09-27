@@ -133,7 +133,7 @@ function uploadFile() {
         </div>
 -->
     </div>
-    <div class='w3-container w3-rest' style='padding-top:8px;margin-bottom:70.5px'>
+    <div class='w3-container w3-rest' style='padding-top:8px'>
         <div class='w3-padding'>
             <tr><td><a href='/files/index' style='font-size:20px'><?= $_SESSION['username'] ?>/</a></td></tr>
         </div>

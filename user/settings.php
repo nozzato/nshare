@@ -110,7 +110,7 @@ $_SESSION['page'] = 'settings';
     </div>
 </div>
 
-<div class='w3-container w3-padding-16 w3-center' id='content' style='margin-bottom:38.5px'>
+<div class='w3-container w3-padding-16 w3-center' id='content'>
     <div class='w3-bar nz-black w3-round nz-page' style='margin-bottom:10px'>
         <button class='w3-bar-item w3-button page-button w3-dark-gray' id='accountBtn' onclick='openPage("account", "settings")' style='width:100px'>Account</button>
         <button class='w3-bar-item w3-button page-button' id='filesBtn' onclick='openPage("files", "settings")' style='width:100px'>Files</button>

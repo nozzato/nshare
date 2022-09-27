@@ -135,7 +135,7 @@ if($row['ban_status'] == 0) {
     </div>
 </div>
 
-<div class='w3-container w3-padding-16' style='margin-bottom:38.5px'>
+<div class='w3-container w3-padding-16'>
     <div class='w3-center'>
         <h1 class='w3-text-red'><b>Account Banned</b></h1>
         <p>We have found your account in violation of our rules.</p>
