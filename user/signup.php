@@ -28,9 +28,9 @@ $_SESSION['page'] = 'signup';
 
 </head>
 <?php if(!isset($_SESSION['msg'])) { ?>
-<body style='width:100vw;height:100vh'>
+<body>
 <?php } else { ?>
-<body onload='notify("<?= $_SESSION['msg']; ?>", <?= $_SESSION['msg_urgent']; ?>)' style='width:100vw;height:100vh'>
+<body onload='notify("<?= $_SESSION['msg']; ?>", <?= $_SESSION['msg_urgent']; ?>)'>
 <?php unset($_SESSION['msg']); } ?>
 
 <div id='header'>
