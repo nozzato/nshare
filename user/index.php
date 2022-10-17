@@ -26,7 +26,7 @@ if($_GET['id'] == $_SESSION['user']) {
     // set user variables from session
     $user       = $_SESSION['user'];
     $username   = $_SESSION['username'];
-    $rank       = $_SESSION['rank'];
+    $role       = $_SESSION['role'];
 
     if($_SESSION['ban_status'] == 0) {
         $ban_status = 'Unbanned';
@@ -45,7 +45,7 @@ if($_GET['id'] == $_SESSION['user']) {
     // set user variables from database
     $user     = $row['user_id'];
     $username = $row['username'];
-    $rank     = $row['rank'];
+    $role     = $row['role'];
 
     if($row['ban_status'] == 0) {
         $ban_status = 'Unbanned';
@@ -98,7 +98,7 @@ $_SESSION['page'] = 'profile';
         </a>
     <?php } } ?>
 
-    <?php if(isset($_SESSION['rank']) && $_SESSION['rank'] == 'admin' && isset($_SESSION['ban_status']) && $_SESSION['ban_status'] == 0) { ?>
+    <?php if(isset($_SESSION['role']) && $_SESSION['role'] == 'admin' && isset($_SESSION['ban_status']) && $_SESSION['ban_status'] == 0) { ?>
         <a class='w3-bar-item w3-button' href='/admin/index'>
             <i class='fa fa-fw fa-server'></i> Admin
         </a>
@@ -164,11 +164,11 @@ $_SESSION['page'] = 'profile';
                     <td><b>Username</b><br><?= $username; ?></td>
                     <td class='nz-truncate'><b>User ID</b><br><?= $user; ?></td>
 
-                <?php if($_SESSION['rank'] == 'admin') { ?>
-                    <td><b>Rank</b><br><?= ucfirst($rank); ?></td>
+                <?php if($_SESSION['role'] == 'admin') { ?>
+                    <td><b>Role</b><br><?= ucfirst($role); ?></td>
                     <td class='nz-truncate'><b>Ban Status</b><br><?= $ban_status; ?></td>
-                <?php } else if($rank == 'admin') { ?>
-                    <td><b>Rank</b><br><?= ucfirst($rank); ?></td>
+                <?php } else if($role == 'admin') { ?>
+                    <td><b>Role</b><br><?= ucfirst($role); ?></td>
                 <?php } else if($row['ban_status'] >= 1) { ?>
                     <td><b>Ban Status</b><br><?= $ban_status; ?></td>
                 <?php } ?>

@@ -27,7 +27,7 @@ if(isset($_POST['close_btn'])) {
         $row = $stmt-> fetch(PDO::FETCH_ASSOC);
 
         // if passwords match and user is admin
-        if(password_verify($close_password, $row['password']) && $_SESSION['rank'] == 'admin') {
+        if(password_verify($close_password, $row['password']) && $_SESSION['role'] == 'admin') {
             // delete user from database
             $stmt = $pdo-> prepare('DELETE FROM `users` WHERE `user_id` = ?;');
             $stmt-> execute([$close_user]);
@@ -46,7 +46,7 @@ if(isset($_POST['close_btn'])) {
                 go_back();
             }
         // else if passwords match and user is member
-        } else if(password_verify($close_password, $row['password']) && $_SESSION['rank'] == 'member') {
+        } else if(password_verify($close_password, $row['password']) && $_SESSION['role'] == 'member') {
             // delete user from database
             $stmt = $pdo-> prepare('DELETE FROM `users` WHERE `user_id` = ?;');
             $stmt-> execute([$close_user]);

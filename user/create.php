@@ -9,7 +9,7 @@ use EmailChecker\EmailChecker;
 
 if(isset($_POST['create_btn'])) {
     // if not admin
-    if($_SESSION['rank'] != 'admin') {
+    if($_SESSION['role'] != 'admin') {
         // verify captcha
         h_captcha($_POST['h-captcha-response']);
     }
@@ -24,12 +24,12 @@ if(isset($_POST['create_btn'])) {
         $create_username = trim($_POST['create_username']);
         $create_password = trim($_POST['create_password']);
 
-        // if rank is specified
-        if(isset($_POST['create_rank'])) {
-            $create_rank = $_POST['create_rank'];
-        // else no rank is specified
+        // if role is specified
+        if(isset($_POST['create_role'])) {
+            $create_role = $_POST['create_role'];
+        // else no role is specified
         } else {
-            $create_rank = 'member';
+            $create_role = 'member';
         }
         
         // validate account
@@ -68,8 +68,8 @@ if(isset($_POST['create_btn'])) {
         // if user does not exist
         if($count == 0) {
             // insert user into database
-            $stmt = $pdo-> prepare('INSERT INTO `users` (`email`, `username`, `password`, `rank`, `ban_status`, `creation_date`) VALUES (?, ?, ?, ?, 0, NOW());');
-            $stmt-> execute([$create_email, $create_username, password_hash($create_password, PASSWORD_DEFAULT), $create_rank]);
+            $stmt = $pdo-> prepare('INSERT INTO `users` (`email`, `username`, `password`, `role`, `ban_status`, `creation_date`) VALUES (?, ?, ?, ?, 0, NOW());');
+            $stmt-> execute([$create_email, $create_username, password_hash($create_password, PASSWORD_DEFAULT), $create_role]);
 
             $stmt = $pdo-> prepare('SELECT `user_id` FROM `users` WHERE `username` = ?');
             $stmt-> execute([$create_username]);

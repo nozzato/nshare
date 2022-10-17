@@ -33,7 +33,7 @@ if(isset($_POST['unban_btn'])) {
             $_SESSION['msg'] = ['Error: You cannot unban yourself', 'true'];
             go_back();
         }
-        if($row['rank'] == 'admin') {
+        if($row['role'] == 'admin') {
             $_SESSION['msg'] = ['Error: You cannot unban admins', 'true'];
             go_back();
         }

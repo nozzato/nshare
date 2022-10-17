@@ -7,7 +7,7 @@ if(!isset($_SESSION['user'])) {
     exit;
 }
 // if not admin
-if($_SESSION['rank'] == 'member') {
+if($_SESSION['role'] == 'member') {
     header('location:/index');
     exit;
 }
@@ -61,7 +61,7 @@ $_SESSION['page'] = 'admin';
         </a>
     <?php } } ?>
 
-    <?php if(isset($_SESSION['rank']) && $_SESSION['rank'] == 'admin' && isset($_SESSION['ban_status']) && $_SESSION['ban_status'] == 0) { ?>
+    <?php if(isset($_SESSION['role']) && $_SESSION['role'] == 'admin' && isset($_SESSION['ban_status']) && $_SESSION['ban_status'] == 0) { ?>
         <a class='w3-bar-item w3-button' href='/admin/index'>
             <i class='fa fa-fw fa-server'></i> Admin
         </a>
@@ -165,10 +165,10 @@ $_SESSION['page'] = 'admin';
                 <p></p>
                 <input class='w3-input nz-black w3-border-0 w3-round' id='create-password' type='password' placeholder='Password' name='create_password'>
                 <p></p>
-                <span>Rank</span>
-                <input class='w3-radio' id='create-member' type='radio' value='member' name='create_rank' checked>
+                <span>Role</span>
+                <input class='w3-radio' id='create-member' type='radio' value='member' name='create_role' checked>
                 <label for='create-member'>Member</label>
-                <input class='w3-radio' id='create-admin' type='radio' value='admin' name='create_rank'>
+                <input class='w3-radio' id='create-admin' type='radio' value='admin' name='create_role'>
                 <label for='create-admin'>Admin</label>
                 <br><br>
                 <button class='w3-btn w3-green w3-round' type='submit' name='create_btn'>

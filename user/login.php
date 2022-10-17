@@ -25,7 +25,7 @@ if (isset($_POST['login_btn'])) {
             // set session array
             $_SESSION['user']       = $row['user_id'];
             $_SESSION['username']   = $row['username'];
-            $_SESSION['rank']       = $row['rank'];
+            $_SESSION['role']       = $row['role'];
             $_SESSION['ban_status'] = $row['ban_status'];
             $_SESSION['ban_reason'] = $row['ban_reason'];
 
