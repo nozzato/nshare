@@ -68,8 +68,7 @@ function h_captcha($hcr) {
     if($responseData->success) {
         return;
     } else {
-        $_SESSION['msg'] = 'Error: CAPTCHA failed';
-        $_SESSION['msg_urgent'] = 'true';
+        $_SESSION['msg'] = ['Error: CAPTCHA failed', 'true'];
         go_back();
     }
 }

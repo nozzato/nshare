@@ -25,18 +25,15 @@ if(isset($_POST['password_btn'])) {
 
         // validate password
         if($password_old == $password_new) {
-            $_SESSION['msg'] = 'Error: Password unchanged';
-            $_SESSION['msg_urgent'] = 'true';
+            $_SESSION['msg'] = ['Error: Password unchanged', 'true'];
             go_back();
         }
         if(strlen($password_new) < 8) {
-            $_SESSION['msg'] = 'Error: New password must be 8 characters or more';
-            $_SESSION['msg_urgent'] = 'true';
+            $_SESSION['msg'] = ['Error: New password must be 8 characters or more', 'true'];
             go_back();
         }
         if(strlen($password_new) > 72) {
-            $_SESSION['msg'] = 'Error: New password must be 72 characters or less';
-            $_SESSION['msg_urgent'] = 'true';
+            $_SESSION['msg'] = ['Error: New password must be 72 characters or less', 'true'];
             go_back();
         }
 
@@ -51,19 +48,16 @@ if(isset($_POST['password_btn'])) {
             $stmt = $pdo-> prepare('UPDATE `users` SET `password` = ? WHERE `user_id` = ?;');
             $stmt-> execute([password_hash($password_new, PASSWORD_DEFAULT), $password_user]);
 
-            $_SESSION['msg'] = 'Password changed';
-            $_SESSION['msg_urgent'] = 'false';
+            $_SESSION['msg'] = ['Password changed', 'false'];
             go_back();
         // else passwords do not match
         } else {
-            $_SESSION['msg'] = 'Error: Invalid password';
-            $_SESSION['msg_urgent'] = 'true';
+            $_SESSION['msg'] = ['Error: Invalid password', 'true'];
             go_back();
         }
     // else both fields are empty
     } else {
-        $_SESSION['msg'] = 'Error: Both fields are required';
-        $_SESSION['msg_urgent'] = 'true';
+        $_SESSION['msg'] = ['Error: Both fields are required', 'true'];
         go_back();
     }
 }

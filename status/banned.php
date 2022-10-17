@@ -61,7 +61,7 @@ if($row['ban_status'] == 0) {
 <?php if(!isset($_SESSION['msg'])) { ?>
 <body>
 <?php } else { ?>
-<body onload='notify("<?= $_SESSION['msg']; ?>", <?= $_SESSION['msg_urgent']; ?>)'>
+<body onload='notify("<?= $_SESSION['msg'][0]; ?>", <?= $_SESSION['msg'][1]; ?>)'>
 <?php unset($_SESSION['msg']); } ?>
 
 <div id='header'>

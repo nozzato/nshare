@@ -42,8 +42,7 @@ if(isset($_POST['close_btn'])) {
                 exit;
             // else user deleted someone else
             } else {
-                $_SESSION['msg'] = 'Account deleted';
-                $_SESSION['msg_urgent'] = 'false';
+                $_SESSION['msg'] = ['Account deleted', 'false'];
                 go_back();
             }
         // else if passwords match and user is member
@@ -60,14 +59,12 @@ if(isset($_POST['close_btn'])) {
             exit;
         // else passwords do not match
         } else {
-            $_SESSION['msg'] = 'Error: Invalid password';
-            $_SESSION['msg_urgent'] = 'true';
+            $_SESSION['msg'] = ['Error: Invalid password', 'true'];
             go_back();
         }
     // else password field is empty
     } else {
-        $_SESSION['msg'] = 'Error: Password is required';
-        $_SESSION['msg_urgent'] = 'true';
+        $_SESSION['msg'] = ['Error: Password is required', 'true'];
         go_back();
     }
 }

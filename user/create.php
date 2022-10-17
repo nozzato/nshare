@@ -34,34 +34,28 @@ if(isset($_POST['create_btn'])) {
         
         // validate account
         if(strlen($create_email) > 255) {
-            $_SESSION['msg'] = 'Error: Email must be 255 characters or less';
-            $_SESSION['msg_urgent'] = 'true';
+            $_SESSION['msg'] = ['Error: Email must be 255 characters or less', 'true'];
             go_back();
         }
         if(!filter_var($create_email, FILTER_VALIDATE_EMAIL)) {
-            $_SESSION['msg'] = 'Error: Invalid email format';
-            $_SESSION['msg_urgent'] = 'true';
+            $_SESSION['msg'] = ['Error: Invalid email format', 'true'];
             go_back();
         }
         $checker = new EmailChecker();
         if(!$checker->isValid($create_email)) {
-            $_SESSION['msg'] = 'Error: Invalid email domain';
-            $_SESSION['msg_urgent'] = 'true';
+            $_SESSION['msg'] = ['Error: Invalid email domain', 'true'];
             go_back();
         }
         if(strlen($create_username) > 50) {
-            $_SESSION['msg'] = 'Error: Username must be 50 characters or less';
-            $_SESSION['msg_urgent'] = 'true';
+            $_SESSION['msg'] = ['Error: Username must be 50 characters or less', 'true'];
             go_back();
         }
         if(strlen($create_password) < 8) {
-            $_SESSION['msg'] = 'Error: Password must be 8 characters or more';
-            $_SESSION['msg_urgent'] = 'true';
+            $_SESSION['msg'] = ['Error: Password must be 8 characters or more', 'true'];
             go_back();
         }
         if(strlen($create_password) > 72) {
-            $_SESSION['msg'] = 'Error: Password must be 72 characters or less';
-            $_SESSION['msg_urgent'] = 'true';
+            $_SESSION['msg'] = ['Error: Password must be 72 characters or less', 'true'];
             go_back();
         }
 
@@ -90,8 +84,7 @@ if(isset($_POST['create_btn'])) {
             mkdir($_SERVER['DOCUMENT_ROOT'] . '/files/' . $create_username, 0775);
             umask($old_umask);
 
-            $_SESSION['msg'] = 'Account created';
-            $_SESSION['msg_urgent'] = 'false';
+            $_SESSION['msg'] = ['Account created', 'false'];
 
             if($_SESSION['page'] == 'signup') {
                 header('location:/index.php');
@@ -103,19 +96,16 @@ if(isset($_POST['create_btn'])) {
         // else user exists
         } else {
             if($row['email'] == $create_email) {
-                $_SESSION['msg'] = 'Error: Email already in use';
-                $_SESSION['msg_urgent'] = 'true';
+                $_SESSION['msg'] = ['Error: Email already in use', 'true'];
                 go_back();
             } else if($row['username'] == $create_username) {
-                $_SESSION['msg'] = 'Error: Username already in use';
-                $_SESSION['msg_urgent'] = 'true';
+                $_SESSION['msg'] = ['Error: Username already in use', 'true'];
                 go_back();
             }
         }
     // else all fields are empty
     } else {
-        $_SESSION['msg'] = 'Error: All fields are required';
-        $_SESSION['msg_urgent'] = 'true';
+        $_SESSION['msg'] = ['Error: All fields are required', 'true'];
         go_back();
     }
 }

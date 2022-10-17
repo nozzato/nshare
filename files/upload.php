@@ -19,8 +19,7 @@ if(isset($_FILES['upload_file']) || isset($_POST['upload_btn'])) {
 
         // validate upload
         if($file_count > 100) {
-            $_SESSION['msg'] = 'Error: Cannot upload more than 100 files at a time';
-            $_SESSION['msg_urgent'] = 'true';
+            $_SESSION['msg'] = ['Error: Cannot upload more than 100 files at a time', 'true'];
             go_back();
         }
 
@@ -35,8 +34,7 @@ if(isset($_FILES['upload_file']) || isset($_POST['upload_btn'])) {
             $file_size_total = $file_size;
 
             if(strlen($file_name) > 1023) {
-                $_SESSION['msg'] = 'Error: Filename must be 1023 characters or less';
-                $_SESSION['msg_urgent'] = 'true';
+                $_SESSION['msg'] = ['Error: Filename must be 1023 characters or less', 'true'];
                 go_back();
             }
         // else multiple files uploaded
@@ -49,8 +47,7 @@ if(isset($_FILES['upload_file']) || isset($_POST['upload_btn'])) {
                 $file_size_total += $file_size;
 
                 if(strlen($file_name) > 1023) {
-                    $_SESSION['msg'] = 'Error: Filenames must be 1023 characters or less';
-                    $_SESSION['msg_urgent'] = 'true';
+                    $_SESSION['msg'] = ['Error: Filenames must be 1023 characters or less', 'true'];
                     go_back();
                 }
             }
@@ -70,8 +67,7 @@ if(isset($_FILES['upload_file']) || isset($_POST['upload_btn'])) {
         }
 
         if($file_size_total + $db_file_size_total > 5368709120) {
-            $_SESSION['msg'] = 'Error: Not enough storage space';
-            $_SESSION['msg_urgent'] = 'true';
+            $_SESSION['msg'] = ['Error: Not enough storage space', 'true'];
             go_back();
         }
 
@@ -106,19 +102,18 @@ if(isset($_FILES['upload_file']) || isset($_POST['upload_btn'])) {
                 chmod($file_server, 0775);
             // else upload fails
             } else {
-                $_SESSION['msg'] = 'Error: Upload failed';
-                $_SESSION['msg_urgent'] = 'true';
+                $_SESSION['msg'] = ['Error: Upload failed', 'true'];
                 go_back();
             }
         }
 
         if($file_count == 1) {
-            $_SESSION['msg'] = 'File uploaded';
+            $_SESSION['msg'] = ['File uploaded', 'false'];
+            go_back();
         } else {
-            $_SESSION['msg'] = 'Files uploaded';
+            $_SESSION['msg'] = ['Files uploaded', 'false'];
+            go_back();
         }
-        $_SESSION['msg_urgent'] = 'false';
-        go_back();
     // else if save button clicked
     } else if(isset($_POST['upload_btn'])) {
 
@@ -145,8 +140,7 @@ if(isset($_FILES['upload_file']) || isset($_POST['upload_btn'])) {
         }
 
         if($file_size + $db_file_size_total > 5368709120) {
-            $_SESSION['msg'] = 'Error: Not enough storage space';
-            $_SESSION['msg_urgent'] = 'true';
+            $_SESSION['msg'] = ['Error: Not enough storage space', 'true'];
             go_back();
         }
 
@@ -158,19 +152,16 @@ if(isset($_FILES['upload_file']) || isset($_POST['upload_btn'])) {
             $stmt = $pdo-> prepare('UPDATE `files` SET `size` = ?, `upload_date` = NOW() WHERE `user_id` = ? AND `filename` = ?;');
             $stmt-> execute([$file_size, $_SESSION['user'], $file_name]);
 
-            $_SESSION['msg'] = 'File saved';
-            $_SESSION['msg_urgent'] = 'false';
+            $_SESSION['msg'] = ['File saved', 'false'];
             go_back();
         // else save fails
         } else {
-            $_SESSION['msg'] = 'Error: Save failed';
-            $_SESSION['msg_urgent'] = 'true';
+            $_SESSION['msg'] = ['Error: Save failed', 'true'];
             go_back();
         }
     // else no file selected
     } else {
-        $_SESSION['msg'] = 'Error: No file selected';
-        $_SESSION['msg_urgent'] = 'true';
+        $_SESSION['msg'] = ['Error: No file selected', 'true'];
         go_back();
     }
 }

@@ -37,8 +37,7 @@ if($_GET['id'] == $_SESSION['user']) {
 } else {
     // if user does not exist
     if(empty($row)) {
-        $_SESSION['msg'] = 'Error: Invalid user';
-        $_SESSION['msg_urgent'] = 'true';
+        $_SESSION['msg'] = ['Error: Invalid user', 'true'];
         header('location:/user/index?id=' . $_SESSION['user']);
         exit;
     }
@@ -77,7 +76,7 @@ $_SESSION['page'] = 'profile';
 <?php if(!isset($_SESSION['msg'])) { ?>
 <body>
 <?php } else { ?>
-<body onload='notify("<?= $_SESSION['msg']; ?>", <?= $_SESSION['msg_urgent']; ?>)'>
+<body onload='notify("<?= $_SESSION['msg'][0]; ?>", <?= $_SESSION['msg'][1]; ?>)'>
 <?php unset($_SESSION['msg']); } ?>
 
 <div id='header'>

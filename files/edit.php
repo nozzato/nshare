@@ -25,8 +25,7 @@ $row['upload_date'] = $stmt-> fetchColumn();
 
 // if selected file is private and not owned by user
 if($row['privacy'] == 'private' && $row['user_id'] != $_SESSION['user']) {
-    $_SESSION['msg'] = 'Error: You do not have permission view this file';
-    $_SESSION['msg_urgent'] = 'true';
+    $_SESSION['msg'] = ['Error: You do not have permission view this file', 'true'];
     header('location:/files/index');
     exit;
 }
@@ -69,8 +68,7 @@ $file_modal  = '"' . $file_name . '"';
 
 // if GET query invalid or no file selected
 if(!isset($_GET['id']) || empty($row['filename'])) {
-    $_SESSION['msg'] = 'Error: Invalid file';
-    $_SESSION['msg_urgent'] = 'true';
+    $_SESSION['msg'] = ['Error: Invalid file', 'true'];
     header('location:/files/index');
     exit;
 }
@@ -114,7 +112,7 @@ else {
 <?php if(!isset($_SESSION['msg'])) { ?>
 <body>
 <?php } else { ?>
-<body onload='notify("<?= $_SESSION['msg']; ?>", <?= $_SESSION['msg_urgent']; ?>)'>
+<body onload='notify("<?= $_SESSION['msg'][0]; ?>", <?= $_SESSION['msg'][1]; ?>)'>
 <?php unset($_SESSION['msg']); } ?>
 
 <div id='header'>

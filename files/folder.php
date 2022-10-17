@@ -18,8 +18,7 @@ if(isset($_POST['folder_btn'])) {
 
     // validate folder
     if(strlen($folder_name) > 1023) {
-        $_SESSION['msg'] = 'Error: Folder name must be 1023 characters or less';
-        $_SESSION['msg_urgent'] = 'true';
+        $_SESSION['msg'] = ['Error: Folder name must be 1023 characters or less', 'true'];
         go_back();
     }
 
@@ -45,8 +44,7 @@ if(isset($_POST['folder_btn'])) {
     mkdir($folder_server, 0775);
     umask($old_umask);
 
-    $_SESSION['msg'] = 'Folder created';
-    $_SESSION['msg_urgent'] = 'false';
+    $_SESSION['msg'] = ['Folder created', 'false'];
     go_back();
 }
 

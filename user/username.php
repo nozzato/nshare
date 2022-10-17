@@ -25,13 +25,11 @@ if(isset($_POST['username_btn'])) {
 
         // validate username
         if($username_old == $username_new) {
-            $_SESSION['msg'] = 'Error: Username unchanged';
-            $_SESSION['msg_urgent'] = 'true';
+            $_SESSION['msg'] = ['Error: Username unchanged', 'true'];
             go_back();
         }
         if(strlen($username_new) > 50) {
-            $_SESSION['msg'] = 'Error: Username must be 50 characters or less';
-            $_SESSION['msg_urgent'] = 'true';
+            $_SESSION['msg'] = ['Error: Username must be 50 characters or less', 'true'];
             go_back();
         }
 
@@ -58,25 +56,21 @@ if(isset($_POST['username_btn'])) {
                 // update session array
                 $_SESSION['username'] = $username_new;
 
-                $_SESSION['msg'] = 'Username changed';
-                $_SESSION['msg_urgent'] = 'false';
+                $_SESSION['msg'] = ['Username changed', 'false'];
                 go_back();
             // else usernames do not match
             } else {
-                $_SESSION['msg'] = 'Error: Invalid username';
-                $_SESSION['msg_urgent'] = 'true';
+                $_SESSION['msg'] = ['Error: Invalid username', 'true'];
                 go_back();
             }
         // else username exists
         } else {
-            $_SESSION['msg'] = 'Error: Username already in use';
-            $_SESSION['msg_urgent'] = 'true';
+            $_SESSION['msg'] = ['Error: Username already in use', 'true'];
             go_back();
         }
     // else both fields are empty
     } else {
-        $_SESSION['msg'] = 'Error: Both fields are required';
-        $_SESSION['msg_urgent'] = 'true';
+        $_SESSION['msg'] = ['Error: Both fields are required', 'true'];
         go_back();
     }
 }
