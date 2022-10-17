@@ -174,7 +174,7 @@ function uploadFile() {
                 ?>
 
                 <tr>
-                    <td><input form='delete-sel-form' type='checkbox' name='delete_sel_files[]' value='<?= $rows[$i]['file_id']; ?>' onclick='checkSelectAll()'></td>
+                    <td style='width:62px'><input form='delete-sel-form' type='checkbox' name='delete_sel_files[]' value='<?= $rows[$i]['file_id']; ?>' onclick='checkSelectAll()'></td>
                     <td class='w3-button' id='file-<?= $rows[$i]['file_id']; ?>' onclick='openFile(<?= $rows[$i]['file_id']; ?>)'><?= $rows[$i]['filename']; ?></td>
 
                 <?php if(!$_SESSION['ban_status'] >= 1) { ?>
