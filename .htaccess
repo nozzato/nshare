@@ -1,8 +1,10 @@
 RewriteEngine On
 
 <Files ~ '^\.(htaccess|htpasswd)$'>
-deny from all
+    Deny from all
 </Files>
+
+RedirectMatch 403 ^/common/.*$
 
 ErrorDocument 404 /status/404.html
 
