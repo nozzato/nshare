@@ -2,12 +2,11 @@
 
 ## All websites
 
-- The browser window must be fullscreen
-- Password manager must be disabled
+- The browser must be in private mode
 
 ## Your website
 
-- You must use your domain name instead of localhost
+- You must use your registered domain name instead of localhost
 
 ## Other websites
 
