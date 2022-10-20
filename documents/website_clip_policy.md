@@ -2,7 +2,7 @@
 
 ## All websites
 
-- The browser must be in private mode
+- The browser must be in private browsing mode
 
 ## Your website
 
