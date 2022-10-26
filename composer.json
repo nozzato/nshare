@@ -1,5 +1,6 @@
 {
     "require": {
-        "mattketmo/email-checker": "^2.1"
+        "mattketmo/email-checker": "^2.1",
+        "vrana/adminer": "^4.8"
     }
 }

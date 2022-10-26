@@ -1,10 +1,10 @@
 <?php
 // set database credentials
-$hostname    = '127.0.0.1';
+$hostname    = 'localhost';
 $database    = 'nshare';
 $charset     = 'utf8mb4';
-$db_username = 'noah';
-$db_password = 'nozz1234';
+$db_username = 'nshare';
+$db_password = 'WmoQrH556gn6w6T8K42N';
 
 $dsn = "mysql:host=$hostname; dbname=$database; charset=$charset;";
 

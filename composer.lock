@@ -4,7 +4,7 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#installing-dependencies",
         "This file is @generated automatically"
     ],
-    "content-hash": "6fe3b556363e81f9a59d2183fecf90b7",
+    "content-hash": "812cd55b2c7ddf3b66334ded099b05b4",
     "packages": [
         {
             "name": "mattketmo/email-checker",
@@ -72,6 +72,59 @@
                 "source": "https://github.com/MattKetmo/EmailChecker/tree/2.1.1"
             },
             "time": "2021-12-30T09:33:05+00:00"
+        },
+        {
+            "name": "vrana/adminer",
+            "version": "v4.8.1",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/vrana/adminer.git",
+                "reference": "1f173e18bdf0be29182e0d67989df56eadea4754"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/vrana/adminer/zipball/1f173e18bdf0be29182e0d67989df56eadea4754",
+                "reference": "1f173e18bdf0be29182e0d67989df56eadea4754",
+                "shasum": ""
+            },
+            "type": "library",
+            "autoload": {
+                "classmap": [
+                    "plugins/"
+                ]
+            },
+            "notification-url": "https://packagist.org/downloads/",
+            "license": [
+                "Apache-2.0",
+                "GPL-2.0-only"
+            ],
+            "authors": [
+                {
+                    "name": "Jakub Vrána",
+                    "homepage": "https://www.vrana.cz/"
+                }
+            ],
+            "description": "Database management in a single PHP file.",
+            "homepage": "https://www.adminer.org/",
+            "keywords": [
+                "database"
+            ],
+            "support": {
+                "forum": "https://sourceforge.net/p/adminer/discussion/",
+                "issues": "https://sourceforge.net/p/adminer/bugs-and-features/",
+                "source": "https://github.com/vrana/adminer/"
+            },
+            "funding": [
+                {
+                    "url": "https://sourceforge.net/p/adminer/donate/",
+                    "type": "custom"
+                },
+                {
+                    "url": "https://www.patreon.com/jakubvrana",
+                    "type": "patreon"
+                }
+            ],
+            "time": "2021-05-14T05:39:59+00:00"
         }
     ],
     "packages-dev": [],
