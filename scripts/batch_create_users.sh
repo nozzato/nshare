@@ -1,16 +1,20 @@
 #!/bin/bash
 
+npa=("alpha" "bravo" "charlie" "delta" "echo" "foxtrot" "golf" "hotel" "india" "juliet" "kilo" "lima" "mike" "november" "oscar" "papa" "quebec" "romeo" "sierra" "tango" "uniform" "victor" "whiskey" "xray" "yankee" "zulu")
+
 sleep 3
 
-for i in {a..t}; do
+for i in {0..25}; do
     for j in {1..14}; do
         xdotool key Tab
     done
-    xdotool type "user$i@nozzato.com"
+    xdotool type "${npa[$i]}@nozzato.org"
     xdotool key Tab
-    xdotool type "User ${i^^}"
+    xdotool type "${npa[$i]^}"
     xdotool key Tab
-    xdotool type "$i$i$i$i$i$i$i$i"
+    for j in {1..8}; do
+        xdotool type "${npa[$i]::1}"
+    done
     xdotool key Tab
     xdotool key Tab
     xdotool key Enter
