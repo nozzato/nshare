@@ -4,7 +4,7 @@ $hostname    = 'localhost';
 $database    = 'nshare';
 $charset     = 'utf8mb4';
 $db_username = 'nshare';
-$db_password = 'WmoQrH556gn6w6T8K42N';
+$db_password = trim(file_get_contents($_SERVER['DOCUMENT_ROOT'] . '/admin/db_password'));
 
 $dsn = "mysql:host=$hostname; dbname=$database; charset=$charset;";
 
