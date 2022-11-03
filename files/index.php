@@ -25,7 +25,7 @@ $_SESSION['page'] = 'files';
 <meta charset='utf-8'>
 <meta name='viewport' content='width=device-width, initial-scale=1'>
 
-<?php include($_SERVER['DOCUMENT_ROOT'] . '/common/include.php'); ?>
+<?php include($_SERVER['DOCUMENT_ROOT'] . '/common/include.html'); ?>
 <script type='text/javascript'>
 function openFile(id) {
     window.location.href = '/files/edit?id=' + id;
@@ -170,7 +170,7 @@ function uploadFile() {
     </div>
 </div>
 
-<?php include($_SERVER['DOCUMENT_ROOT'] . '/common/notification.php'); ?>
+<?php include($_SERVER['DOCUMENT_ROOT'] . '/common/notification.html'); ?>
 
 </body>
 </html>

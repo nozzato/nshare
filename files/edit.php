@@ -102,7 +102,7 @@ else {
 <meta charset='utf-8'>
 <meta name='viewport' content='width=device-width, initial-scale=1'>
 
-<?php include($_SERVER['DOCUMENT_ROOT'] . '/common/include.php'); ?>
+<?php include($_SERVER['DOCUMENT_ROOT'] . '/common/include.html'); ?>
 
 </head>
 <?php if(!isset($_SESSION['msg'])) { ?>
@@ -214,7 +214,7 @@ else {
     </div>
 </div>
 
-<?php include($_SERVER['DOCUMENT_ROOT'] . '/common/notification.php'); ?>
+<?php include($_SERVER['DOCUMENT_ROOT'] . '/common/notification.html'); ?>
 
 </body>
 </html>

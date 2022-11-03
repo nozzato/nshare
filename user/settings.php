@@ -24,7 +24,7 @@ $_SESSION['page'] = 'settings';
 <meta charset='utf-8'>
 <meta name='viewport' content='width=device-width, initial-scale=1'>
 
-<?php include($_SERVER['DOCUMENT_ROOT'] . '/common/include.php'); ?>
+<?php include($_SERVER['DOCUMENT_ROOT'] . '/common/include.html'); ?>
 
 </head>
 <?php if(!isset($_SESSION['msg'])) { ?>
@@ -135,7 +135,7 @@ $_SESSION['page'] = 'settings';
     </div>
 </div>
 
-<?php include($_SERVER['DOCUMENT_ROOT'] . '/common/notification.php'); ?>
+<?php include($_SERVER['DOCUMENT_ROOT'] . '/common/notification.html'); ?>
 
 </body>
 </html>

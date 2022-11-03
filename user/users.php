@@ -48,7 +48,7 @@ $_SESSION['page'] = 'users';
 <meta charset='utf-8'>
 <meta name='viewport' content='width=device-width, initial-scale=1'>
 
-<?php include($_SERVER['DOCUMENT_ROOT'] . '/common/include.php'); ?>
+<?php include($_SERVER['DOCUMENT_ROOT'] . '/common/include.html'); ?>
 <script type='text/javascript'>
 function openProfile(id) {
     window.location.href = '/user/index?id=' + id;
@@ -142,7 +142,7 @@ function openProfile(id) {
     </div>
 </div>
 
-<?php include($_SERVER['DOCUMENT_ROOT'] . '/common/notification.php'); ?>
+<?php include($_SERVER['DOCUMENT_ROOT'] . '/common/notification.html'); ?>
 
 </body>
 </html>
