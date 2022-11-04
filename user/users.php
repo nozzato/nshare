@@ -16,7 +16,7 @@ if($_SESSION['ban_status'] >= 1) {
 include_once($_SERVER['DOCUMENT_ROOT'] . '/admin/connect.php');
 
 // select users and order alphabetically
-$stmt = $pdo-> prepare('SELECT * FROM `users` WHERE `user_id` != ? ORDER BY length(username), username;');
+$stmt = $pdo-> prepare('SELECT * FROM `users` WHERE `user_id` != ? ORDER BY CAST(`username` AS UNSIGNED), `username`;');
 $stmt-> execute([$_SESSION['user']]);
 $rows = $stmt-> fetchAll(PDO::FETCH_ASSOC);
 $count = $stmt-> rowCount();
