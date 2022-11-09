@@ -33,7 +33,7 @@ if(isset($_POST['close_btn'])) {
             $stmt-> execute([$close_user]);
 
             // delete directory
-            remove_dir($_SERVER['DOCUMENT_ROOT'] . '/files/' . $row['username']);
+            remove_dir($_SERVER['DOCUMENT_ROOT'] . '/data/' . $row['username']);
 
             // if user deleted themselves
             if($close_user == $_SESSION['user']) {
@@ -52,7 +52,7 @@ if(isset($_POST['close_btn'])) {
             $stmt-> execute([$close_user]);
 
             // delete directory
-            remove_dir($_SERVER['DOCUMENT_ROOT'] . '/files/' . $_SESSION['username']);
+            remove_dir($_SERVER['DOCUMENT_ROOT'] . '/data/' . $_SESSION['username']);
 
             $_SESSION['close_logout'] = 1;
             header('location:logout.php');

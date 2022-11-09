@@ -45,9 +45,10 @@ $file_name = $row['filename'];
 
 // if file is owned by user
 if($row['user_id']  == $_SESSION['user']) {
+    $user             = $_SESSION['user'];
     $username         = $_SESSION['username'];
-    $file_path_server = $_SERVER['DOCUMENT_ROOT'] . '/files/' . $username . '/';
-    $file_path        = '/files/' . $username . '/';
+    $file_path_server = $_SERVER['DOCUMENT_ROOT'] . '/data/' . $user . '/';
+    $file_path        = '/data/' . $user . '/';
 }
 // else file is not owned by user
 else {
@@ -56,8 +57,8 @@ else {
     $stmt -> execute([$row['user_id']]);
     $username = $stmt -> fetchColumn();
 
-    $file_path_server = $_SERVER['DOCUMENT_ROOT'] . '/files/' . $username . '/';
-    $file_path        = '/files/' . $username . '/';
+    $file_path_server = $_SERVER['DOCUMENT_ROOT'] . '/data/' . $user . '/';
+    $file_path        = '/data/' . $user . '/';
 }
 
 $file        = $file_path . $file_name;

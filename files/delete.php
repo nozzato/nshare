@@ -12,7 +12,7 @@ if(isset($_POST['delete_btn']) || isset($_POST['delete_sel_btn'])) {
     // if delete button clicked
     if(isset($_POST['delete_btn'])) {
         // set delete variables
-        $file_path_server = $_SERVER['DOCUMENT_ROOT'] . '/files/' . $_SESSION['username'] . '/';
+        $file_path_server = $_SERVER['DOCUMENT_ROOT'] . '/data/' . $_SESSION['user'] . '/';
         $file_name        = $_POST['delete_btn'];
         $file_server      = $file_path_server . $_POST['delete_btn'];
 
@@ -38,7 +38,7 @@ if(isset($_POST['delete_btn']) || isset($_POST['delete_sel_btn'])) {
         }
 
         // set delete variables
-        $file_path_server = $_SERVER['DOCUMENT_ROOT'] . '/files/' . $_SESSION['username'] . '/';
+        $file_path_server = $_SERVER['DOCUMENT_ROOT'] . '/data/' . $_SESSION['user'] . '/';
         $delete_sel_count = count($_POST['delete_sel_files']);
 
         // for every file

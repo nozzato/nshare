@@ -10,8 +10,8 @@ if(isset($_FILES['upload_file']) || isset($_POST['upload_btn'])) {
     include_once($_SERVER['DOCUMENT_ROOT'] . '/admin/connect.php');
 
     // set upload variables
-    $file_path = '/files/' . $_SESSION['username'] . '/';
-    $file_path_server = $_SERVER['DOCUMENT_ROOT'] . '/files/' . $_SESSION['username'] . '/';
+    $file_path = '/data/' . $_SESSION['user'] . '/';
+    $file_path_server = $_SERVER['DOCUMENT_ROOT'] . '/data/' . $_SESSION['user'] . '/';
 
     // if upload button clicked
     if(isset($_FILES['upload_file'])) {

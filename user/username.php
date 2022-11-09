@@ -51,7 +51,7 @@ if(isset($_POST['username_btn'])) {
                 $stmt-> execute([$username_new, $username_user]);
 
                 // rename user directory
-                rename($_SERVER['DOCUMENT_ROOT'] . '/files/' . $username_old, $_SERVER['DOCUMENT_ROOT'] . '/files/' . $username_new);
+                rename($_SERVER['DOCUMENT_ROOT'] . '/data/' . $username_old, $_SERVER['DOCUMENT_ROOT'] . '/files/' . $username_new);
 
                 // update session array
                 $_SESSION['username'] = $username_new;
