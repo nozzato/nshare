@@ -20,7 +20,7 @@ $_SESSION['page'] = 'files';
 <head>
 
 <title>Files: <?= $_SESSION['username'] . '/'; ?> - NShare</title>
-<link rel='icon' type='image/gif' href='/assets/favicon.gif'>
+<link rel='icon' type='image/gif' href='/assets/favicon.ico'>
 
 <meta charset='utf-8'>
 <meta name='viewport' content='width=device-width, initial-scale=1'>

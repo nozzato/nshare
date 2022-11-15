@@ -43,7 +43,7 @@ $_SESSION['page'] = 'users';
 <head>
 
 <title>Users: Friends - NShare</title>
-<link rel='icon' type='image/gif' href='/assets/favicon.gif'>
+<link rel='icon' type='image/gif' href='/assets/favicon.ico'>
 
 <meta charset='utf-8'>
 <meta name='viewport' content='width=device-width, initial-scale=1'>
