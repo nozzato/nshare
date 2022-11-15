@@ -42,7 +42,7 @@ function go_back() {
     } else if($_SESSION['page'] == 'files') {
         header('location:/files/index');
         exit;
-    } else if($_SESSION['page'] == 'admin') {
+    } else if($_SESSION['page'] == 2) {
         header('location:/admin/index');
         exit;
     } else {

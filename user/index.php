@@ -88,10 +88,10 @@ $_SESSION['page'] = 'profile';
                     <td><b>Username</b><br><?= $username; ?></td>
                     <td class='nz-truncate'><b>User ID</b><br><?= $user; ?></td>
 
-                <?php if($_SESSION['role'] == 'admin') { ?>
+                <?php if($_SESSION['role'] == 2) { ?>
                     <td><b>Role</b><br><?= ucfirst($role); ?></td>
                     <td class='nz-truncate'><b>Ban Status</b><br><?= $ban_status; ?></td>
-                <?php } else if($role == 'admin') { ?>
+                <?php } else if($role == 2) { ?>
                     <td><b>Role</b><br><?= ucfirst($role); ?></td>
                 <?php } else if($row['ban_status'] >= 1) { ?>
                     <td><b>Ban Status</b><br><?= $ban_status; ?></td>

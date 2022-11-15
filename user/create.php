@@ -9,7 +9,7 @@ use EmailChecker\EmailChecker;
 
 if(isset($_POST['create_btn'])) {
     // if not admin
-    if($_SESSION['role'] != 'admin') {
+    if($_SESSION['role'] != 2) {
         // verify captcha
         h_captcha($_POST['h-captcha-response']);
     }
@@ -29,7 +29,7 @@ if(isset($_POST['create_btn'])) {
             $create_role = $_POST['create_role'];
         // else no role is specified
         } else {
-            $create_role = 'member';
+            $create_role = 0;
         }
         
         // validate account

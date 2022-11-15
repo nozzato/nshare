@@ -33,7 +33,7 @@ if(isset($_POST['ban_btn'])) {
             $_SESSION['msg'] = ['Error: You cannot ban yourself', 'true'];
             go_back();
         }
-        if($row['role'] == 'admin') {
+        if($row['role'] == 2) {
             $_SESSION['msg'] = ['Error: You cannot ban admins', 'true'];
             $_SESSION['msg_urgent'] = 'true';
             go_back();

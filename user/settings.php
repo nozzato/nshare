@@ -47,7 +47,7 @@ $_SESSION['page'] = 'settings';
             </div>
             <form class='w3-container w3-padding-16' action='/user/email.php' method='POST' onsubmit='return emailValidate(this)'>
 
-            <?php if($_SESSION['role'] == 'admin') { ?>
+            <?php if($_SESSION['role'] == 2) { ?>
                 <input class='w3-input nz-black w3-border-0 w3-round' type='text' placeholder='User ID (optional)' name='email_user'>
                 <p></p>
             <?php } ?>
@@ -68,7 +68,7 @@ $_SESSION['page'] = 'settings';
             </div>
             <form class='w3-container w3-padding-16' action='/user/username.php' method='POST' onsubmit='return usernameValidate(this)'>
 
-            <?php if($_SESSION['role'] == 'admin') { ?>
+            <?php if($_SESSION['role'] == 2) { ?>
                 <input class='w3-input nz-black w3-border-0 w3-round' type='text' placeholder='User ID (optional)' name='username_user'>
                 <p></p>
             <?php } ?>
@@ -89,7 +89,7 @@ $_SESSION['page'] = 'settings';
             </div>
             <form class='w3-container w3-padding-16' action='/user/password.php' method='POST' onsubmit='return passwordValidate(this)'>
 
-            <?php if($_SESSION['role'] == 'admin') { ?>
+            <?php if($_SESSION['role'] == 2) { ?>
                 <input class='w3-input nz-black w3-border-0 w3-round' type='text' placeholder='User ID (optional)' name='password_user'>
                 <p></p>
             <?php } ?>
@@ -110,7 +110,7 @@ $_SESSION['page'] = 'settings';
             </div>
             <form class='w3-container w3-padding-16' action='/user/close.php' method='POST' onsubmit='return closeValidate(this)'>
 
-            <?php if($_SESSION['role'] == 'admin') { ?>
+            <?php if($_SESSION['role'] == 2) { ?>
                 <input class='w3-input nz-black w3-border-0 w3-round' type='text' placeholder='User ID (optional)' name='close_user'>
                 <p></p>
             <?php } ?>

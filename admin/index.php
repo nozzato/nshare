@@ -7,7 +7,7 @@ if(!isset($_SESSION['user'])) {
     exit;
 }
 // if not admin
-if($_SESSION['role'] == 'member') {
+if($_SESSION['role'] == 0) {
     header('location:/index');
     exit;
 }
@@ -17,7 +17,7 @@ if($_SESSION['ban_status'] >= 1) {
     exit;
 }
 
-$_SESSION['page'] = 'admin';
+$_SESSION['page'] = 2;
 ?>
 <!DOCTYPE html>
 <html lang='en'>
@@ -90,9 +90,9 @@ $_SESSION['page'] = 'admin';
                 <input class='w3-input nz-black w3-border-0 w3-round' id='create-password' type='password' placeholder='Password' name='create_password'>
                 <p></p>
                 <span>Role</span>
-                <input class='w3-radio' id='create-member' type='radio' value='member' name='create_role' checked>
+                <input class='w3-radio' id='create-member' type='radio' value=0 name='create_role' checked>
                 <label for='create-member'>Member</label>
-                <input class='w3-radio' id='create-admin' type='radio' value='admin' name='create_role'>
+                <input class='w3-radio' id='create-admin' type='radio' value=2 name='create_role'>
                 <label for='create-admin'>Admin</label>
                 <br><br>
                 <button class='w3-btn w3-green w3-round' type='submit' name='create_btn'>

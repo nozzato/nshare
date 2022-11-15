@@ -17,7 +17,7 @@
         </a>
     <?php } } ?>
 
-    <?php if(isset($_SESSION['role']) && $_SESSION['role'] == 'admin' && isset($_SESSION['ban_status']) && $_SESSION['ban_status'] == 0) { ?>
+    <?php if(isset($_SESSION['role']) && $_SESSION['role'] == 2 && isset($_SESSION['ban_status']) && $_SESSION['ban_status'] == 0) { ?>
         <a class='w3-bar-item w3-button' href='/admin/index'>
             <i class='fa fa-fw fa-server'></i> Admin
         </a>
