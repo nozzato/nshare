@@ -81,7 +81,7 @@ if(isset($_POST['create_btn'])) {
 
             // create user directory
             $old_umask = umask(0);
-            mkdir($_SERVER['DOCUMENT_ROOT'] . '/data/' . $create_user, 0775);
+            mkdir($_SERVER['DOCUMENT_ROOT'] . '/data/' . $create_user, 0770);
             umask($old_umask);
 
             $_SESSION['msg'] = ['Account created', 'false'];

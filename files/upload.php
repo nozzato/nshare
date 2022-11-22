@@ -99,7 +99,7 @@ if(isset($_FILES['upload_file']) || isset($_POST['upload_btn'])) {
                 }
 
                 // set file permissions
-                chmod($file_server, 0775);
+                chmod($file_server, 0660);
             // else upload fails
             } else {
                 $_SESSION['msg'] = ['Error: Upload failed', 'true'];
