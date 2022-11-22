@@ -1,132 +1,120 @@
 /* variables */
 /* elements */
 html, body {
-  margin: 0;
-}
+  margin: 0; }
 
 a {
-  text-decoration: none;
-}
+  text-decoration: none; }
 
 ul {
   list-style: none;
   padding: 8px;
-  margin: 0;
-}
+  margin: 0; }
 
 textarea {
-  resize: none;
-}
+  resize: none; }
 
 input:focus, textarea:focus {
-  outline: none;
-}
+  outline: none; }
+
+#loader {
+  position: absolute;
+  left: 50%;
+  top: 50%;
+  z-index: 4;
+  width: 70px;
+  height: 70px;
+  margin: -76px 0 0 -76px;
+  border: 14px solid white;
+  border-radius: 50%;
+  border-top: 14px solid #2196f3;
+  animation: spin 1.5s linear infinite; }
+
+@keyframes spin {
+  0% {
+    transform: rotate(0deg); }
+  100% {
+    transform: rotate(360deg); } }
 
 /* classes */
 .add-friend-button:hover span {
-  display: none;
-}
+  display: none; }
 
 .add-friend-button:hover:before {
-  content: "Add Friend";
-}
+  content: "Add Friend"; }
 
 .remove-friend-button:hover span {
-  display: none;
-}
+  display: none; }
 
 .remove-friend-button:hover:before {
-  content: "Remove Friend";
-}
+  content: "Remove Friend"; }
 
 .nz-page {
   margin: auto;
-  max-width: 960px;
-}
+  max-width: 960px; }
 
 .nz-dropdown-left {
-  right: 0;
-}
+  right: 0; }
 
 .nz-round-top {
-  border-radius: 4px 4px 0 0;
-}
+  border-radius: 4px 4px 0 0; }
 
 .nz-round-top-left {
-  border-radius: 4px 0 0 0;
-}
+  border-radius: 4px 0 0 0; }
 
 .nz-round-top-right {
-  border-radius: 0 4px 0 0;
-}
+  border-radius: 0 4px 0 0; }
 
 .nz-round-bottom {
-  border-radius: 0 0 4px 4px;
-}
+  border-radius: 0 0 4px 4px; }
 
 .nz-round-bottom-left {
-  border-radius: 0 0 0 4px;
-}
+  border-radius: 0 0 0 4px; }
 
 .nz-round-bottom-right {
-  border-radius: 0 0 4px 0;
-}
+  border-radius: 0 0 4px 0; }
 
 .nz-dark, body {
   color: #d6d6d6;
-  background-color: #22231c;
-}
+  background-color: #22231c; }
 
 .nz-text-dark {
-  color: #22231c;
-}
+  color: #22231c; }
 
 .nz-black, .nz-title, #header, #footer {
   color: #d6d6d6;
-  background-color: #181916;
-}
+  background-color: #181916; }
 
 .nz-text-black {
-  color: #181916;
-}
+  color: #181916; }
 
 .nz-brand {
-  color: #2196f3;
-}
+  color: #2196f3; }
 
 .nz-table tr:nth-child(even), .nz-table-bordered tr:nth-child(even) {
-  background-color: #181916;
-}
+  background-color: #181916; }
 
 .nz-table-bordered {
-  border: 1px solid #181916;
-}
+  border: 1px solid #181916; }
 
 .nz-table-bordered tr {
-  border-bottom: 1px solid #181916;
-}
+  border-bottom: 1px solid #181916; }
 
 .nz-ghost {
-  pointer-events: none;
-}
+  pointer-events: none; }
 
 .nz-table, .nz-table-bordered {
   border-collapse: collapse;
   border-spacing: 0;
   width: 100%;
-  display: table;
-}
+  display: table; }
 
 .nz-table td, .nz-table th, .nz-table-bordered td, .nz-table-bordered th {
   padding: 16px 24px 16px 24px;
   display: table-cell;
-  text-align: left;
-}
+  text-align: left; }
 
 .nz-truncate {
   overflow: hidden;
   white-space: nowrap;
-  text-overflow: ellipsis;
-}
-
-/*# sourceMappingURL=nz.css.map */
+  text-overflow: ellipsis; }

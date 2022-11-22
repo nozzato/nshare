@@ -31,7 +31,9 @@ function openFile(id) {
     window.location.href = '/files/edit?id=' + id;
 }
 function uploadFile() {
-    document.getElementById("upload-form").submit();
+    document.getElementById('upload-form').submit();
+    document.getElementById('upload-modal-content').style.display='none'
+    document.getElementById('loader').classList.remove('w3-hide');
 }
 </script>
 
@@ -146,7 +148,7 @@ function uploadFile() {
     </div>
 </div>
 <div class='w3-modal' id='upload-modal'>
-    <div class='w3-modal-content nz-dark w3-round w3-card-2'>
+    <div class='w3-modal-content nz-dark w3-round w3-card-2' id='upload-modal-content'>
         <header class='w3-container nz-black nz-round-top'>
             <h2>Upload</h2>
         </header>
@@ -169,6 +171,7 @@ function uploadFile() {
         </footer>
     </div>
 </div>
+<div class='w3-hide' id='loader'></div>
 
 <?php include($_SERVER['DOCUMENT_ROOT'] . '/common/notification.html'); ?>
 

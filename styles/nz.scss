@@ -31,6 +31,24 @@ input:focus, textarea:focus {
     outline: none;
 }
 
+#loader {
+    position: absolute;
+    left: 50%;
+    top: 50%;
+    z-index: 4;
+    width: 70px;
+    height: 70px;
+    margin: -76px 0 0 -76px;
+    border: 14px solid white;
+    border-radius: 50%;
+    border-top: 14px solid #2196f3;
+    animation: spin 1.5s linear infinite;
+}
+@keyframes spin {
+    0% { transform: rotate(0deg); }
+    100% { transform: rotate(360deg); }
+}
+
 /* classes */
 
 .add-friend-button:hover span {
