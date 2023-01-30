@@ -1,26 +1,10 @@
-# ignore user directories except example files
-files/*
-!files/*.php
-
-!files/Admin/
-files/Admin/*
-!files/Admin/example*
-
-!files/Member/
-files/Member/*
-!files/Member/example*
-
 # ignore user data
 data
-
-# ignore unnecessary adminer files
-admin/adminer/*
-!admin/adminer/adminer.php
 
 # ignore font awesome icons
 styles/icons/
 
-# ignore composer third-party code
+# ignore composer vendor code
 vendor/
 
 # ignore sass map
