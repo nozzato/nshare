@@ -1,6 +1,6 @@
 #!/bin/bash
 
-npa=("alpha" "bravo" "charlie" "delta" "echo" "foxtrot" "golf" "hotel" "india" "juliet" "kilo" "lima" "mike" "november" "oscar" "papa" "quebec" "romeo" "sierra" "tango" "uniform" "victor" "whiskey" "xray" "yankee" "zulu")
+npa=("alpha" "bravo" "charlie" "delta" "echo" "foxtrot" "golf" "hotel" "india" "juliet" "kilo" "lima" "mike" "november" "oscar" "papa" "quebec" "romeo" "sierra" "tango" "uniform" "victor" "whiskey" "x-ray" "yankee" "zulu")
 
 sleep 3
 
@@ -8,7 +8,7 @@ for i in {0..25}; do
     for j in {1..14}; do
         xdotool key Tab
     done
-    xdotool type "${npa[$i]}@nozzato.org"
+    xdotool type "${npa[$i]}@nshare.com"
     xdotool key Tab
     xdotool type "${npa[$i]^}"
     xdotool key Tab
