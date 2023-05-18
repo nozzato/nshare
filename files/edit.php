@@ -161,7 +161,7 @@ else {
                         <td><b>Date</b><br><?= $row['upload_date']; ?></td>
 
                     <?php if(!$_SESSION['ban_status'] >= 1 || $row['user_id'] != $_SESSION['user']) { ?>
-                        <td><b>Privacy</b><br><?= ucfirst($row['privacy']); ?></td>
+                        <td><b>Visibility</b><br><?= ucfirst($row['privacy']); ?></td>
                     <?php } ?>
 
                     </tr>

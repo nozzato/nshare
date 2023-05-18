@@ -71,7 +71,7 @@ function uploadFile() {
                     <th class='nz-truncate'>Name <i class='fa fa-fw fa-caret-down'></i></th>
 
                 <?php if(!$_SESSION['ban_status'] >= 1) { ?>
-                    <th>Privacy</th>
+                    <th>Visibility</th>
                 <?php } ?>
 
                     <th>Size</th>
@@ -162,7 +162,7 @@ function uploadFile() {
                 <label for='upload-public'>Public</label>
                 <input class='w3-hide' id='upload-file' type='file' name='upload_file[]' onchange='uploadFile()' multiple required>
                 <label class='w3-button w3-bar-item w3-green w3-round' for='upload-file' style='margin-right:5px'>
-                    <i class='fa fa-fw fa-file-arrow-up'></i> Upload
+                    <i class='fa fa-fw fa-file-arrow-up'></i> Browse
                 </label>
                 <button class='w3-button w3-bar-item w3-blue-grey w3-round' onclick='document.getElementById("upload-modal").style.display="none"' style='margin-right:16px'>
                     <i class='fa fa-fw fa-ban'></i> Cancel
