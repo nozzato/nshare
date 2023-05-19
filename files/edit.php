@@ -52,13 +52,20 @@ if($row['user_id']  == $_SESSION['user']) {
 }
 // else file is not owned by user
 else {
-    // select username of file owner
-    $stmt = $pdo -> prepare('SELECT `username` FROM `users` WHERE `user_id` = ?;');
+    // select file owner
+    $stmt = $pdo -> prepare('SELECT * FROM `users` WHERE `user_id` = ?;');
     $stmt -> execute([$row['user_id']]);
-    $username = $stmt -> fetchColumn();
+    $row = $stmt -> fetch(PDO::FETCH_ASSOC);
 
+    $user = $row['user_id'];
+    $username = $row['username'];
     $file_path_server = $_SERVER['DOCUMENT_ROOT'] . '/data/' . $user . '/';
-    $file_path        = '/data/' . $user . '/';
+    $file_path = '/data/' . $user . '/';
+
+    // select file from GET id
+    $stmt = $pdo -> prepare('SELECT * FROM `files` WHERE `file_id` = ?;');
+    $stmt -> execute([$_GET['id']]);
+    $row = $stmt -> fetch(PDO::FETCH_ASSOC);
 }
 
 $file        = $file_path . $file_name;
@@ -68,7 +75,7 @@ $file_mime   = $file_info -> buffer(file_get_contents($file_server));
 $file_modal  = '"' . $file_name . '"';
 
 // if GET query invalid or no file selected
-if(!isset($_GET['id']) || empty($row['filename'])) {
+if(!isset($_GET['id']) /*|| empty($row['filename'])*/) {
     $_SESSION['msg'] = ['Error: Invalid file', 'true'];
     header('location:/files/index');
     exit;
@@ -183,7 +190,7 @@ else {
         <?php } ?>
 
                 <form action='/files/download.php' method='POST'>
-                    <button class='w3-button w3-bar-item w3-blue w3-round' value='<?= $file_name; ?>' name='download_btn' style='margin-right:5px'>
+                <button class='w3-button w3-bar-item w3-blue w3-round' value='<?= $file_name; ?>,<?= $user; ?>' name='download_btn' style='margin-right:5px'>
                         <i class='fa fa-fw fa-file-arrow-down'></i> Download
                     </button>
                 </form>
