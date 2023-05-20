@@ -1,12 +1,6 @@
 <?php
 session_start();
 
-// if not logged in
-if(!isset($_SESSION['user'])) {
-    header('location:/index');
-    exit;
-}
-
 // include functions
 include_once($_SERVER['DOCUMENT_ROOT'] . '/scripts/scripts.php');
 
