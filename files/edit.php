@@ -75,7 +75,7 @@ $file_mime   = $file_info -> buffer(file_get_contents($file_server));
 $file_modal  = '"' . $file_name . '"';
 
 // if GET query invalid or no file selected
-if(!isset($_GET['id']) /*|| empty($row['filename'])*/) {
+if(!isset($_GET['id']) || empty($row['file_id'])) {
     $_SESSION['msg'] = ['Error: Invalid file', 'true'];
     header('location:/files/index');
     exit;
