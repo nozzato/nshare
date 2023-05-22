@@ -54,7 +54,7 @@ function go_back() {
 // security
 function h_captcha($hcr) {
     $data = array(
-        'secret' => '0x5cB5398D7A0e9069531e4C520844E4c9728f74ED',
+        'secret' => trim(file_get_contents($_SERVER['DOCUMENT_ROOT'] . '/admin/hc_password')),
         'response' => $hcr
     );
     $verify = curl_init();

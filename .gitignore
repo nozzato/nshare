@@ -10,8 +10,8 @@ vendor/
 # ignore sass map
 styles/nz.css.map
 
-# ignore database password
-admin/db_password
+# ignore secrets
+admin/*_password
 
 # ignore maintenance switch
 status/maintenance.enable
