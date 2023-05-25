@@ -3,12 +3,12 @@ session_start();
 
 // if not logged in
 if(!isset($_SESSION['user'])) {
-    header('location:/index');
+    header('location:/index.php');
     exit;
 }
 // if banned
 if($_SESSION['ban_status'] >= 1) {
-    header('location:/status/banned');
+    header('location:/status/banned.php');
     exit;
 }
 

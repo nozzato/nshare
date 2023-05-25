@@ -3,7 +3,7 @@ session_start();
 
 // if banned
 if(isset($_SESSION['ban_status']) && $_SESSION['ban_status'] >= 1) {
-    header('location:/status/banned');
+    header('location:/status/banned.php');
     exit;
 }
 
@@ -50,7 +50,7 @@ $_SESSION['page'] = 'home';
     <h1><b>Welcome to NShare</b></h1>
     <h2>A file sharing and editing website</h2>
     <br>
-    <p>Don't have an account? <a class='w3-text-blue' href='/user/signup'>Sign up now!</a></p>
+    <p>Don't have an account? <a class='w3-text-blue' href='/user/signup.php'>Sign up now!</a></p>
 <?php } else {
     $stmt = $pdo-> prepare('SELECT * FROM `files` WHERE `user_id` = ?;');
     $stmt-> execute([$_SESSION['user']]);

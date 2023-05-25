@@ -2,23 +2,23 @@
     <div class='w3-bar'>
 
     <?php if(!isset($_SESSION['user'])) { ?>
-        <a class='w3-bar-item w3-button nz-brand' href='/index'>NShare</a>
+        <a class='w3-bar-item w3-button nz-brand' href='/index.php'>NShare</a>
     <?php } else { ?>
-        <a class='w3-bar-item w3-button nz-brand w3-mobile' href='/index'>NShare</a>
+        <a class='w3-bar-item w3-button nz-brand w3-mobile' href='/index.php'>NShare</a>
     <?php } ?>
 
     <?php if(isset($_SESSION['user'])) { ?>
-        <a class='w3-bar-item w3-button' href='/files/index'>
+        <a class='w3-bar-item w3-button' href='/files/index.php'>
             <i class='fa fa-fw fa-folder-open'></i> Files
         </a>
     <?php if(isset($_SESSION['ban_status']) && $_SESSION['ban_status'] == 0) { ?>
-        <a class='w3-bar-item w3-button' href='/user/users'>
+        <a class='w3-bar-item w3-button' href='/user/users.php'>
             <i class='fa fa-fw fa-user'></i> Users
         </a>
     <?php } } ?>
 
     <?php if(isset($_SESSION['role']) && $_SESSION['role'] == 2 && isset($_SESSION['ban_status']) && $_SESSION['ban_status'] == 0) { ?>
-        <a class='w3-bar-item w3-button' href='/admin/index'>
+        <a class='w3-bar-item w3-button' href='/admin/index.php'>
             <i class='fa fa-fw fa-server'></i> Admin
         </a>
     <?php } ?>
@@ -50,12 +50,12 @@
                 <i class='fa fa-fw fa-door-closed'></i> Account <i class='fa fa-fw fa-caret-down'></i>
             </button>
             <div class='w3-dropdown-content w3-bar-block nz-black nz-round-bottom-left w3-card-2 nz-dropdown-left' style='max-width:100px'>
-                <a class='w3-bar-item w3-button' href='/user/index?id=<?= $_SESSION['user']; ?>'>
+                <a class='w3-bar-item w3-button' href='/user/index.php?id=<?= $_SESSION['user']; ?>'>
                     <i class='fa fa-fw fa-user'></i> <?= $_SESSION['username']; ?>
                 </a>
 
             <?php if(!$_SESSION['ban_status'] >= 1) { ?>
-                <a class='w3-bar-item w3-button' href='/user/settings'>
+                <a class='w3-bar-item w3-button' href='/user/settings.php'>
                     <i class='fa fa-fw fa-gear'></i> Settings
                 </a>
             <?php } ?>

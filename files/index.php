@@ -3,7 +3,7 @@ session_start();
 
 // if not logged in
 if(!isset($_SESSION['user'])) {
-    header('location:/index');
+    header('location:/index.php');
     exit;
 }
 
@@ -28,7 +28,7 @@ $_SESSION['page'] = 'files';
 <?php include($_SERVER['DOCUMENT_ROOT'] . '/common/include.html'); ?>
 <script type='text/javascript'>
 function openFile(id) {
-    window.location.href = '/files/edit?id=' + id;
+    window.location.href = '/files/edit.php?id=' + id;
 }
 function uploadFile() {
     document.getElementById('upload-form').submit();
@@ -50,7 +50,7 @@ function uploadFile() {
     <div class='w3-container w3-col nz-black' style='width:200px;height:calc(100vh - 38.5px);font-size:18px;padding-top:8px'>
 <!--
         <div style='padding:8px'>
-            <tr><td><a href='/files/index' style='font-size:20px'>Folders</a></td></tr>
+            <tr><td><a href='/files/index.php' style='font-size:20px'>Folders</a></td></tr>
             <ul>
                 <li>Documents</li>
                 <li>Music</li>
@@ -62,7 +62,7 @@ function uploadFile() {
     </div>
     <div class='w3-container w3-rest' style='padding-top:8px'>
         <div class='w3-padding'>
-            <tr><td><a href='/files/index' style='font-size:20px'><?= $_SESSION['username'] ?>/</a></td></tr>
+            <tr><td><a href='/files/index.php' style='font-size:20px'><?= $_SESSION['username'] ?>/</a></td></tr>
         </div>
         <div class='w3-responsive'>
             <table class='nz-table'>

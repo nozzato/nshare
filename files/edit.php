@@ -20,7 +20,7 @@ $row['upload_date'] = $stmt-> fetchColumn();
 // if selected file is private and not owned by user
 if($row['privacy'] == 'private' && $row['user_id'] != $_SESSION['user']) {
     $_SESSION['msg'] = ['Error: You do not have permission view this file', 'true'];
-    header('location:/files/index');
+    header('location:/files/index.php');
     exit;
 }
 // else if selected file is public and not owned by user
@@ -71,7 +71,7 @@ $file_modal  = '"' . $file_name . '"';
 // if GET query invalid or no file selected
 if(!isset($_GET['id']) || empty($row['file_id'])) {
     $_SESSION['msg'] = ['Error: Invalid file', 'true'];
-    header('location:/files/index');
+    header('location:/files/index.php');
     exit;
 }
 

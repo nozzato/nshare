@@ -122,7 +122,7 @@ function openPage(page, parentPage) {
     document.title = parentPage + ': ' + page + ' - NShare';
 }
 function goBack() {
-    window.location.href = '/files/index';
+    window.location.href = '/files/index.php';
 }
 function selectAll() {
     var checkMaster = document.getElementById('check-master');

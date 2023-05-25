@@ -66,12 +66,12 @@ if($row['ban_status'] == 0) {
     <div class='w3-center'>
         <h1 class='w3-text-red'><b>Account Banned</b></h1>
         <p>We have found your account in violation of our rules.</p>
-        <p>Your files will be deleted automatically on the <b><?= $ban_date_deadline; ?></b>.<br><a class='w3-text-blue' href='/files/index'>Click here</a> to download your files before they are deleted.</p>
+        <p>Your files will be deleted automatically on the <b><?= $ban_date_deadline; ?></b>.<br><a class='w3-text-blue' href='/files/index.php'>Click here</a> to download your files before they are deleted.</p>
         <span>Username:</span>
-        <a class='w3-text-light-blue' href='/user/index?id=<?= $_SESSION['user']; ?>'><?= $_SESSION['username']; ?></a>
+        <a class='w3-text-light-blue' href='/user/index.php?id=<?= $_SESSION['user']; ?>'><?= $_SESSION['username']; ?></a>
         <br>
         <span>Banned By:</span>
-        <a class='w3-text-light-blue' href='/user/index?id=<?= $row['ban_judge']; ?>'><?= $ban_judge; ?></a>
+        <a class='w3-text-light-blue' href='/user/index.php?id=<?= $row['ban_judge']; ?>'><?= $ban_judge; ?></a>
         <br>
         <span>Ban Date:</span>
         <span><?= $row['ban_date']; ?></span>

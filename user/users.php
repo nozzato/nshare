@@ -3,12 +3,12 @@ session_start();
 
 // if not logged in
 if(!isset($_SESSION['user'])) {
-    header('location:/index');
+    header('location:/index.php');
     exit;
 }
 // if banned
 if($_SESSION['ban_status'] >= 1) {
-    header('location:/status/banned');
+    header('location:/status/banned.php');
     exit;
 }
 
@@ -51,7 +51,7 @@ $_SESSION['page'] = 'users';
 <?php include($_SERVER['DOCUMENT_ROOT'] . '/common/include.html'); ?>
 <script type='text/javascript'>
 function openProfile(id) {
-    window.location.href = '/user/index?id=' + id;
+    window.location.href = '/user/index.php?id=' + id;
 }
 </script>
 

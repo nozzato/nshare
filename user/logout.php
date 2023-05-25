@@ -6,39 +6,39 @@ if(!isset($_SESSION['close_logout'])) {
     if($_SESSION['page'] == 'home') {
         session_unset();
         $_SESSION['msg'] = ['Logged out', 'false'];
-        header('location:/index');
+        header('location:/index.php');
         exit;
     } else if($_SESSION['page'] == 'profile') {
         session_unset();
         $_SESSION['msg'] = ['Logged out', 'false'];
-        header('location:/index');
+        header('location:/index.php');
         exit;
     } else if($_SESSION['page'] == 'settings') {
         session_unset();
         $_SESSION['msg'] = ['Logged out', 'false'];
-        header('location:/index');
+        header('location:/index.php');
         exit;
     } else if($_SESSION['page'] == 'files') {
         session_unset();
         $_SESSION['msg'] = ['Logged out', 'false'];
-        header('location:/index');
+        header('location:/index.php');
         exit;
     } else if($_SESSION['page'] == 2) {
         session_unset();
         $_SESSION['msg'] = ['Logged out', 'false'];
-        header('location:/index');
+        header('location:/index.php');
         exit;
     } else {
         session_unset();
         $_SESSION['msg'] = ['Logged out', 'false'];
-        header('location:/index');
+        header('location:/index.php');
         exit;
     }
 // else user closed their account
 } else {
     session_unset();
     $_SESSION['msg'] = ['Account deleted', 'false'];
-    header('location:/index');
+    header('location:/index.php');
     exit;
 }
 ?>

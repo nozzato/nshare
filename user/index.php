@@ -3,13 +3,13 @@ session_start();
 
 // if not logged in
 if(!isset($_SESSION['user'])) {
-    header('location:/index');
+    header('location:/index.php');
     exit;
 }
 
 // if no GET id
 if(!isset($_GET['id'])) {
-    header('location:/user/index?id=' . $_SESSION['user']);
+    header('location:/user/index.php?id=' . $_SESSION['user']);
     exit;
 }
 
@@ -38,7 +38,7 @@ if($_GET['id'] == $_SESSION['user']) {
     // if user does not exist
     if(empty($row)) {
         $_SESSION['msg'] = ['Error: Invalid user', 'true'];
-        header('location:/user/index?id=' . $_SESSION['user']);
+        header('location:/user/index.php?id=' . $_SESSION['user']);
         exit;
     }
 
